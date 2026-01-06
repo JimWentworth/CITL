@@ -163,6 +163,8 @@ function switchTab(id){
       <button role="tab" aria-selected="true" data-tab="intro" onclick="switchTab('intro')">Pilot Overview</button>
       <button role="tab" aria-selected="false" data-tab="copilot" onclick="switchTab('copilot')">Microsoft Copilot</button>
       <button role="tab" aria-selected="false" data-tab="chatgpt" onclick="switchTab('chatgpt')">ChatGPT</button>
+	<button role="tab" aria-selected="false" data-tab="participate" onclick="switchTab('participate')">How to Participate</button>
+
     </div>
   </div>
 </header>
@@ -456,6 +458,134 @@ function switchTab(id){
     <strong>Bottom line:</strong> ChatGPT Education supports deeper thinking,
     longer projects, and institutional trust boundaries. Free ChatGPT remains
     powerful—but externalizes risk and continuity to the user.
+  </div>
+</section>
+
+	<!-- PARTICIPATION PANEL -->
+<section id="participate" class="panel" role="tabpanel" hidden>
+  <h2>How to Participate in the Pilot</h2>
+
+  <p>
+    This pilot is designed to generate actionable evidence about tool fit, workflow impact, and risk-aware practice.
+    Participation is lightweight—but it must be measurable and documentable enough to inform future decisions.
+  </p>
+
+  <h3>Step 1 — Choose your tool (and choose intentionally)</h3>
+  <ul>
+    <li><strong>Select one tool</strong> for the pilot period: Microsoft Copilot (paid) or ChatGPT Education.</li>
+    <li>Use the tool tab comparisons to match your choice to how you work:
+      <ul>
+        <li><strong>Microsoft 365 / Teams-heavy workflows</strong> → Copilot is often the better fit.</li>
+        <li><strong>Drafting, synthesis, planning, and iterative thinking</strong> → ChatGPT Education is often the better fit.</li>
+      </ul>
+    </li>
+    <li><strong>Risk note:</strong> If your work includes protected or sensitive information, default to tools and workflows explicitly approved for that level of data.</li>
+  </ul>
+
+  <h3>Step 2 — Define one measurable goal</h3>
+  <p>
+    Pick a single workflow you can reasonably test and improve. Write your goal so someone else can tell whether it worked.
+  </p>
+
+  <div class="note">
+    <strong>Goal template:</strong>
+    <br />
+    <span class="muted">“Over the pilot period, I will use <em>[tool]</em> to improve <em>[workflow]</em> by <em>[measurable outcome]</em>, measured by <em>[how I will measure it]</em>.”</span>
+  </div>
+
+  <h4>Examples of measurable goals</h4>
+  <ul>
+    <li><strong>Time reduction:</strong> “Reduce time to produce a first draft of a workshop outline from 90 minutes to 45 minutes.”</li>
+    <li><strong>Quality improvement:</strong> “Increase clarity of participant instructions, measured by fewer follow-up emails or fewer ‘confusion points’ in feedback.”</li>
+    <li><strong>Consistency:</strong> “Standardize tone and structure across 6 support emails, measured by using a repeatable template + fewer rewrites.”</li>
+    <li><strong>Throughput:</strong> “Increase number of usable draft artifacts produced per week (e.g., rubrics, agendas, summaries) without increasing revision burden.”</li>
+  </ul>
+
+  <h3>Step 3 — Identify your use case type (to calibrate risk)</h3>
+  <p>
+    Risk is shaped by <strong>how AI output is used</strong> and the <strong>impact of being wrong</strong>, not just the tool itself.
+    Before you begin, categorize your pilot work:
+  </p>
+
+  <div class="table-wrap" role="region" aria-label="Risk calibration table" tabindex="0">
+    <table>
+      <thead>
+        <tr>
+          <th>Use Type</th>
+          <th>What it looks like</th>
+          <th>Typical risk level</th>
+          <th>What to do differently</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Draft support</th>
+          <td>First drafts, brainstorming, outline building, rewriting for clarity</td>
+          <td>Lower</td>
+          <td>Human review is usually sufficient; verify facts and citations as needed</td>
+        </tr>
+        <tr>
+          <th>Operational support</th>
+          <td>Summarizing meetings, drafting internal comms, organizing plans, basic analysis</td>
+          <td>Medium</td>
+          <td>Review for accuracy, completeness, and tone; watch for missed context or subtle errors</td>
+        </tr>
+        <tr>
+          <th>Assessment or decision-adjacent</th>
+          <td>Quiz questions, rubrics, evaluation language, student-facing guidance, decision support</td>
+          <td>Higher</td>
+          <td>Increase validation: bias checks, alignment review, pilot testing, and a clear human accountability step</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Step 4 — Use reasonable documentation standards</h3>
+  <p>
+    The goal is not surveillance—it’s to capture enough evidence to decide what should scale and what should not.
+    Keep documentation light but consistent.
+  </p>
+
+  <h4>Minimum documentation (recommended)</h4>
+  <ul>
+    <li><strong>Use log (weekly):</strong> 3–5 bullets about what you did with the tool and what happened.</li>
+    <li><strong>Artifacts (when relevant):</strong> Save one example input/output pair or “before/after” draft.</li>
+    <li><strong>Reflection note:</strong> What improved? What stayed hard? What risks or failures showed up?</li>
+    <li><strong>Time estimate:</strong> Rough time saved (or time added) compared to your normal process.</li>
+  </ul>
+
+  <div class="note">
+    <strong>Documentation prompt (copy/paste):</strong>
+    <ul>
+      <li><strong>Task:</strong> What did I try to do?</li>
+      <li><strong>Tool + feature:</strong> What did I use (e.g., Word drafting, chat, file analysis)?</li>
+      <li><strong>Result:</strong> What did it produce?</li>
+      <li><strong>Impact:</strong> Did it reduce time, improve quality, or reduce friction?</li>
+      <li><strong>Risk check:</strong> What could have gone wrong, and how did I mitigate it?</li>
+      <li><strong>Next iteration:</strong> What will I change next time?</li>
+    </ul>
+  </div>
+
+  <h3>Step 5 — Deliverables (what you submit at the end)</h3>
+  <p>
+    These deliverables help the pilot generate usable institutional learning.
+  </p>
+  <ul>
+    <li><strong>Tool choice + rationale</strong> (2–4 sentences)</li>
+    <li><strong>Measurable goal statement</strong> (from Step 2)</li>
+    <li><strong>Evidence bundle</strong> (one of the following):
+      <ul>
+        <li>2–3 short use-log entries + 1–2 artifacts, <em>or</em></li>
+        <li>1 short case study (½–1 page) describing what changed</li>
+      </ul>
+    </li>
+    <li><strong>Risk reflection</strong>: What risk level did your use case fall into, and what mitigations were necessary?</li>
+    <li><strong>Recommendation</strong> (choose one): “Scale,” “Scale with conditions,” or “Do not scale.” Include a sentence explaining why.</li>
+  </ul>
+
+  <div class="note">
+    <strong>Quality bar:</strong> If someone else in the center wanted to replicate your workflow, your notes should be sufficient for them to try it safely.
+    That’s the sustainability test.
   </div>
 </section>
 
