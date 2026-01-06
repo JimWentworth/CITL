@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CITL AI Pilot — Tool Selection Guide</title>
+
+<style>
+:root{
+  --illini-blue:#13294B;
+  --illini-orange:#E84A27;
+  --slate-900:#0f172a;
+  --slate-700:#334155;
+  --slate-200:#e2e8f0;
+  --slate-100:#f1f5f9;
+  --white:#ffffff;
+  --radius:16px;
+}
+
+/* Base */
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color:var(--slate-900);
+  background:#f8fafc;
+  line-height:1.45;
+}
+a{color:var(--illini-blue);}
+a:focus{
+    outline: 3px solid var(--illini-orange);
+    outline-offset: 2px;
+    color: #FFFFFF;
+}
+.wrap{max-width:1100px; margin:0 auto; padding:24px 18px 48px;}
+
+/* Header */
+header{
+  background:linear-gradient(135deg, #0b1b33, #13294B);
+  color:white;
+  border-bottom:4px solid var(--illini-orange);
+}
+header .wrap{padding:28px 18px;}
+h1{
+  margin:0 0 10px;
+  font-size:clamp(1.6rem,2.8vw,2.2rem);
+}
+.subhead{max-width:80ch; opacity:0.95}
+
+/* Tabs */
+.tabs{
+  display:flex;
+  gap:6px;
+  margin-top:18px;
+  flex-wrap:wrap;
+}
+.tabs button{
+  border:1px solid var(--slate-200);
+  background:var(--white);
+  padding:10px 14px;
+  border-radius:999px;
+  font-size:0.95rem;
+  cursor:pointer;
+}
+.tabs button[aria-selected="true"]{
+  background:var(--illini-blue);
+  color:white;
+  border-color:var(--illini-blue);
+}
+.tabs button:focus{outline:3px solid var(--illini-orange);}
+
+/* Panels */
+.panel{
+  display:none;
+  background:white;
+  border:1px solid var(--slate-200);
+  border-radius:var(--radius);
+  padding:20px;
+  margin-top:18px;
+}
+.panel[hidden]{display:none;}
+.panel.active{display:block;}
+
+/* Section */
+h2{color:var(--illini-blue); margin-top:0;}
+.note{
+  margin-top:14px;
+  padding:12px 14px;
+  border-left:4px solid var(--illini-orange);
+  background:#fff7f5;
+  border-radius:12px;
+}
+
+/* Tables */
+.table-wrap{
+  overflow:auto;
+  border:1px solid var(--slate-200);
+  border-radius:12px;
+}
+table{
+  border-collapse:collapse;
+  width:100%;
+  min-width:760px;
+}
+th,td{
+  padding:12px;
+  border-top:1px solid var(--slate-200);
+  vertical-align:top;
+}
+thead th{
+  background:#f8fafc;
+  border-bottom:2px solid var(--slate-200);
+}
+tbody th{background:#fbfdff; width:22%;}
+
+/* Risk row */
+.risk{
+  background:rgba(232,74,39,0.06);
+}
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  font-weight:600;
+  border:1px solid var(--slate-200);
+}
+.low{border-color:rgba(19,41,75,0.3);}
+.med{border-color:rgba(232,74,39,0.4);}
+
+/* Lists */
+ul{margin-top:6px;}
+footer{
+  margin-top:30px;
+  font-size:0.95rem;
+  color:var(--slate-700);
+}
+</style>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.panel').forEach(p=>{
+    p.classList.remove('active');
+    p.setAttribute('hidden','');
+  });
+  document.getElementById(id).classList.add('active');
+  document.getElementById(id).removeAttribute('hidden');
+
+  document.querySelectorAll('.tabs button').forEach(b=>{
+    b.setAttribute('aria-selected','false');
+  });
+  document.querySelector('[data-tab="'+id+'"]').setAttribute('aria-selected','true');
+}
+</script>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <h1>Exploring AI Tools at CITL</h1>
+    <p class="subhead">
+    This pilot gives CITL staff a one-year opportunity to explore one of the subscripion-based campus AI tools to evaluate how it impacts your teaching-center work.</p>
+
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="intro" onclick="switchTab('intro')">Pilot Overview</button>
+      <button role="tab" aria-selected="false" data-tab="copilot" onclick="switchTab('copilot')">Microsoft Copilot</button>
+      <button role="tab" aria-selected="false" data-tab="chatgpt" onclick="switchTab('chatgpt')">ChatGPT</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- INTRO PANEL -->
+<section id="intro" class="panel active" role="tabpanel">
+  <h2>Why this pilot exists</h2>
+  <p>
+    The goal of this pilot is not to standardize on a single AI tool, but to understand
+    how different <a href="https://genai.illinois.edu/ai-app" target="_blank">campus-endorsed tools</a> support the diverse work happening across the teaching center.
+  </p>
+
+  <p>
+    Rather than asking “Which tool is better?”, this pilot asks:
+  </p>
+  <ul>
+    <li>Where does AI reduce friction in our existing workflows?</li>
+    <li>Where does it introduce new risks or overhead?</li>
+    <li>Which environments align with different roles and responsibilities?</li>
+  </ul>
+	<h2>Balancing Innovation with Awareness</h2>
+
+	<p> We understand there are legitimate concerns about AI usage including potential cognitive impacts, environmental concerns and the changing nature of how we all work and learn. We don’t intend to ignore these concerns, but we  acknowledge we have a responsibility to help our campus community understand how these tools will shape the future of education and to do so thoughtfully and transparently.</p>
+	<p>That means keeping in mind a few guiding principles: </p>
+	<p><strong>Privacy First: </strong>Use AI in ways that respect institutional privacy expectations and data stewardship responsibilities. Avoid entering student records, personnel information, or other protected data unless the tool and context are explicitly approved for that use.</p>
+	<p><strong>Ethics and Transparency: </strong>Use AI in ways that align with our commitments to inclusivity, academic integrity, and fairness. When AI meaningfully contributes to your work, be transparent about its role and retain human responsibility for final decisions and outputs.</p>
+	<p><strong>Responsible Innovation:</strong> This pilot encourages experimentation—but not novelty for its own sake. Use AI where it genuinely reduces friction, improves clarity, or enhances the quality of our work. Favor practices that can scale beyond individual use and be sustained over time, rather than workflows that rely on fragile setups or one-off expertise.</p>
+	<p><strong>Risk Mitigation:</strong> Match the level of oversight, review, and validation to the potential consequences of the AI’s role. Assess risk based on how AI outputs are used and the potential impact of error, not just the tool itself. Low-impact uses (such as generating first drafts or brainstorming ideas) carry different risks than high-impact uses (such as creating assessment materials, decision-support tools, or student-facing systems).</p>
+<h2>What this pilot is — and is not</h2>
+  <ul>
+    <li><strong>Is:</strong> A structured opportunity to explore AI in context</li>
+    <li><strong>Is:</strong> A way to inform future institutional decisions</li>
+    <li><strong>Is not:</strong> A measure of individual skill or adoption readiness</li>
+    <li><strong>Is not:</strong> An endorsement of AI-generated output as authoritative</li>
+  </ul>
+
+  <h2>How to choose a tool</h2>
+  <p>This pilot focuses primarily on ChatGPT EDU and Micrsoft 365 Copilot Suite Add-on. Use the buttons above for more information, and as you review the options focus on these factors:</p>
+  <ul>
+    <li><strong>Workflow:</strong> Where your work actually happens</li>
+    <li><strong>Data sensitivity:</strong> What kinds of information you handle</li>
+    <li><strong>Risk tolerance:</strong> What level of institutional protection your work requires</li>
+  </ul>
+
+  <div class="note">
+    This pilot is focused on campus-supported tools only. If your position at CITL would be best supported by licening another tool, please speak with your supervisor. 
+  </div>
+</section>
+
+<!-- COPILOT PANEL -->
+<section id="copilot" class="panel" role="tabpanel" hidden>
+  <h2>Microsoft Copilot</h2>
+
+  <p>
+    Microsoft Copilot is best understood as an <strong>embedded productivity assistant</strong>.
+    Its value comes less from raw generation and more from operating directly inside
+    the Microsoft 365 ecosystem where work already happens. Everyone on campus already has access to the free version of Copilot. The 365 add-on allows full integration of copilot chat across your Microsoft 365 ecosystem.
+  </p>
+	
+	<p>Eligibility: Faculty and Staff via a subscription from <a href="https://webstore.illinois.edu/shop/search.aspx?keyword=copilot&shopby=2" target="_blank">WebStore</a>.
+
+  <h3>What Copilot is good at</h3>
+  <ul>
+    <li>Drafting, revising, and summarizing documents <em>in place</em></li>
+    <li>Transforming spreadsheets into explanations, summaries, or action items</li>
+    <li>Reducing friction in email and meeting-heavy workflows</li>
+    <li>Surfacing patterns across documents, chats, and files (permission-dependent)</li>
+  </ul>
+
+  <h3>What Copilot is not designed for</h3>
+  <ul>
+    <li>Open-ended conceptual exploration detached from documents</li>
+    <li>Pedagogical reasoning or instructional design without strong prompting</li>
+    <li>Replacing human judgment in decision-making or evaluation</li>
+  </ul>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Copilot 365 (Paid)</th>
+          <th>Free Copilot Chat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Workflow Integration</th>
+          <td>
+            Deeply embedded in Word, Excel, PowerPoint, Outlook, and Teams.
+            Enables drafting, summarizing, and analysis without leaving the tool.
+          </td>
+          <td>
+            Web-based interface only; work must be manually transferred into documents.
+          </td>
+        </tr>
+
+        <tr>
+          <th>Data Context</th>
+          <td>
+            Can reference organizational emails, files, calendars, and chats
+            based on user permissions and tenant configuration.
+          </td>
+          <td>
+            No access to internal Microsoft 365 data or institutional context.
+          </td>
+        </tr>
+
+        <tr>
+          <th>Collaboration</th>
+          <td>
+            Designed for shared documents and Teams-based work.
+            Can summarize group activity and support collaborative drafting.
+          </td>
+          <td>
+            Individual-only usage; no shared memory or collaboration layer.
+          </td>
+        </tr>
+
+        <tr>
+          <th>Execution vs Thinking</th>
+          <td>
+            Strong execution partner for operational tasks.
+            Less effective as a detached ideation or reflection tool.
+          </td>
+          <td>
+            Useful for lightweight ideation but disconnected from execution.
+          </td>
+        </tr>
+
+        <tr class="risk">
+          <th>Risk Tolerance (Institutional Use)</th>
+          <td>
+            <span class="badge low">Higher tolerance</span>
+            <p>
+              Better aligned with institutional workflows and governance.
+              Still requires verification and human oversight.
+            </p>
+          </td>
+          <td>
+            <span class="badge med">Lower tolerance</span>
+            <p>
+              Appropriate only for non-sensitive, exploratory work.
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Best Fit</th>
+          <td>
+            Administrative, operational, and document-centric work where
+            efficiency and continuity matter.
+          </td>
+          <td>
+            Quick assistance when institutional context is unnecessary.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <strong>Bottom line:</strong> Copilot 365 excels when AI is expected to
+    operate <em>inside</em> the work itself. If your day is dominated by Microsoft
+    documents and Teams, this environment minimizes friction.
+  </div>
+</section>
+
+
+<!-- CHATGPT PANEL -->
+<section id="chatgpt" class="panel" role="tabpanel" hidden>
+  <h2>ChatGPT EDU</h2>
+
+
+  <p>ChatGPT Edu is a version of ChatGPT built for universities to responsibly deploy AI to students, faculty, researchers, and campus operations. Powered by GPT-5, ChatGPT Edu can reason across text and vision and use advanced tools such as data analysis. </p>
+	  
+   <p> ChatGPT functions primarily as a <strong>general-purpose thinking and drafting partner</strong>.
+    Its strength lies in synthesis, iteration, and reflection rather than direct execution
+    inside institutional systems. Many of the features in ChatGPT are available for non-licensed users. The ChatGPT EDU license adds the following:
+	   <ul><li>Access to GPT-5, excelling in text interpretation, coding, and mathematics</li>
+<li>Advanced capabilities such as data analytics, web browsing, and document summarization</li>
+<li>The ability to build GPTs, custom versions of ChatGPT, and share them within university workspaces</li>
+<li>Significantly higher message limits than the free version of ChatGPT</li>
+<li>Improved language capabilities across quality and speed, with over 50 languages supported</li>
+<li>Robust security, data privacy, and administrative controls such as group permissions, SSO, SCIM 1, and GPT management
+<li>Conversations and data are not used to train OpenAI models</li></ul>
+  </p>
+	
+<p>Eligibility: Faculty and Staff via a subscription from <a href="https://webstore.illinois.edu/shop/product.aspx?zpid=5994" target="_blank">WebStore</a>.</p>
+	
+
+  <h3>What ChatGPT is good at</h3>
+  <ul>
+    <li>Exploratory writing and ideation</li>
+    <li>Drafting instructional content, outlines, and explanations</li>
+    <li>Comparing perspectives, surfacing assumptions, and stress-testing ideas</li>
+    <li>Iterative refinement across longer conversational arcs</li>
+  </ul>
+
+  <h3>What ChatGPT is not designed for</h3>
+  <ul>
+    <li>Accessing live institutional data or internal systems</li>
+    <li>Acting autonomously on behalf of users</li>
+    <li>Serving as an authoritative source without human verification</li>
+  </ul>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>ChatGPT Free</th>
+          <th>ChatGPT Education (Institutional)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Workspace Model</th>
+          <td>
+            Individual, personal workspace.
+            No shared institutional context.
+          </td>
+          <td>
+            Secure, institution-managed workspace supporting collaboration.
+          </td>
+        </tr>
+
+        <tr>
+          <th>Data Privacy</th>
+          <td>
+            Conversations may be used to improve models unless the user opts out.
+          </td>
+          <td>
+            Conversations are not used to train OpenAI models.
+          </td>
+        </tr>
+
+        <tr>
+          <th>Model & Tool Access</th>
+          <td>
+            Access to flagship models with strict usage caps and limited tools.
+          </td>
+          <td>
+            Expanded access to advanced models and full tool suite,
+            including analysis, browsing, and custom GPTs.
+          </td>
+        </tr>
+
+        <tr>
+          <th>Performance & Continuity</th>
+          <td>
+            Subject to throttling and reduced reliability during peak demand.
+          </td>
+          <td>
+            More consistent performance with larger context capacity.
+          </td>
+        </tr>
+
+        <tr class="risk">
+          <th>Risk Tolerance (Institutional Use)</th>
+          <td>
+            <span class="badge med">Lower tolerance</span>
+            <p>
+              Suitable for low-stakes ideation and generic drafting only.
+            </p>
+          </td>
+          <td>
+            <span class="badge low">Higher tolerance</span>
+            <p>
+              Designed for privacy-sensitive academic work when governance matters.
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Best Fit</th>
+          <td>
+            Personal experimentation, early drafting, and exploration.
+          </td>
+          <td>
+            Sustained academic projects, collaborative design, and protected workflows.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <strong>Bottom line:</strong> ChatGPT Education supports deeper thinking,
+    longer projects, and institutional trust boundaries. Free ChatGPT remains
+    powerful—but externalizes risk and continuity to the user.
+  </div>
+</section>
+
+
+<footer>
+  <p>
+    CITL AI Pilot • updated 01-06-2026 </p>
+</footer>
+
+</main>
+</body>
+</html>
