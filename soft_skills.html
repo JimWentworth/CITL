@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>25 Essential Soft Skills</title>
+  <style>
+    :root{
+      /* High-contrast, light, accessible-first palette */
+      --bg: #f8fafc;            /* near-white */
+      --panel: #ffffff;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;   /* subtle contrast */
+      --text: #0f172a;          /* very dark slate */
+      --muted: #334155;         /* dark enough for AA on white */
+      --border: #cbd5e1;
+      --border-strong: #0f172a;
+      --accent: #1d4ed8;        /* strong blue */
+      --accent-soft: #dbeafe;
+      --ring: rgba(29, 78, 216, 0.35);
+      --shadow: 0 8px 22px rgba(2,6,23,0.08);
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --transition: 220ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text);
+      background: linear-gradient(180deg, var(--bg), #eef2f7 80%);
+      min-height:100vh;
+    }
+
+    header{
+      padding: 28px 20px 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .title-row{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    h1{
+      font-size: clamp(22px, 3vw, 32px);
+      margin:0;
+      letter-spacing: 0.2px;
+    }
+
+    .controls{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .search{
+      position:relative;
+      flex: 1 1 280px;
+      min-width: 220px;
+    }
+    .search input{
+      width:100%;
+      padding: 12px 12px 12px 36px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      outline:none;
+      transition: border var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .search input::placeholder{color: #64748b}
+    .search input:focus{
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+    .search .icon{
+      position:absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .btn{
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      font-size: 12.5px;
+      letter-spacing: 0.2px;
+      cursor:pointer;
+      transition: transform var(--transition), border var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+    .btn:hover{ transform: translateY(-1px); background: #f8fafc; }
+    .btn:focus-visible{
+      outline:none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+    .btn.primary{
+      border-color: var(--accent);
+      background: #ffffff;
+    }
+    .btn.toggled{
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .seg{
+      display:flex;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow:hidden;
+      background: var(--panel);
+    }
+    .seg button{
+      border:0;
+      padding: 9px 10px;
+      font-size: 11.5px;
+      background: transparent;
+      cursor:pointer;
+      color: var(--text);
+    }
+    .seg button + button{
+      border-left: 1.5px solid var(--border);
+    }
+    .seg button.active{
+      background: var(--accent-soft);
+      font-weight: 600;
+    }
+    .seg.hidden{ display:none; }
+
+    main{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6px 20px 60px;
+    }
+
+    .meta-row{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 8px;
+      flex-wrap:wrap;
+      margin: 6px 0 16px;
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding: 6px 10px;
+      background: var(--panel);
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 14px;
+    }
+    @media (min-width: 560px){
+      .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 920px){
+      .grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1180px){
+      .grid{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+
+    /* Flip card */
+    .card-wrap{
+      perspective: 1200px;
+    }
+
+    .flip-card{
+      position: relative;
+      width: 100%;
+      min-height: 265px;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .flip-card:focus-visible .card{
+      box-shadow: 0 0 0 4px var(--ring), var(--shadow);
+      border-color: var(--accent);
+    }
+
+    .card{
+      position: relative;
+      width: 100%;
+      min-height: 265px;
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--border);
+      box-shadow: var(--shadow);
+      transform-style: preserve-3d;
+      transition: transform var(--transition), border var(--transition), box-shadow var(--transition), background var(--transition);
+      background: var(--surface);
+    }
+
+    /* Clearer flipped state */
+    .flip-card.is-flipped .card{
+      transform: rotateY(180deg);
+      border-color: var(--border-strong);
+      box-shadow: 0 10px 28px rgba(2,6,23,0.14);
+      background: var(--surface-alt);
+    }
+
+    .face{
+      position: absolute;
+      inset: 0;
+      padding: 18px 18px 14px;
+      border-radius: var(--radius-lg);
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .front{
+      background: var(--surface);
+    }
+
+    .back{
+      background: var(--surface-alt);
+      transform: rotateY(180deg);
+    }
+
+    .ribbon{
+      position:absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 9.5px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 7px;
+      border-radius: 999px;
+      border: 1.5px solid var(--border);
+      background: white;
+      color: var(--muted);
+    }
+    .front .ribbon{ content: ""; }
+    .back .ribbon{
+      border-color: var(--border-strong);
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .num{
+      font-size: 10.5px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #475569;
+    }
+
+    .term{
+      font-size: 18px;
+      line-height: 1.15;
+      margin: 0;
+      padding-right: 56px; /* room for ribbon */
+    }
+
+    .label{
+      font-size: 10px;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    .text{
+      margin: 0;
+      font-size: 12.9px;
+      color: var(--muted);
+      line-height: 1.38;
+    }
+
+    .ratings-summary{
+      margin-top: auto;
+      display:flex;
+      gap: 6px;
+      flex-wrap:wrap;
+      align-items:center;
+      padding-top: 10px;
+      border-top: 1px dashed #cbd5e1;
+      font-size: 10.8px;
+      color: #475569;
+    }
+    .ratings-pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 6px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      white-space: nowrap;
+    }
+    .ratings-pill strong{ color: var(--text); }
+
+    .practice-list{
+      margin: 2px 0 0 16px;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+      font-size: 12.7px;
+      line-height: 1.32;
+      color: var(--muted);
+    }
+
+    .flip-hint{
+      margin-top: auto;
+      display:flex;
+      align-items:center;
+      justify-content: flex-end;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed #cbd5e1;
+      color: #475569;
+      font-size: 10.5px;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap: 6px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      font-size: 9.8px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      color: #0f172a;
+      white-space: nowrap;
+    }
+
+    /* Rating UI */
+    .rating-area{
+      margin-top: 8px;
+      padding: 10px 10px 8px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      background: white;
+    }
+    .rating-area.hidden{ display:none; }
+
+    .rating-title{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .rating-title span{
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #475569;
+      font-weight: 700;
+    }
+
+    .rating-scale{
+      display:flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .rate-btn{
+      min-width: 34px;
+      height: 30px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 999px;
+      border: 1.5px solid var(--border);
+      background: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      cursor:pointer;
+      transition: background var(--transition), border var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+    .rate-btn:hover{
+      background: #f8fafc;
+      transform: translateY(-1px);
+    }
+    .rate-btn:focus-visible{
+      outline:none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--ring);
+    }
+    .rate-btn.selected{
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .empty{
+      padding: 24px;
+      border-radius: var(--radius-md);
+      background: white;
+      border: 1.5px dashed var(--border);
+      color: var(--muted);
+      display:none;
+    }
+    .empty.show{ display:block; }
+
+    @media (prefers-reduced-motion: reduce){
+      .card, .btn, .search input, .rate-btn{
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title-row">
+      <div>
+        <h1>25 Essential Soft Skills</h1>
+      </div>
+      <div class="controls">
+        <div class="search">
+          <span class="icon">🔎</span>
+          <input id="searchInput" type="search" placeholder="Search skills..." />
+        </div>
+
+        <button class="btn primary" id="flipAllBtn" type="button">Flip all</button>
+
+        <button class="btn" id="ratingModeBtn" type="button"
+                aria-pressed="false" title="Toggle student self-rating mode">
+          Rating mode
+        </button>
+
+        <div class="seg hidden" id="assessmentSeg" role="tablist" aria-label="Assessment set">
+          <button type="button" id="baselineBtn" class="active" role="tab" aria-selected="true">Baseline</button>
+          <button type="button" id="laterBtn" role="tab" aria-selected="false">Later</button>
+        </div>
+
+        <button class="btn" id="clearRatingsBtn" type="button" title="Clear saved ratings">
+          Clear ratings
+        </button>
+
+        <button class="btn" id="resetBtn" type="button">Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="meta-row">
+      <div class="pill"><span id="countLabel">24 skills</span></div>
+    </div>
+
+    <div id="grid" class="grid" aria-live="polite"></div>
+    <div id="emptyState" class="empty">No matches. Try a different keyword.</div>
+  </main>
+
+  <script>
+    const skills = [
+      { n:1, term:"Communication",
+        what:"Expressing ideas clearly and listening to understand.",
+        why:"Reduces confusion, builds trust, and improves outcomes.",
+        practice:["Lead with your main point.","Ask clarifying questions.","Confirm decisions in writing."],
+        tags:["interpersonal"]
+      },
+      { n:2, term:"Adaptability",
+        what:"Adjusting effectively when conditions change.",
+        why:"Change is constant; flexible thinkers stay effective.",
+        practice:["Identify controllables vs. uncontrollables.","Create a Plan B early.","Focus on the next workable step."],
+        tags:["intrapersonal"]
+      },
+      { n:3, term:"Self-Awareness",
+        what:"Understanding your strengths, limits, habits, and impact.",
+        why:"Helps you grow faster and collaborate better.",
+        practice:["Notice patterns in your results.","Track when you focus best.","Separate intent from impact."],
+        tags:["intrapersonal"]
+      },
+      { n:4, term:"Critical Thinking",
+        what:"Evaluating claims, evidence, and assumptions.",
+        why:"Prevents confident errors and shallow conclusions.",
+        practice:["Ask 'What’s the evidence?'","Consider alternative explanations.","Look for missing information."],
+        tags:["cognitive"]
+      },
+      { n:5, term:"Problem-Solving",
+        what:"Defining a problem clearly and choosing workable solutions.",
+        why:"Most weak solutions begin with vague problem definitions.",
+        practice:["Write the problem in one sentence.","Break it into smaller parts.","Test simple solutions first."],
+        tags:["cognitive"]
+      },
+      { n:6, term:"Creativity",
+        what:"Generating novel or useful ideas and connections.",
+        why:"Helps you stand out and handle ambiguity.",
+        practice:["Generate quantity before quality.","Use constraints to focus ideas.","Remix strong examples."],
+        tags:["cognitive"]
+      },
+      { n:7, term:"Conflict Resolution",
+        what:"Addressing disagreements constructively.",
+        why:"Protects relationships and group outcomes.",
+        practice:["Describe behaviors and effects.","Seek shared goals.","Propose specific next steps."],
+        tags:["interpersonal"]
+      },
+      { n:8, term:"Leadership",
+        what:"Helping others move toward a goal with clarity and care.",
+        why:"Groups need direction, coordination, and momentum.",
+        practice:["Make roles and deadlines visible.","Invite quieter voices.","Model responsibility."],
+        tags:["interpersonal"]
+      },
+      { n:9, term:"Teamwork",
+        what:"Coordinating skills and effort to improve outcomes.",
+        why:"Most complex work is collaborative.",
+        practice:["Be reliable and explicit.","Share progress early.","Document decisions."],
+        tags:["interpersonal"]
+      },
+      { n:10, term:"Networking",
+        what:"Building relationships that support learning and opportunity.",
+        why:"Opportunities often flow through relationships and trust.",
+        practice:["Ask thoughtful questions.","Follow up briefly.","Offer help before asking for it."],
+        tags:["interpersonal"]
+      },
+      { n:11, term:"Time Management",
+        what:"Aligning time with priorities and deadlines.",
+        why:"Overload often comes from vague planning, not lack of effort.",
+        practice:["Plan in time blocks.","Add buffers.","Start earlier than feels necessary."],
+        tags:["intrapersonal"]
+      },
+      { n:12, term:"Work Ethic",
+        what:"Consistent effort, reliability, and accountability.",
+        why:"Trust is built on follow-through.",
+        practice:["Deliver what you promise.","Communicate early when stuck.","Improve your process, not just output."],
+        tags:["intrapersonal"]
+      },
+      { n:13, term:"Empathy",
+        what:"Understanding others’ perspectives and experiences.",
+        why:"Strengthens communication, leadership, and collaboration.",
+        practice:["Reflect back what you heard.","Consider constraints you can’t see.","Ask before assuming intent."],
+        tags:["interpersonal"]
+      },
+      { n:14, term:"Ethical Judgment / Integrity-in-Action",
+        what:"Making responsible choices in gray areas.",
+        why:"Reputation and trust are hard to rebuild once damaged.",
+        practice:["Disclose uncertainty.","Credit collaborators and sources.","Choose transparency over convenience."],
+        tags:["cognitive","intrapersonal"]
+      },
+      { n:15, term:"Resilience / Emotional Regulation",
+        what:"Recovering from setbacks without disengaging.",
+        why:"Long-term success depends on how you respond to friction.",
+        practice:["Name the problem calmly.","Use small resets.","Adopt a 'next attempt' mindset."],
+        tags:["intrapersonal"]
+      },
+      { n:16, term:"Metacognition",
+        what:"Monitoring and improving how you learn and think.",
+        why:"Effort is wasted without strategy and self-diagnosis.",
+        practice:["Predict performance, then compare results.","Identify your common errors.","Adjust study methods intentionally."],
+        tags:["cognitive"]
+      },
+      { n:17, term:"Curiosity & Question-Framing",
+        what:"Generating strong questions that drive insight.",
+        why:"Good questions shape better research and better decisions.",
+        practice:["Ask 'What’s missing here?'","Compare multiple explanations.","Clarify the goal before the method."],
+        tags:["cognitive"]
+      },
+      { n:18, term:"Cultural Competence / Inclusive Collaboration",
+        what:"Working respectfully across differences and power dynamics.",
+        why:"Teams fail when voices are unevenly valued.",
+        practice:["Invite multiple viewpoints.","Notice whose ideas get credit.","Check norms, not just intentions."],
+        tags:["interpersonal"]
+      },
+      { n:19, term:"Information & Media Literacy",
+        what:"Evaluating sources, claims, images, and data quality.",
+        why:"Misinformation is persuasive and fast.",
+        practice:["Check credibility and context.","Trace claims to original sources.","Look for limitations and incentives."],
+        tags:["cognitive"]
+      },
+      { n:20, term:"Digital, Data & AI Literacy",
+        what:"Using technology, data, and AI responsibly and effectively.",
+        why:"These tools shape learning, work, and truth claims.",
+        practice:["Verify outputs and data.","Disclose tool use when appropriate.","Understand bias, uncertainty, and limits."],
+        tags:["cognitive","digital"]
+      },
+      { n:21, term:"Self-Advocacy",
+        what:"Asking for what you need to learn and succeed.",
+        why:"Silent struggle slows growth and erodes confidence.",
+        practice:["Request clarity early.","Ask for feedback specifically.","Use office hours with an agenda."],
+        tags:["intrapersonal"]
+      },
+      { n:22, term:"Goal-Setting & Prioritization",
+        what:"Ranking what matters and aligning effort accordingly.",
+        why:"Time management fails without clear priorities.",
+        practice:["Choose 1–3 weekly goals.","Define 'good enough' vs. perfection.","Say no strategically."],
+        tags:["intrapersonal"]
+      },
+      { n:23, term:"Reflective Feedback Skills",
+        what:"Turning feedback into concrete improvement.",
+        why:"Growth depends on how you use input.",
+        practice:["Identify patterns across comments.","Ask follow-up questions.","Make a specific revision plan."],
+        tags:["cognitive","intrapersonal"]
+      },
+      { n:24, term:"Systems Thinking",
+        what:"Seeing how parts of a situation interact over time.",
+        why:"Prevents quick fixes that create new problems.",
+        practice:["Map causes, effects, and stakeholders.","Look for unintended consequences.","Consider scale and time delay."],
+        tags:["cognitive"]
+      },
+      { n:25, term:"Personal Bias Checking",
+        what:"Noticing how your assumptions, experiences, and identity shape how you interpret people, evidence, and decisions.",
+        why:"Bias can distort both fairness and accuracy; checking it strengthens judgment, collaboration, and responsible decision-making.",
+        practice:[
+          "Pause and ask: 'What am I assuming is true here?'",
+          "Seek a credible counterview before concluding.",
+          "Distinguish personal experience from broader patterns."
+        ],
+        tags:["cognitive","intrapersonal"]
+      }
+    ];
+
+    const grid = document.getElementById("grid");
+    const emptyState = document.getElementById("emptyState");
+    const searchInput = document.getElementById("searchInput");
+    const flipAllBtn = document.getElementById("flipAllBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const countLabel = document.getElementById("countLabel");
+
+    const ratingModeBtn = document.getElementById("ratingModeBtn");
+    const assessmentSeg = document.getElementById("assessmentSeg");
+    const baselineBtn = document.getElementById("baselineBtn");
+    const laterBtn = document.getElementById("laterBtn");
+    const clearRatingsBtn = document.getElementById("clearRatingsBtn");
+
+    let renderedCardButtons = [];
+    let allFlipped = false;
+
+    let ratingMode = false;
+    let activeAssessment = "baseline"; // "baseline" | "later"
+
+    const STORAGE_KEYS = {
+      baseline: "skillsRatingsBaseline_v1",
+      later: "skillsRatingsLater_v1"
+    };
+
+    function loadRatings(which){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEYS[which]);
+        return raw ? JSON.parse(raw) : {};
+      }catch(e){
+        return {};
+      }
+    }
+    function saveRatings(which, obj){
+      localStorage.setItem(STORAGE_KEYS[which], JSON.stringify(obj));
+    }
+
+    function getRating(which, term){
+      const r = loadRatings(which);
+      return r[term] ?? null;
+    }
+
+    function setRating(which, term, value){
+      const r = loadRatings(which);
+      r[term] = value;
+      saveRatings(which, r);
+    }
+
+    function clearRatings(){
+      localStorage.removeItem(STORAGE_KEYS.baseline);
+      localStorage.removeItem(STORAGE_KEYS.later);
+    }
+
+    function skillMatches(skill, q){
+      if(!q) return true;
+      const hay = (
+        skill.term + " " +
+        skill.what + " " +
+        skill.why + " " +
+        skill.practice.join(" ") + " " +
+        (skill.tags || []).join(" ")
+      ).toLowerCase();
+      return hay.includes(q);
+    }
+
+    function makeTags(tags){
+      if(!tags || !tags.length) return "";
+      return tags.map(t => `<span class="tag">${t}</span>`).join("");
+    }
+
+    function ratingsSummaryHTML(term){
+      const b = getRating("baseline", term);
+      const l = getRating("later", term);
+
+      const bTxt = b ? `<strong>${b}</strong>/5` : "—";
+      const lTxt = l ? `<strong>${l}</strong>/5` : "—";
+
+      return `
+        <div class="ratings-summary">
+          <span class="ratings-pill">Baseline: ${bTxt}</span>
+          <span class="ratings-pill">Later: ${lTxt}</span>
+          <span class="ratings-pill">${ratingMode ? "Rating mode: ON" : "Rating mode: OFF"}</span>
+        </div>
+      `;
+    }
+
+    function ratingAreaHTML(skill){
+      const current = getRating(activeAssessment, skill.term);
+
+      return `
+        <div class="rating-area ${ratingMode ? "" : "hidden"}" data-rating-area="${skill.term}">
+          <div class="rating-title">
+            <span>${activeAssessment === "baseline" ? "Baseline self-rating" : "Later self-rating"}</span>
+            <span>1 (low) → 5 (high)</span>
+          </div>
+          <div class="rating-scale" role="radiogroup" aria-label="${skill.term} ${activeAssessment} rating">
+            ${[1,2,3,4,5].map(n => `
+              <button
+                type="button"
+                class="rate-btn ${current === n ? "selected" : ""}"
+                data-rate="${n}"
+                data-term="${skill.term}"
+                aria-pressed="${current === n ? "true" : "false"}"
+                title="Rate ${skill.term} as ${n}"
+              >${n}</button>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function createCard(skill){
+      const wrap = document.createElement("div");
+      wrap.className = "card-wrap";
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "flip-card";
+      button.setAttribute("aria-pressed", "false");
+      button.setAttribute("title", "Flip card");
+      button.dataset.skill = skill.term;
+
+      button.innerHTML = `
+        <div class="card">
+          <div class="face front">
+            <span class="ribbon">Overview</span>
+            <div class="num">Skill ${skill.n}</div>
+            <h3 class="term">${skill.term}</h3>
+
+            <div>
+              <div class="label">What it is</div>
+              <p class="text">${skill.what}</p>
+            </div>
+
+            <div>
+              <div class="label">Why it matters</div>
+              <p class="text">${skill.why}</p>
+            </div>
+
+            ${ratingsSummaryHTML(skill.term)}
+
+            <div class="flip-hint">
+              <span>${makeTags(skill.tags)}</span>
+              <span>Click to flip</span>
+            </div>
+          </div>
+
+          <div class="face back">
+            <span class="ribbon">Practice</span>
+            <div class="num">Skill ${skill.n}</div>
+            <h3 class="term">${skill.term}</h3>
+
+            <div class="label">Practice more of</div>
+            <ul class="practice-list">
+              ${skill.practice.map(p => `<li>${p}</li>`).join("")}
+            </ul>
+
+            ${ratingAreaHTML(skill)}
+
+            <div class="flip-hint">
+              <span>${makeTags(skill.tags)}</span>
+              <span>Click to return</span>
+            </div>
+          </div>
+        </div>
+      `;
+
+      button.addEventListener("click", (e) => {
+        // If a rating button was clicked, don't flip the card.
+        const target = e.target;
+        if(target && target.classList && target.classList.contains("rate-btn")){
+          return;
+        }
+        toggleCard(button);
+      });
+
+      // Prevent Space scroll when focused
+      button.addEventListener("keydown", (e) => {
+        if(e.key === " "){
+          e.preventDefault();
+        }
+      });
+
+      wrap.appendChild(button);
+
+      // Wire rating buttons after insertion
+      setTimeout(() => wireRatingButtons(button), 0);
+
+      return { wrap, button };
+    }
+
+    function wireRatingButtons(cardButton){
+      const rateButtons = cardButton.querySelectorAll(".rate-btn");
+      rateButtons.forEach(rb => {
+        rb.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const term = rb.dataset.term;
+          const value = Number(rb.dataset.rate);
+          setRating(activeAssessment, term, value);
+          // Rerender just this card's rating UI + summary
+          refreshSingleCard(term);
+        });
+      });
+    }
+
+    function refreshSingleCard(term){
+      // Find the skill data
+      const skill = skills.find(s => s.term === term);
+      if(!skill) return;
+
+      // Find card
+      const cardBtn = renderedCardButtons.find(b => b.dataset.skill === term);
+      if(!cardBtn) return;
+
+      // Replace summary on front
+      const front = cardBtn.querySelector(".front");
+      if(front){
+        const existingSummary = front.querySelector(".ratings-summary");
+        if(existingSummary){
+          existingSummary.outerHTML = ratingsSummaryHTML(term);
+        }else{
+          // fallback insert before flip-hint
+          const hint = front.querySelector(".flip-hint");
+          if(hint) hint.insertAdjacentHTML("beforebegin", ratingsSummaryHTML(term));
+        }
+      }
+
+      // Replace rating area on back
+      const back = cardBtn.querySelector(".back");
+      if(back){
+        const existingArea = back.querySelector(".rating-area");
+        if(existingArea){
+          existingArea.outerHTML = ratingAreaHTML(skill);
+        }else{
+          const hint = back.querySelector(".flip-hint");
+          if(hint) hint.insertAdjacentHTML("beforebegin", ratingAreaHTML(skill));
+        }
+      }
+
+      // Re-wire buttons after replacement
+      wireRatingButtons(cardBtn);
+    }
+
+    function toggleCard(button, forceState=null){
+      const willFlip = forceState !== null ? forceState : !button.classList.contains("is-flipped");
+      button.classList.toggle("is-flipped", willFlip);
+      button.setAttribute("aria-pressed", String(willFlip));
+    }
+
+    function render(){
+      const q = searchInput.value.trim().toLowerCase();
+      grid.innerHTML = "";
+      renderedCardButtons = [];
+
+      const filtered = skills.filter(s => skillMatches(s, q));
+
+      filtered.forEach(skill => {
+        const { wrap, button } = createCard(skill);
+        grid.appendChild(wrap);
+        renderedCardButtons.push(button);
+      });
+
+      emptyState.classList.toggle("show", filtered.length === 0);
+      countLabel.textContent = `${filtered.length} of ${skills.length} skills`;
+
+      allFlipped = false;
+      flipAllBtn.textContent = "Flip all";
+    }
+
+    function flipAll(){
+      if(renderedCardButtons.length === 0) return;
+      allFlipped = !allFlipped;
+      renderedCardButtons.forEach(btn => toggleCard(btn, allFlipped));
+      flipAllBtn.textContent = allFlipped ? "Unflip all" : "Flip all";
+    }
+
+    function resetAll(){
+      searchInput.value = "";
+      render();
+      renderedCardButtons.forEach(btn => toggleCard(btn, false));
+      allFlipped = false;
+      flipAllBtn.textContent = "Flip all";
+    }
+
+    function setRatingMode(on){
+      ratingMode = on;
+      ratingModeBtn.classList.toggle("toggled", ratingMode);
+      ratingModeBtn.setAttribute("aria-pressed", String(ratingMode));
+      assessmentSeg.classList.toggle("hidden", !ratingMode);
+      // Update all cards' rating areas + summaries
+      renderedCardButtons.forEach(btn => refreshSingleCard(btn.dataset.skill));
+    }
+
+    function setAssessment(which){
+      activeAssessment = which;
+      baselineBtn.classList.toggle("active", which === "baseline");
+      laterBtn.classList.toggle("active", which === "later");
+      baselineBtn.setAttribute("aria-selected", String(which === "baseline"));
+      laterBtn.setAttribute("aria-selected", String(which === "later"));
+      // Refresh rating controls to show the active set selection state
+      renderedCardButtons.forEach(btn => refreshSingleCard(btn.dataset.skill));
+    }
+
+    // Event bindings
+    searchInput.addEventListener("input", render);
+    flipAllBtn.addEventListener("click", flipAll);
+    resetBtn.addEventListener("click", resetAll);
+
+    ratingModeBtn.addEventListener("click", () => setRatingMode(!ratingMode));
+    baselineBtn.addEventListener("click", () => setAssessment("baseline"));
+    laterBtn.addEventListener("click", () => setAssessment("later"));
+
+    clearRatingsBtn.addEventListener("click", () => {
+      clearRatings();
+      renderedCardButtons.forEach(btn => refreshSingleCard(btn.dataset.skill));
+    });
+
+    // Initial render
+    render();
+    setRatingMode(false);
+    setAssessment("baseline");
+  </script>
+</body>
+</html>
