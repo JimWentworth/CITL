@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Courses at LinkedIn Learning | UIUC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #13294B;
+            color: white;
+            padding: 30px 20px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .intro {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .intro h2 {
+            color: #13294B;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .intro p {
+            font-size: 1.05em;
+            margin-bottom: 15px;
+        }
+
+        .intro a {
+            color: #E84A27;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .intro a:hover {
+            text-decoration: underline;
+        }
+
+        .framework-title {
+            text-align: center;
+            color: #13294B;
+            font-size: 1.8em;
+            margin: 40px 0 30px 0;
+            font-weight: 700;
+        }
+
+        .levels-container {
+            display: grid;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .level-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 5px solid #E84A27;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .level-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .level-number {
+            background-color: #13294B;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.95em;
+        }
+
+        .learning-type {
+            background-color: #E84A27;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .skills {
+            margin-bottom: 15px;
+        }
+
+        .skills h3 {
+            color: #13294B;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .skills-list {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .audience {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 4px;
+            border-left: 3px solid #13294B;
+        }
+
+        .audience h4 {
+            color: #13294B;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .audience p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .cta-section {
+            background-color: #13294B;
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .cta-section p {
+            font-size: 1.05em;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #E84A27;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #c93d1f;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .framework-title {
+                font-size: 1.5em;
+            }
+
+            .level-header {
+                flex-direction: column;
+            }
+
+            .level-number,
+            .learning-type {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Accessibility improvements */
+        a:focus,
+        .cta-button:focus {
+            outline: 3px solid #E84A27;
+            outline-offset: 2px;
+        }
+
+        .level-card:focus-within {
+            outline: 2px solid #13294B;
+            outline-offset: 2px;
+        }
+
+        .level-card a {
+            transition: color 0.2s;
+        }
+
+        .level-card a:hover {
+            color: #c93d1f;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Courses at LinkedIn Learning</h1>
+            <p>Professional development resources for UIUC faculty and staff</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Upskill with Generative AI</h2>
+            <p>Are you interested in learning more about generative AI and how it can support your work? LinkedIn Learning offers a comprehensive <a href="https://learning.linkedin.com/resources/upskilling-and-reskilling/ai-skill-pathways" target="_blank" rel="noopener noreferrer">Upskilling Framework</a> designed to guide your learning journey, from foundational literacy to specialized technical expertise.</p>
+            <p>Whether you're looking to understand AI basics, apply AI tools in your daily work, or develop advanced technical skills, there's a pathway for you.</p>
+        </div>
+
+        <h2 class="framework-title">LinkedIn Learning AI Upskilling Framework</h2>
+
+        <div class="levels-container">
+            <!-- Level One -->
+            <div class="level-card">
+                <div class="level-header">
+                    <span class="level-number">Level One</span>
+                    <span class="learning-type">Understanding</span>
+                </div>
+                <div class="skills">
+                    <h3>Featured Skills</h3>
+                    <p class="skills-list">AI literacy, generative AI, responsible AI</p>
+                </div>
+                <div class="audience">
+                    <h4>Who Will Benefit?</h4>
+                    <p>For all professionals, including leaders and managers. Includes responsible AI, generative AI fluency, and awareness of AI capabilities and limitations.</p>
+                </div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+                    <h4 style="color: #13294B; font-size: 0.95em; margin-bottom: 10px;">Recommended Learning Paths:</h4>
+                    <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                        <li><a href="https://www.linkedin.com/learning/paths/career-essentials-in-generative-ai-by-microsoft-and-linkedin" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Career Essentials in Generative AI</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/building-ai-literacy?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Building AI Literacy</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/responsible-ai-foundations?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Responsible AI Foundations</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Level Two -->
+            <div class="level-card">
+                <div class="level-header">
+                    <span class="level-number">Level Two</span>
+                    <span class="learning-type">Applying</span>
+                </div>
+                <div class="skills">
+                    <h3>Featured Skills</h3>
+                    <p class="skills-list">Prompt engineering, strategy, copilots and AI pair programming, AI productivity</p>
+                </div>
+                <div class="audience">
+                    <h4>Who Will Benefit?</h4>
+                    <p>For all professionals, including leaders and managers. Includes practical prompt engineering techniques and effective use of AI copilots to enhance productivity.</p>
+                </div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+                    <h4 style="color: #13294B; font-size: 0.95em; margin-bottom: 10px;">Recommended Learning Paths:</h4>
+                    <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                        <li><a href="https://www.linkedin.com/learning/paths/develop-your-prompt-engineering-skills?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Develop Your Prompt Engineering Skills</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/microsoft-copilot-for-productivity-by-microsoft-and-linkedin?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Microsoft Copilot for Productivity</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/master-github-copilot?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Master GitHub Copilot</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/build-your-generative-ai-productivity-skills-with-microsoft-and-linkedin" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Build Your Generative AI Productivity Skills</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Level Three -->
+            <div class="level-card">
+                <div class="level-header">
+                    <span class="level-number">Level Three</span>
+                    <span class="learning-type">Building</span>
+                </div>
+                <div class="skills">
+                    <h3>Featured Skills</h3>
+                    <p class="skills-list">No/low-code generative AI, GPTs, APIs, databases</p>
+                </div>
+                <div class="audience">
+                    <h4>Who Will Benefit?</h4>
+                    <p>For power users and developers building AI-powered applications and solutions. Includes low-code methodologies and hands-on practice with APIs.</p>
+                </div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+                    <h4 style="color: #13294B; font-size: 0.95em; margin-bottom: 10px;">Recommended Learning Paths:</h4>
+                    <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                        <li><a href="https://www.linkedin.com/learning/paths/getting-started-with-building-custom-gpts?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Getting Started with Building Custom GPTs</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/develop-your-skills-with-the-openai-api?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Develop Your Skills with the OpenAI API</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/hands-on-projects-for-openai-powered-apps?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Hands-On Projects for OpenAI-Powered Apps</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/building-generative-ai-skills-for-web-developers?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Building Generative AI Skills for Web Developers</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Level Four -->
+            <div class="level-card">
+                <div class="level-header">
+                    <span class="level-number">Level Four</span>
+                    <span class="learning-type">Training and Maintaining Models</span>
+                </div>
+                <div class="skills">
+                    <h3>Featured Skills</h3>
+                    <p class="skills-list">Building ML models, deep learning, neural networks, NLP, AI tools and libraries</p>
+                </div>
+                <div class="audience">
+                    <h4>Who Will Benefit?</h4>
+                    <p>For engineers implementing AI and machine learning. Includes technical applications of AI and ML models, deep learning architectures, and fine-tuning models.</p>
+                </div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+                    <h4 style="color: #13294B; font-size: 0.95em; margin-bottom: 10px;">Recommended Learning Paths:</h4>
+                    <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                        <li><a href="https://www.linkedin.com/learning/paths/become-an-ai-engineer" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Become an AI Engineer</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/develop-your-skills-for-machine-learning-with-python?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Develop Your Skills for Machine Learning with Python</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/advance-your-skills-in-deep-learning-and-neural-networks?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Advance Your Skills in Deep Learning and Neural Networks</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/advance-your-skills-in-natural-language-processing" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Advance Your Skills in Natural Language Processing</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Level Five -->
+            <div class="level-card">
+                <div class="level-header">
+                    <span class="level-number">Level Five</span>
+                    <span class="learning-type">Deeply Specializing</span>
+                </div>
+                <div class="skills">
+                    <h3>Featured Skills</h3>
+                    <p class="skills-list">AIOps, MLOps, LLMOps, AI security, AI cloud solutions</p>
+                </div>
+                <div class="audience">
+                    <h4>Who Will Benefit?</h4>
+                    <p>For tech specialists and R&D roles. Includes DevOps engineers, ML researchers, cybersecurity professionals, and data scientists working with advanced AI systems.</p>
+                </div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+                    <h4 style="color: #13294B; font-size: 0.95em; margin-bottom: 10px;">Recommended Learning Paths:</h4>
+                    <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                        <li><a href="https://www.linkedin.com/learning/paths/manage-your-llms-with-llmops" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Manage Your LLMs with LLMOps</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/develop-your-ai-skills-as-a-cybersecurity-professional?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Develop Your AI Skills as a Cybersecurity Professional</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/foundational-ai-skills-for-azure-administration?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Foundational AI Skills for Azure Administration</a></li>
+                        <li><a href="https://www.linkedin.com/learning/paths/advance-your-skills-in-ai-and-machine-learning?u=104" target="_blank" rel="noopener noreferrer" style="color: #E84A27; text-decoration: none;">Advance Your Skills in AI and Machine Learning</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Get Started?</h2>
+            <p>Access LinkedIn Learning through your UIUC account and begin your AI upskilling journey today.</p>
+            <a href="https://www.linkedin.com/learning/" target="_blank" rel="noopener noreferrer" class="cta-button">Access LinkedIn Learning</a>
+            <p style="margin-top: 20px; font-size: 0.95em;"><a href="https://learning.linkedin.com/resources/upskilling-and-reskilling/ai-skill-pathways-library" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">Browse the complete AI Skill Pathways Library</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Center for Innovation in Teaching and Learning | University of Illinois Urbana-Champaign</p>
+    </footer>
+</body>
+</html>
