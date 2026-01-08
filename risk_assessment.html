@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITL AI Tool Risk Assessment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --illinois-orange: #E84A27;
+            --illinois-blue: #13294B;
+            --illinois-blue-light: #1E3A5F;
+            --background: #FFFFFF;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border: #E0E0E0;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --danger: #F44336;
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--illinois-blue);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--illinois-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--illinois-orange);
+        }
+
+        .dimension {
+            margin-bottom: 2rem;
+        }
+
+        .dimension-label {
+            font-weight: 600;
+            color: var(--illinois-blue);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option:hover {
+            border-color: var(--illinois-orange);
+            background: #FFF9F7;
+        }
+
+        .option.selected {
+            border-color: var(--illinois-orange);
+            background: #FFF3EF;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 1rem;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--illinois-orange);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .option-description {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .checklist {
+            margin-top: 1.5rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            transition: background 0.2s ease;
+        }
+
+        .checklist-item:hover {
+            background: #F8F9FA;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 1rem;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--illinois-orange);
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .result-card {
+            background: var(--illinois-blue);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .result-card.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .risk-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .risk-low { background: var(--success); }
+        .risk-medium { background: var(--warning); }
+        .risk-medium-high { background: #FF6B35; }
+        .risk-high { background: var(--danger); }
+
+        .result-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .result-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--illinois-orange);
+        }
+
+        .result-section p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .result-section ul {
+            list-style-position: inside;
+            line-height: 1.8;
+        }
+
+        .result-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .approval-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .approval-info strong {
+            color: var(--illinois-orange);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: var(--illinois-orange);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: #D63E1E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(232, 74, 39, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--illinois-blue);
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: var(--illinois-orange);
+            width: 32px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CITL AI Tool Risk Assessment</h1>
+            <p class="subtitle">Evaluate your AI tool across six key dimensions to determine the appropriate risk level and approval process</p>
+        </header>
+
+        <div class="progress-indicator">
+            <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+        </div>
+
+        <!-- Dimension 1: Audience & Visibility -->
+        <div class="card dimension-card" data-dimension="1">
+            <h2 class="section-title">1. Audience & Visibility</h2>
+            <label class="dimension-label">Who will interact with this tool?</label>
+            <div class="option-group">
+                <label class="option">
+                    <input type="radio" name="audience" value="1" data-dimension="1">
+                    <div class="option-content">
+                        <div class="option-title">Internal Only</div>
+                        <div class="option-description">CITL staff use only</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="audience" value="2" data-dimension="1">
+                    <div class="option-content">
+                        <div class="option-title">Campus Partners</div>
+                        <div class="option-description">Faculty, instructors, and teaching assistants across campus</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="audience" value="3" data-dimension="1">
+                    <div class="option-content">
+                        <div class="option-title">Public-Facing</div>
+                        <div class="option-description">Prospective students, parents, media, general public</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="audience" value="4" data-dimension="1">
+                    <div class="option-content">
+                        <div class="option-title">External Partners</div>
+                        <div class="option-description">Other institutions, formal collaborations with contractual obligations</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Dimension 2: Data Sensitivity -->
+        <div class="card dimension-card" data-dimension="2">
+            <h2 class="section-title">2. Data Sensitivity</h2>
+            <label class="dimension-label">What type of data will the tool handle?</label>
+            <div class="option-group">
+                <label class="option">
+                    <input type="radio" name="data" value="1" data-dimension="2">
+                    <div class="option-content">
+                        <div class="option-title">No Personal Data</div>
+                        <div class="option-description">Uses only publicly available information</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="data" value="2" data-dimension="2">
+                    <div class="option-content">
+                        <div class="option-title">Non-Sensitive Institutional Data</div>
+                        <div class="option-description">General university information and public policies</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="data" value="3" data-dimension="2">
+                    <div class="option-content">
+                        <div class="option-title">Faculty Intellectual Property</div>
+                        <div class="option-description">Course materials, syllabi, teaching artifacts</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="data" value="4" data-dimension="2">
+                    <div class="option-content">
+                        <div class="option-title">Student Records (FERPA-Protected)</div>
+                        <div class="option-description">Grades, performance data, educational records</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Dimension 3: Pedagogical Stakes -->
+        <div class="card dimension-card" data-dimension="3">
+            <h2 class="section-title">3. Pedagogical Stakes</h2>
+            <label class="dimension-label">How directly does this tool influence teaching and learning?</label>
+            <div class="option-group">
+                <label class="option">
+                    <input type="radio" name="pedagogy" value="1" data-dimension="3">
+                    <div class="option-content">
+                        <div class="option-title">Informational Only</div>
+                        <div class="option-description">Provides reference material and general guidance</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="pedagogy" value="2" data-dimension="3">
+                    <div class="option-content">
+                        <div class="option-title">Influences Teaching Practice</div>
+                        <div class="option-description">Shapes faculty teaching decisions and course design</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="pedagogy" value="3" data-dimension="3">
+                    <div class="option-content">
+                        <div class="option-title">Direct Instruction</div>
+                        <div class="option-description">Used in actual teaching or assessment contexts</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="pedagogy" value="4" data-dimension="3">
+                    <div class="option-content">
+                        <div class="option-title">Policy-Shaping</div>
+                        <div class="option-description">Influences institutional teaching policies or cited as authoritative</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Dimension 4: Failure Impact -->
+        <div class="card dimension-card" data-dimension="4">
+            <h2 class="section-title">4. Failure Impact</h2>
+            <label class="dimension-label">What happens if this tool makes mistakes?</label>
+            <div class="option-group">
+                <label class="option">
+                    <input type="radio" name="failure" value="1" data-dimension="4">
+                    <div class="option-content">
+                        <div class="option-title">Minor Inconvenience</div>
+                        <div class="option-description">Obvious errors that users easily catch and dismiss</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="failure" value="2" data-dimension="4">
+                    <div class="option-content">
+                        <div class="option-title">Moderate Confusion</div>
+                        <div class="option-description">Plausible but incorrect information that might be initially believed</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="failure" value="3" data-dimension="4">
+                    <div class="option-content">
+                        <div class="option-title">Pedagogical Harm</div>
+                        <div class="option-description">Poor teaching guidance accepted as authoritative, affecting student learning</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="failure" value="4" data-dimension="4">
+                    <div class="option-content">
+                        <div class="option-title">Legal/Compliance Risk</div>
+                        <div class="option-description">FERPA violations, accessibility failures, or institutional liability</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Dimension 5: Accessibility & Equity -->
+        <div class="card dimension-card" data-dimension="5">
+            <h2 class="section-title">5. Accessibility & Equity</h2>
+            <label class="dimension-label">What accessibility and equity considerations apply?</label>
+            <div class="option-group">
+                <label class="option">
+                    <input type="radio" name="accessibility" value="1" data-dimension="5">
+                    <div class="option-content">
+                        <div class="option-title">Basic Accessibility</div>
+                        <div class="option-description">WCAG 2.1 AA compliance required</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="accessibility" value="2" data-dimension="5">
+                    <div class="option-content">
+                        <div class="option-title">Enhanced Access</div>
+                        <div class="option-description">Multiple modalities, accommodation support, assistive technology compatibility</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="accessibility" value="3" data-dimension="5">
+                    <div class="option-content">
+                        <div class="option-title">Equity Critical</div>
+                        <div class="option-description">Impacts vulnerable or marginalized populations, requires disparate impact analysis</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="accessibility" value="4" data-dimension="5">
+                    <div class="option-content">
+                        <div class="option-title">Universal Design</div>
+                        <div class="option-description">Must work equitably across all user contexts, technical access, and cultural backgrounds</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Dimension 6: Support Structure -->
+        <div class="card dimension-card" data-dimension="6">
+            <h2 class="section-title">6. Support Structure Needed</h2>
+            <label class="dimension-label">What level of ongoing support will this tool require?</label>
+            <div class="option-group">
+                <label class="option">
+                    <input type="radio" name="support" value="1" data-dimension="6">
+                    <div class="option-content">
+                        <div class="option-title">Minimal Support</div>
+                        <div class="option-description">One-time setup, less than 2 hours per month maintenance</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="support" value="2" data-dimension="6">
+                    <div class="option-content">
+                        <div class="option-title">Moderate Support</div>
+                        <div class="option-description">Regular monitoring, quarterly updates, 2-5 hours per month</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="support" value="3" data-dimension="6">
+                    <div class="option-content">
+                        <div class="option-title">Substantial Support</div>
+                        <div class="option-description">Active management, user support, continuous improvement, 5-10 hours per month</div>
+                    </div>
+                </label>
+                <label class="option">
+                    <input type="radio" name="support" value="4" data-dimension="6">
+                    <div class="option-content">
+                        <div class="option-title">Intensive Support</div>
+                        <div class="option-description">Dedicated staff time, specialized expertise, 10+ hours per month</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="calculateRisk()">Calculate Risk Level</button>
+        </div>
+
+        <!-- Results Card -->
+        <div class="result-card" id="resultCard">
+            <div class="result-title">
+                <span>Risk Assessment:</span>
+                <span class="risk-badge" id="riskBadge"></span>
+            </div>
+            
+            <div id="resultContent"></div>
+
+            <div class="button-group">
+                <button class="btn btn-secondary" onclick="resetAssessment()">Start New Assessment</button>
+                <button class="btn btn-primary" onclick="window.print()">Print Results</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactivity to options
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+                
+                // Update visual state
+                const dimension = radio.getAttribute('data-dimension');
+                document.querySelectorAll(`input[data-dimension="${dimension}"]`).forEach(r => {
+                    r.closest('.option').classList.remove('selected');
+                });
+                this.classList.add('selected');
+                
+                // Update progress
+                updateProgress();
+            });
+        });
+
+        function updateProgress() {
+            const totalDimensions = 6;
+            let completed = 0;
+            
+            for (let i = 1; i <= totalDimensions; i++) {
+                const radios = document.querySelectorAll(`input[data-dimension="${i}"]`);
+                const isChecked = Array.from(radios).some(r => r.checked);
+                if (isChecked) completed++;
+            }
+            
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach((dot, index) => {
+                if (index < completed) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function calculateRisk() {
+            // Check if all dimensions are filled
+            const dimensions = ['audience', 'data', 'pedagogy', 'failure', 'accessibility', 'support'];
+            const scores = {};
+            let allFilled = true;
+            
+            dimensions.forEach(dim => {
+                const selected = document.querySelector(`input[name="${dim}"]:checked`);
+                if (!selected) {
+                    allFilled = false;
+                } else {
+                    scores[dim] = parseInt(selected.value);
+                }
+            });
+            
+            if (!allFilled) {
+                alert('Please complete all six dimensions before calculating risk level.');
+                return;
+            }
+            
+            // Calculate average and max scores
+            const values = Object.values(scores);
+            const average = values.reduce((a, b) => a + b, 0) / values.length;
+            const maxScore = Math.max(...values);
+            
+            // Determine risk level based on both average and highest individual score
+            let riskLevel, riskClass, guidance;
+            
+            // High risk if any dimension is 4 (except support alone) or if student data/FERPA
+            if (scores.data === 4 || scores.failure === 4 || 
+                (maxScore === 4 && scores.pedagogy >= 3) || 
+                (average >= 3.5)) {
+                riskLevel = 'High Risk';
+                riskClass = 'risk-high';
+                guidance = getHighRiskGuidance();
+            }
+            // Medium-High if external partners or significant stakes
+            else if (scores.audience === 4 || scores.pedagogy >= 3 || 
+                     (average >= 2.8 && maxScore >= 3)) {
+                riskLevel = 'Medium-High Risk';
+                riskClass = 'risk-medium-high';
+                guidance = getMediumHighRiskGuidance();
+            }
+            // Medium if public-facing or moderate scores
+            else if (scores.audience === 3 || average >= 2.0) {
+                riskLevel = 'Medium Risk';
+                riskClass = 'risk-medium';
+                guidance = getMediumRiskGuidance();
+            }
+            // Low risk
+            else {
+                riskLevel = 'Low Risk';
+                riskClass = 'risk-low';
+                guidance = getLowRiskGuidance();
+            }
+            
+            // Display results
+            document.getElementById('riskBadge').textContent = riskLevel;
+            document.getElementById('riskBadge').className = `risk-badge ${riskClass}`;
+            document.getElementById('resultContent').innerHTML = guidance;
+            document.getElementById('resultCard').classList.add('show');
+            
+            // Scroll to results
+            document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function getLowRiskGuidance() {
+            return `
+                <div class="result-section">
+                    <h3>Characteristics</h3>
+                    <p>This tool is assessed as <strong>Low Risk</strong> because it is primarily internal-facing, handles minimal sensitive data, has limited pedagogical stakes, and presents obvious failure modes that users can easily detect.</p>
+                </div>
+
+                <div class="result-section">
+                    <h3>Required Vetting Process</h3>
+                    <ul>
+                        <li>Internal functionality review to ensure the tool works as intended</li>
+                        <li>Basic accuracy check to verify information quality</li>
+                        <li>Identify maintenance owner responsible for the tool</li>
+                        <li>Document intended use cases</li>
+                        <li>Register in CITL AI resource inventory with technical details</li>
+                    </ul>
+                </div>
+
+                <div class="result-section">
+                    <h3>Support Requirements</h3>
+                    <ul>
+                        <li>Single staff member as owner</li>
+                        <li>Less than 2 hours per month for maintenance</li>
+                        <li>Annual review of continued utility</li>
+                        <li>1 hour annually for inventory management</li>
+                    </ul>
+                </div>
+
+                <div class="approval-info">
+                    <p><strong>Decision Maker:</strong> Project lead + one peer review</p>
+                    <p><strong>Timeline:</strong> Approximately 1 week from proposal to approval</p>
+                    <p><strong>Next Steps:</strong> Complete internal functionality review and register in the AI resource inventory before going live.</p>
+                </div>
+            `;
+        }
+
+        function getMediumRiskGuidance() {
+            return `
+                <div class="result-section">
+                    <h3>Characteristics</h3>
+                    <p>This tool is assessed as <strong>Medium Risk</strong> because it is public-facing or serves campus partners, represents CITL expertise, influences teaching decisions, or presents moderate failure impact where confusion is possible.</p>
+                </div>
+
+                <div class="result-section">
+                    <h3>Required Vetting Process</h3>
+                    <ul>
+                        <li>Comprehensive functionality testing across various scenarios</li>
+                        <li>User feedback pilot phase (minimum 10-15 test users)</li>
+                        <li>Accuracy validation by subject matter expert</li>
+                        <li>Clear disclaimers and limitations visible to users</li>
+                        <li>User feedback mechanism implementation</li>
+                        <li>Basic accessibility audit (WCAG 2.1 AA compliance)</li>
+                        <li>Documented support plan with primary owner and backup</li>
+                        <li>Detailed registration in AI resource inventory including API version and dependencies</li>
+                    </ul>
+                </div>
+
+                <div class="result-section">
+                    <h3>Support Requirements</h3>
+                    <ul>
+                        <li>Primary owner and backup identified</li>
+                        <li>2-5 hours per month for monitoring and updates</li>
+                        <li>Quarterly reviews of user feedback</li>
+                        <li>6-month formal reassessment scheduled</li>
+                        <li>Budget allocated for maintenance and improvements</li>
+                        <li>2 hours quarterly for inventory management</li>
+                    </ul>
+                </div>
+
+                <div class="approval-info">
+                    <p><strong>Decision Maker:</strong> CITL Associate Director or Director</p>
+                    <p><strong>Consultation:</strong> Relevant domain experts</p>
+                    <p><strong>Timeline:</strong> 2-4 weeks (including pilot phase)</p>
+                    <p><strong>Next Steps:</strong> Schedule meeting with Associate Director/Director to discuss pilot testing plan and begin comprehensive functionality testing.</p>
+                </div>
+            `;
+        }
+
+        function getMediumHighRiskGuidance() {
+            return `
+                <div class="result-section">
+                    <h3>Characteristics</h3>
+                    <p>This tool is assessed as <strong>Medium-High Risk</strong> because it is deployed in partner contexts, influences assessment or grading, handles faculty IP, carries significant reputational stakes, or requires specialized expertise to maintain.</p>
+                </div>
+
+                <div class="result-section">
+                    <h3>Required Vetting Process</h3>
+                    <ul>
+                        <li>All Medium Risk requirements, plus:</li>
+                        <li>Extensive pilot testing (minimum 25 users across multiple contexts)</li>
+                        <li>Formal user training and orientation materials</li>
+                        <li>Partner institution sign-off and MOU if applicable</li>
+                        <li>Enhanced accessibility testing (multiple user scenarios and assistive technologies)</li>
+                        <li>Performance monitoring dashboard implementation</li>
+                        <li>Documented escalation process for issues</li>
+                        <li>Clear data handling and retention policies</li>
+                        <li>Sustainability plan addressing staff transitions</li>
+                        <li>Comprehensive inventory registration including technical architecture and data flows</li>
+                    </ul>
+                </div>
+
+                <div class="result-section">
+                    <h3>Support Requirements</h3>
+                    <ul>
+                        <li>Dedicated primary owner with domain expertise</li>
+                        <li>5-10 hours per month for active management</li>
+                        <li>Quarterly stakeholder reviews</li>
+                        <li>Ongoing user support mechanism</li>
+                        <li>Professional development for support staff</li>
+                        <li>Formal reassessments at 3 months and 6 months</li>
+                        <li>Documented succession plan</li>
+                        <li>3 hours quarterly for inventory management</li>
+                    </ul>
+                </div>
+
+                <div class="approval-info">
+                    <p><strong>Decision Maker:</strong> CITL Director (required)</p>
+                    <p><strong>Consultation:</strong> Associate Director, domain experts, partner stakeholders</p>
+                    <p><strong>Timeline:</strong> 1-2 months (including extended pilot)</p>
+                    <p><strong>Next Steps:</strong> Schedule meeting with CITL Director to present full proposal including partner agreements, support plan, and sustainability strategy. Begin developing comprehensive technical documentation.</p>
+                </div>
+            `;
+        }
+
+        function getHighRiskGuidance() {
+            return `
+                <div class="result-section">
+                    <h3>Characteristics</h3>
+                    <p>This tool is assessed as <strong>High Risk</strong> because it handles FERPA-protected student data, makes authoritative claims about teaching effectiveness, could significantly impact equity or access, carries legal/compliance implications, or requires intensive specialized support.</p>
+                </div>
+
+                <div class="result-section">
+                    <h3>Required Vetting Process</h3>
+                    <ul>
+                        <li>All Medium-High Risk requirements, plus:</li>
+                        <li><strong>Legal review</strong> (mandatory) - data handling, liability, terms of service</li>
+                        <li><strong>IT Security audit</strong> (mandatory) - data protection, encryption, access controls</li>
+                        <li><strong>Privacy impact assessment</strong> (mandatory) - FERPA compliance if applicable</li>
+                        <li><strong>Accessibility certification</strong> (mandatory) - formal WCAG audit plus assistive technology testing</li>
+                        <li><strong>Equity impact analysis</strong> (mandatory) - disparate impact assessment</li>
+                        <li>Extended pilot with diverse user groups (minimum 50 users)</li>
+                        <li>Formal approval from CITL Director (required)</li>
+                        <li>External stakeholder approvals (IT, Legal, Accessibility Office as needed)</li>
+                        <li>Comprehensive user training program</li>
+                        <li>Incident response plan and data breach notification protocol</li>
+                        <li>Regular compliance audits (minimum annually)</li>
+                        <li>Full inventory registration with vendor contracts, SLAs, and compliance records</li>
+                    </ul>
+                </div>
+
+                <div class="result-section">
+                    <h3>Support Requirements</h3>
+                    <ul>
+                        <li>Multiple staff members with defined roles</li>
+                        <li>10+ hours per month dedicated support time</li>
+                        <li>Specialized technical expertise required</li>
+                        <li>User support helpdesk or ticketing system</li>
+                        <li>Monthly monitoring and issue triage</li>
+                        <li>Quarterly stakeholder reviews</li>
+                        <li>Bi-annual formal reassessments</li>
+                        <li>Multi-year sustainability and funding plan</li>
+                        <li>Documented transition plan for staff changes</li>
+                        <li>Budget for legal/compliance review renewals</li>
+                        <li>4 hours monthly for inventory management</li>
+                    </ul>
+                </div>
+
+                <div class="approval-info">
+                    <p><strong>Decision Maker:</strong> CITL Director (required)</p>
+                    <p><strong>Mandatory Consultation:</strong> Legal, IT Security, Accessibility Office</p>
+                    <p><strong>Additional Consultation:</strong> Other campus stakeholders as needed</p>
+                    <p><strong>Timeline:</strong> 2-4 months minimum</p>
+                    <p><strong>External Approval:</strong> May require campus CIO, legal counsel, or other executives</p>
+                    <p><strong>Next Steps:</strong> Before proceeding, schedule preliminary meeting with CITL Director to assess feasibility. If approved to proceed, initiate contact with Legal, IT Security, and Accessibility Office to begin formal review processes. Develop comprehensive project plan including all required audits, assessments, and support infrastructure.</p>
+                </div>
+
+                <div class="result-section">
+                    <h3>⚠️ Critical Considerations</h3>
+                    <p>High Risk tools require significant institutional resources and long-term commitment. Carefully consider whether CITL has the capacity, expertise, and sustained funding to support this tool properly. Given the legal and compliance requirements, inadequate support could create serious institutional liability.</p>
+                </div>
+            `;
+        }
+
+        function resetAssessment() {
+            // Clear all selections
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.checked = false;
+                radio.closest('.option').classList.remove('selected');
+            });
+            
+            // Hide results
+            document.getElementById('resultCard').classList.remove('show');
+            
+            // Reset progress
+            updateProgress();
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>
