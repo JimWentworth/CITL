@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Temperature & Creativity</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin-top: 28px;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  .iframe-wrap {
+    margin-top: 16px;
+    border: 1px solid #d0d4da;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(17,24,39,.08);
+  }
+  iframe {
+    width: 100%;
+    height: 520px;
+    border: none;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+    .note{
+      font-size: .95rem;
+      color: var(--muted);
+      margin: 10px 0 0;
+      font-style: italic;
+    }
+
+  
+	/* Callouts */
+    .callout{
+      margin-top: 16px;
+      border-radius: var(--radius);
+      padding: 14px 14px;
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .callout-success{
+      border-left: 6px solid rgba(255,85,46,.55);
+      background: linear-gradient(180deg, rgba(255,85,46,.06), #fff 60%);
+    }
+
+    .subtle{
+      color: var(--muted);
+      font-size: .95rem;
+      margin: 10px 0 0;
+    }
+	      .grid{
+        grid-template-columns: 1.05fr .95fr;
+        align-items: start;
+      }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Temperature, Creativity and Hallucinations</h1>
+
+<p>
+  Generative AI models predict the next word, symbol, or punctuation based on probability.
+  The <strong>temperature</strong> setting controls how adventurous the model is when making those
+  predictions. Understanding temperature helps explain why AI sometimes sounds cautious and
+  repetitive, and other times imaginative or unreliable.
+</p>
+	<p>Most models have a "temperature" or "creativity" setting (often 0–1 or 0–2):</p>
+<ul>
+  <li><strong>Low temperature (0–0.3):</strong> Predictable, consistent, factual—like a careful researcher</li>
+      <li><strong>Medium temperature (0.7–0.8):</strong> Balanced—good for most writing tasks</li>
+      <li><strong>High temperature (1.0+):</strong> Unpredictable, creative, varied—like a brainstorming session</li>
+</ul>
+    <p class="note"><em>Note: Not all interfaces expose this setting, but understanding it helps you frame prompts more deliberately.</em></p>
+<div class="step">
+  <h2>Conceptual Foundation</h2>
+
+  <p>
+    At <strong>low temperatures</strong> (close to 0), the model strongly favors the most likely next
+    token. This produces conservative, stable output that is less likely to invent details, but
+    also less likely to explore alternative interpretations.
+  </p>
+
+  <p>
+    At <strong>higher temperatures</strong> (around 0.7 to 1.0 and above), the model samples from a
+    wider range of possibilities. This increases variation, metaphor, and creativity—but also
+    raises the chance of error.
+  </p>
+
+  <p>
+    You can think of <strong>hallucinations</strong> as a byproduct of increased randomness. As the
+    model explores less probable paths through language space, it may produce statements that
+    sound plausible without being well-supported.
+  </p>
+</div>
+	
+
+
+    <div class="step">
+      <!-- Temperature demo -->
+      <div class="card temperature-demo" aria-labelledby="demoTitle">
+        <div class="card-inner">
+          <h2 id="demoTitle">Interactive Demo: Temperature Simulation</h2>
+          <p class="subtle">Adjust the slider to see how temperature can change output for the same prompt (simulated examples).</p>
+
+          <div class="slider-container">
+            <div class="temp-value-display">
+              <div>
+                Temperature: <span id="tempValue">0.5</span>
+                <span class="sr-only" aria-live="polite">&nbsp;</span>
+              </div>
+              <div class="temp-pill" id="tempMode"></div>
+            </div>
+
+            <!-- Slider uses 0–20 to avoid awkward decimals; mapped to 0.0–2.0 -->
+            <input
+              type="range"
+              min="0" max="20" value="5"
+              class="temp-slider"
+              id="tempSlider"
+              aria-label="Temperature setting from 0 to 2. Adjust to see how it affects AI creativity."
+              aria-valuemin="0" aria-valuemax="2" aria-valuenow="0.5"
+            />
+
+      
+
+          <p class="prompt-line">
+            <span class="prompt-tag">PROMPT:</span>
+            <strong>"Describe a sunset"</strong>
+          </p>
+
+          <div class="temp-output" id="tempOutput" role="region" aria-label="Simulated AI output">
+            The sun sets in the west, creating orange and red colors in the sky as daylight fades to darkness.
+          </div>
+
+          <p class="foot"> <em> This is a simulated activity; these responses are coded, not generated.</em></p>
+ 
+        </div>
+      </div>
+
+      <!-- Quick guidance -->
+      <div class="card">
+        <div class="card-inner">
+ 
+          <div class="divider"></div>
+        
+        </div>
+      </div>
+    </div>
+
+    
+
+
+</div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+    // --- Temperature demo (simulated outputs) ---
+    const tempSlider = document.getElementById('tempSlider');
+    const tempValueEl = document.getElementById('tempValue');
+    const tempOutputEl = document.getElementById('tempOutput');
+    const tempModeEl = document.getElementById('tempMode');
+    const tempAnnounce = document.getElementById('tempAnnounce');
+
+    const outputs = {
+      low: [
+        "The sun sets in the west, creating orange and red colors in the sky as daylight fades to darkness.",
+        "A sunset is the daily transition from daylight to night, often showing warm hues near the horizon.",
+        "As the day ends, the sun drops below the horizon and the sky shifts from bright light to darker tones."
+      ],
+      medium: [
+        "The sun dips below the horizon and the sky blooms with layered oranges and pinks, fading into twilight blue.",
+        "A sunset softens the day into evening, painting the clouds with warm color before the first stars appear.",
+        "Light thins, shadows stretch, and the sky turns into a gradient of gold, coral, and deepening indigo."
+      ],
+      high: [
+        "The horizon catches fire—molten tangerine spilling into violet dusk—like the sky is exhaling its last bright secret.",
+        "A sunset is a slow, glowing curtain call: clouds wearing watercolor gowns as the day bows and slips away.",
+        "The sun sinks like a coin into velvet, and the air feels briefly enchanted, as if the world is holding its breath."
+      ]
+    };
+
+    function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
+    function labelForTemp(t){
+      if (t <= 0.3) return "Predictable";
+      if (t < 1.0) return "Balanced";
+      return "Creative";
+    }
+
+    function bandForTemp(t){
+      if (t <= 0.3) return "low";
+      if (t < 1.0) return "medium";
+      return "high";
+    }
+
+    function pickExample(arr, seed){
+      // Deterministic-ish pick so it doesn't feel random-jumpy during dragging
+      const idx = Math.floor((seed * 997) % arr.length);
+      return arr[idx];
+    }
+
+    function updateTemperatureFromSlider(){
+      const raw = Number(tempSlider.value);     // 0..20
+      const t = clamp(raw / 10, 0, 2);          // 0.0..2.0
+
+      tempValueEl.textContent = t.toFixed(1);
+      tempSlider.setAttribute('aria-valuenow', t.toFixed(1));
+
+      const mode = labelForTemp(t);
+      tempModeEl.textContent = mode;
+
+      const band = bandForTemp(t);
+      tempOutputEl.textContent = pickExample(outputs[band], raw);
+
+      // Screen reader announcement (polite)
+      tempAnnounce.textContent = `Temperature ${t.toFixed(1)}. Mode: ${mode}.`;
+    }
+
+    tempSlider.addEventListener('input', updateTemperatureFromSlider);
+    updateTemperatureFromSlider();
+
+    // --- Copy helpers ---
+    const toastEl = document.getElementById('toast');
+    let toastTimer = null;
+
+    function showToast(msg){
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1600);
+    }
+
+    async function copyText(elementId){
+      const el = document.getElementById(elementId);
+      const text = el ? el.textContent.trim() : "";
+      if (!text) return;
+
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast("Copied to clipboard.");
+      } catch(e){
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast("Copied to clipboard.");
+      }
+    }
+
+    function copyReflection(){
+      const ta = document.getElementById('reflection');
+      const text = (ta.value || "").trim();
+      if (!text){
+        showToast("Nothing to copy yet.");
+        return;
+      }
+      navigator.clipboard.writeText(text).then(
+        () => showToast("Reflection copied."),
+        () => showToast("Copy blocked by browser.")
+      );
+    }
+
+    function clearReflection(){
+      document.getElementById('reflection').value = "";
+      showToast("Cleared.");
+    }
+
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+ 
+  </script>
+
+
+</div>
+<div class="step">
+  <h2>Try These Prompts in ChatGPT</h2>
+
+  <p>
+    Try the prompts below at different temperature settings using the Gemini instance below. Focus on how the explanation of
+    <strong>AI alignment</strong> changes as creativity and variability increase.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Explain AI alignment in a precise, cautious, and technically accurate way.
+Avoid speculation and clearly distinguish between established research and open questions.
+    </div>
+  </div>
+
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Explain AI alignment be adventurous, use a temperature setting of 1.9
+    </div>
+	  <p><a href="https://chatgpt.com/share/696164c9-d694-8011-8521-c9ac227514d8" target="_blank">See example chat here; scroll to the top to see both versions</a></p>
+  </div>
+</div>
+
+
+
+
+
+<div class="wrapup">
+<h2>Conceptual Wrap-Up</h2>
+
+	<div>
+  Temperature is a dial between precision and imagination.
+  Turning it down favors alignment with established knowledge. Turning it up favors exploration.
+
+	   You can explore adjusting temperature settings through prompting. Try these simple additions to your next prompt.&nbsp;</p>
+          <ul>
+            <li>be adventurous, use a temperature setting of 1.9&nbsp;</li>
+            <li>be cautious and keep the temperature below 0.2 </li>
+          </ul>
+
+  <details>
+    <summary>Show Expanded Explanation</summary>
+
+    <p>
+      Internally, language models assign probabilities to possible next tokens. Temperature
+      adjusts how sharply the model favors the highest-probability options. Lower temperature
+      keeps output tightly aligned with dominant patterns in training data, while higher
+      temperature allows less common patterns to surface.
+    </p>
+
+    <p>
+      This same mechanism supports both creative exploration and hallucination. The model
+      is not choosing to be accurate or inaccurate—it is sampling more broadly from
+      plausible language.
+    </p>
+
+  </details>
+</div>
+<div class="wrapup">
+
+  <details>
+    <summary>Show Practical Guidance and Example Prompt Language</summary>
+
+    <p>
+      When accuracy matters—summarizing readings, explaining technical concepts, or discussing
+      AI safety and alignment—keep temperature low and add constraints that reinforce precision.
+    </p>
+
+    <p><strong>Suggested wording:</strong></p>
+
+    <div class="prompt-box">
+      <div class="prompt-text">
+Use a cautious, academic tone.
+Stick closely to established research.
+Explicitly label uncertainties or open problems.
+      </div>
+    </div>
+
+    <p>
+      When brainstorming, ideating, or exploring alternative framings of AI alignment,
+      higher temperature can be useful—but outputs should always be reviewed,
+      verified, and revised.
+    </p>
+
+    <p><strong>Suggested wording:</strong></p>
+
+    <div class="prompt-box">
+      <div class="prompt-text">
+Be exploratory and generate multiple perspectives.
+Use metaphors or scenarios to illustrate ideas.
+Clearly separate speculation from established facts.
+      </div>
+    </div>
+
+    <p>
+      Understanding temperature helps instructors explain not just <em>what</em> AI produces,
+      but <em>why</em> it behaves the way it does—an essential component of AI literacy.
+    </p>
+
+  </details>
+</div>
+
+
+</body>
+</html>
