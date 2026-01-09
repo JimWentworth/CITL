@@ -160,22 +160,19 @@
 	
 
 <div class="step">
-    <h2 id="demoTitle">Interactive Demo: Temperature Simulation</h2>
+  <h2>Temperature Simulation</h2>
     <div class="grid">
      <!-- Temperature demo -->
       <div class="card temperature-demo" aria-labelledby="demoTitle">
         <div class="card-inner">
-      
+          <h2 id="demoTitle">Interactive Demo: Temperature Simulation</h2>
           <p class="subtle">Adjust the slider to see how temperature can change output for the same prompt (simulated examples).</p>
-
+<p class="prompt-line">
+            <span class="prompt-tag">PROMPT:</span>
+            <strong>"Describe a sunset"</strong>
+          </p>
           <div class="slider-container">
-            <div class="temp-value-display">
-              <div>
-                Temperature: <span id="tempValue">0.5</span>
-                <span class="sr-only" aria-live="polite">&nbsp;</span>
-              </div>
-              <div class="temp-pill" id="tempMode"></div>
-            </div>
+         
 
             <!-- Slider uses 0–20 to avoid awkward decimals; mapped to 0.0–2.0 -->
             <input
@@ -189,16 +186,19 @@
 
       
 
-          <p class="prompt-line">
-            <span class="prompt-tag">PROMPT:</span>
-            <strong>"Describe a sunset"</strong>
-          </p>
+          
 
-          <div class="temp-output" id="tempOutput" role="region" aria-label="Simulated AI output">
+          <div class="temp-output" id="tempOutput" style="font-weight: bolder; color: #954F06;" aria-label="Simulated AI output" role="region">
             The sun sets in the west, creating orange and red colors in the sky as daylight fades to darkness.
           </div>
-
-          <p class="foot"> This is a simulated activity  so these responses are coded not generated.</p>
+   <div class="temp-value-display">
+              <div>
+                Temperature: <span id="tempValue">0.5</span>
+                <span class="sr-only" aria-live="polite">&nbsp;</span>
+              </div>
+              <div class="temp-pill" id="tempMode"></div>
+            </div>
+          <p class="foot"> <em> This is a simulated activity  so these responses are coded not generated.</em></p>
  
         </div>
       </div>
@@ -240,13 +240,19 @@
         "As the day ends, the sun drops below the horizon and the sky shifts from bright light to darker tones."
       ],
       medium: [
-        "The sun dips below the horizon and the sky blooms with layered oranges and pinks, fading into twilight blue.",
+           "The sun dips below the horizon and the sky blooms with layered oranges and pinks, fading into twilight blue.",
         "A sunset softens the day into evening, painting the clouds with warm color before the first stars appear.",
-        "Light thins, shadows stretch, and the sky turns into a gradient of gold, coral, and deepening indigo."
+        "Light thins, shadows stretch, and the sky turns into a gradient of gold, coral, and deepening indigo.",
+		  "The last light pools along the horizon, smudging the sky with burnt amber as evening breathes in.",
+		  "Colors melt into one another—peach, rose, violet—while the world edges quietly toward night.",
+		  "A fading glow brushes the landscape, turning the sky into layered pastels that dim gently into night."
+		  
       ],
       high: [
         "The horizon catches fire—molten tangerine spilling into violet dusk—like the sky is exhaling its last bright secret.",
         "A sunset is a slow, glowing curtain call: clouds wearing watercolor gowns as the day bows and slips away.",
+		    "As the sun sinks low, the sky unfurls a spectrum of warm hues that slowly surrender to deep blue.",
+		  "The day exhales; clouds catch fire with orange and crimson before slipping into dusk’s cooler tones.",
         "The sun sinks like a coin into velvet, and the air feels briefly enchanted, as if the world is holding its breath."
       ]
     };
@@ -367,13 +373,12 @@
       class="chatgpt-button"
       aria-label="Open ChatGPT in a new tab"
     >
-      Open ChatGPT to Try These Prompts
+      Open ChatGPT
     </a>
   </p>
 
   <p>
-    Try the prompts below and focus on how the explanation of <strong>AI alignment</strong> changes as creativity and variability increase.
-  </p>
+  Try the prompts below and pay attention to how the explanation of AI alignment changes as model creativity and variability increase. The less precise you ask the model to be, the more freedom it has to explore alternative paths.&nbsp; &nbsp;&nbsp; </p>
 
   <div class="prompt-box">
     <div class="prompt-text">
@@ -387,11 +392,7 @@ Explain AI alignment, be creative
 	      <div class="prompt-text">
 Explain AI alignment, be adventurous use a temperature setting of 1.9
     </div>
-    <p>
-      <a href="https://chatgpt.com/share/696164c9-d694-8011-8521-c9ac227514d8" target="_blank">
-        See example chat here; scroll to the top to see both versions
-      </a>
-    </p>
+
   </div>
 </div>
 
@@ -401,13 +402,19 @@ Explain AI alignment, be adventurous use a temperature setting of 1.9
   <p>
     Temperature is a dial between precision and imagination.
     Turning it down favors alignment with established knowledge.
-    Turning it up favors exploration. You can explore adjusting temperature settings through prompting. Try these simple additions to your next prompt. 
-</p>
+    Turning it up favors exploration. You can try adjusting temperature settings through prompting. Try these simple additions to your next prompt. Your results will vary. </p>
+	
   <ul>
     <li>Be adventurous: use a temperature setting of 1.9</li>
     <li>Be cautious: keep the temperature below 0.2</li>
   </ul>
-
+    <blockquote>
+      <p>
+        <a href="https://chatgpt.com/share/696164c9-d694-8011-8521-c9ac227514d8" target="_blank">
+          See example chat here; scroll to the top to see both versions
+        </a>
+      </p>
+    </blockquote>
   <details>
     <summary>Show Expanded Explanation</summary>
 
