@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Tools & Context Windows</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #f9f9fb;
+    margin-top: 18px;
+  }
+  th, td {
+    padding: 14px;
+    border: 1px solid #d0d4da;
+    vertical-align: top;
+    font-size: 0.95rem;
+  }
+  th {
+    background: #13294b;
+    color: white;
+    text-align: left;
+  }
+  .section-header {
+    margin-top: 40px;
+    padding: 12px 0;
+    font-size: 1.3rem;
+    border-bottom: 3px solid #e84a27;
+  }
+  .context-box {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 20px;
+  }
+  details {
+    margin-top: 12px;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>AI Tool Comparison</h1>
+
+<p>
+  This page compares Copilot, NotebookLM, Gemini, and ChatGPT Projects, 
+  focusing on how each tool handles <strong>context windows (active memory), long documents, 
+  multimodal input, and grounding</strong>. These architectural traits determine which tool 
+  is best for research workflows, accessibility tasks, student-facing support, or curriculum design.
+</p>
+
+<table>
+  <tr>
+    <th>Tool</th>
+    <th>Best Use Cases</th>
+    <th>Strengths</th>
+    <th>Context Window Behavior</th>
+    <th>Limitations</th>
+  </tr>
+
+  <tr>
+    <td><strong>Microsoft Copilot</strong></td>
+    <td>Productivity, rewriting, Outlook/Teams, Word/PowerPoint integration</td>
+    <td>
+      Excellent for drafting and reformulating text.<br>
+      Integrates with Microsoft 365 data and workflows.<br>
+      Good for testing prompt structure fundamentals.
+    </td>
+    <td>
+      Uses retrieval across your Microsoft 365 content.<br>
+      Still constrained by a relatively small active memory window.<br>
+      Good for targeted queries, weaker for whole-book synthesis.
+    </td>
+    <td>
+      Not ideal for deep reading of long PDFs.<br>
+      Can miss big-picture nuance.<br>
+      Grounding depends on enterprise settings and permissions.
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Google NotebookLM</strong></td>
+    <td>Research packets, dense readings, student study environments</td>
+    <td>
+      Source-exclusive grounding—responds only from uploaded documents.<br>
+      Produces outlines, slide decks, mind maps, and audio overviews.<br>
+      Strong citation alignment to source content.
+    </td>
+    <td>
+      Uses retrieval to access relevant passages on demand.<br>
+      Not limited by traditional context window constraints.<br>
+      Can handle very long documents without losing fidelity.
+    </td>
+    <td>
+      Cannot answer questions outside uploaded sources.<br>
+      Less flexible for creative or speculative tasks.<br>
+      Formatting controls are limited.
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Gemini (Multimodal)</strong></td>
+    <td>Image analysis, charts, diagrams, accessibility workflows</td>
+    <td>
+      Processes images + text together.<br>
+      Strong visual reasoning and descriptive output.<br>
+      Useful for alt text, captioning, and diagram explanation.
+    </td>
+    <td>
+      Large practical context capacity for text + images.<br>
+      Can integrate visual and textual inputs into a single reasoning pass.<br>
+      Still applies internal compression and heuristic prioritization.
+    </td>
+    <td>
+      Can over-infer details not visible in images.<br>
+      Needs careful constraints for accuracy.<br>
+      Not built for grounded long-document retrieval like NotebookLM.
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>ChatGPT Projects</strong></td>
+    <td>Curriculum design, multi-person drafting, iterative development</td>
+    <td>
+      Persistent workspace with shared files and instructions.<br>
+      Combines uploaded documents with model knowledge.<br>
+      Strong for ongoing refinement and versioning of teaching materials.
+    </td>
+    <td>
+      Large active window with extended embeddings for project files.<br>
+      Remembers project context across sessions.<br>
+      Can reason across multiple sources simultaneously.
+    </td>
+    <td>
+      Blends external knowledge unless instructed otherwise.<br>
+      Can drift or hallucinate if prompts are imprecise.<br>
+      Best used with explicit source-use instructions.
+    </td>
+  </tr>
+</table>
+
+<div class="section-header">Context Window Summary</div>
+
+<div class="context-box">
+  <p><strong>Copilot:</strong> <em>The Smart Filing Cabinet</em> — retrieves specific items quickly but doesn’t “hold” full documents in mind.</p>
+  <p><strong>ChatGPT Projects:</strong> <em>The Shared Workbench</em> — keeps your project files and notes active across sessions.</p>
+  <p><strong>Gemini:</strong> <em>The IMAX Screen</em> — handles large spans of text and vision inputs in one view, though still prioritizes internally.</p>
+  <p><strong>NotebookLM:</strong> <em>The Research Vault</em> — strictly grounded in your uploaded sources with retrieval-based access.</p>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    The right tool depends on how much information you need the model to manage 
+    and whether you want strict grounding or broader synthesis. 
+    <strong>NotebookLM</strong> excels in source-accuracy workflows. 
+    <strong>Gemini</strong> is best for multimodal tasks and visual interpretation. 
+    <strong>ChatGPT Projects</strong> supports collaborative, ongoing development. 
+    <strong>Copilot</strong> remains ideal for productivity and rewriting within the Microsoft ecosystem.
+  </p>
+
+  <details>
+    <summary>Show Detailed Explanation</summary>
+
+    <p>
+      Modern AI tools fall into two broad architectural categories: 
+      <strong>retrieval-augmented systems</strong> (like NotebookLM and enterprise Copilot) 
+      and <strong>long-context models</strong> (like Gemini and ChatGPT). 
+      Retrieval systems store your documents externally and fetch relevant segments, 
+      avoiding context window limits. Long-context models directly ingest large amounts 
+      of text or video but still compress internally to prioritize important segments.
+    </p>
+
+    <p>
+      For educators, the key takeaway is this: 
+      Use NotebookLM when you need absolute alignment to assigned readings, 
+      use Gemini when you want the AI to interpret visuals or long recordings, 
+      use ChatGPT Projects when co-creating or revising course materials with colleagues, 
+      and use Copilot for quick drafting and productivity tasks.
+    </p>
+
+  </details>
+</div>
+
+<div class="footer">
+  Updated for Accuracy — January 2026
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Tools & Context Windows</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #f9f9fb;
+    margin-top: 18px;
+  }
+  th, td {
+    padding: 14px;
+    border: 1px solid #d0d4da;
+    vertical-align: top;
+    font-size: 0.95rem;
+  }
+  th {
+    background: #13294b;
+    color: white;
+    text-align: left;
+  }
+  .section-header {
+    margin-top: 40px;
+    padding: 12px 0;
+    font-size: 1.3rem;
+    border-bottom: 3px solid #e84a27;
+  }
+  .context-box {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 20px;
+  }
+  details {
+    margin-top: 12px;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>AI Tool Comparison</h1>
+
+<p>
+  This page compares Copilot, NotebookLM, Gemini, and ChatGPT Projects, 
+  focusing on how each tool handles <strong>context windows (active memory), long documents, 
+  multimodal input, and grounding</strong>. These architectural traits determine which tool 
+  is best for research workflows, accessibility tasks, student-facing support, or curriculum design.
+</p>
+
+<table>
+  <tr>
+    <th>Tool</th>
+    <th>Best Use Cases</th>
+    <th>Strengths</th>
+    <th>Context Window Behavior</th>
+    <th>Limitations</th>
+  </tr>
+
+  <tr>
+    <td><strong>Microsoft Copilot</strong></td>
+    <td>Productivity, rewriting, Outlook/Teams, Word/PowerPoint integration</td>
+    <td>
+      Excellent for drafting and reformulating text.<br>
+      Integrates with Microsoft 365 data and workflows.<br>
+      Good for testing prompt structure fundamentals.
+    </td>
+    <td>
+      Uses retrieval across your Microsoft 365 content.<br>
+      Still constrained by a relatively small active memory window.<br>
+      Good for targeted queries, weaker for whole-book synthesis.
+    </td>
+    <td>
+      Not ideal for deep reading of long PDFs.<br>
+      Can miss big-picture nuance.<br>
+      Grounding depends on enterprise settings and permissions.
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Google NotebookLM</strong></td>
+    <td>Research packets, dense readings, student study environments</td>
+    <td>
+      Source-exclusive grounding—responds only from uploaded documents.<br>
+      Produces outlines, slide decks, mind maps, and audio overviews.<br>
+      Strong citation alignment to source content.
+    </td>
+    <td>
+      Uses retrieval to access relevant passages on demand.<br>
+      Not limited by traditional context window constraints.<br>
+      Can handle very long documents without losing fidelity.
+    </td>
+    <td>
+      Cannot answer questions outside uploaded sources.<br>
+      Less flexible for creative or speculative tasks.<br>
+      Formatting controls are limited.
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Gemini (Multimodal)</strong></td>
+    <td>Image analysis, charts, diagrams, accessibility workflows</td>
+    <td>
+      Processes images + text together.<br>
+      Strong visual reasoning and descriptive output.<br>
+      Useful for alt text, captioning, and diagram explanation.
+    </td>
+    <td>
+      Large practical context capacity for text + images.<br>
+      Can integrate visual and textual inputs into a single reasoning pass.<br>
+      Still applies internal compression and heuristic prioritization.
+    </td>
+    <td>
+      Can over-infer details not visible in images.<br>
+      Needs careful constraints for accuracy.<br>
+      Not built for grounded long-document retrieval like NotebookLM.
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>ChatGPT Projects</strong></td>
+    <td>Curriculum design, multi-person drafting, iterative development</td>
+    <td>
+      Persistent workspace with shared files and instructions.<br>
+      Combines uploaded documents with model knowledge.<br>
+      Strong for ongoing refinement and versioning of teaching materials.
+    </td>
+    <td>
+      Large active window with extended embeddings for project files.<br>
+      Remembers project context across sessions.<br>
+      Can reason across multiple sources simultaneously.
+    </td>
+    <td>
+      Blends external knowledge unless instructed otherwise.<br>
+      Can drift or hallucinate if prompts are imprecise.<br>
+      Best used with explicit source-use instructions.
+    </td>
+  </tr>
+</table>
+
+<div class="section-header">Context Window Summary</div>
+
+<div class="context-box">
+  <p><strong>Copilot:</strong> <em>The Smart Filing Cabinet</em> — retrieves specific items quickly but doesn’t “hold” full documents in mind.</p>
+  <p><strong>ChatGPT Projects:</strong> <em>The Shared Workbench</em> — keeps your project files and notes active across sessions.</p>
+  <p><strong>Gemini:</strong> <em>The IMAX Screen</em> — handles large spans of text and vision inputs in one view, though still prioritizes internally.</p>
+  <p><strong>NotebookLM:</strong> <em>The Research Vault</em> — strictly grounded in your uploaded sources with retrieval-based access.</p>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    The right tool depends on how much information you need the model to manage 
+    and whether you want strict grounding or broader synthesis. 
+    <strong>NotebookLM</strong> excels in source-accuracy workflows. 
+    <strong>Gemini</strong> is best for multimodal tasks and visual interpretation. 
+    <strong>ChatGPT Projects</strong> supports collaborative, ongoing development. 
+    <strong>Copilot</strong> remains ideal for productivity and rewriting within the Microsoft ecosystem.
+  </p>
+
+  <details>
+    <summary>Show Detailed Explanation</summary>
+
+    <p>
+      Modern AI tools fall into two broad architectural categories: 
+      <strong>retrieval-augmented systems</strong> (like NotebookLM and enterprise Copilot) 
+      and <strong>long-context models</strong> (like Gemini and ChatGPT). 
+      Retrieval systems store your documents externally and fetch relevant segments, 
+      avoiding context window limits. Long-context models directly ingest large amounts 
+      of text or video but still compress internally to prioritize important segments.
+    </p>
+
+    <p>
+      For educators, the key takeaway is this: 
+      Use NotebookLM when you need absolute alignment to assigned readings, 
+      use Gemini when you want the AI to interpret visuals or long recordings, 
+      use ChatGPT Projects when co-creating or revising course materials with colleagues, 
+      and use Copilot for quick drafting and productivity tasks.
+    </p>
+
+  </details>
+</div>
+
+<div class="footer">
+  Updated for Accuracy — January 2026
+</div>
+
+</body>
+</html>

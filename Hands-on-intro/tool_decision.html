@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Choose the Right AI Tool – Decision Wizard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .wizard-step {
+    margin-bottom: 26px;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  button.choice {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px 14px;
+    margin-top: 10px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  button.choice:hover,
+  button.choice:focus {
+    background: #e4e9f1;
+    outline: 2px solid #13294b;
+  }
+  .result-box {
+    margin-top: 28px;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  .tool-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #e84a27;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+
+<script>
+function showStep(stepId) {
+  document.querySelectorAll('.wizard-step').forEach(step => step.style.display = 'none');
+  document.getElementById(stepId).style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showResult(resultId) {
+  document.querySelectorAll('.wizard-step').forEach(step => step.style.display = 'none');
+  document.querySelectorAll('.result-box').forEach(r => r.style.display = 'none');
+  document.getElementById(resultId).style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</head>
+
+<body>
+
+<div class="banner">
+  Choose the Right AI Tool – Interactive Wizard
+</div>
+
+<p>
+  Answer a few questions to find the best AI tool for your task.  
+  Each choice will narrow down the tool that fits your workflow, context needs, and grounding level.
+</p>
+
+<!-- STEP 1 -->
+<div id="step1" class="wizard-step">
+  <h2>Step 1 — What kind of task are you trying to do?</h2>
+
+  <button class="choice" onclick="showStep('step2_writing')">
+    Write, rewrite, or summarize text efficiently
+  </button>
+
+  <button class="choice" onclick="showStep('step2_documents')">
+    Work with long readings or complex source documents
+  </button>
+
+  <button class="choice" onclick="showStep('step2_images')">
+    Analyze or describe an image, chart, or diagram
+  </button>
+
+  <button class="choice" onclick="showStep('step2_team')">
+    Build or refine curriculum / collaborate with colleagues
+  </button>
+</div>
+
+<!-- STEP 2 – WRITING -->
+<div id="step2_writing" class="wizard-step" style="display:none;">
+  <h2>Do you need speed and productivity inside Microsoft tools?</h2>
+
+  <button class="choice" onclick="showResult('result_copilot')">
+    Yes — I'm using Word, Outlook, or Teams
+  </button>
+
+  <button class="choice" onclick="showResult('result_chatgpt')">
+    No — I want more creative flexibility
+  </button>
+</div>
+
+<!-- STEP 2 – DOCUMENTS -->
+<div id="step2_documents" class="wizard-step" style="display:none;">
+  <h2>Is it important that the AI uses ONLY the uploaded documents?</h2>
+
+  <button class="choice" onclick="showResult('result_notebooklm')">
+    Yes — accuracy and grounding matter
+  </button>
+
+  <button class="choice" onclick="showResult('result_chatgpt')">
+    No — I want it to blend sources with broader knowledge
+  </button>
+</div>
+
+<!-- STEP 2 – IMAGES -->
+<div id="step2_images" class="wizard-step" style="display:none;">
+  <h2>Are you generating alt text or analyzing visual content?</h2>
+
+  <button class="choice" onclick="showResult('result_gemini')">
+    Yes — I need visual reasoning
+  </button>
+
+  <button class="choice" onclick="showResult('result_chatgpt')">
+    No — I just need help describing it
+  </button>
+</div>
+
+<!-- STEP 2 – TEAM -->
+<div id="step2_team" class="wizard-step" style="display:none;">
+  <h2>Do multiple people need to revise shared documents over time?</h2>
+
+  <button class="choice" onclick="showResult('result_chatgpt')">
+    Yes — collaboration is key
+  </button>
+
+  <button class="choice" onclick="showResult('result_notebooklm')">
+    No — it's mostly for student-facing reference
+  </button>
+</div>
+
+<!-- RESULTS -->
+
+<div id="result_copilot" class="result-box" style="display:none;">
+  <div class="tool-title">Recommended Tool: Microsoft Copilot</div>
+  <p>
+    Use Copilot when you need fast drafting, rewriting, summarizing, or email support inside the Microsoft ecosystem. 
+    It’s ideal for productivity workflows, but not for analyzing long documents end-to-end.
+  </p>
+</div>
+
+<div id="result_notebooklm" class="result-box" style="display:none;">
+  <div class="tool-title">Recommended Tool: Google NotebookLM</div>
+  <p>
+    Best for long readings, research packets, and student-facing study guides. 
+    It uses ONLY the uploaded sources and retrieves relevant chunks, making it the most accurate tool for grounded academic tasks.
+  </p>
+</div>
+
+<div id="result_gemini" class="result-box" style="display:none;">
+  <div class="tool-title">Recommended Tool: Google Gemini (Multimodal)</div>
+  <p>
+    Use Gemini when you need multimodal reasoning — images, charts, diagrams, and accessibility workflows like alt text generation. 
+    It “sees” visual input and combines it with text.
+  </p>
+</div>
+
+<div id="result_chatgpt" class="result-box" style="display:none;">
+  <div class="tool-title">Recommended Tool: ChatGPT Projects</div>
+  <p>
+    Perfect for collaborative curriculum design and iterative drafting.  
+    Projects keep your files and instructions active across sessions and support multi-person workflows.
+  </p>
+</div>
+
+<div class="footer">
+  Updated for Accuracy — January 2026
+</div>
+
+</body>
+</html>

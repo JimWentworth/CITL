@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Context Window Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin: 24px 0;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  button {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+    border: none;
+  }
+  .copilot-btn {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    color: #13294b;
+  }
+	
+	  .gemini-btn {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    color: #13294b;
+  }
+  .note-box {
+    margin-top: 16px;
+    background: #ffffff;
+    padding: 12px;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details {
+    margin-top: 12px;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Understanding Context Window Limits</h1>
+<p> Large language models can only “remember” a finite amount of information at one time. Just like our working memory, it has limits to the amount of information it can process. This
+  boundary is called the <strong>context window</strong>. When you upload or paste more text than the
+  model can fit into that window, it must ignore, compress, or summarize parts of it. This is where
+  errors, omissions, and hallucinations begin to appear.&nbsp;</p>
+<p>In this activity, you’ll use a large document to intentionally exceed the context window in Copilot and observe the results. </p>
+<div class="step">
+  <h2>Step 1 — Open a New Copilot Chat</h2>
+  <p>
+    Start fresh so the chat contains no previous context. Then upload this <a href="EnergyandAI.pdf">PDF on
+  Energy and AI</a>. You’ll see the file appear at the top of the chat window.&nbsp; &nbsp; &nbsp; </p>
+  <button class="copilot-btn" onclick="openCopilot()">Open New Copilot Chat</button>
+
+  <div class="note-box">
+    <strong>Note:</strong> Uploading a large file does not mean Copilot “reads” the entire document. It
+    processes only what can fit inside its available context window. In this case it may not be able to load at all.
+  </div>
+</div>
+
+<div class="step">
+  <h2>Step 2 — Ask for a Summary</h2>
+  <p>
+    Ask Copilot: <em>“Summarize the entire document in 8–10 bullet points.”</em>  
+    If it can provide a summary, it will seem coherent but will likely miss sections or compress them too aggressively.
+  </p>
+</div>
+
+<div class="step">
+  <h2>Step 3 — Ask About Details Near the End</h2>
+  <p>
+    Now ask a question about information from the final chapters—for example:
+  </p>
+  <p><em>“What were the central inputs used to inform the model?”</em></p>
+
+  <p>
+    Because Copilot’s context window is exceeded, it may:
+  </p>
+  <div class="note-box">
+    • provide no response<br>
+    • fabricate content that “sounds right”<br>
+    • ignore the question and give a general answer<br>
+    • respond with uncertainty about missing content
+  </div>
+</div>
+
+	<div class="step">
+  <h2>Step 4 — Try the same activity in Gemini</h2>
+  <p>
+    Start fresh so the chat contains no previous context. Then upload this same Energy and AI PDF. You’ll see the file appear at the top of the chat window.</p>
+  <button class="gemini-btn" onclick="openGemini()">Open New Gemini Chat</button>
+		<p>Try the same prompts again  <em><p>“Summarize the entire document in 8–10 bullet points.”</em></br>  </p>
+<em>“What were the central inputs used to inform the model?”</em></p>
+  </div>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+  <p>
+    Working with a long PDF highlights the difference between “uploaded data” and “active
+    context.” Models can't always load an entire document into memory. When a file is too large,
+    much of it never becomes available for direct reasoning. This is why summaries can seem
+    coherent but fail to reflect the actual content of the final pages. The context window differs significantly between different platforms. The Tool Comparison Matrix highlights these differences.&nbsp;&nbsp; </p>
+
+  <details>
+    <summary>Show Detailed Explanation</summary>
+
+    <p>
+      The file upload feature can give the impression that the model has absorbed the entire
+      document, but what actually happens is more constrained and dependent on the document length. The model may extract text in chunks and pull segments into the context window as needed. When the document is extremely large,
+      only a fraction is accessible at any given moment. Attempts to refer to the end of the
+      document may pull in unrelated fragments or cause the model to guess based on its
+      general knowledge rather than the specific content of the file.
+    </p>
+
+    <p>
+      Trying contradictory questions is an effective diagnostic tool. If you deliberately ask about
+      claims the document doesn’t support and Copilot still provides confident answers, you have
+      exceeded the model’s ability to ground its responses in the actual file. These failures are not
+      random—they reveal the fundamental limits of the model’s internal memory.
+    </p>
+
+    <p>
+      Understanding these limitations sets the stage for Retrieval-Augmented Generation (RAG)
+      workflows in NotebookLM and other tools, which we will explore next. RAG systems work
+      around context limits by indexing, chunking, and retrieving specific fragments rather than
+      trying to load the full document into a single conversation window.
+    </p>
+
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+<script>
+function openCopilot() {
+  window.open("https://copilot.microsoft.com/", "_blank");
+}
+	function openGemini() {
+  window.open("https://gemini.google.com/", "_blank");
+}
+</script>
+
+</body>
+</html>

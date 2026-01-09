@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – ChatGPT Projects & Collaborative Workflows</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin: 24px 0;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .note-box {
+    margin-top: 16px;
+    background: #ffffff;
+    padding: 12px;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  button {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+    border: none;
+  }
+  .chatgpt-btn {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    color: #13294b;
+  }
+  details {
+    margin-top: 12px;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>ChatGPT Projects & Collaborative Workflows</h1>
+
+<p> ChatGPT Projects allow you to build and share a persistent workspace that holds documents, examples,
+  prompts, and notes. Unlike NotebookLM, which stays strictly grounded in the uploaded sources,
+  ChatGPT blends your documents with its full model knowledge unless you instruct it otherwise.&nbsp;</p>
+<p>In this activity, you’ll join a shared project seeded with materials and experiment with workflows
+that support collaboration and course design. </p>
+<!-- STEP 1 -->
+<div class="step">
+  <h2>Step 1 — Open the Shared Project</h2>
+  <p> Use the link below to access the shared project in ChatGPT (it is best to login first). Inside the project you will
+    see an environment containing previous chats from earlier versions of this workshop</p>
+  <p>This is a collaborative workspace. Any chats you have within this project are visible for all participants. That does not mean that the system automatically reviews prior chats for context. Each chat in a project starts fresh  it doesn’t automatically remember what happened in other threads. You can also delete or archive your chats at any time.</p>
+  <button class="chatgpt-btn" onclick="openChatGPT()">Open ChatGPT Projects</button>
+
+  <div class="note-box">
+    <strong>Note:&nbsp;</strong>Review the chat list for chats dated January 9th to see extensive examples  used to develop this workshop.</div>
+</div>
+	
+	
+	  <p>A major benefit of project folders is they can include custom instructions that apply to all chats within the project. This allows you to standardize project requirements like 'use University of Illinois branding when creating HTML pages' or 'write for an academic audience who prefer concise language not bullet points' These instructions persist for every chat in the project.</p>
+  <p>Projects also allow you to upload files to be used for retrieval augmented generation. A well defined set of standards and even code snippets can all be included at the project level to be referenced and re-used for all users in each new chat. This makes project folders ideal for things like course development where you want the standardization of documents for course design but also the power the of the LLM to help generate course content and ideas to build engagement.</p>
+<div>
+<!-- STEP 2 -->
+<div class="step">
+  <h2>Step 2 — Ask Questions to Reveal the RAG documents</h2>
+  <p>
+  In the project chat window, ask a question so you can understand the uploaded documents. </p>
+
+  <p><em>“Outline the documents used as RAG in this project folder”</em></p>
+
+  <p> ChatGPT should review and summarize the intention of the documents. You can also click on the add files icon near the title of the project to see uploaded files.&nbsp;</p>
+  <p>These documents are all saved as markdown (.md) which helps the computer access content more efficiently. A well-organized project will also include a readme file for humans to understand the context of the project and documents.&nbsp;</p>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+  <h2>Step 3 — Generate a Draft Asset (Syllabus, Module, or Summary)</h2>
+  <p>
+    Ask ChatGPT to generate an outline, module overview, or assignment description
+    using the project documents. Try a prompt like:
+  </p>
+
+  <p><em>“Using the RAG style guide and the course outline, create a 2-week module on AI literacy.”</em></p>
+
+  <p> Before responding ChatGPT will review the RAG documents for information related to the prompt and then use that  as additional context for the LLM to form it's response. It's using your documents in combination with the large language model. This is different from NotebookLM, which answers only from the sources you uploaded without accessing additional sources from the larger LLM.</p>
+  <div class="note-box">
+    <strong>Note:&nbsp;</strong>The markdown files used as RAG for this example were created to support the development of <a href="https://canvas.illinois.edu/enroll/7HX8LJ" target="_blank">CITL's Certificate in AI Fluency</a>.</div>
+</div>
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+  <h2>Step 4 — Compare ChatGPT Projects to NotebookLM</h2>
+  <p>
+    Ask ChatGPT a question that <strong>requires inference beyond the uploaded files</strong>—for example:
+  </p>
+
+  <p><em>“How will generative AI reshape the workforce over the next decade?”</em></p>
+
+  <p>
+    ChatGPT will generate answers by merging your documents with external knowledge. NotebookLM
+    would not answer this unless the information appears in the uploaded sources.
+  </p>
+</div>
+
+<!-- WRAP-UP -->
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    ChatGPT Projects operate as a hybrid workspace: they maintain a persistent library of uploaded
+    documents but remain connected to the model’s broader knowledge base. This makes Projects
+    ideal for workflows that require both grounded references and creative synthesis, such as
+    curriculum design, policy drafting, and collaborative editing.
+  </p>
+
+  <details>
+    <summary>Show Detailed Explanation</summary>
+
+    <p>
+      NotebookLM is a closed system. It only uses the documents you upload and nothing more.
+      This makes it ideal for accuracy, citation alignment, and document fidelity. It excels in
+      academic reading, study guides, and student-facing exploration.
+    </p>
+
+    <p>
+      ChatGPT Projects operate differently. They store documents but draw on the full model unless
+      you limit them. This hybrid behavior allows for broader creativity and synthesis—but requires
+      clearer instruction when accuracy or citation alignment matters.        You decide which mode is
+      appropriate by how you frame your prompts.
+    </p>
+
+    <p>
+      Projects also enable genuine collaboration: multiple instructors can iteratively draft,
+      revise, and expand materials. Files can be replaced or updated. Prompts can reference each
+      other. The workspace evolves over time—something neither Copilot nor NotebookLM
+      currently supports in the same way.
+    </p>
+
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+<script>
+function openChatGPT() {
+  window.open("https://chatgpt.com/g/g-p-6913602c17b88191ae41aeb32f622b57-hands-on-introduction-to-generative-ai/project", "_blank");
+}
+</script>
+
+</body>
+</html>

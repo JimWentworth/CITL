@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Workshop Overview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    color: #13294B;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 260px;
+    background: #13294B;
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar h2 {
+    font-size: 1.2rem;
+    padding: 0 20px 10px;
+    margin: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+  }
+
+  .nav-item {
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    color: white;
+    text-align: left;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-item:hover,
+  .nav-item:focus {
+    background: #1b3d6d;
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+  }
+  .nav-item.active {
+    background: #E84A27;
+    color: #ffffff;
+  }
+
+  /* Main content area */
+  .main {
+    flex: 1;
+    background: #f9f9fb;
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    background: white;
+    padding: 16px 20px;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  iframe {
+    width: 100%;
+    height: calc(100vh - 60px);
+    border: none;
+  }
+</style>
+
+<script>
+function loadPage(page, element) {
+  document.getElementById('content-frame').src = page;
+
+  // Update active state
+  const items = document.querySelectorAll('.nav-item');
+  items.forEach(i => i.classList.remove('active'));
+  element.classList.add('active');
+
+  // Move focus to iframe content for screen reader continuity
+  document.getElementById('content-frame').focus();
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="sidebar" role="navigation" aria-label="Workshop Sections">
+  <h2>Workshop Menu</h2>
+
+  <button class="nav-item active" onclick="loadPage('page1_copilot.html', this)">
+    Prompting Basics with Copilot
+  </button>
+
+  <button class="nav-item" onclick="loadPage('page2_notebooklm_rag.html', this)">
+    Understanding Context Limitations
+  </button>
+
+  <button class="nav-item" onclick="loadPage('page3_notebooklm_portal.html', this)">
+    NotebookLM and RAG
+  </button>
+
+  <button class="nav-item" onclick="loadPage('page4_chatgpt_projects.html', this)">
+    ChatGPT Projects & Workflows
+  </button>
+
+  <button class="nav-item" onclick="loadPage('page5_gemini_alttext.html', this)">
+    Gemini Multimodal + Alt Text
+  </button>
+
+  <button class="nav-item" onclick="loadPage('page6_comparison_matrix.html', this)">
+    Tool Comparison Matrix
+  </button>
+
+  <button class="nav-item" onclick="loadPage('https://jimwentworth.github.io/AI-Fluency/AI_Tools_and_Terms.html', this)">
+    AI Terminology Reference Guide
+  </button>
+
+</div>
+
+<div class="main">
+  <div class="header">Center for Innovation in Teaching & Learning</div>
+  <iframe id="content-frame" title="Workshop Content Viewer" src="page1_copilot.html" tabindex="0"></iframe>
+</div>
+
+</body>
+</html>

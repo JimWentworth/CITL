@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Gemini Multimodal + Alt Text</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin: 24px 0;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  button {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+    border: none;
+  }
+  .gemini-btn {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    color: #13294b;
+  }
+  .note-box {
+    margin-top: 16px;
+    background: #ffffff;
+    padding: 12px;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details {
+    margin-top: 12px;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Gemini Multimodal Tools + Alt Text Generation</h1>
+
+<p> Modern generative AI systems are increasingly multimodal: they can work with text, images, screenshots, charts, and documents within a single interaction. This allows users to move fluidly between describing, generating, analyzing, and revising content across different media types.&nbsp;</p>
+<p>Google Gemini, like many contemporary AI tools,  can accept visual and textual inputs together and produce integrated outputs. This makes it useful for instructional design tasks such as interpreting diagrams, generating or refining visuals, checking accessibility, and writing alt text that aligns with educational standards.&nbsp;</p>
+<p>In this activity, you will use a multimodal workflow generating an image, analyzing it, and creating high-quality alt text. The goal is not to learn a specific tool, but to practice how multimodal AI can support human creativity. </p>
+<!-- STEP 1 -->
+<div class="step">
+  <h2>Step 1 — Open a New Gemini Chat</h2>
+  <p>
+    Click below to open Gemini in a new tab. Starting with a clean chat ensures no previous 
+    context alters the multimodal reasoning.
+  </p>
+
+  <button class="gemini-btn" onclick="openGemini()">Open Gemini</button>
+
+  <div class="note-box">
+    <strong>Reminder:</strong> Gemini’s multimodal model can "see" the image you upload, but it may 
+    sometimes infer or guess details—this is where careful verification matters.
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+  <h2>Step 2 — Generate an Image</h2>
+  <p>Ask Gemini:</p>
+
+  <p><em>“Create an image of a student studying renewable energy data on a laptop in a campus library.”</em></p>
+
+  <p>
+    Try it a few times and you will  get a different image each time. This is a good demonstration of the randomness of generative AI. Every prompt produces unique results. You can also explore common techniques like 'use a wide-angle view', or 'make it an illustration'.&nbsp; &nbsp;</p>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+  <h2>Step 3 — Analyze the Image</h2>
+  <p>
+  Upload one of the generated image back into a new chat in Gemini. Then ask:</p>
+
+  <p><em>“Describe this image as accurately as possible. Focus only on what is visibly present.”</em></p>
+
+  <p>
+    This step helps participants see where the model accurately recognizes elements and where 
+    it may guess incorrectly or add details not visible in the image.
+  </p>
+
+  <div class="note-box">
+    This is a core accessibility principle: alt text should describe only what is perceptible, not 
+    inferred intentions or emotions.
+  </div>
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+  <h2>Step 4 — Generate Alt Text</h2>
+  <p>
+    Now ask Gemini for alt text using accessibility constraints:
+  </p>
+
+  <p><em>
+“Write alt text for this image in 1–2 sentences to meet WCAG guidelines and ensure clarity for screen reader users. Describe the content objectively, avoid 
+interpretation, and do not include emotions or purpose unless visually explicit.”&nbsp; </em></p>
+
+  <p>
+    Compare this output to the earlier “describe this image” version. The alt text should be more 
+    concise, focused, and free of unnecessary detail. This should be suitable to use an an alt tag to accompany this image. </p>
+</div>
+
+<!-- STEP 5 -->
+
+<!-- WRAP-UP -->
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p> The multimodal capabilities of generative AI allow instructors and students to work directly with images;&nbsp; &nbsp; &nbsp;generating visuals, analyzing them, checking understanding, and creating accessible 
+    descriptions. The key distinction is that Gemini can “see” the image and incorporate visual 
+    understanding into its responses, whereas tools like NotebookLM are strictly text-grounded.&nbsp;</p>
+  <p>We have only touched the surface of what's possible with multimodal AI. Recent models are capable of producing high-quality video, audio translations, digital twins and much more.</p>
+<details>
+    <summary>Show Detailed Explanation</summary>
+
+    <p>
+      Multimodal models like Gemini combine visual processing with language reasoning. When you 
+      upload an image, the model encodes visual features into vectors and integrates them into the 
+      same context as text prompts. This unified representation allows the model to answer questions 
+      about the image, classify objects, identify patterns, or describe contents.
+    </p>
+
+    <p>
+      Alt text generation highlights a practical distinction: multimodal analysis can suggest details 
+      not explicitly visible. This is helpful for creativity but problematic for accessibility, where 
+      only observable content is appropriate. This is why refining with constraints—character 
+      limits, objectivity, specific content rules—is essential.</p>
+
+  
+
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+<script>
+function openGemini() {
+  window.open("https://gemini.google.com/app", "_blank");
+}
+</script>
+
+</body>
+</html>

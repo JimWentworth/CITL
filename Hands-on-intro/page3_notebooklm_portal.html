@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – NotebookLM as a Learning Activity Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin: 24px 0;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  button {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+    border: none;
+  }
+  .notebook-btn {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    color: #13294b;
+  }
+  .note-box {
+    margin-top: 16px;
+    background: #ffffff;
+    padding: 12px;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details {
+    margin-top: 12px;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>NotebookLM and Retrieval Augmented Generation</h1>
+
+<p>
+  Now that you've seen the limits of a model’s context window, this activity shifts toward
+  solving that problem through <strong>Retrieval-Augmented Generation (RAG)</strong>. NotebookLM is
+  designed to ingest large documents, break them into chunks, and retrieve only the pieces
+  relevant to your question. This grounding makes it dramatically more accurate with long,
+  complex source materials.
+</p>
+
+<p>
+  Even more importantly for teaching, NotebookLM can now generate <strong>multimodal studio
+  assets</strong>—presentations, outlines, audio summaries, and study guides—directly from your
+  documents. In this activity you’ll upload the same 304-page Energy & AI PDF and create usable
+  teaching materials from it.
+</p>
+
+<p>
+  Unlike Copilot or Gemini, NotebookLM uses
+  <strong>only the uploaded documents</strong> when answering a question. This creates predictable,
+  grounded responses and enables the creation of  interactive learning features such as mind maps, video
+  explanations, audio summaries, and structured study guides. </p>
+	
+	<!-- STEP 1 -->
+<div class="step">
+  <h2>Step 1 — Uploading documents to Notebook LM</h2>
+<p>
+    Login to Notebook LM with a Google account.
+  </p>
+	    <button class="notebook-btn" onclick="openNotebookLM()">Open NotebookLM</button>
+  <p>
+    Create a new Notebook and add the Energy doc as the single source. You can always add more later, Notebook LM allows up to 50 individual sources for each Notebook.
+  </p>
+	</div>
+<!-- STEP 2 -->
+	<div class="step">
+  <h2>Step 2 — Ask Questions in the Notebook Chat Window</h2>
+  <p>
+    Just like in Copilot, you type questions into the central chat window. But the results differ:
+    NotebookLM only references the uploaded sources. Try asking:
+  </p>
+
+  <p><em>“What are the primary arguments made in the first three sections?”</em></p>
+
+  <p>
+    Notice how NotebookLM responds with citations and references drawn entirely from your
+    sources. No external knowledge is blended in unless you uploaded it.
+  </p>
+
+  <div class="note-box">
+    <strong>Key Difference:</strong> ChatGPT and Copilot blend general model knowledge with the
+    document. NotebookLM does not. This makes it ideal for academic readings and
+    student-facing assignments where grounding matters.
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+  <h2>Step 3 — Generate a Mind Map</h2>
+  <p>
+    In the Studio panel, select “Generate Mind Map.” NotebookLM will create a visual branch
+    structure of the document’s key ideas, sections, and relationships. This is especially effective
+    for students who benefit from spatial or conceptual mapping.
+  </p>
+
+  <p>
+    You can&nbsp; interact with the map by clicking nodes to reveal deeper connections or related
+    excerpts. This turns passive reading into exploratory learning. When you click a node it passes that back to the chat window for deeper explanation.&nbsp; &nbsp;</p>
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+  <h2>Step 4 — Generate a Video Explanation</h2>
+  <p>
+    Use the “Generate Video Summary” feature. NotebookLM will produce a short narrated video
+    covering main themes, arguments, and evidence. This provides a different modality for students
+    who learn more effectively through audiovisual content.
+  </p>
+
+  <div class="note-box">
+    Many instructors use this to provide pre-class briefings or flipped-classroom preparation.
+  </div>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+  <h2>Step 5 — Create an Audio Overview</h2>
+  <p>
+    Use the “Audio Overview” tool. NotebookLM creates a spoken, conversational walkthrough of
+    the document’s main points. Students can listen while commuting, exercising, or reviewing.
+  </p>
+</div>
+
+<!-- STEP 6 -->
+<div class="step">
+  <h2>Step 6 — Create a Sharable Study Guide</h2>
+  <p>
+    Select “Generate Study Guide.” NotebookLM will produce a structured set of questions,
+    explanations, summaries, and section breakdowns—based entirely on the uploaded documents.
+  </p>
+
+  <p>
+    You can share this Notebook with students so they explore the materials, ask their own
+    questions, and interact with the assets you generated.
+  </p>
+
+  <div class="note-box">
+    NotebookLM maintains academic integrity by grounding everything in the source material—
+    no hallucinations based on outside information.
+  </div>
+</div>
+
+<!-- WRAP-UP -->
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p> NotebookLM serves as a focused learning portal built around the documents you choose.
+    Students explore ideas in multiple modalities—text, mind maps, audio, and video—without
+    risking drift into unrelated or incorrect general-information territory. This makes NotebookLM
+    ideal for literature reviews, dense readings, technical texts, and structured course materials. </p>
+  <p><a href="https://notebooklm.google.com/notebook/d786206f-ff1f-4680-a55a-f52f70d88c55" target="_blank">See the Energy and AI Notebook</a></p>
+<details>
+    <summary>Show Detailed Explanation</summary>
+
+    <p>
+      NotebookLM’s strict grounding in uploaded sources means it avoids a major failure mode of
+      general LLMs: blending correct information from a document with plausible but inaccurate
+      world knowledge. This is especially important in academic contexts where alignment with
+      assigned readings matters.
+    </p>
+
+    <p>
+      The multimodal Studio tools—mind maps, video summaries, structured outlines, audio
+      guides—sit on top of this retrieval architecture. Because each output is based entirely on your
+      source documents, students can rely on the accuracy of the materials and see direct citations
+      back to the original text.
+    </p>
+
+    <p>
+      By treating NotebookLM as a shareable learning environment, you shift from asking students
+      to digest dense texts on their own to giving them a guided exploratory space where they can
+      examine ideas visually, verbally, and interactively.
+    </p>
+
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+<script>
+function openNotebookLM() {
+  window.open("https://notebooklm.google.com/", "_blank");
+}
+</script>
+
+</body>
+</html>

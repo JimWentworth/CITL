@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Prompt Evolution</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin: 24px 0;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .prompt-box {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 6px;
+    font-family: ui-monospace, monospace;
+    white-space: pre-wrap;
+  }
+  .action-row {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+  }
+  button {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+    border: none;
+  }
+  .copy-btn {
+    background: #e84a27;
+    color: white;
+  }
+  .copilot-btn {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    color: #13294b;
+  }
+  .wrapup {
+    margin: 40px 0;
+    padding: 20px;
+    background: #f1f1f4;
+    border-radius: 8px;
+    border-left: 4px solid #13294b;
+  }
+  details {
+    margin-top: 12px;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Effective Prompting</h1>
+<p>
+In this activity, you will iterate on a simple prompt using a new Copilot chat for every step so you can see how each added instruction reshapes the model’s output. This isolates each prompt and prevents context from earlier chats influencing the results of the next chat.&nbsp; </p>
+
+<!-- STEP 1 -->
+<div class="step">
+  <h2>Step 1 — Base Prompt</h2>
+  <p>Start with the simplest possible request. Open a <strong>new Copilot chat</strong> and paste this prompt:</p>
+  <div id="prompt1" class="prompt-box">Explain generative AI .</div>
+  <div class="action-row">
+    <button class="copy-btn" onclick="copy('prompt1')">Copy Prompt</button>
+    <button class="copilot-btn" onclick="openCopilot('prompt1')">Open New Copilot Chat</button>
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+  <h2>Step 2 — Add a Role</h2>
+  <p>Now open a <strong>new Copilot chat</strong> again (don't append this to the first chat) . Adding a role guides tone, perspective, and domain emphasis.</p>
+  <div id="prompt2" class="prompt-box">
+Act as a third grade teacher and explain generative AI.
+  </div>
+  <div class="action-row">
+    <button class="copy-btn" onclick="copy('prompt2')">Copy Prompt</button>
+    <button class="copilot-btn" onclick="openCopilot('prompt2')">Open New Copilot Chat</button>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+  <h2>Step 3 — Add an Audience</h2>
+  <p>Open a <strong>new Copilot chat</strong> again. Audience guides vocabulary, complexity, and pacing.</p>
+  <div id="prompt3" class="prompt-box">
+Act as a third grade teacher and explain generative AI to your colleagues.
+  </div>
+  <div class="action-row">
+    <button class="copy-btn" onclick="copy('prompt3')">Copy Prompt</button>
+    <button class="copilot-btn" onclick="openCopilot('prompt3')">Open New Copilot Chat</button>
+  </div>
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+  <h2>Step 4 — Add Constraints</h2>
+  <p>Open another <strong>new Copilot chat</strong>. Constraints reduce drift, enforce readability, and limit hallucination.</p>
+  <div id="prompt4" class="prompt-box">
+Act as a college instructor. Your audience is first-year undergraduates. Explain generative AI.
+Apply these constraints: Use plain language, stay under 500 words, avoid metaphors.
+  </div>
+  <div class="action-row">
+    <button class="copy-btn" onclick="copy('prompt4')">Copy Prompt</button>
+    <button class="copilot-btn" onclick="openCopilot('prompt4')">Open New Copilot Chat</button>
+  </div>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+  <h2>Step 5 — Add Output Structure</h2>
+  <p>Open a <strong>new Copilot chat</strong> again. Structure shapes the response into a predictable, skimmable format.</p>
+  <div id="prompt5" class="prompt-box">
+Act as a college instructor. Your audience is first-year undergraduates. Explain generative AI. Apply these constraints: Use plain language, stay under 150 words, avoid metaphors.
+Use this structure: a 2-sentence definition, 3 concise bullet points, and one real-world example.
+  </div>
+  <div class="action-row">
+    <button class="copy-btn" onclick="copy('prompt5')">Copy Prompt</button>
+    <button class="copilot-btn" onclick="openCopilot('prompt5')">Open New Copilot Chat</button>
+  </div>
+</div>
+
+<!-- CONCEPTUAL WRAP-UP -->
+<div class="wstep">
+  <h2>Conceptual Wrap-Up</h2>
+
+  
+  <p>
+    As you interact with Copilot, you’ll see each chat appear as a separate entry in the chat history on the left side of the interface. Copilot treats each of these threads as its own workspace with its own context. Within an individual chat  every message adds to the assumptions the model uses to shape subsequent responses.
+  </p>
+
+  <p>
+    This separation is helpful when refining a single idea because staying in one chat allows Copilot to carry forward tone, depth, and structure without you restating your preferences. But it becomes limiting when you change direction. Even if your intentions shift, the ongoing chat still carries earlier instructions and patterns. This is why starting a new chat gives you a cleaner context and a new entry in the sidebar—visually and conceptually separating tasks.
+  </p>
+
+  <p>
+  In this activity, you started a new chat at every step so you could isolate the effect of each added instruction—role, audience, constraints, and structure. Doing this prevented earlier messages from influencing later outputs and made it easier to observe how each layer reshaped the model’s behavior. Everyone's results will vary somewhat, but hopefully you saw how you could strategically improve prompts by providing additional context. </p>
+
+  <details>
+    <summary>Show Detailed Explanation</summary>
+    <p>
+      Each chat on the sidebar represents a distinct context container. When you re-open a previous chat, Copilot loads the entire conversation history from that specific thread, effectively reconstructing all instructions you’ve given earlier. Inside a chat, the model attempts to remain consistent with the tone, depth, formatting, and intent you established in previous messages.
+    </p>
+
+    <p>
+      This continuity is powerful when you are revising or expanding a single task because the model can maintain coherence without needing repeated instruction. However, if you pivot to a new subject or try to compare different approaches, the accumulated assumptions become an obstacle. Copilot still thinks it should follow the patterns you set earlier—even though you’ve moved on.
+    </p>
+
+    <p>
+      Starting a new chat creates a new sidebar entry and wipes away all previous instructions. This allows you to test how role, audience, constraints, and structure independently shape a prompt. By comparing the results across these fresh chats, you saw how deliberate prompting changes output—transforming a generic explanation into something tailored, structured, and aligned with your teaching goals. Understanding this foundation will support everything you build later, including context window management, RAG workflows, multimodal prompts, and collaborative project-based interactions.
+		<p>Many of these systems also contain a built in memory feature that captures your preferences over time. This is useful when you want the tool to remember context that's not likely to change regularly like 'I work at the University of Illinois'. Check the settings of your tool to review any saved memories and enable or disable this feature.</p>
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+<script>
+function copy(id) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text);
+  alert("Prompt copied to clipboard.");
+}
+
+function openCopilot(id) {
+  const text = document.getElementById(id).innerText;
+  const encoded = encodeURIComponent(text);
+  window.open("https://copilot.microsoft.com/?q=" + encoded, "_blank");
+}
+</script>
+
+</body>
+</html>
