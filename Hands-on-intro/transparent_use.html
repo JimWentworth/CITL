@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Designing AI-Transparent Assignments</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin-top: 28px;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul {
+    margin-top: 10px;
+  }
+  .example {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Designing AI-Transparent Assignments</h1>
+
+<p>
+  AI-transparent assignments make expectations about AI use explicit and treat AI as a
+  visible part of the learning process. Rather than trying to prevent AI use, these
+  assignments focus on how students think, decide, and learn—whether or not AI tools
+  are involved.
+</p>
+
+<div class="step">
+  <h2>What “AI-Transparent” Means</h2>
+
+  <p>
+    An AI-transparent assignment clearly communicates:
+  </p>
+
+  <ul>
+    <li>Whether AI use is allowed, limited, or expected</li>
+    <li>What kinds of AI assistance are acceptable</li>
+    <li>What responsibilities remain with the student</li>
+    <li>How AI use should be disclosed</li>
+  </ul>
+
+  <p>
+    Transparency reduces confusion, discourages hidden use, and aligns assessment with
+    learning goals.
+  </p>
+</div>
+
+<div class="callout">
+  <strong>Key idea:</strong> When AI use is invisible, integrity becomes a guessing game.
+  When it is explicit, integrity becomes a design feature.
+</div>
+
+<div class="step">
+  <h2>Start with the Learning, Not the Tool</h2>
+
+  <p>
+    Before deciding how AI fits, clarify what you want students to practice or demonstrate.
+  Ask:
+  </p>
+
+  <ul>
+    <li>What thinking or judgment should students develop?</li>
+    <li>Which parts of the task matter most for learning?</li>
+    <li>Where could AI support learning without replacing it?</li>
+  </ul>
+
+  <p>
+    AI-transparent assignments protect the most important intellectual work.
+  </p>
+</div>
+
+<div class="step">
+  <h2>Common AI-Transparent Design Patterns</h2>
+
+  <ul>
+    <li>
+      <strong>Process + product:</strong> students submit both their work and a brief explanation
+      of how they approached it.
+    </li>
+    <li>
+      <strong>Draft + reflection:</strong> students revise after feedback and explain what changed.
+    </li>
+    <li>
+      <strong>Source-grounded tasks:</strong> students must connect claims to course materials.
+    </li>
+    <li>
+      <strong>Evaluation prompts:</strong> AI is used to critique, not generate, final answers.
+    </li>
+  </ul>
+</div>
+
+<div class="step">
+  <h2>Example: Making a Traditional Assignment AI-Transparent</h2>
+
+  <div class="example">
+    <strong>Traditional version:</strong><br>
+    “Write a 4–5 page paper explaining concept X.”
+  </div>
+
+  <div class="example">
+    <strong>AI-transparent version:</strong>
+    <ul>
+      <li>Draft an explanation of concept X in your own words.</li>
+      <li>Use AI (if desired) to review clarity or organization.</li>
+      <li>Revise your draft.</li>
+      <li>
+        Submit a short reflection (200 words) describing:
+        <ul>
+          <li>how you used AI (if at all), and</li>
+          <li>what decisions you made during revision.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Language You Can Reuse in Assignments</h2>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+You may use AI tools for brainstorming, feedback, or revision.
+You are responsible for the accuracy, reasoning, and final content of your submission.
+
+If you use AI, include a brief note explaining:
+- what tool you used,
+- how you used it, and
+- what you changed based on your own judgment.
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>What to Assess Instead of “AI Use”</h2>
+
+  <p>
+    AI-transparent assignments shift assessment away from tool detection and toward
+    learning evidence.
+  </p>
+
+  <ul>
+    <li>Quality of reasoning and explanation</li>
+    <li>Use of course concepts or sources</li>
+    <li>Clarity of decision-making</li>
+    <li>Reflection on strengths and limitations</li>
+  </ul>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    AI-transparent assignments acknowledge reality: students have access to AI.
+    Good design ensures that access supports learning rather than undermines it.
+  </p>
+
+  <details>
+    <summary>Show Expanded Explanation</summary>
+
+    <p>
+      When assignments are designed around thinking, context, and reflection, AI becomes
+      a tool students can engage with responsibly. Transparency reduces fear on both sides
+      and makes expectations visible.
+    </p>
+
+    <p>
+      Over time, these assignments help students develop transferable skills for working
+      with AI beyond the classroom.
+    </p>
+  </details>
+</div>
+
+<div class="wrapup">
+  <details>
+    <summary>Practical Guidance for Teaching and Academic Work</summary>
+
+    <p>
+      Start by making one assignment AI-transparent rather than redesigning everything.
+    </p>
+
+    <p>
+      Share example disclosures or reflections so students know what “good” looks like.
+    </p>
+
+    <p>
+      Revisit assignment language each term as tools and norms evolve.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Accessibility + AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin-top: 28px;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul { margin-top: 10px; }
+  .example {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+  a { color: #13294b; }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Accessibility + AI: Practical Uses for Teaching Materials</h1>
+
+<p>
+  Generative AI can support accessibility work by helping instructors create alternative formats,
+  simplify language, draft image descriptions, and identify potential barriers in course materials.
+  The key is to treat AI as a <strong>drafting assistant</strong>—you remain responsible for accuracy,
+  tone, and alignment with accessibility standards.
+</p>
+
+<div class="callout">
+  <strong>Key idea:</strong> AI can reduce time spent on “first drafts” of accessibility work, but
+  human review is still required—especially for technical accuracy, sensitive topics, and inclusive language.
+</div>
+
+<div class="step">
+  <h2>High-Impact, Low-Effort AI Uses for Accessibility</h2>
+  <ul>
+    <li><strong>Alt text drafts</strong> for instructional images (then revise)</li>
+    <li><strong>Plain-language rewrites</strong> of dense instructions or policies</li>
+    <li><strong>Structured headings</strong> and page organization suggestions</li>
+    <li><strong>Caption and transcript cleanup</strong> (formatting, punctuation, speaker labels)</li>
+    <li><strong>Accessibility “linting”</strong>: asking AI to flag likely barriers</li>
+  </ul>
+</div>
+
+<div class="step">
+  <h2>1) Alt Text Drafting (and How to Make It Good)</h2>
+
+  <p>
+    Alt text should communicate what matters for the learning goal. A good workflow is:
+  </p>
+
+  <ul>
+    <li>Describe the instructional purpose of the image</li>
+    <li>Ask AI for a first draft alt text</li>
+    <li>Revise to include only essential details (and any data shown)</li>
+  </ul>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Write alt text for the image described below.
+
+INSTRUCTIONAL CONTEXT:
+[What is the course/topic? What should students learn from this image?]
+
+IMAGE DESCRIPTION:
+[What is in the image? Include any text labels, axes, or key visual elements.]
+
+REQUIREMENTS:
+- Keep it concise (1–2 sentences) unless the image is data-heavy.
+- Prioritize details needed to understand the learning point.
+- Do not add interpretation that is not visible in the image.
+    </div>
+  </div>
+
+  <div class="example">
+    <strong>Tip:</strong> If the image is a chart, diagram, or infographic, consider adding a longer
+    description below the image (a “long description”) with key values, trends, or steps.
+  </div>
+</div>
+
+<div class="step">
+  <h2>2) Plain-Language Rewrites (Without “Dumbing Down”)</h2>
+
+  <p>
+    Plain language improves clarity for everyone (including multilingual learners, students with
+    cognitive load challenges, and students new to academic conventions). Ask for a rewrite that
+    keeps meaning but reduces complexity.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Rewrite the text below into plain language for a college audience.
+
+GOALS:
+- Keep the meaning and requirements exactly the same.
+- Use shorter sentences and clear headings.
+- Avoid jargon unless it is defined.
+- Preserve dates, grading rules, and constraints.
+
+TEXT:
+[paste your assignment instructions or policy here]
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>3) Make Structure Visible (Headings, Lists, and Scannability)</h2>
+
+  <p>
+    Many accessibility barriers come from structure: long paragraphs, missing headings, unclear task steps.
+    You can use AI to propose a more scannable layout.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Improve the structure of the content below for accessibility and scannability.
+
+OUTPUT:
+- Provide a revised version with clear headings (H2/H3 style labels),
+- Short paragraphs,
+- Numbered steps where appropriate,
+- A checklist at the end.
+
+CONTENT:
+[paste text here]
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>4) Captions and Transcripts: Cleanup and Formatting</h2>
+
+  <p>
+    If you already have captions or a transcript (auto-generated or human-produced), AI can help
+    fix punctuation, add speaker labels, and improve readability—without changing meaning.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Edit the transcript below for readability.
+
+RULES:
+- Do not change the meaning.
+- Fix punctuation and capitalization.
+- Add speaker labels if they are obvious.
+- Keep specialized terms as written.
+- If you are unsure about a word, mark it as [inaudible] rather than guessing.
+
+TRANSCRIPT:
+[paste transcript here]
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>5) Quick Accessibility “Pre-Check” for Documents</h2>
+
+  <p>
+    AI cannot fully test accessibility, but it can flag common issues early—especially in
+    assignment instructions and web content.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Review the content below and flag potential accessibility barriers.
+
+LOOK FOR:
+- Missing or unclear headings
+- Long dense paragraphs
+- Ambiguous instructions
+- Color-dependent directions (e.g., “click the green button”)
+- Unexplained acronyms or jargon
+- Anything that could confuse screen-reader users
+
+OUTPUT:
+- A short list of likely issues
+- A revised version of 1–2 problem sections as examples
+
+CONTENT:
+[paste text here]
+    </div>
+  </div>
+
+  <div class="example">
+    <strong>Reminder:</strong> Automated tools (and human review) are still needed for full accessibility checks
+    (e.g., contrast, heading hierarchy in actual files, PDF tagging, keyboard navigation).
+  </div>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    Accessibility improves learning for everyone. AI can accelerate common accessibility tasks by
+    generating drafts—alt text, clearer language, better structure—so you can spend time on
+    review and instructional quality rather than repetitive formatting work.
+  </p>
+
+  <details>
+    <summary>Show Expanded Explanation</summary>
+    <p>
+      AI-generated accessibility drafts are best treated as “starting points.” They can be incomplete,
+      too vague, or overly detailed. The strongest workflows include context (what learners need to do),
+      constraints (what not to change), and a quick human check for accuracy and tone.
+    </p>
+  </details>
+</div>
+
+<div class="wrapup">
+  <details>
+    <summary>Practical Guidance for Teaching and Academic Work</summary>
+    <p>
+      Pick one high-impact target: alt text for key images, clearer assignment instructions, or transcript cleanup.
+      Use AI to draft, then revise with your course goals in mind.
+    </p>
+    <p>
+      If students create accessible materials, you can adapt these prompts into a learning activity:
+      students draft alt text, compare versions, and justify which details matter for comprehension.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning – Updated January 2026
+</div>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Individualizing Learning (Student Guide)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin-top: 28px;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul { margin-top: 10px; }
+  .example {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Individualizing Your Learning with AI</h1>
+
+<p>
+  Used well, AI can act like a flexible study partner: it can explain concepts in different ways,
+  generate practice questions, quiz you, and help you plan study time. The goal is not to “get answers,”
+  but to build understanding—and to stay aligned with your course’s academic integrity expectations.
+</p>
+
+<div class="callout">
+  <strong>Key idea:</strong> The safest learning workflows use AI to <em>coach</em> your thinking (questions,
+  feedback, practice) rather than to <em>replace</em> your thinking (final answers you submit).
+</div>
+
+<div class="step">
+  <h2>Step 1 — Set Your “Study Profile” (1 minute)</h2>
+  <p>
+    Start by telling the AI what you’re learning and what kind of help you want. This keeps responses
+    focused and makes your study sessions more consistent.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+I am studying: [course/topic]
+My current level: [new to this / intermediate / advanced]
+My goal for today: [e.g., understand key concepts / prepare for quiz / solve problems]
+My constraint: [time available, e.g., 25 minutes]
+Important: Do not do graded work for me. Help me learn by asking questions and giving feedback.
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Step 2 — Choose a Personalization Mode</h2>
+  <p>Pick one mode depending on what you need right now:</p>
+
+  <ul>
+    <li><strong>Explain it differently:</strong> simpler, more technical, analogy-based, or step-by-step</li>
+    <li><strong>Practice:</strong> generate questions and quiz you</li>
+    <li><strong>Diagnose:</strong> identify what you misunderstand and fix it</li>
+    <li><strong>Plan:</strong> create a study plan with spaced review</li>
+  </ul>
+</div>
+
+<div class="step">
+  <h2>Mode A — “Explain It Differently” (Clarity and Comprehension)</h2>
+  <p>
+    When a reading or lecture isn’t clicking, ask for a different explanation style. Then check your
+    understanding by answering a question without looking.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Explain [concept] in two ways:
+1) a plain-language explanation for a first-year student
+2) a more technical explanation using correct terms
+
+Then ask me 3 short questions to check my understanding.
+Do not provide the answers until I respond.
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Mode B — “Practice and Quiz Me” (Active Recall)</h2>
+  <p>
+    The fastest way to learn is often active recall. Use AI to generate practice questions and keep you honest.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Create a practice quiz on [topic] with:
+- 5 multiple-choice questions
+- 3 short-answer questions
+- 1 challenge question
+
+After each question, wait for my answer.
+Then give feedback and explain what I missed.
+Keep going until we finish.
+    </div>
+  </div>
+
+  <div class="example">
+    <strong>Tip:</strong> Tell the AI what materials the questions should be based on (lecture slides, chapter, notes)
+    so practice matches your course.
+  </div>
+</div>
+
+<div class="step">
+  <h2>Mode C — “Diagnose My Understanding” (Find the Real Gap)</h2>
+  <p>
+    If you’re getting stuck, ask the AI to identify where your reasoning breaks down. This works well for
+    problem-solving, explanations, and arguments.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+I will explain my understanding of [topic] below.
+
+Your job:
+1) Identify the first point where my explanation becomes unclear or incorrect.
+2) Ask me 2 probing questions to pinpoint the misunderstanding.
+3) Give a corrected explanation only after I respond.
+
+Here is my explanation:
+[paste your explanation here]
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Mode D — “Plan My Studying” (Spaced Review)</h2>
+  <p>
+    AI can help you build a realistic plan that fits your schedule. The key is to keep it short and specific.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+I have [X] days until my [quiz/exam/project].
+I can study [minutes/hours] per day.
+Topics I need to cover:
+1)
+2)
+3)
+
+Create a study plan that includes:
+- short daily tasks
+- spaced review (return to earlier topics)
+- 1 self-test checkpoint before the assessment
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Stay on the Right Side of Integrity</h2>
+  <p>
+    AI becomes risky when it starts producing work you submit as your own, especially if your instructor
+    restricts AI use. If you’re unsure, ask your instructor.
+  </p>
+
+  <ul>
+    <li><strong>Safer uses:</strong> practice questions, explanations, feedback on your draft, study planning</li>
+    <li><strong>Riskier uses:</strong> generating final answers, writing full submissions, creating citations</li>
+    <li><strong>Best habit:</strong> keep a short note of how you used AI for major assignments</li>
+  </ul>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    Individualized learning is powerful when it increases <strong>active engagement</strong>: questions,
+    practice, feedback, and revision. AI can help personalize these steps—but learning still requires your
+    effort and judgment.
+  </p>
+
+  <details>
+    <summary>Show Expanded Explanation</summary>
+    <p>
+      AI is good at adapting explanations and generating endless practice. It is not a guarantee of accuracy,
+      and it can sometimes sound confident while being wrong. The most effective approach is to use AI for
+      coaching and then verify understanding through self-testing and course materials.
+    </p>
+  </details>
+</div>
+
+<div class="wrapup">
+  <details>
+    <summary>Practical Guidance for Students</summary>
+    <p>
+      Use AI after you’ve tried: attempt the problem first, then ask for hints or feedback.
+    </p>
+    <p>
+      Ask for questions, not answers. If you can answer the questions without help, you’re learning.
+    </p>
+    <p>
+      When stakes are high (graded work), follow your instructor’s rules and disclose tool use if required.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>
