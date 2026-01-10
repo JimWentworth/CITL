@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Claude</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .tool-header {
+    background: #f8f8f9;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+  }
+  .section {
+    margin-top: 28px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul { margin-top: 10px; }
+  .example {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>AI Tools Series: Claude</h1>
+
+<div class="tool-header">
+  <p>
+    <strong>Claude</strong>, developed by Anthropic, is a general-purpose generative AI system
+    known for its strong performance in <strong>reasoning, analytical writing, and coding</strong>.
+    It is often described as producing clearer, more cautious, and more structured explanations
+    than many comparable tools.
+  </p>
+
+  <p>
+    Claude is available via web interface and API. Data handling and privacy depend on the
+    deployment (individual vs. enterprise/education agreements), so instructors should follow
+    institutional guidance when using it with sensitive materials.
+  </p>
+</div>
+
+<div class="section">
+  <h2>Best Uses in Teaching and Academic Work</h2>
+
+  <ul>
+    <li>Explaining complex concepts step by step</li>
+    <li>Drafting and revising academic prose</li>
+    <li>Supporting introductory and intermediate coding tasks</li>
+    <li>Providing structured feedback on writing or logic</li>
+    <li>Analyzing arguments for clarity and coherence</li>
+  </ul>
+
+  <div class="example">
+    <strong>Best fit:</strong> Tasks that require careful reasoning, explanation, or clean written output.
+  </div>
+</div>
+
+<div class="section">
+  <h2>How Claude Uses Context</h2>
+
+  <p>
+    Claude relies on a <strong>large active context window</strong>, allowing it to consider
+    long prompts, documents, or conversations when responding.
+  </p>
+
+  <ul>
+    <li>Reads long documents end-to-end</li>
+    <li>Maintains conversational context within a session</li>
+    <li>Supports file uploads for analysis</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Implication:</strong> Claude is well suited for extended analysis or reviewing
+    long passages of text, but still requires explicit constraints for source-specific work.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Context Window & Limitations</h2>
+
+  <ul>
+    <li>Large context window, but not infinite</li>
+    <li>Can introduce outside knowledge unless constrained</li>
+    <li>Less emphasis on multimodal input compared to Gemini</li>
+    <li>Not source-locked by default</li>
+  </ul>
+
+  <div class="example">
+    <strong>Design tip:</strong> For academic tasks, ask Claude to separate
+    explanation, assumptions, and uncertainties.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Key Features Faculty Should Know</h2>
+
+  <ul>
+    <li>High-quality analytical and expository writing</li>
+    <li>Strong performance on code explanation and debugging</li>
+    <li>Structured, cautious tone by default</li>
+    <li>Supports long-form reasoning and critique</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Prompting Tips for Claude</h2>
+
+  <p>
+    Claude responds particularly well to prompts that request
+    <strong>step-by-step reasoning</strong> and explicit structure.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Explain the following concept to an advanced undergraduate audience.
+
+TASK:
+Break the explanation into clear steps.
+
+CONSTRAINTS:
+- Define key terms before using them
+- Explicitly note assumptions
+- Flag areas of uncertainty or debate
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Academic Integrity & Appropriate Use</h2>
+
+  <p>
+    Claude’s fluent writing and logical explanations make it especially important
+    to clarify expectations for student use.
+  </p>
+
+  <ul>
+    <li>Appropriate for practice, feedback, and revision</li>
+    <li>Risky for generating final student submissions without disclosure</li>
+    <li>Best used as a thinking partner rather than an answer generator</li>
+  </ul>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    Claude excels at careful reasoning and communication.
+    Its strength lies in clarity, structure, and explanation—not speed or multimodal breadth.
+  </p>
+
+  <details>
+    <summary>How This Tool Fits in a Broader AI Toolkit</summary>
+
+    <p>
+      Claude pairs well with NotebookLM for source-grounded work,
+      Gemini for multimodal analysis, and Copilot for productivity tasks.
+      Use Claude when explanation quality and reasoning matter most.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>

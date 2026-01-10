@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Google Gemini</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .tool-header {
+    background: #f8f8f9;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+  }
+  .section {
+    margin-top: 28px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul { margin-top: 10px; }
+  .example {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>AI Tools Series: Google Gemini</h1>
+
+<div class="tool-header">
+  <p>
+    <strong>Google Gemini</strong> is a multimodal generative AI system designed to work
+    natively with text, images, audio, video, and code. It is especially notable for
+    its <strong>very large context window</strong>, allowing it to reason across long documents
+    and media files in a single prompt.
+  </p>
+
+  <p>
+    Gemini is integrated across Google tools and platforms. Privacy and data handling
+    depend on the specific deployment (consumer vs. enterprise/education accounts),
+    so instructors should confirm institutional guidance before use.
+  </p>
+</div>
+
+<div class="section">
+  <h2>Best Uses in Teaching and Academic Work</h2>
+
+  <ul>
+    <li>Analyzing very long documents (hundreds of pages) in a single session</li>
+    <li>Interpreting images, diagrams, charts, and screenshots</li>
+    <li>Working with video or audio content (lectures, demonstrations, interviews)</li>
+    <li>Generating and analyzing multimodal learning materials</li>
+    <li>Accessibility tasks such as generating alt text or simplified explanations</li>
+  </ul>
+
+  <div class="example">
+    <strong>Best fit:</strong> Multimodal analysis and long-form comprehension where seeing the “whole picture” matters.
+  </div>
+</div>
+
+<div class="section">
+  <h2>How Gemini Uses Context</h2>
+
+  <p>
+    Gemini emphasizes a <strong>native long-context approach</strong>. Instead of selectively
+    retrieving small chunks of information, Gemini can ingest and attend to very large
+    inputs directly.
+  </p>
+
+  <ul>
+    <li>Reads long documents end-to-end</li>
+    <li>Analyzes images and video as part of the same prompt</li>
+    <li>Maintains global awareness of large input sets</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Implication:</strong> Gemini is well suited for tasks that require understanding
+    relationships across an entire document, dataset, or media collection.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Context Window & Limitations</h2>
+
+  <ul>
+    <li>Very large context window, but still finite</li>
+    <li>May summarize or compress details internally</li>
+    <li>Not source-locked unless explicitly instructed</li>
+    <li>Higher latency when working with extremely large inputs</li>
+  </ul>
+
+  <div class="example">
+    <strong>Design tip:</strong> For factual or academic work, explicitly request citations
+    or ask Gemini to distinguish between observation and interpretation.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Key Features Faculty Should Know</h2>
+
+  <ul>
+    <li>Native multimodal input (text, images, audio, video)</li>
+    <li>Extremely long context windows (model-dependent)</li>
+    <li>Strong spatial and visual reasoning</li>
+    <li>Useful for accessibility and alternative representations</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Prompting Tips for Gemini</h2>
+
+  <p>
+    Gemini performs best when prompts clearly separate <em>what to analyze</em>
+    from <em>how to respond</em>.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Analyze the uploaded lecture slides and accompanying diagram.
+
+TASK:
+Identify the key concepts being communicated visually.
+
+CONSTRAINTS:
+- Describe what is visible before interpreting meaning
+- Avoid adding outside information
+- Flag any areas that may confuse students
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Academic Integrity & Appropriate Use</h2>
+
+  <p>
+    Gemini’s multimodal strengths make it especially powerful—and potentially misleading—
+    if outputs are treated as authoritative without verification.
+  </p>
+
+  <ul>
+    <li>Appropriate for analysis, accessibility, and exploratory work</li>
+    <li>Use caution when relying on generated interpretations of visuals</li>
+    <li>Students should be taught to verify and critique outputs</li>
+  </ul>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    Google Gemini excels at “seeing everything at once.”
+    Its strength lies in holistic, multimodal understanding rather than selective retrieval
+    or rapid drafting.
+  </p>
+
+  <details>
+    <summary>How This Tool Fits in a Broader AI Toolkit</summary>
+
+    <p>
+      Gemini complements tools like Copilot and ChatGPT Edu by filling the multimodal
+      and long-context gap. Use it when the task requires interpreting images, video,
+      or very large bodies of text together.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>

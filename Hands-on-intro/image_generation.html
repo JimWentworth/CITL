@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Creative Prompting for Images & Video</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin-top: 28px;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul { margin-top: 10px; }
+  .example {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Creative Prompting to Generate Images & Video</h1>
+
+<p>
+  Image and video generation models respond best to prompts that describe <strong>what</strong> you want,
+  <strong>how</strong> it should look, and <strong>what to avoid</strong>. Creative prompting is less like giving
+  a single command and more like directing a production: you iterate, constrain, and refine.
+</p>
+
+<div class="callout">
+  <strong>Key idea:</strong> Strong creative prompts specify subject + setting + style + composition + constraints.
+  Then you iterate with small changes rather than rewriting everything.
+</div>
+
+<div class="step">
+  <h2>Creative Prompting Framework (Images & Video)</h2>
+  <ul>
+    <li><strong>Goal:</strong> What is the image/video for? (instructional slide, concept illustration, campus comms, storyboard)</li>
+    <li><strong>Subject:</strong> Who/what is in the scene? (objects, people, actions)</li>
+    <li><strong>Setting:</strong> Where/when? (environment, era, mood)</li>
+    <li><strong>Style:</strong> Photo, illustration, diagram, watercolor, flat icon, cinematic, etc.</li>
+    <li><strong>Composition:</strong> Camera angle, framing, focus, background detail, layout space for text</li>
+    <li><strong>Lighting & color:</strong> Bright/soft, high contrast, warm/cool palette</li>
+    <li><strong>Constraints:</strong> What must be true? What must NOT happen? (no text, no logos, no extra hands)</li>
+    <li><strong>Output specs:</strong> Aspect ratio, resolution, duration (video), number of variations</li>
+  </ul>
+</div>
+
+<div class="step">
+  <h2>Safety & Professional Use Notes (Worth Saying Out Loud)</h2>
+  <ul>
+    <li><strong>Consent:</strong> Avoid generating realistic depictions of identifiable people without permission.</li>
+    <li><strong>Misleading media:</strong> Label synthetic media when used in teaching or communications.</li>
+    <li><strong>Copyright/trademarks:</strong> Avoid logos and brand-like imitations in public-facing materials.</li>
+    <li><strong>Accessibility:</strong> For instructional images, plan for alt text and clarity (avoid overly busy visuals).</li>
+  </ul>
+</div>
+
+<div class="step">
+  <h2>Image Prompting Basics: Start with “Director’s Notes”</h2>
+  <p>
+    Image prompts are strongest when they read like a brief to a designer. Include the instructional goal and the
+    details that matter, then add constraints.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Create an image for: [purpose]
+
+SUBJECT:
+[main subject and action]
+
+SETTING:
+[environment, time of day, mood]
+
+STYLE:
+[photo / illustration / infographic / diagram / watercolor / flat icon]
+
+COMPOSITION:
+[camera angle, framing, background, space for text]
+
+CONSTRAINTS:
+- No text in the image
+- No logos or trademarks
+- Keep it simple and uncluttered
+- Avoid extra limbs/extra fingers if people are present
+
+OUTPUT:
+Aspect ratio: [16:9 / 1:1 / 4:5]
+Generate: [#] variations
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Image Prompt Examples (Teaching-Friendly)</h2>
+
+  <div class="example">
+    <strong>Concept illustration (clear, slide-ready):</strong>
+    <div class="prompt-box">
+      <div class="prompt-text">
+Create a clean illustration for a lecture slide about "feedback loops" in systems thinking.
+
+SUBJECT:
+A simple loop diagram with arrows showing reinforcing and balancing feedback
+
+STYLE:
+Flat vector illustration, minimal, high contrast, classroom-friendly
+
+COMPOSITION:
+Centered visual with generous blank space around the edges (for slide text)
+
+CONSTRAINTS:
+No words or labels. No logos. Keep the number of elements small and readable.
+
+OUTPUT:
+16:9 aspect ratio, 3 variations
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <strong>Scenario image (discussion starter):</strong>
+    <div class="prompt-box">
+      <div class="prompt-text">
+Create a realistic photo-style image for an ethics discussion prompt.
+
+SUBJECT:
+A student and instructor looking at a laptop with an AI chat interface open (screen not readable)
+
+SETTING:
+University office, daytime, calm but serious mood
+
+COMPOSITION:
+Over-the-shoulder view, shallow depth of field, focus on body language
+
+CONSTRAINTS:
+No readable text on screens. No logos. Avoid identifiable real people.
+
+OUTPUT:
+4:5 aspect ratio, 4 variations
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <strong>Accessibility-first visual (simple + interpretable):</strong>
+    <div class="prompt-box">
+      <div class="prompt-text">
+Create a simple diagram image that shows "input → process → output" for a learning module.
+
+STYLE:
+High-contrast diagram, thick lines, minimal elements
+
+COMPOSITION:
+Three boxes with arrows between them, large empty margins
+
+CONSTRAINTS:
+No text. No decorative clutter. Clear separation between shapes.
+
+OUTPUT:
+1:1 aspect ratio, 3 variations
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Negative Prompting: “What to Avoid”</h2>
+  <p>
+    Some tools support explicit “negative prompts.” Even when they don’t, you can still include a
+    <strong>constraints</strong> section that functions the same way.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Avoid:
+- text overlays, captions, watermarks
+- logos or brand marks
+- busy backgrounds
+- distorted anatomy or extra fingers
+- unrealistic shadows or reflections
+- low-resolution or blurry output
+    </div>
+  </div>
+
+  <div class="example">
+    <strong>Iteration tip:</strong> Change one variable at a time (style OR composition OR lighting). Don’t change everything at once.
+  </div>
+</div>
+
+<div class="step">
+  <h2>Video Prompting Basics: Think “Storyboard + Shot List”</h2>
+  <p>
+    Video generation improves dramatically when you specify <strong>what happens over time</strong>,
+    not just what the scene looks like. Use sequence, camera movement, and duration anchors.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Create a short video.
+
+GOAL:
+[teaching clip / intro bumper / concept visualization]
+
+DURATION:
+[6–10 seconds]
+
+SCENE:
+[where it takes place, mood, time of day]
+
+SUBJECT + ACTION:
+[what the subject does, in order]
+
+CAMERA:
+[static / slow push-in / pan left / overhead]
+[close-up / medium shot / wide shot]
+
+STYLE:
+[cinematic / documentary / animated / minimalist]
+
+CONSTRAINTS:
+- No readable text
+- No logos
+- Avoid flicker and sudden cuts
+- Keep motion smooth and realistic
+
+OUTPUT:
+Aspect ratio: [16:9 / 9:16]
+Generate: [#] variations
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Video Prompt Examples (Short, Useful Clips)</h2>
+
+  <div class="example">
+    <strong>Concept animation (nonverbal learning support):</strong>
+    <div class="prompt-box">
+      <div class="prompt-text">
+Create an 8-second animated video explaining "diffusion" without text.
+
+SCENE:
+A drop of dye dispersing in clear water inside a glass container
+
+CAMERA:
+Static medium shot
+
+STYLE:
+Clean scientific animation, high clarity, neutral background
+
+CONSTRAINTS:
+No labels, no text, smooth motion, no jump cuts
+
+OUTPUT:
+16:9, 2 variations
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <strong>Instructional context clip (for discussion):</strong>
+    <div class="prompt-box">
+      <div class="prompt-text">
+Create a 7-second realistic video for a classroom discussion about AI in learning.
+
+SCENE:
+A student studying at a desk with notes, occasionally glancing at an AI chat window on a laptop (screen unreadable)
+
+ACTION:
+Student pauses, thinks, then writes in their notebook
+
+CAMERA:
+Over-the-shoulder, slow push-in
+
+CONSTRAINTS:
+No readable text on screen. No logos. Avoid identifiable real people.
+
+OUTPUT:
+16:9, 3 variations
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <strong>Social/video bumper (department intro):</strong>
+    <div class="prompt-box">
+      <div class="prompt-text">
+Create a 6-second abstract video bumper.
+
+SCENE:
+Soft moving shapes and light gradients in university colors (navy and orange tones)
+
+CAMERA:
+Slow drifting motion, no hard cuts
+
+STYLE:
+Minimalist, modern, clean
+
+CONSTRAINTS:
+No text. No logos. Avoid strobing or fast flicker.
+
+OUTPUT:
+9:16, 4 variations
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Creative Iteration: A Simple Improvement Loop</h2>
+  <ul>
+    <li><strong>Round 1:</strong> Generate 3–4 variations with clear constraints.</li>
+    <li><strong>Round 2:</strong> Pick one and refine only composition (camera angle, framing, background).</li>
+    <li><strong>Round 3:</strong> Refine style/lighting (more contrast, simpler palette, cleaner lines).</li>
+    <li><strong>Round 4:</strong> Add “delivery” constraints (space for text, consistent visual language across slides).</li>
+  </ul>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Refine the previous result with these changes only:
+- [one change to composition]
+- [one change to lighting/style]
+Keep everything else the same.
+    </div>
+  </div>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+  <p>
+    Creative prompting is direction plus constraint. The more clearly you define what matters—and what must be avoided—
+    the more usable your images and videos become for teaching and communication.
+  </p>
+
+  <details>
+    <summary>Show Expanded Explanation</summary>
+    <p>
+      Image/video models often “help” by inventing details, adding text-like artifacts, or making composition choices you
+      didn’t ask for. Prompts that include explicit constraints (no text, no logos, simple background) and structured
+      production notes (camera, duration, motion) reduce unwanted surprises and speed up iteration.
+    </p>
+  </details>
+</div>
+
+<div class="wrapup">
+  <details>
+    <summary>Practical Guidance for Teaching and Academic Work</summary>
+    <p>
+      For classroom visuals, prioritize clarity over “wow.” Use simple compositions, high contrast, and minimal clutter.
+      If the media supports a learning objective, ask: “What should a student be able to explain after seeing this?”
+    </p>
+    <p>
+      If you plan to share media publicly, avoid realistic depictions of identifiable people and avoid brand/trademark elements.
+      When in doubt, keep outputs abstract, illustrative, or diagrammatic.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>

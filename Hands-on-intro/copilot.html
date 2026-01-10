@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Microsoft Copilot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .tool-header {
+    background: #f8f8f9;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+  }
+  .section {
+    margin-top: 28px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul { margin-top: 10px; }
+  .example {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>AI Tools Series: Microsoft Copilot</h1>
+
+<div class="tool-header">
+  <p>
+    <strong>Microsoft Copilot</strong> is an enterprise-grade generative AI tool integrated with
+    Microsoft 365 applications such as Word, PowerPoint, Excel, Outlook, and Teams.
+  </p>
+
+  <p>
+    When accessed through a University of Illinois account, Copilot operates under a
+    <strong>data protection agreement</strong>, meaning institutional data is not used to train
+    public models and is handled according to Microsoft’s enterprise privacy commitments.
+  </p>
+</div>
+
+<div class="section">
+  <h2>Best Uses in Teaching and Academic Work</h2>
+
+  <ul>
+    <li>Drafting and revising emails, announcements, and syllabi</li>
+    <li>Creating slide outlines and first-pass presentation content</li>
+    <li>Summarizing documents stored in OneDrive or SharePoint</li>
+    <li>Rewriting text for clarity, tone, or audience</li>
+    <li>Assisting with routine productivity tasks across Microsoft tools</li>
+  </ul>
+
+  <div class="example">
+    <strong>Best fit:</strong> High-volume, low-risk drafting and revision work inside the Microsoft ecosystem.
+  </div>
+</div>
+
+<div class="section">
+  <h2>How Copilot Uses Context</h2>
+
+  <p>
+    Copilot relies heavily on <strong>retrieval-augmented generation (RAG)</strong>.
+    Rather than reading entire documents end-to-end, it selectively retrieves relevant
+    portions of files you have access to.
+  </p>
+
+  <ul>
+    <li>Pulls content from emails, documents, calendars, and files you can access</li>
+    <li>Does not “remember” everything in a long document at once</li>
+    <li>Focuses on relevance rather than comprehensive reading</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Implication:</strong> Copilot is excellent for finding and summarizing relevant material,
+    but less reliable for deep analysis of very large or complex documents.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Context Window & Limitations</h2>
+
+  <ul>
+    <li>Selective context: retrieves chunks, not full documents</li>
+    <li>May miss nuance or long-range connections in large files</li>
+    <li>Can over-generalize if prompts are vague</li>
+    <li>Not designed for source-exclusive or citation-locked workflows</li>
+  </ul>
+
+  <div class="example">
+    <strong>Design tip:</strong> Ask targeted questions (“Summarize the key deadlines in this syllabus”)
+    rather than broad ones (“Summarize this entire document”).
+  </div>
+</div>
+
+<div class="section">
+  <h2>Key Features Faculty Should Know</h2>
+
+  <ul>
+    <li>Deep integration with Word, PowerPoint, Excel, Outlook, and Teams</li>
+    <li>Enterprise authentication and access control</li>
+    <li>Grounded in files you already have permission to view</li>
+    <li>Fast responses optimized for productivity</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Prompting Tips for Copilot</h2>
+
+  <p>
+    Copilot performs best with prompts that specify the task, audience, and output format.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Draft a short announcement for students.
+
+CONTEXT:
+This will be sent via email to undergraduate students.
+
+GOAL:
+Explain an upcoming assignment clearly and concisely.
+
+CONSTRAINTS:
+- Use a supportive, professional tone
+- Keep it under 150 words
+- Include bullet points for deadlines
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Academic Integrity & Appropriate Use</h2>
+
+  <p>
+    Copilot is well-suited for faculty productivity and preparation.
+    For student-facing work, instructors should clarify whether and how Copilot may be used,
+    especially when it is embedded in institutional tools students already access.
+  </p>
+
+  <ul>
+    <li>Appropriate for drafting and revising instructional materials</li>
+    <li>Use caution when relying on Copilot for factual accuracy</li>
+    <li>Not a substitute for scholarly sources or expert judgment</li>
+  </ul>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    Microsoft Copilot excels as an enterprise productivity assistant.
+    Its strength lies in speed, integration, and access to institutional files—not deep reasoning
+    across large bodies of text.
+  </p>
+
+  <details>
+    <summary>How This Tool Fits in a Broader AI Toolkit</summary>
+
+    <p>
+      Copilot pairs well with tools designed for deeper analysis or source-restricted workflows.
+      Use it to draft, summarize, and prepare—then move to other tools when accuracy,
+      long-context reasoning, or multimodal analysis is required.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>

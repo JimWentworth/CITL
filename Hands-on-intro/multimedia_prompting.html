@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Multimodal Prompting Basics (Images + Video)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin-top: 28px;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul { margin-top: 10px; }
+  .example {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Multimodal Prompting Basics (Images + Video)</h1>
+
+<p>
+  Multimodal AI can interpret images and videos, but it still follows the same rule as text-only AI:
+  it predicts what to say next based on patterns. Strong multimodal prompting helps the model
+  separate what is <strong>visible</strong> from what is <strong>inferred</strong>, and keeps outputs aligned
+  with your purpose (teaching, accessibility, analysis, or verification).
+</p>
+
+<div class="callout">
+  <strong>Key idea:</strong> The fastest way to improve multimodal results is to
+  (1) state the task, (2) give context, (3) set boundaries, and (4) ask for structured output.
+</div>
+
+<div class="step">
+  <h2>Multimodal Prompting Framework</h2>
+
+  <ul>
+    <li><strong>Task:</strong> What do you want the model to do with the media?</li>
+    <li><strong>Context:</strong> What course, audience, or learning goal matters?</li>
+    <li><strong>Boundaries:</strong> What should it avoid guessing?</li>
+    <li><strong>Structure:</strong> What format should the response use?</li>
+  </ul>
+
+  <div class="example">
+    <strong>One-line starter:</strong><br>
+    “Analyze this image for a teaching purpose. Separate what is visible from what is inferred, and present your output in a structured format.”
+  </div>
+</div>
+
+<div class="step">
+  <h2>Images: The Most Reliable Prompt Pattern</h2>
+
+  <p>
+    For images, you’ll get better results if you explicitly separate:
+  </p>
+
+  <ul>
+    <li><strong>Describe:</strong> what is literally visible (objects, text, layout)</li>
+    <li><strong>Interpret:</strong> what it might mean (with uncertainty labels)</li>
+    <li><strong>Use:</strong> what you want to do next (alt text, teaching questions, critique)</li>
+  </ul>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+You are analyzing an image for educational use.
+
+1) DESCRIPTION (only what is visible; do not infer intent)
+2) INFERENCES (clearly label what is inferred vs. visible)
+3) QUESTIONS (3 questions a student should be able to answer about this image)
+4) RISKS (anything ambiguous or easy to misread)
+
+Audience: [e.g., first-year undergraduates]
+Course context: [e.g., biology lab / history seminar / stats course]
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Images: Prompts for Common Teaching Tasks</h2>
+
+  <div class="example">
+    <strong>Alt text (accessibility):</strong>
+    <div class="prompt-box">
+      <div class="prompt-text">
+Write alt text for this image.
+
+INSTRUCTIONAL PURPOSE:
+[What should learners get from this image?]
+
+RULES:
+- 1–2 sentences unless it’s a data-heavy chart
+- Include text shown in the image if it matters
+- Do not add interpretation that isn’t visible
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <strong>Chart/graph interpretation:</strong>
+    <div class="prompt-box">
+      <div class="prompt-text">
+Explain what this chart shows.
+
+OUTPUT:
+- Identify axes and variables (from the image)
+- Summarize the main trend(s)
+- Note any outliers or anomalies
+- List 2 possible misinterpretations students might make
+- Provide 2 discussion questions
+Do not invent numbers not shown.
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <strong>Diagram critique (clarity and labeling):</strong>
+    <div class="prompt-box">
+      <div class="prompt-text">
+Act as a student encountering this diagram for the first time.
+
+1) What is immediately clear?
+2) What is confusing or under-labeled?
+3) Suggest 3 improvements to labels, layout, or sequencing.
+Do not change the content—only presentation.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Video: Prompting Works Best With “Anchors”</h2>
+
+  <p>
+    Video is harder than images because it contains time, motion, and many possible focal points.
+    Strong video prompts use anchors:
+  </p>
+
+  <ul>
+    <li><strong>Time anchors:</strong> “Focus on 00:45–01:20”</li>
+    <li><strong>Scene anchors:</strong> “When the speaker draws the triangle”</li>
+    <li><strong>Goal anchors:</strong> “Extract the steps of the process”</li>
+  </ul>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Analyze this video for a teaching purpose.
+
+GOAL:
+[Summarize / extract steps / identify misconceptions / create study questions]
+
+ANCHOR:
+Focus on: [time range OR scene description]
+
+OUTPUT:
+1) What happens (objective summary)
+2) Key terms or concepts used
+3) Steps or sequence (if relevant)
+4) 3 quiz questions with answers
+5) Anything uncertain or not visible/audible
+
+Do not guess missing details. If unclear, say so.
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Video: High-Value Classroom Outputs</h2>
+
+  <div class="example">
+    <strong>Turn a video segment into a study guide:</strong>
+    <div class="prompt-box">
+      <div class="prompt-text">
+Create a short study guide from the anchored segment of this video.
+
+Include:
+- 5 bullet summary
+- glossary of 5 terms (plain language + technical definition)
+- 3 “check your understanding” questions
+- 1 common misconception and correction
+
+Anchor: [time/scene]
+Audience: [course level]
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <strong>Identify likely confusion points (student perspective):</strong>
+    <div class="prompt-box">
+      <div class="prompt-text">
+Assume you are a student watching this segment.
+
+1) List 3 points that might confuse a student and why.
+2) For each, suggest a clarifying sentence or quick example the instructor could add.
+Anchor: [time/scene]
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Verification: How to Reduce Multimodal Hallucinations</h2>
+
+  <p>
+    Multimodal models can misread blurry text, assume context, or “fill in” missing detail.
+    Use prompts that force carefulness:
+  </p>
+
+  <ul>
+    <li><strong>Require separation:</strong> “Visible vs. inferred”</li>
+    <li><strong>Require uncertainty labels:</strong> “Certain / likely / unclear”</li>
+    <li><strong>Constrain claims:</strong> “Do not invent numbers or quotes”</li>
+    <li><strong>Ask for checks:</strong> “What would you need to confirm?”</li>
+  </ul>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Before you answer, do a reliability pass.
+
+1) List what you are confident is visible/audible.
+2) List what is uncertain or ambiguous.
+3) Ask me 2 clarification questions you would need to answer accurately.
+Then provide the best-effort answer with uncertainty clearly marked.
+    </div>
+  </div>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    Multimodal prompting is mostly about controlling attention and controlling inference.
+    When you define the task, provide anchors, and require structured outputs,
+    you get more reliable results—and better teaching materials.
+  </p>
+
+  <details>
+    <summary>Show Expanded Explanation</summary>
+    <p>
+      Images and video add ambiguity: blurred text, missing context, multiple focal points, and
+      non-verbal meaning. Models will often “help” by guessing. Prompts that require visible/inferred
+      separation and uncertainty labeling reduce that guessing and make outputs easier to trust.
+    </p>
+  </details>
+</div>
+
+<div class="wrapup">
+  <details>
+    <summary>Practical Guidance for Teaching and Academic Work</summary>
+    <p>
+      Start with small, concrete tasks: alt text for one image, quiz questions from a 30-second video clip,
+      or a chart interpretation guide. Use anchored prompts and structured outputs.
+    </p>
+    <p>
+      If the output will be shared with students, do a quick verification pass: check the chart axes, confirm
+      any quoted text, and remove any invented details.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Video Generation Tools & Digital Avatars</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin-top: 28px;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul { margin-top: 10px; }
+  .example {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  a {
+    color: #13294b;
+    word-break: break-word;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>AI Video Generation & Digital Avatars: Capabilities and Limits</h1>
+
+<p>
+  Generative AI can now create short videos, animate scenes, and produce digital presenters
+  from text prompts. These tools are powerful—but still constrained. Understanding what today’s
+  video generators can (and cannot) do helps instructors choose realistic, ethical, and effective
+  uses in teaching and communication.
+</p>
+
+<div class="callout">
+  <strong>Key idea:</strong> AI video tools are best for short, controlled clips and prototypes—not
+  long-form, high-precision instructional video.
+</div>
+
+<div class="step">
+  <h2>1) Text-to-Video Generators (e.g., Sora, Veo, and Similar Tools)</h2>
+
+  <p>
+    New video generators translate natural-language prompts into short video clips.
+    While tools evolve quickly, their capabilities tend to cluster around similar strengths.
+  </p>
+
+  <h3>What These Tools Can Do Well</h3>
+  <ul>
+    <li>Create short (5–20 second) videos from text descriptions</li>
+    <li>Animate abstract concepts, scenes, or environments</li>
+    <li>Generate visual context for discussion or storytelling</li>
+    <li>Support multiple aspect ratios (16:9, 9:16, 1:1)</li>
+  </ul>
+
+  <h3>Common Limitations</h3>
+  <ul>
+    <li>Difficulty maintaining consistency across longer videos</li>
+    <li>Limited control over fine-grained actions or timing</li>
+    <li>Visual artifacts, flicker, or unrealistic motion</li>
+    <li>Poor handling of text, equations, or diagrams within video</li>
+  </ul>
+
+  <div class="example">
+    <strong>Good classroom uses:</strong> concept animations, abstract metaphors,
+    discussion prompts, visual context clips.
+  </div>
+
+  <div class="example">
+    <strong>Risky uses:</strong> step-by-step demonstrations, precise procedures,
+    or anything requiring exact visual accuracy.
+  </div>
+
+  <p>
+    Tool examples (availability and access may vary):
+  </p>
+  <ul>
+    <li>Sora (OpenAI) – text-to-video generation</li>
+    <li>Veo (Google) – high-fidelity video generation</li>
+    <li>Runway – creative video generation and editing</li>
+    <li>Pika – short-form generative video</li>
+  </ul>
+</div>
+
+<div class="step">
+  <h2>2) Practical Limits of Working with AI Video</h2>
+
+  <p>
+    Video introduces challenges beyond text or images. Even the best models
+    must compress time, motion, and causality.
+  </p>
+
+  <ul>
+    <li><strong>Temporal coherence:</strong> objects may subtly change between frames</li>
+    <li><strong>Instructional precision:</strong> models may invent or omit steps</li>
+    <li><strong>Verification:</strong> harder to fact-check moving visuals</li>
+    <li><strong>Accessibility:</strong> captions, transcripts, and alt descriptions are still required</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Teaching tip:</strong> Treat AI-generated video as a visual aid or discussion starter,
+    not as authoritative instructional content.
+  </div>
+</div>
+
+<div class="step">
+  <h2>3) Digital Avatars & Synthetic Presenters (e.g., HeyGen)</h2>
+
+  <p>
+    Digital avatar tools create talking-head videos using synthetic or cloned voices
+    and animated presenters. These tools are often used for announcements, micro-lectures,
+    or multilingual communication.
+  </p>
+
+  <h3>What Avatars Are Good At</h3>
+  <ul>
+    <li>Short informational videos (1–3 minutes)</li>
+    <li>Consistent delivery and tone</li>
+    <li>Quick updates or announcements</li>
+    <li>Multilingual versions of the same script</li>
+  </ul>
+
+  <h3>What to Watch Out For</h3>
+  <ul>
+    <li>Reduced sense of instructor presence</li>
+    <li>Uncanny or unnatural facial expressions</li>
+    <li>Ethical concerns around voice or likeness cloning</li>
+    <li>Overuse for content that benefits from human nuance</li>
+  </ul>
+
+  <div class="example">
+    <strong>Good uses:</strong> syllabus overviews, policy explanations, weekly updates,
+    orientation materials.
+  </div>
+
+  <div class="example">
+    <strong>Avoid for:</strong> sensitive discussions, feedback, or complex conceptual teaching.
+  </div>
+
+  <p>
+    Common avatar tools:
+  </p>
+  <ul>
+    <li>HeyGen – digital presenters and voice avatars</li>
+    <li>Synthesia – scripted avatar videos</li>
+    <li>D-ID – talking-head animations</li>
+  </ul>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    AI video tools are improving rapidly, but they still reward constrained, thoughtful use.
+    Short clips, clear goals, and human oversight lead to better outcomes than ambitious
+    end-to-end production.
+  </p>
+
+  <details>
+    <summary>Show Expanded Explanation</summary>
+    <p>
+      Video generation combines visual reasoning, physics, narrative, and timing—each a challenge
+      on its own. Current models approximate these dimensions rather than fully understanding them.
+      This makes them excellent for ideation and illustration, but unreliable for precision.
+    </p>
+  </details>
+</div>
+
+<div class="wrapup">
+  <details>
+    <summary>Practical Guidance for Teaching and Academic Work</summary>
+    <p>
+      If using AI-generated video in a course, clearly label it as synthetic and explain its purpose.
+      Pair it with discussion, reflection, or verification activities.
+    </p>
+    <p>
+      For accessibility, always provide captions or transcripts and ensure that essential
+      information is not conveyed by visuals alone.
+    </p>
+  </details>
+</div>
+
+
+
+<div class="banner">Hands-On Introduction to Generative AI</div>
+
+<h1>AI Video Generation Tools & Digital Avatars</h1>
+
+<p>
+  Modern AI video generators and avatar platforms let you create short clips, animated scenes,
+  and talking-head presentations from text prompts or scripts. Below are leading tools you can explore,
+  with their capabilities and limitations to help you choose what to use—and when.
+</p>
+
+<div class="callout">
+  <strong>Key idea:</strong> Video generation is rapidly evolving, but short scenes and avatars
+  are currently more reliable than long, narrative-length video content.
+</div>
+
+<div class="step">
+  <h2>Text-to-Video Generation Tools</h2>
+  <p>
+    These tools generate short motion clips from text prompts, often with options for style,
+    pacing, and context. Links take you to the tool’s official site or landing page.
+  </p>
+
+  <ul>
+    <li><a href="https://sora.chatgpt.com/" target="_blank">OpenAI Sora</a> – Cinematic text-to-video engine from OpenAI supporting short video clips up to ~20 seconds. Includes prompt-based generation and variation controls. :contentReference[oaicite:0]{index=0}</li>
+    <li><a href="https://deepmind.google/models/veo/" target="_blank">Google Veo (Veo 3)</a> – Text-to-video model from Google DeepMind capable of generating video with synchronized audio; accessible via research/Vertex AI. :contentReference[oaicite:1]{index=1}</li>
+    <li><a href="https://www.heygen.com/tool/ai-video-generator" target="_blank">HeyGen AI Video Generator</a> – Text-to-video plus voice/avatars; supports script-to-video workflows. :contentReference[oaicite:2]{index=2}</li>
+    <li><a href="https://www.synthesia.io/" target="_blank">Synthesia</a> – AI avatar video maker focusing on talking-head style content and scripted presentations. :contentReference[oaicite:3]{index=3}</li>
+    <li><a href="https://runwayml.com/" target="_blank">Runway ML</a> – Multimodal video generation/editing with text and reference-based workflows. (Text-to-video may vary by model version). :contentReference[oaicite:4]{index=4}</li>
+    <li><a href="https://ltx.io/model/ltx-2" target="_blank">LTX-2</a> – Emerging text-to-video model from Lightricks offering prompt-based generation options. :contentReference[oaicite:5]{index=5}</li>
+  </ul>
+
+  <p>
+    Other interesting tools (research or niche workflows) include editors with AI assist (for clipping, motion enhancement) and domain-specific video synthesizers. :contentReference[oaicite:6]{index=6}
+  </p>
+</div>
+
+<div class="step">
+  <h2>Capabilities & Common Limitations</h2>
+
+  <h3>Strengths (Where These Tools Excel)</h3>
+  <ul>
+    <li>Create short clips from prompts in natural language</li>
+    <li>Generate exploratory visuals for concept illustration</li>
+    <li>Support multiple aspect ratios and styles</li>
+    <li>Produce talking-head avatars from scripts (with voice) via Synthesia/HeyGen</li>
+  </ul>
+
+  <h3>Limitations to Be Aware Of</h3>
+  <ul>
+    <li>Animation quality can be uneven or inconsistent over time</li>
+    <li>Precise, multi-scene narrative videos remain difficult</li>
+    <li>Text or diagram fidelity within frames is often poor</li>
+    <li>Audio sync and emotional nuance are limited outside dedicated avatars</li>
+    <li>Outputs may contain artifacts or unrealistic motion in complex scenes</li>
+  </ul>
+
+  <p>
+    For teaching, these tools are best for short conceptual clips, illustrative scenes, or
+    visual discussion prompts—not full lectures or precise demonstrations.
+  </p>
+</div>
+
+<div class="step">
+  <h2>Digital Avatars & Synthetic Presenters</h2>
+  <p>
+    These platforms specialize in creating talking-head or presenter videos from scripts you provide.
+    They are especially useful for announcements, micro-lectures, onboarding, and multilingual versions
+    of the same script.
+  </p>
+
+  <ul>
+    <li><a href="https://www.heygen.com/" target="_blank">HeyGen</a> – Dynamic digital avatars and voice options for explainer videos, marketing, or educational snippets. :contentReference[oaicite:7]{index=7}</li>
+    <li><a href="https://www.synthesia.io/" target="_blank">Synthesia</a> – Focused AI avatar creator with many languages and styles, good for corporate or institutional videos. :contentReference[oaicite:8]{index=8}</li>
+    <li><a href="https://www.descript.com/overdub" target="_blank">Descript Overdub</a> – While not a strict avatar tool, it offers synthetic voice cloning that pairs well with visuals. (Link to a well-known platform for integrated workflows.)</li>
+  </ul>
+
+  <p>
+    Avatars are strongest when they have:
+  </p>
+  <ul>
+    <li>Clear scripts and structured prompts</li>
+    <li>Consistent branding and visual style</li>
+    <li>Consideration for ethical and accessibility labeling</li>
+  </ul>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    AI video generation tools open new possibilities for quick visual content—but they still operate
+    within current constraints of short duration and limited temporal coherence. Using them well
+    means picking the right tool for the job and combining generated clips with human oversight
+    and narrative framing.
+  </p>
+
+  <details>
+    <summary>Show Expanded Explanation</summary>
+
+    <p>
+      Even the most advanced generators like Sora and Veo produce short clips rather than full
+      narratives. They excel at exploratory visuals, prototypes, and experimental storytelling.
+      Avatars such as those from HeyGen and Synthesia embed voice sync and presentation style
+      but still need human scripting and review for accuracy and appropriateness.
+    </p>
+  </details>
+</div>
+
+<div class="wrapup">
+  <details>
+    <summary>Practical Guidance for Teaching and Academic Work</summary>
+
+    <p>
+      If you use these tools in teaching materials, clearly label AI-generated media and pair
+      visuals with accessible text (captions, transcripts, and purpose statements). Videos should
+      support—not replace—core instruction.
+    </p>
+
+    <p>
+      Short conceptual clips, animated process visuals, and avatar snippets can help engagement,
+      but avoid relying on them for high-stakes assessment or precise demonstrations until the
+      technology matures further.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Understanding AI Models</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .tool-header {
+    background: #f8f8f9;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+  }
+  .section {
+    margin-top: 28px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul { margin-top: 10px; }
+  .example {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Understanding AI Models: What’s Actually Under the Hood?</h1>
+
+<div class="tool-header">
+  <p>
+    “AI” is not a single thing. Modern AI systems rely on different <strong>model types</strong>,
+    each designed for particular kinds of data and tasks. Understanding these model families
+    helps explain why tools behave differently—and why no single system is “best” at everything.
+  </p>
+
+  <p>
+    <em>Note:</em> Most modern tools combine multiple model types. The examples below highlight
+    <strong>dominant architectures</strong>, not exclusive ones.
+  </p>
+</div>
+
+<div class="section">
+  <h2>What Is a Model?</h2>
+
+  <p>
+    An AI model is a trained mathematical system that learns patterns from data.
+    Models differ based on what kind of patterns they learn (text, images, audio),
+    how they generate outputs, and what they are optimized to do.
+  </p>
+
+  <div class="callout">
+    <strong>Key idea:</strong> Tools change quickly. Model architectures change more slowly.
+    Learning model types gives you durable AI literacy.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Autoregressive Language Models (LLMs)</h2>
+
+  <p>
+    Autoregressive language models generate content one token at a time, predicting what
+    comes next based on everything that came before.
+  </p>
+
+  <ul>
+    <li>Primary domain: text and code</li>
+    <li>Strengths: explanation, writing, reasoning, summarization</li>
+    <li>Limitations: can sound confident even when incorrect</li>
+  </ul>
+
+  <div class="example">
+    <strong>Common tool examples:</strong>
+    ChatGPT Edu, Claude, Microsoft Copilot (text workflows), Google Gemini (text core)
+  </div>
+</div>
+
+<div class="section">
+  <h2>Diffusion Models (Images, Video, Audio)</h2>
+
+  <p>
+    Diffusion models generate content by starting with noise and gradually refining it
+    into a coherent signal. They do not predict the “next word” and are not optimized
+    for logical or symbolic accuracy.
+  </p>
+
+  <ul>
+    <li>Primary domain: images, video, audio</li>
+    <li>Strengths: realism, style control, visual variety</li>
+    <li>Limitations: weak at text accuracy, diagrams, and structured visuals</li>
+  </ul>
+
+  <div class="example">
+    <strong>Common tool examples:</strong>
+    DALL·E, Stable Diffusion, Midjourney, Sora, Veo, Runway
+  </div>
+
+  <div class="callout">
+    <strong>Teaching insight:</strong> Diffusion models are excellent for illustration
+    and ideation—but unreliable for equations, labels, or precise instructional visuals.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Multimodal Models</h2>
+
+  <p>
+    Multimodal models are trained across multiple data types—such as text, images,
+    audio, and video—allowing reasoning that connects language and visuals.
+  </p>
+
+  <ul>
+    <li>Can analyze charts, diagrams, screenshots, and video</li>
+    <li>Enable accessibility workflows (alt text, captions)</li>
+    <li>More prone to hallucination when visuals are ambiguous</li>
+  </ul>
+
+  <div class="example">
+    <strong>Common tool examples:</strong>
+    Google Gemini, ChatGPT Edu (multimodal features)
+  </div>
+</div>
+
+<div class="section">
+  <h2>Mixture-of-Experts (MoE) Models</h2>
+
+  <p>
+    Mixture-of-Experts models route different parts of a task to specialized internal
+    sub-models rather than activating the entire model every time.
+  </p>
+
+  <ul>
+    <li>Efficient at large scale</li>
+    <li>Can specialize across domains</li>
+    <li>May feel uneven or inconsistent across prompts</li>
+  </ul>
+
+  <div class="example">
+    <strong>Common tool examples:</strong>
+    Large-scale deployments underlying Gemini and GPT-class systems
+  </div>
+</div>
+
+<div class="section">
+  <h2>Embedding Models (Search & Retrieval)</h2>
+
+  <p>
+    Embedding models convert content into numerical representations that capture
+    semantic meaning. They do not generate content directly.
+  </p>
+
+  <ul>
+    <li>Power search, similarity matching, and RAG systems</li>
+    <li>Operate behind the scenes in many AI tools</li>
+    <li>Enable grounding and citation workflows</li>
+  </ul>
+
+  <div class="example">
+    <strong>Common tool examples:</strong>
+    NotebookLM, Microsoft Copilot, enterprise search and retrieval systems
+  </div>
+
+  <div class="callout">
+    <strong>Teaching insight:</strong> Embeddings explain how AI can “find”
+    relevant passages without reading everything.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Generative vs. Discriminative Models</h2>
+
+  <ul>
+    <li><strong>Generative models:</strong> create new text, images, audio, or video</li>
+    <li><strong>Discriminative models:</strong> classify, label, or detect patterns</li>
+  </ul>
+
+  <div class="example">
+    <strong>Teaching insight:</strong> Generative models are flexible but risky;
+    discriminative models are narrower but more predictable.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Adversarial Models & Adversarial Training</h2>
+
+  <p>
+    Adversarial techniques test models using intentionally challenging inputs
+    to improve robustness and safety.
+  </p>
+
+  <ul>
+    <li>Reveal model blind spots</li>
+    <li>Explain why small changes can flip outputs</li>
+    <li>Highlight brittleness at edge cases</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Why Models Hallucinate</h2>
+
+  <p>
+    Hallucinations arise because generative models optimize for plausibility,
+    not truth. When information is missing or ambiguous, models generate
+    what <em>sounds</em> right based on learned patterns.
+  </p>
+
+  <div class="callout">
+    <strong>Key takeaway:</strong> Greater flexibility and creativity always
+    require stronger verification and human judgment.
+  </div>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    AI tools behave differently because their underlying models differ.
+    Understanding model families—and seeing how tools map onto them—
+    helps educators make informed, responsible choices.
+  </p>
+
+  <details>
+    <summary>Practical Guidance for Teaching and Academic Work</summary>
+
+    <p>
+      When introducing AI to students, encourage them to ask:
+    </p>
+
+    <ul>
+      <li>What model type is primarily at work here?</li>
+      <li>What kind of data does it handle well?</li>
+      <li>Where might it mislead or fail?</li>
+    </ul>
+
+    <p>
+      This framing builds durable AI literacy and supports thoughtful,
+      ethical use across disciplines.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>

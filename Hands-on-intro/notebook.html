@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – NotebookLM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .tool-header {
+    background: #f8f8f9;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+  }
+  .section {
+    margin-top: 28px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul { margin-top: 10px; }
+  .example {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>AI Tools Series: Google NotebookLM</h1>
+
+<div class="tool-header">
+  <p>
+    <strong>NotebookLM</strong> is a research- and learning-focused AI tool built around
+    <strong>source-restricted retrieval-augmented generation (RAG)</strong>.
+    Unlike general chat tools, NotebookLM answers questions using
+    <em>only the documents you upload</em>.
+  </p>
+
+  <p>
+    This design makes NotebookLM especially well suited for teaching, study,
+    and high-integrity academic workflows where grounding and citation matter.
+  </p>
+</div>
+
+<div class="section">
+  <h2>Best Uses in Teaching and Academic Work</h2>
+
+  <ul>
+    <li>Creating study guides from assigned readings</li>
+    <li>Helping students interact with course materials safely</li>
+    <li>Summarizing, outlining, and synthesizing source sets</li>
+    <li>Generating quizzes, timelines, and concept maps from readings</li>
+    <li>Supporting research preparation and literature review</li>
+  </ul>
+
+  <div class="example">
+    <strong>Best fit:</strong> Any task where answers must stay aligned to specific documents.
+  </div>
+</div>
+
+<div class="section">
+  <h2>How NotebookLM Uses Context</h2>
+
+  <p>
+    NotebookLM uses a <strong>retrieval-first architecture</strong>.
+    Uploaded sources are indexed, and only relevant passages are retrieved
+    to answer each question.
+  </p>
+
+  <ul>
+    <li>Does not rely on general world knowledge</li>
+    <li>Pulls answers strictly from uploaded documents</li>
+    <li>Provides citations pointing back to sources</li>
+    <li>Supports dozens of documents per notebook</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Implication:</strong> NotebookLM minimizes hallucinations by design,
+    but cannot answer questions beyond the provided materials.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Context Window & Limitations</h2>
+
+  <ul>
+    <li>Cannot draw on outside knowledge</li>
+    <li>Quality depends entirely on uploaded sources</li>
+    <li>May miss connections if documents are poorly structured</li>
+    <li>Less flexible for creative or exploratory writing</li>
+  </ul>
+
+  <div class="example">
+    <strong>Design tip:</strong> Upload clean, complete, and well-organized documents
+    for best results.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Key Features Faculty Should Know</h2>
+
+  <ul>
+    <li>Source-exclusive grounding (no external data)</li>
+    <li>Automatic citations to uploaded documents</li>
+    <li>Studio tools for creating study guides and summaries</li>
+    <li>Audio overviews and multimodal learning assets</li>
+    <li>Sharable notebooks for student interaction</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Prompting Tips for NotebookLM</h2>
+
+  <p>
+    Prompts work best when they reference the materials explicitly
+    and focus on synthesis rather than creativity.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Using only the uploaded readings:
+
+TASK:
+Create a study guide highlighting the main concepts.
+
+CONSTRAINTS:
+- Quote or paraphrase directly from the sources
+- Organize by theme
+- Flag areas where the readings disagree
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Academic Integrity & Appropriate Use</h2>
+
+  <p>
+    NotebookLM is well aligned with academic integrity goals
+    because it does not introduce outside information.
+  </p>
+
+  <ul>
+    <li>Excellent for AI-assisted study and review</li>
+    <li>Supports transparent use in coursework</li>
+    <li>Encourages citation-aware learning</li>
+  </ul>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    NotebookLM acts like a <strong>research vault</strong> rather than a general assistant.
+    Its strength is precision and grounding, not creativity or breadth.
+  </p>
+
+  <details>
+    <summary>How This Tool Fits in a Broader AI Toolkit</summary>
+
+    <p>
+      Use NotebookLM when correctness and alignment matter most.
+      Pair it with ChatGPT Edu for reflection and reasoning,
+      and with Gemini when multimodal or long-context analysis is required.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>

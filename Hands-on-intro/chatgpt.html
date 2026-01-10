@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – ChatGPT Edu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .tool-header {
+    background: #f8f8f9;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+  }
+  .section {
+    margin-top: 28px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul { margin-top: 10px; }
+  .example {
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>AI Tools Series: ChatGPT Edu</h1>
+
+<div class="tool-header">
+  <p>
+    <strong>ChatGPT Edu</strong> is an education-focused deployment of ChatGPT designed for
+    teaching, learning, and academic work. It supports long-context reasoning, file uploads,
+    multimodal analysis, and persistent project work.
+  </p>
+
+  <p>
+    When accessed through an institutional ChatGPT Edu account,
+    <strong>user data and conversations are not used to train public models</strong> and are
+    governed by enterprise-level privacy and data protection agreements.
+  </p>
+</div>
+
+<div class="section">
+  <h2>Best Uses in Teaching and Academic Work</h2>
+
+  <ul>
+    <li>Deep explanation of complex concepts across disciplines</li>
+    <li>Iterative drafting and revision of teaching materials</li>
+    <li>Collaborative curriculum or course design using Projects</li>
+    <li>Analysis of uploaded readings, datasets, or student work samples</li>
+    <li>Multimodal analysis of images, charts, diagrams, and short videos</li>
+  </ul>
+
+  <div class="example">
+    <strong>Best fit:</strong> Conceptual reasoning, iterative work, and collaborative academic workflows.
+  </div>
+</div>
+
+<div class="section">
+  <h2>How ChatGPT Edu Uses Context</h2>
+
+  <p>
+    ChatGPT Edu relies on a <strong>large active context window</strong> rather than selective
+    retrieval alone. This allows it to reason across longer conversations and uploaded materials.
+  </p>
+
+  <ul>
+    <li>Maintains conversational context within a thread</li>
+    <li>Can reference uploaded files during analysis</li>
+    <li>Projects allow shared instructions, files, and ongoing context</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Implication:</strong> ChatGPT Edu is well suited for “thinking across”
+    documents, drafts, and conversations—especially when work evolves over time.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Context Window & Limitations</h2>
+
+  <ul>
+    <li>Large but finite context window—older details may drop out in very long threads</li>
+    <li>Not strictly source-locked unless you explicitly require it</li>
+    <li>Can introduce outside knowledge unless constrained</li>
+    <li>Requires careful prompting for high-stakes factual accuracy</li>
+  </ul>
+
+  <div class="example">
+    <strong>Design tip:</strong> For source-specific tasks, explicitly instruct:
+    “Use only the uploaded documents and cite them.”
+  </div>
+</div>
+
+<div class="section">
+  <h2>Key Features Faculty Should Know</h2>
+
+  <ul>
+    <li>Long-context reasoning across conversations and files</li>
+    <li>Projects for persistent, shared academic workspaces</li>
+    <li>Multimodal input (text, images, PDFs, some video)</li>
+    <li>Strong support for reflection, evaluation, and explanation</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Prompting Tips for ChatGPT Edu</h2>
+
+  <p>
+    ChatGPT Edu responds best to prompts that define the role, scope, and constraints of the task.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Act as an instructional design consultant.
+
+TASK:
+Review the uploaded assignment description.
+
+GOAL:
+Identify where students might misunderstand expectations.
+
+CONSTRAINTS:
+- Use only the provided materials
+- Do not rewrite the assignment
+- Flag issues and suggest clarifying questions instead
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Academic Integrity & Appropriate Use</h2>
+
+  <p>
+    ChatGPT Edu can support both faculty and students, but expectations should be made explicit.
+    Its ability to generate fluent, extended responses makes transparency especially important.
+  </p>
+
+  <ul>
+    <li>Well suited for feedback, reflection, and practice</li>
+    <li>Risky for generating final student submissions without disclosure</li>
+    <li>Most effective when paired with AI-transparent assignment design</li>
+  </ul>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    ChatGPT Edu excels at sustained reasoning and iterative academic work.
+    Its strength lies in connecting ideas across time, drafts, and materials—not in fast,
+    transactional productivity.
+  </p>
+
+  <details>
+    <summary>How This Tool Fits in a Broader AI Toolkit</summary>
+
+    <p>
+      ChatGPT Edu complements tools like Copilot and NotebookLM.
+      Use Copilot for rapid drafting inside Microsoft tools, NotebookLM for source-locked study,
+      and ChatGPT Edu when you need reasoning, reflection, and collaborative workflows.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>
