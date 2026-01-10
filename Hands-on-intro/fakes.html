@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Spotting AI Fakes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin-top: 28px;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul {
+    margin-top: 10px;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Spotting AI-Generated Images and Videos</h1>
+
+<p>
+  As generative AI tools become more accessible, synthetic images and videos—often called
+  “AI fakes” or “deepfakes”—are increasingly common in academic, professional, and public
+  contexts. Developing the ability to critically evaluate visual media is now a core
+  component of AI literacy.
+</p>
+
+<div class="step">
+  <h2>First Principle: There Is No Single “Tell”</h2>
+
+  <p>
+    AI-generated images and videos are created by probabilistic models trained on massive
+    collections of visual data. Because the technology evolves quickly, there is no
+    permanent checklist that reliably identifies every AI fake.
+  </p>
+
+  <p>
+    Instead of looking for one giveaway detail, effective detection relies on combining
+    multiple signals: visual artifacts, contextual inconsistencies, and source verification.
+  </p>
+</div>
+
+<div class="step">
+  <h2>Common Signs in AI-Generated Images</h2>
+
+  <ul>
+    <li>
+      <strong>Anatomical inconsistencies:</strong> extra or misshapen fingers, asymmetrical eyes,
+      distorted ears, or unnatural joint angles.
+    </li>
+    <li>
+      <strong>Texture and detail errors:</strong> smeared text, unreadable signage, repeating
+      background patterns, or inconsistent lighting.
+    </li>
+    <li>
+      <strong>Boundary confusion:</strong> objects blending into one another or unclear edges
+      between foreground and background.
+    </li>
+    <li>
+      <strong>Style mismatch:</strong> highly realistic subjects combined with painterly or
+      overly smooth textures.
+    </li>
+  </ul>
+
+  <p>
+    These issues occur because image models optimize for visual plausibility rather than
+    physical correctness.
+  </p>
+</div>
+
+<div class="step">
+  <h2>Common Signs in AI-Generated Videos</h2>
+
+  <ul>
+    <li>
+      <strong>Temporal instability:</strong> faces, hands, or objects subtly changing shape
+      from frame to frame.
+    </li>
+    <li>
+      <strong>Unnatural motion:</strong> stiff facial expressions, limited blinking, or
+      movements that feel slightly delayed or smoothed.
+    </li>
+    <li>
+      <strong>Audio-visual mismatch:</strong> lip movements that don’t precisely align with
+      speech, or vocal tone that lacks natural variation.
+    </li>
+    <li>
+      <strong>Background drift:</strong> walls, shadows, or objects subtly shifting over time.
+    </li>
+  </ul>
+</div>
+
+<div class="callout">
+  <strong>Key idea:</strong> AI fakes often look convincing at a glance. Detection improves
+  when viewers slow down, rewatch, zoom in, and consider context—not just visual quality.
+</div>
+
+<div class="step">
+  <h2>Contextual and Source-Based Red Flags</h2>
+
+  <ul>
+    <li>
+      <strong>Missing provenance:</strong> no clear source, creator, or original publication.
+    </li>
+    <li>
+      <strong>Improbable scenarios:</strong> events that would likely be widely reported
+      elsewhere but appear only in a single clip.
+    </li>
+    <li>
+      <strong>Emotional manipulation:</strong> content designed to provoke outrage, fear,
+      or urgency without supporting evidence.
+    </li>
+    <li>
+      <strong>Metadata gaps:</strong> stripped or inconsistent metadata in image or video files.
+    </li>
+  </ul>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    AI-generated visuals are best understood as statistically plausible reconstructions
+    rather than recordings of real events. They prioritize what <em>looks right</em> over
+    what <em>actually happened</em>.
+  </p>
+
+  <details>
+    <summary>Show Expanded Explanation</summary>
+
+    <p>
+      Image and video generation models predict pixel values and motion patterns based on
+      probability. This means they are excellent at reproducing familiar visual motifs,
+      but weaker at enforcing physical laws, continuity, and causal history.
+    </p>
+
+    <p>
+      As models improve, surface-level artifacts will become harder to spot. Long-term
+      detection strategies will increasingly depend on contextual literacy, verification,
+      and understanding how generative systems work.
+    </p>
+  </details>
+</div>
+
+<div class="wrapup">
+  <details>
+    <summary>Practical Guidance for Teaching and Academic Work</summary>
+
+    <p>
+      When using images or videos in teaching materials, encourage students to ask:
+      <em>Who created this? Where did it come from? What evidence supports it?</em>
+    </p>
+
+    <p>
+      Consider classroom activities where students compare real and AI-generated visuals,
+      document observed artifacts, and reflect on uncertainty rather than aiming for
+      perfect classification.
+    </p>
+
+    <p>
+      Framing AI fakes as a literacy challenge—not a guessing game—helps students build
+      durable critical skills.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>

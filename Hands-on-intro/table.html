@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Retrieval vs. Long-Context Models</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin-top: 28px;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    background: #ffffff;
+  }
+  th, td {
+    padding: 12px;
+    border: 1px solid #d0d4da;
+    vertical-align: top;
+    font-size: 0.95rem;
+  }
+  th {
+    background: #13294b;
+    color: white;
+    text-align: left;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  ul {
+    margin-top: 10px;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Retrieval-Augmented Systems vs. Long-Context Models</h1>
+
+<p>
+Modern AI tools generally fall into two broad architectural approaches. While the boundaries
+between them are not absolute, understanding this distinction helps educators choose the
+right tool for the right instructional task.
+</p>
+
+<div class="step">
+  <h2>Two Major Approaches</h2>
+
+  <h3>1. Retrieval-Augmented Systems (RAG)</h3>
+  <p>
+    Retrieval-augmented systems store your documents externally and fetch only the most
+    relevant segments when answering a question. This approach avoids strict context-window
+    limits and keeps responses tightly aligned to source materials.
+  </p>
+  <p>
+    <strong>Common examples:</strong> NotebookLM, ChatGPT Projects, Microsoft Copilot (enterprise / 365)
+  </p>
+
+  <h3>2. Long-Context Models</h3>
+  <p>
+    Long-context models can ingest extremely large amounts of text, audio, or video directly—
+    sometimes hundreds of thousands or even millions of tokens. They are well suited for
+    holistic analysis and multimodal reasoning, though information is still compressed internally.
+  </p>
+  <p>
+    <strong>Common examples:</strong> Gemini 1.5–class models, GPT-4-class models, Claude 3.5
+  </p>
+</div>
+
+<div class="callout">
+  <strong>Key idea:</strong> Most modern AI tools blend retrieval and long-context techniques,
+  but each has a “sweet spot” where it performs best.
+</div>
+
+<div class="step">
+  <h2>What Educators Should Know</h2>
+
+  <p>
+    Retrieval-augmented systems excel when accuracy and grounding in specific readings matter.
+    Long-context models shine when you need to analyze long documents, interpret visuals, or
+    work with multimodal content such as diagrams, slides, or recordings.
+  </p>
+
+  <p>
+    Choosing the right approach is less about which tool is “better” and more about matching
+    the architecture to the learning task.
+  </p>
+</div>
+
+<div class="step">
+  <h2>Recommendations for Educators</h2>
+
+  <ul>
+    <li>
+      <strong>NotebookLM:</strong> Use when you need strict alignment to assigned readings or want
+      a study companion grounded only in course materials.
+    </li>
+    <li>
+      <strong>Gemini:</strong> Use when you need multimodal interpretation (images, diagrams,
+      long videos) or extremely large context windows.
+    </li>
+    <li>
+      <strong>ChatGPT Projects:</strong> Use when co-creating or revising course materials with
+      colleagues and maintaining persistent workspaces.
+    </li>
+    <li>
+      <strong>Microsoft Copilot:</strong> Use for quick drafting, rewriting, and productivity
+      tasks integrated with Word, PowerPoint, Outlook, and institutional files.
+    </li>
+  </ul>
+</div>
+
+<div class="step">
+  <h2>Comparison Table</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Primary Approach</th>
+        <th>Retrieval Use</th>
+        <th>Approx. Context Window</th>
+        <th>Best Suited Tasks for Educators</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>NotebookLM</td>
+        <td>Retrieval-augmented + long-context</td>
+        <td>Yes – central to how it works</td>
+        <td>Large (hundreds of pages, optimized via retrieval)</td>
+        <td>Source-grounded Q&A, summaries, outlines, quizzes tied to readings</td>
+      </tr>
+      <tr>
+        <td>Gemini (e.g., Gemini 1.5)</td>
+        <td>Long-context, multimodal</td>
+        <td>Optional</td>
+        <td>Very large (up to ~1M tokens)</td>
+        <td>Visual interpretation, long recordings, multimodal lesson design</td>
+      </tr>
+      <tr>
+        <td>ChatGPT Projects</td>
+        <td>Long-context + retrieval-augmented</td>
+        <td>Yes – retrieves from project files</td>
+        <td>Large (~128k tokens + retrieval)</td>
+        <td>Collaborative syllabi, assignments, rubrics, persistent course work</td>
+      </tr>
+      <tr>
+        <td>Microsoft Copilot (enterprise / 365)</td>
+        <td>Long-context + retrieval-augmented</td>
+        <td>Yes – integrates with Microsoft 365 data</td>
+        <td>Large (~128k tokens + retrieval)</td>
+        <td>Email, slides, announcements, institutional document drafting</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="wrapup">
+  <details>
+    <summary>Conceptual Wrap-Up</summary>
+
+    <p>
+      Retrieval and long-context are not competing philosophies—they are complementary strategies.
+      Retrieval prioritizes accuracy and grounding, while long-context prioritizes breadth and
+      holistic understanding.
+    </p>
+
+    <p>
+      Helping students recognize these differences supports stronger AI literacy and more
+      intentional tool use across disciplines.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>
