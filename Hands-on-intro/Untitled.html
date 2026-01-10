@@ -1,0 +1,57 @@
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>Primary approach</th>
+      <th>Retrieval use</th>
+      <th>Approx. context window</th>
+      <th>Best suited tasks for educators</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NotebookLM</td>
+      <td>Retrieval‑augmented + long‑context</td>
+      <td>Yes – central to how it works (sources you upload)</td>
+      <td>
+        Large (powered by Gemini; typically hundreds of pages, but optimized via retrieval rather than raw max tokens)
+      </td>
+      <td>
+        Absolute alignment to assigned readings; source‑grounded Q&amp;A; study companions tied to specific course materials; generating summaries, outlines, and quizzes from a defined reading set.
+      </td>
+    </tr>
+    <tr>
+      <td>Gemini (e.g., Gemini 1.5)</td>
+      <td>Long‑context, multimodal</td>
+      <td>Optional – can be combined with retrieval in some products</td>
+      <td>
+        Very large (up to ~1M tokens in some tiers; can handle long documents, transcripts, and many images/video frames in one go)
+      </td>
+      <td>
+        Interpreting visuals (slides, diagrams, figures); analyzing long recordings or transcripts; holistic analysis of large document sets; multimodal lesson design using text + images + video.
+      </td>
+    </tr>
+    <tr>
+      <td>ChatGPT Projects</td>
+      <td>Long‑context + retrieval‑augmented</td>
+      <td>Yes – automatically retrieves from project files and resources</td>
+      <td>
+        Large (model context typically up to ~128k tokens, with additional effective capacity via retrieval over stored project files)
+      </td>
+      <td>
+        Co‑creating or revising syllabi, assignments, rubrics, and policies with colleagues; maintaining persistent course workspaces; tracking iterations of course materials over time.
+      </td>
+    </tr>
+    <tr>
+      <td>Microsoft Copilot (enterprise / 365)</td>
+      <td>Long‑context + retrieval‑augmented</td>
+      <td>Yes – integrates with Microsoft 365 data (OneDrive, SharePoint, emails, etc.)</td>
+      <td>
+        Large (GPT‑4‑class context, typically up to ~128k tokens, plus retrieval into that context from organizational documents)
+      </td>
+      <td>
+        Quick drafting of emails, announcements, and feedback; generating slides and documents; pulling information from institutional files; everyday productivity and admin tasks tightly integrated with Word, PowerPoint, and Outlook.
+      </td>
+    </tr>
+  </tbody>
+</table>
