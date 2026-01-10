@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Prompting for Evaluation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin-top: 28px;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  ul { margin-top: 10px; }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Prompting for Evaluation (Not Just Generation)</h1>
+
+<p>
+  Many people use generative AI to <em>produce</em> content. But some of the safest and most
+  academically useful workflows involve using AI to <strong>evaluate</strong> work: clarify ideas,
+  identify gaps, test alignment to criteria, and improve quality through revision.
+</p>
+
+<div class="step">
+  <h2>Why Evaluation Prompts Are Different</h2>
+
+  <p>
+    A generation prompt asks for a new product (an essay, plan, quiz, email). An evaluation
+    prompt asks the model to act like a reviewer: to compare a draft against criteria,
+    identify weaknesses, and suggest improvements.
+  </p>
+
+  <ul>
+    <li><strong>Generation:</strong> “Write a lesson plan on photosynthesis.”</li>
+    <li><strong>Evaluation:</strong> “Review this lesson plan against my objectives and flag gaps.”</li>
+  </ul>
+</div>
+
+<div class="callout">
+  <strong>Key idea:</strong> Evaluation prompts work best when you provide criteria (rubric,
+  constraints, examples) and ask for structured feedback rather than “general thoughts.”
+</div>
+
+<div class="step">
+  <h2>Three High-Value Evaluation Moves</h2>
+
+  <ul>
+    <li><strong>Check alignment:</strong> Does this meet the learning outcomes or assignment goals?</li>
+    <li><strong>Stress-test reasoning:</strong> What assumptions or missing steps weaken the argument?</li>
+    <li><strong>Improve clarity:</strong> Where might a student misunderstand, and how can we revise?</li>
+  </ul>
+</div>
+
+<div class="step">
+  <h2>Copy-and-Use Prompt Templates</h2>
+
+  <p>
+    Replace the bracketed text with your content. These prompts are designed to produce
+    actionable feedback with clear structure.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+You are a careful reviewer. Evaluate the following [draft/answer/lesson plan] using the criteria below.
+
+CRITERIA:
+- [Criterion 1]
+- [Criterion 2]
+- [Criterion 3]
+
+TASK:
+1) Give a brief overall judgment (2–3 sentences).
+2) List strengths (bullet points).
+3) List the most important gaps or risks (bullet points).
+4) Recommend 3 specific revisions, each with an example rewrite.
+
+DRAFT:
+[paste text here]
+    </div>
+  </div>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Act as an instructor preparing feedback for a student.
+
+1) Identify the top 3 places where the reasoning is unclear or incomplete.
+2) For each, ask a probing question the student should answer.
+3) Suggest one revision strategy that would improve the response without adding length.
+
+TEXT:
+[paste text here]
+    </div>
+  </div>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Check this response for accuracy and overconfidence.
+
+1) Flag any statements that sound factual but might require verification.
+2) Mark each flagged statement as: "verify" or "likely okay."
+3) Suggest how to rewrite the risky statements more cautiously.
+
+TEXT:
+[paste text here]
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Try a Low-Risk Classroom Workflow</h2>
+
+  <p>
+    One simple approach is to separate AI use into two passes:
+  </p>
+
+  <ul>
+    <li><strong>Pass 1:</strong> Students draft their own response.</li>
+    <li><strong>Pass 2:</strong> Students use AI as a reviewer and submit a revision memo explaining changes.</li>
+  </ul>
+
+  <p>
+    This preserves student ownership while teaching how to use AI responsibly and transparently.
+  </p>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    Evaluation prompts shift AI from “answer machine” to “thinking partner.” This supports learning
+    because the student (or instructor) remains responsible for judgment, evidence, and revision.
+  </p>
+
+  <details>
+    <summary>Show Expanded Explanation</summary>
+
+    <p>
+      Generative models are good at pattern recognition and producing feedback-like language.
+      They can reliably suggest clarity improvements and identify missing components relative
+      to provided criteria. They are less reliable as arbiters of factual truth without verification.
+    </p>
+
+    <p>
+      For high-stakes grading or policy decisions, treat AI feedback as advisory and always
+      apply human judgment.
+    </p>
+  </details>
+</div>
+
+<div class="wrapup">
+  <details>
+    <summary>Practical Guidance for Teaching and Academic Work</summary>
+
+    <p>
+      Provide explicit criteria (rubrics, learning outcomes, examples). Vague prompts produce vague feedback.
+    </p>
+
+    <p>
+      Ask for structured output (strengths, gaps, revisions). Structure makes feedback comparable and usable.
+    </p>
+
+    <p>
+      Encourage students to submit a brief “revision memo” describing what they changed and why.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>

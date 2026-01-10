@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hands-On Introduction to Generative AI – Alignment Lab (UIUC Outcomes)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+    line-height: 1.6;
+    color: #13294b;
+    background: #fff;
+  }
+  .banner {
+    background: #13294b;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    margin-bottom: 28px;
+  }
+  .step {
+    margin-top: 28px;
+    padding: 18px;
+    border-left: 4px solid #e84a27;
+    background: #f8f8f9;
+    border-radius: 6px;
+  }
+  .callout {
+    background: #f1f1f4;
+    border-left: 4px solid #e84a27;
+    padding: 18px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  .prompt-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d0d4da;
+    background: #ffffff;
+  }
+  .prompt-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  ul { margin-top: 10px; }
+  a { color: #13294b; }
+  details {
+    margin-top: 14px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #d0d4da;
+    border-radius: 6px;
+  }
+  details summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #13294b;
+  }
+  .footer {
+    margin-top: 50px;
+    padding-top: 14px;
+    border-top: 1px solid #d0d4da;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+  Hands-On Introduction to Generative AI
+</div>
+
+<h1>Aligning Course Objectives with UIUC Learning Outcomes (Hands-On Lab)</h1>
+
+<p>
+  In this activity, you’ll build an alignment map using <strong>real learning outcomes published online</strong>
+  at the University of Illinois. The goal is not to “automate” alignment, but to use AI to draft a map
+  you can quickly refine with faculty judgment.
+</p>
+
+<div class="callout">
+  <strong>Key idea:</strong> AI can draft an alignment table quickly—but you should require it to
+  stay source-based and to clearly label any uncertainty instead of guessing.
+</div>
+
+<div class="step">
+  <h2>Step 1 — Open the UIUC Outcomes Pages (Online Sources)</h2>
+
+  <p>Open these official UIUC pages in new tabs:</p>
+
+  <ul>
+    <li>
+      <strong>Illinois Student Learning Outcomes (Provost):</strong>
+      <a href="https://provost.illinois.edu/assessment/learning-outcomes-assessment/illinois-student-learning-outcomes/" target="_blank" rel="noopener">
+        provost.illinois.edu → Illinois Student Learning Outcomes
+      </a>
+    </li>
+
+    <li>
+      <strong>General Education Learning Outcomes:</strong>
+      <a href="https://gened.illinois.edu/learning-outcomes/" target="_blank" rel="noopener">
+        gened.illinois.edu → Learning Outcomes
+      </a>
+    </li>
+
+    <li>
+      <strong>(Optional) Gen Ed outcome definitions (Provost assessment page):</strong>
+      <a href="https://provost.illinois.edu/assessment/learning-outcomes-assessment/general-education-assessment/" target="_blank" rel="noopener">
+        provost.illinois.edu → General Education Assessment (definitions)
+      </a>
+    </li>
+  </ul>
+
+  <p>
+    You’ll copy/paste outcomes from these pages into the prompt below. This keeps the AI grounded in
+    the same language used by the university.
+  </p>
+</div>
+
+<div class="step">
+  <h2>Step 2 — Find a Department Outcomes Page (Your Unit)</h2>
+
+  <p>
+    Many departments publish student learning outcomes. If your department has a page, open it and
+    copy the outcomes.
+  </p>
+
+  <p>
+    If you need an example of what a department outcomes page looks like, here is one UIUC example:
+    <a href="https://economics.illinois.edu/academics/undergraduate-program/learning-outcomes" target="_blank" rel="noopener">
+      Department of Economics → Learning Outcomes
+    </a>
+  </p>
+
+  <p>
+    Use your own department outcomes if available. If your unit doesn’t publish outcomes online,
+    use your program’s outcomes from the catalog or internal documentation.
+  </p>
+</div>
+
+<div class="step">
+  <h2>Step 3 — Draft a Set of Course Objectives (or Use an Existing One)</h2>
+
+  <p>
+    Paste 3–5 course objectives below. Keep them action-oriented (analyze, evaluate, design, interpret).
+    If you don’t have yours handy, start with a placeholder set and revise later.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+COURSE OBJECTIVES (paste yours here):
+1)
+2)
+3)
+4)
+5)
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Step 4 — Run the Alignment Prompt (Source-Based)</h2>
+
+  <p>
+    Copy the prompt below into your AI tool. Then paste:
+    (1) your course objectives, (2) your department outcomes, and (3) UIUC outcomes from the pages above.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+You are helping me create an alignment map for a UIUC course.
+
+IMPORTANT RULES:
+- Use ONLY the outcomes I paste below.
+- Do NOT invent outcomes, categories, or wording.
+- If something does not clearly align, say "No strong match" and explain why.
+- Keep the output concise and instructor-friendly.
+
+TASK:
+1) Create an alignment table with one row per COURSE OBJECTIVE.
+2) For each objective, map it to:
+   - a Department outcome (if applicable)
+   - one UIUC Illinois Student Learning Outcome (if applicable)
+   - one UIUC Gen Ed core outcome (if applicable)
+3) Add a brief justification (1–2 sentences) per row explaining the match.
+
+OUTPUT FORMAT:
+Table with columns:
+Course Objective | Dept Outcome | UIUC Student Learning Outcome | UIUC Gen Ed Core Outcome | Justification
+
+PASTE CONTENT BELOW:
+
+COURSE OBJECTIVES:
+[paste here]
+
+DEPARTMENT OUTCOMES:
+[paste here]
+
+UIUC ILLINOIS STUDENT LEARNING OUTCOMES (from Provost page):
+[paste here]
+
+UIUC GENERAL EDUCATION OUTCOMES (from Gen Ed page):
+[paste here]
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Step 5 — Stress-Test the Draft (Anti-Hallucination Check)</h2>
+
+  <p>
+    Now run a second prompt to check whether the AI accidentally stretched or guessed. This step is
+    where “alignment” becomes credible.
+  </p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+Review the alignment table you just produced.
+
+1) Identify any rows where the mapping is weak, ambiguous, or based on assumptions.
+2) For each weak row, propose one of the following:
+   - a tighter rewrite of the COURSE OBJECTIVE to improve alignment, OR
+   - an alternative mapping using ONLY the pasted outcomes, OR
+   - "No strong match" if alignment is not appropriate.
+3) Do NOT invent outcomes. Quote the exact outcome wording you relied on when you claim a match.
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2>Step 6 — Translate Alignment into Assessment Evidence</h2>
+
+  <p>
+    Alignment becomes meaningful when it connects to what students actually do.
+    For 1–2 objectives, add:
+  </p>
+
+  <ul>
+    <li><strong>Evidence:</strong> Which assignment demonstrates the objective?</li>
+    <li><strong>Criteria:</strong> What would “meeting the outcome” look like?</li>
+    <li><strong>Checkpoint:</strong> Where in the course will students practice before being assessed?</li>
+  </ul>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+For the two course objectives below, propose:
+- one assignment that provides evidence,
+- 2–3 criteria I could put in a rubric,
+- one low-stakes practice activity before the graded work.
+
+Use only what I paste. Keep suggestions realistic for a single course.
+
+OBJECTIVES:
+[paste 1–2 objectives here]
+
+COURSE CONTEXT (optional):
+[level, class size, discipline, typical assignments]
+    </div>
+  </div>
+</div>
+
+<div class="wrapup">
+  <h2>Conceptual Wrap-Up</h2>
+
+  <p>
+    Alignment is strongest when it is <strong>traceable</strong>: a reader should be able to see how
+    course objectives support department and campus priorities—and how assignments generate evidence of learning.
+  </p>
+
+  <details>
+    <summary>Show Expanded Explanation</summary>
+    <p>
+      AI can accelerate the “first draft” of alignment, but alignment is ultimately a faculty judgment call.
+      The most durable approach is to (1) paste authoritative outcomes, (2) require the model not to invent,
+      and (3) run a second pass that challenges weak mappings and proposes revisions.
+    </p>
+  </details>
+</div>
+
+<div class="wrapup">
+  <details>
+    <summary>Practical Guidance for Teaching and Academic Work</summary>
+    <p>
+      If you’re short on time, align just 3–5 core objectives for the course rather than everything.
+      Use the alignment table as a living document you revisit during assignment updates or program review.
+    </p>
+    <p>
+      If outcomes language feels too broad, rewrite course objectives to be more specific about what students
+      will produce, justify, or demonstrate. That specificity makes alignment easier—and grading clearer.
+    </p>
+  </details>
+</div>
+
+<div class="footer">
+  Generated with AI assistance for the Center for Innovation in Teaching & Learning — Updated January 2026
+</div>
+
+</body>
+</html>
