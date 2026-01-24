@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resources & Support | CITL</title>
+    <link rel="stylesheet" href="https://cdn.brand.illinois.edu/illinois.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1D1D1D;
+            background: #fff;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Top AI Title Bar */
+        .ai-title-bar {
+            background: #13294B;
+            color: #fff;
+            text-align: center;
+            padding: 15px 20px;
+            border-bottom: 4px solid #E84A27;
+        }
+
+        .ai-title-bar h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Featured Event Hero */
+        .hero {
+            background: linear-gradient(135deg, #13294B 0%, #1D3E6F 100%);
+            color: #fff;
+            padding: 50px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(232, 74, 39, 0.15) 0%, transparent 60%);
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-text h2 {
+            font-size: 0.9rem;
+            color: #E84A27;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: #E84A27;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta:hover {
+            background: #fff;
+            color: #13294B;
+            transform: translateY(-2px);
+        }
+
+        .hero-date {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .hero-date .date-large {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #E84A27;
+            line-height: 1;
+        }
+
+        .hero-date .date-month {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .hero-date p {
+            font-size: 0.85rem;
+            margin: 5px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #E84A27;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #13294B;
+            font-weight: 700;
+        }
+
+        .section-link {
+            color: #E84A27;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .section-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Team Grid - Compact */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .team-card {
+            background: #fff;
+            border: 2px solid #E8E8E8;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .team-card:hover {
+            border-color: #E84A27;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .team-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #E84A27, #FF6B4A);
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .team-card h3 {
+            color: #13294B;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            color: #E84A27;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .team-card p {
+            color: #666;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* X3 Studio Feature */
+        .x3-feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #E8E8E8;
+        }
+
+        .x3-image {
+            background-size: cover;
+            background-position: center;
+            min-height: 400px;
+        }
+
+        .x3-content {
+            padding: 30px;
+        }
+
+        .x3-content h3 {
+            color: #13294B;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .x3-content p {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .info-box {
+            background: #F8F9FA;
+            border-left: 4px solid #E84A27;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        .info-box h4 {
+            color: #13294B;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+
+        .info-box p {
+            color: #666;
+            font-size: 0.85rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .tools-list {
+            background: #F8F9FA;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Curriculum Grid - Compact */
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+        }
+
+        .curriculum-card {
+            background: #fff;
+            border: 2px solid #E8E8E8;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .curriculum-card:hover {
+            border-color: #E84A27;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .curriculum-icon {
+            width: 45px;
+            height: 45px;
+            background: #E84A27;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+
+        .curriculum-card h4 {
+            color: #13294B;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .curriculum-card p {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .card-link {
+            color: #E84A27;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Events Grid - Compact */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .event-card {
+            background: #fff;
+            border: 2px solid #E8E8E8;
+            border-radius: 8px;
+            padding: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            border-color: #E84A27;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .event-date {
+            display: inline-block;
+            background: #E84A27;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .event-card h4 {
+            color: #13294B;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .event-card p {
+            color: #666;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Archive Section */
+        .archive-box {
+            background: linear-gradient(135deg, #F8F9FA 0%, #E8E8E8 100%);
+            border-radius: 10px;
+            padding: 35px;
+            text-align: center;
+        }
+
+        .archive-box h3 {
+            color: #13294B;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .archive-box p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .archive-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .archive-btn {
+            display: inline-block;
+            background: #13294B;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .archive-btn:hover {
+            background: #E84A27;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #F8F9FA;
+            border-top: 3px solid #E84A27;
+            padding: 30px 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer a {
+            color: #13294B;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #E84A27;
+        }
+
+        @media (max-width: 768px) {
+            .ai-title-bar h1 {
+                font-size: 1.2rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h3 {
+                font-size: 1.5rem;
+            }
+
+            .x3-feature {
+                grid-template-columns: 1fr;
+            }
+
+            .x3-image {
+                min-height: 250px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- AI Title Bar -->
+    <div class="ai-title-bar">
+        <h1>Generative Artificial Intelligence at CITL</h1>
+    </div>
+
+    <!-- Featured Event Hero -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h2>Next Featured Event</h2>
+                <h3>AI Workshop: Prompt Engineering for Educators</h3>
+                <p>Learn advanced techniques for crafting effective prompts that enhance teaching materials, streamline grading, and create personalized learning experiences for students.</p>
+                <a href="#" class="hero-cta">Register Now</a>
+            </div>
+            <div class="hero-date">
+                <div class="date-large">15</div>
+                <div class="date-month">February 2026</div>
+                <p>2:00 PM - 3:30 PM</p>
+                <p style="opacity: 0.8;">Hybrid: Armory 172 & Zoom</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Meet Our AI Team -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our AI Team</h2>
+            </div>
+            <p style="color: #555; margin-bottom: 25px; font-size: 0.95rem;">Our team of AI experts is here to support your teaching and learning goals. Schedule a consultation to explore how generative AI can enhance your curriculum and engage your students.</p>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="color: #13294B; font-size: 1.1rem; font-weight: 600;">CITL AI Consultants</h3>
+                <a href="https://citl.illinois.edu/citl-directory/all-staff" class="section-link">View Full Directory →</a>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-photo">PB</div>
+                    <h3>Przemek Bosak</h3>
+                    <div class="team-role">AI & XR Innovation</div>
+                    <p>Assistant Director focusing on the intersection of artificial intelligence and immersive technology.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo">YB</div>
+                    <h3>Yury Borukhovich</h3>
+                    <div class="team-role">AI Developer & eLearning</div>
+                    <p>Senior eLearning Professional specializing in AI tool development and educational technology integration.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo">EC</div>
+                    <h3>Erin Creuz</h3>
+                    <div class="team-role">Instructional Design & Development</div>
+                    <p>Instructional Designer specializing in AI-enhanced pedagogy and curriculum development.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo">AD</div>
+                    <h3>Adam Dill</h3>
+                    <div class="team-role">XR Developer</div>
+                    <p>XR Designer developing immersive learning experiences and virtual reality applications.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo">MK</div>
+                    <h3>Mitch Kage</h3>
+                    <div class="team-role">Instructional Design & Development</div>
+                    <p>Instructional Design Coordinator focusing on pedagogical strategies and AI integration.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo">JN</div>
+                    <h3>Jamie Nelson</h3>
+                    <div class="team-role">Educational Innovation</div>
+                    <p>Associate Director leading AI innovation initiatives and emerging educational technologies.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo">AP</div>
+                    <h3>Andrew Phanor</h3>
+                    <div class="team-role">Audiovisual Technology</div>
+                    <p>Associate Audiovisual Technology Specialist providing AV support and event production services.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo">AR</div>
+                    <h3>Adam Ruud</h3>
+                    <div class="team-role">Multimodal AI</div>
+                    <p>Instructional Media Producer specializing in multimodal AI content creation and production.</p>
+                </div>
+				       <div class="team-card">
+                    <div class="team-photo">JN</div>
+                    <h3>Killi Solivan</h3>
+                    <div class="team-role">AI and XR development</div>
+                    <p>Digital Art Director leading AI and XR iniatives for experiential education.</p>
+                </div>
+				              <div class="team-card">
+                    <div class="team-photo">JW</div>
+                    <h3>Jim Wentworth</h3>
+                    <div class="team-role">AI Strategies</div>
+                    <p>Associate Director for AI Strategy focusing on integration of AI across the institution.</p>
+                </div>
+            </div>
+            
+            <div style="background: #F8F9FA; border-left: 4px solid #E84A27; padding: 15px 20px; margin-top: 25px; border-radius: 4px;">
+                <h4 style="color: #13294B; font-size: 1rem; margin-bottom: 8px;">Consultations Available</h4>
+                <p style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">Drop-In Hours: Mondays & Tuesdays, 12:00-4:00 PM (Innovation Studio, Armory 172)</p>
+                <p style="color: #666; font-size: 0.9rem; margin-bottom: 12px;">One-on-one sessions available in-person or virtually. Departmental visits by request.</p>
+                <a href="mailto:citl-info@illinois.edu" class="hero-cta" style="display: inline-block; font-size: 0.9rem; padding: 10px 24px;">Schedule Consultation</a>
+            </div>
+        </section>
+
+        <!-- X3: Experience, Explore, Excel -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">X3 Studio: Experience: Explore: Excel</h2>
+            </div>
+            <div class="x3-feature">
+                <div class="x3-image" style="background-image: url('https://citl.illinois.edu/sites/default/files/styles/max_1300x1300/public/CITL%20Media%20Hub%20Podcast%20Studio%20-%20Web_0.png?itok=Dqckzpq_');"></div>
+                <div class="x3-content">
+                    <h3>Experience: Explore: Excel</h3>
+                    <p>Our X3 Studio is your hands-on laboratory for AI experimentation and innovation. Explore the latest generative AI tools, immersive XR technologies, and our Media Hub for content creation—all in a supportive, collaborative environment.</p>
+                    
+                    <div class="info-box">
+                        <h4>Generative AI Tools</h4>
+                        <p>Experiment with Adobe Firefly, Midjourney, DALL-E 3, ChatGPT 4, Stable Diffusion, and more in our dedicated workspace.</p>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4>XR & VR Equipment</h4>
+                        <p>Explore immersive technologies and develop virtual reality experiences for teaching and learning.</p>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4>Media Hub</h4>
+                        <p>Access professional recording studios and production tools for creating educational content.</p>
+                    </div>
+                    
+                    <a href="https://citl.illinois.edu/explore-our-spaces/virtual-reality-lab" class="hero-cta" style="display: inline-block; margin-top: 15px;">Explore X3 Studio</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Curriculum -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">AI Curriculum & Training</h2>
+                <a href="ai-curriculum-catalog.html" class="section-link">View Full Catalog →</a>
+            </div>
+            <div class="curriculum-grid">
+     
+                <div class="curriculum-card">
+                    <div class="curriculum-icon">🎓</div>
+                    <h4>Live Workshops</h4>
+                    <p>Hands-on sessions covering prompt engineering, content creation, and ethical AI use in education.</p>
+                    <a href="ai-curriculum-catalog.html" class="card-link">View Catalog →</a>
+                </div>
+				
+                <div class="curriculum-card">
+                    <div class="curriculum-icon">🌟</div>
+                    <h4>Spring Into AI Events</h4>
+                    <p>Faculty showcase series featuring innovative AI implementations and real-world classroom examples.</p>
+                    <a href="https://citl.illinois.edu/learn-new-technologies/generative-artificial-intelligence-gen-ai" class="card-link">View Schedule →</a>
+                </div>
+				          <div class="curriculum-card">
+                    <div class="curriculum-icon">📚</div>
+                    <h4>Asynchronous Learning</h4>
+                    <p>Self-paced modules, video tutorials, and comprehensive guides for learning AI tools on your schedule.</p>
+                    <a href="ai-curriculum-catalog.html" class="card-link">View Catalog →</a>
+                </div>
+                <div class="curriculum-card">
+                    <div class="curriculum-icon">👥</div>
+                    <h4>Departmental Training</h4>
+                    <p>Custom workshops tailored to your department's needs and discipline-specific applications.</p>
+                    <a href="#" class="card-link">Request Training →</a>
+                </div>
+                <div class="curriculum-card">
+                    <div class="curriculum-icon">🤝</div>
+                    <h4>Additional Campus Training</h4>
+                    <p>Explore AI training from campus partners including Siebel Center, University Library, Human Resources, and more.</p>
+                    <a href="#" class="card-link">Browse Partners →</a>
+                </div>
+                <div class="curriculum-card">
+                    <div class="curriculum-icon">💬</div>
+                    <h4>AI Community in Teams</h4>
+                    <p>Join our MS Teams community to share experiences, ask questions, and collaborate with peers.</p>
+                    <a href="#" class="card-link">Join Community →</a>
+                </div>
+								         <div class="curriculum-card">
+                    <div class="curriculum-icon">🎓</div>
+                    <h4>LinkedIn Learnin<br>
+AI Skills Pathways</h4>
+                    <p>Explore Campus Tools, AI Quick Tips, Step-by-step Tutorials and more in our AI resource library.</p>
+                    <a href="https://learning.linkedin.com/resources/upskilling-and-reskilling/ai-skill-pathways" class="card-link">View Library →</a>
+                </div>
+				         <div class="curriculum-card">
+                    <div class="curriculum-icon">📚</div>
+                    <h4>Resource Library</h4>
+                    <p>Explore Campus Tools, AI Quick Tips, Step-by-step Tutorials and more in our AI resource library.</p>
+                    <a href="ai-resource-library.html" class="card-link">View Library →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Events -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Upcoming AI Events</h2>
+                <a href="ai-events-archive.html" class="section-link">View Event Archive →</a>
+            </div>
+            <div class="events-grid">
+                <div class="event-card">
+                    <span class="event-date">Feb 15, 2026</span>
+                    <h4>AI Workshop: Prompt Engineering</h4>
+                    <p>Advanced techniques for creating effective prompts for educational content and student support.</p>
+                </div>
+                <div class="event-card">
+                    <span class="event-date">Feb 22, 2026</span>
+                    <h4>Guest Talk: AI Ethics in Higher Ed</h4>
+                    <p>Exploring academic integrity, bias, and responsible AI use with campus thought leaders.</p>
+                </div>
+                <div class="event-card">
+                    <span class="event-date">Mar 1, 2026</span>
+                    <h4>Panel: Student Perspectives on AI</h4>
+                    <p>Hear directly from students about their experiences using AI tools for learning and research.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Archive -->
+        <section class="section">
+            <div class="archive-box">
+                <h3>Explore Past AI Events & Resources</h3>
+                <p>Access recordings, materials, and resources from our Summer of AI and Fall Into AI series.</p>
+                <div class="archive-links">
+                    <a href="https://mediaspace.illinois.edu/category/Campus+Units%3ECenter+for+Innovation+in+Teaching+%26+Learning%3EGenAI+Stories/363503342" class="archive-btn">MediaSpace Archive</a>
+                    <a href="https://www.youtube.com/channel/UCVPhiJjaFlv_UjJURmpnShw" class="archive-btn">YouTube Playlist</a>
+                    <a href="ai-resource-library.html" class="archive-btn">Resource Library</a>
+					  <a href="ai-newsletter.html" class="archive-btn">AI Newletter</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Created by Claude for the <a href="https://citl.illinois.edu">Center for Innovation in Teaching & Learning</a></p>
+        <p>Last updated January 2026</p>
+    </div>
+</body>
+</html>

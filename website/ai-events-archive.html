@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Events Archive | CITL</title>
+    <link rel="stylesheet" href="https://cdn.brand.illinois.edu/illinois.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1D1D1D;
+            background: #fff;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .ai-title-bar {
+            background: #13294B;
+            color: #fff;
+            text-align: center;
+            padding: 15px 20px;
+            border-bottom: 4px solid #E84A27;
+        }
+
+        .ai-title-bar h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .breadcrumb {
+            background: #F8F9FA;
+            padding: 12px 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #E84A27;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #13294B 0%, #1D3E6F 100%);
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(232, 74, 39, 0.15) 0%, transparent 60%);
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero-banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .info-section {
+            background: #F8F9FA;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 2px solid #E8E8E8;
+        }
+
+        .info-section h3 {
+            color: #13294B;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .info-section p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .archive-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #E84A27;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .archive-controls h2 {
+            color: #13294B;
+            font-size: 1.8rem;
+        }
+
+        .controls-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 10px 40px 10px 15px;
+            font-size: 0.9rem;
+            border: 2px solid #E8E8E8;
+            border-radius: 6px;
+            outline: none;
+            width: 250px;
+        }
+
+        .search-input:focus {
+            border-color: #E84A27;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            background: #fff;
+            border: 2px solid #E8E8E8;
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .filter-tab:hover {
+            border-color: #E84A27;
+            color: #E84A27;
+        }
+
+        .filter-tab.active {
+            background: #E84A27;
+            border-color: #E84A27;
+            color: #fff;
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .event-card {
+            background: #fff;
+            border: 2px solid #E8E8E8;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .event-card:hover {
+            border-color: #E84A27;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .event-card.hidden {
+            display: none;
+        }
+
+        .event-date {
+            background: #E84A27;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .event-type {
+            background: #13294B;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        .event-card h3 {
+            color: #13294B;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .event-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .event-location {
+            color: #888;
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .event-link {
+            color: #E84A27;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .event-link:hover {
+            text-decoration: underline;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .no-results.hidden {
+            display: none;
+        }
+
+        .no-results h3 {
+            color: #13294B;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background: #F8F9FA;
+            border-top: 3px solid #E84A27;
+            padding: 30px 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer a {
+            color: #13294B;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #E84A27;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner h2 {
+                font-size: 1.8rem;
+            }
+
+            .event-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .archive-controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .controls-right {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .filter-group {
+                width: 100%;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ai-title-bar">
+        <h1>Generative Artificial Intelligence at CITL</h1>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="citl-ai-resources.html">Generative AI at CITL</a> /<span>&nbsp;Events Archive</span>
+        </div>
+    </div>
+
+    <div class="hero-banner">
+        <div class="hero-content">
+            <h2>AI Events Archive</h2>
+            <p>Explore past workshops, lectures, and discussions on how generative AI impacts the future of education</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Info Section -->
+        <div class="info-section">
+            <h3>About Our AI Event Series</h3>
+            <p>The Center for Innovation in Teaching & Learning (CITL) along with campus partners hosted Summer of AI and Fall Into AI at the University of Illinois Urbana-Champaign. Throughout these series, faculty and staff had the opportunity to participate in hands-on workshops, guest talks, and conversations on how generative artificial intelligence impacts the future of teaching, learning, and beyond.</p>
+        </div>
+
+        <!-- Archive Controls -->
+        <div class="archive-controls">
+            <h2>Events Archive</h2>
+            <div class="controls-right">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search events..." onkeyup="searchEvents()">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="filter-group">
+                    <div class="filter-tab active" onclick="filterSeries('all')">All Events</div>
+                    <div class="filter-tab" onclick="filterSeries('fall')">Fall Into AI</div>
+                    <div class="filter-tab" onclick="filterSeries('summer')">Summer of AI</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Grid -->
+        <div class="event-grid" id="eventGrid">
+            <!-- FALL INTO AI EVENTS -->
+            
+            <div class="event-card" data-series="fall" data-year="2025" data-keywords="students perspectives voices panel discussion gen ai educational journeys careers">
+                <span class="event-date">December 4, 2025</span>
+                <span class="event-type">Lecture</span>
+                <h3>How do students feel about Gen AI? Student Voices</h3>
+                <p class="event-description">In this upcoming student voices panel, students will provide their own Gen AI perspectives. This will be an informative conversation about the use of Gen AI in student's educational journeys, personal lives, and career preparations.</p>
+                <p class="event-location">CITL Innovation Studio, Armory room 172 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8358?eventId=33537481" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="fall" data-year="2025" data-keywords="research llm tools collaboration discovery faculty students projects creativity inclusivity interdisciplinary">
+                <span class="event-date">November 20, 2025</span>
+                <span class="event-type">Lecture</span>
+                <h3>Discover Research Opportunities with AI: Using LLM Tools to Connect Ideas, People, and Projects</h3>
+                <p class="event-description">Looking for a research topic, a faculty collaborator, students with specific skills, or an on-campus project? Join us to explore how Large Language Model (LLM) tools can make that process easier and smarter. We'll also share research insights on how these tools foster creativity, inclusivity, and interdisciplinary teamwork.</p>
+                <p class="event-location">CITL Innovation Studio, Armory room 172 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8358?eventId=33536348" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="fall" data-year="2025" data-keywords="public speaking vr virtual reality soft skills presentation interview conversation language learning ovation feedback">
+                <span class="event-date">November 13, 2025</span>
+                <span class="event-type">Lecture</span>
+                <h3>Public Speaking with AI and VR: Practicing Speech and Conversational Soft Skills with Ovation VR</h3>
+                <p class="event-description">Discover how you can practice and develop your soft skills with the AI-integrated VR application, Ovation VR. This tool gives you an immersive way to practice different speaking skills such as presentations, job interviews, conversations, language learning, and more with in-depth feedback, natural conversation flow, and Q&A.</p>
+                <p class="event-location">CITL Innovation Studio, Armory room 172 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8358?eventId=33536233" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="fall" data-year="2025" data-keywords="career services job search employment careergpt coaching employers castree career center">
+                <span class="event-date">November 6, 2025</span>
+                <span class="event-type">Lecture</span>
+                <h3>CareerGPT: The Intersection of Generative AI and University Career Services</h3>
+                <p class="event-description">Join Senior Assistant Director, James Castree from the Career Center at Illinois for a discussion on how generative AI has impacted career services. Learn about its uses in career coaching, its impact on the job search process for our students, and how employers have responded to the AI boom.</p>
+                <p class="event-location">CITL Innovation Studio, Armory room 172 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8358?eventId=33535744" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="fall" data-year="2025" data-keywords="assessment grading feedback scale gies business quality sustainability affordable ai-assisted">
+                <span class="event-date">November 3, 2025</span>
+                <span class="event-type">Lecture</span>
+                <h3>Breaking the Assessment Bottleneck: Finding Human-AI Balance in Feedback at Scale</h3>
+                <p class="event-description">At-scale programs face a dilemma: how to maintain educational quality and a great experience while keeping programs affordable and sustainable. This presentation demonstrates how AI-assisted grading (where AI helps graders focus their time on students needing more assistance) can resolve this tension through three experiments at the Gies College of Business.</p>
+                <p class="event-location">CITL Innovation Studio, Armory room 172 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8358?eventId=33536374" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="fall" data-year="2025" data-keywords="creative media storytelling film documentary visual arts panel masson giacchino bellini">
+                <span class="event-date">October 31, 2025</span>
+                <span class="event-type">Lecture</span>
+                <h3>AI & the Creative Lens: Digital Media, Storytelling, and the Future of Learning</h3>
+                <p class="event-description">Join us for a dynamic panel discussion exploring how generative AI is reshaping the creative industries—from visual arts to documentary filmmaking—and what that means for educators and students alike. Featuring Terrence Masson (School of Visual Arts) and Anthony Giacchino (Oscar-winning filmmaker), and moderated by Michel Bellini (University of Illinois).</p>
+                <p class="event-location">CITL Innovation Studio, Armory room 172 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8358?eventId=33535539" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="fall" data-year="2025" data-keywords="creative thinking adobe firefly visualization design prototype text-to-image generation">
+                <span class="event-date">October 24, 2025</span>
+                <span class="event-type">Workshop</span>
+                <h3>Creative Thinking with Gen AI</h3>
+                <p class="event-description">Explore how generative AI tools like Adobe Firefly can spark creative thinking and help visualize ideas. This hands-on session introduces text-to-image generation as a way to prototype quickly and communicate concepts that traditional tools can't easily capture.</p>
+                <p class="event-location">Armory room 172 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8358?eventId=33536118" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="fall" data-year="2025" data-keywords="ethics policy governance boundaries literacy sanfilippo university policies classroom coordination">
+                <span class="event-date">October 23, 2025</span>
+                <span class="event-type">Lecture</span>
+                <h3>Elucidating Boundaries on Ethical AI Use in Higher Education: Synthesizing Governance and AI Literacy</h3>
+                <p class="event-description">In this talk, Dr. Madelyn Rose Sanfilippo will discuss how her research critically evaluating and comparing university AI policies has informed her own policies and practices in the classroom, as well as the need for greater normative consensus and institutional coordination.</p>
+                <p class="event-location">CITL Innovation Studio, Armory room 172 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8358?eventId=33535796" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="fall" data-year="2025" data-keywords="teaching learning pedagogy strategies classroom assistants tutors assessment feedback literacy curriculum">
+                <span class="event-date">October 17, 2025</span>
+                <span class="event-type">Lecture</span>
+                <h3>Teaching With AI, Not To AI: Practical Strategies for Improving Teaching and Learning</h3>
+                <p class="event-description">How do we harness generative AI to elevate, not replace, teaching and learning? This talk surveys current, evidence-informed uses of AI in classrooms and then gets hands-on with faculty-ready workflows. We'll look at classroom assistants and virtual tutors, AI-supported assessment and feedback, and ways to weave AI literacy into the curriculum.</p>
+                <p class="event-location">CITL Innovation Studio, Armory room 172 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8358?eventId=33535713" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="fall" data-year="2025" data-keywords="fundamentals how ai works basics introduction foundations bosak citl processes future">
+                <span class="event-date">October 1, 2025</span>
+                <span class="event-type">Lecture</span>
+                <h3>AI Is Here. Have You Ever Wondered How It Works?</h3>
+                <p class="event-description">To kick-off the "Fall into AI," CITL's Przemek Bosak will peek under the hood of Artificial Intelligence. The following foundational questions will be addressed: How does AI work? How does it know what it knows? What does it do well? What are the processes behind it? The presentation will conclude with a short, speculative overview of the future of AI.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8358?eventId=33534552" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <!-- SUMMER OF AI EVENTS -->
+            
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="video creation avatars digital faculty gies pratten">
+                <span class="event-date">July 31, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Video Creation with AI Avatars: Steven Pratten Gies College of Business</h3>
+                <p class="event-description">This presentation will dive into the development and application of faculty digital avatars in creating video content for Gies online courses.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519809" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="research ethics responsible conduct rcr transparency jones ovcri">
+                <span class="event-date">July 31, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Research Ethics and Generative AI: Patty Jones OVCRI</h3>
+                <p class="event-description">Ethical issues in research are typically framed as the "responsible conduct of research" (RCR). RCR principles include honesty and transparency. The RCR lens is a useful way to evaluate the use of generative AI in research tasks, including AI-assisted literature reviews, experimental protocol development, and writing.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519546" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="custom ai agents chatgpt copilot wentworth citl">
+                <span class="event-date">July 30, 2025</span>
+                <span class="event-type">Workshop</span>
+                <h3>Creating and Using Custom AI Agents: Jim Wentworth CITL</h3>
+                <p class="event-description">This session will focus on the ease of creating custom AI agents using ChatGPT and Copilot. Attendees will first explore existing custom AI agents and then learn how to easily create their own specialized agent.</p>
+                <p class="event-location">Armory room 146 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519525" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="internship atlas program student projects rome sommers">
+                <span class="event-date">July 24, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>AI in an Internship Program: Michelle Rome ATLAS</h3>
+                <p class="event-description">Michelle Rome and Mike Sommers will discuss how they have approached AI in the ATLAS Internship Program. Several student developed projects will be highlighted. Mike will also be presenting how he has been using AI to help further his personal study techniques.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519958" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="marketing reality costs risks data governance geigner technology services">
+                <span class="event-date">July 23, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Chasing the Fantastical Promise of AI: Chuck Geigner Technology Services</h3>
+                <p class="event-description">This presentation will focus on the critical, and at times possibly irreverent discussion of marketing, reality, expectations, costs, and who's winning. Also, risks and tradeoffs when deploying and feeding Gen AI tools, including data stewardship and governance. Attendees will gain a deeper understanding of what's at stake, and how to critically engage.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33522140" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="digital storybooks adobe express firefly copilot wolf citl">
+                <span class="event-date">July 22, 2025</span>
+                <span class="event-type">Workshop</span>
+                <h3>Creating Digital Storybooks to Help Students Learn: Ava Wolf CITL</h3>
+                <p class="event-description">Creating digital storybooks to help students learn challenging concepts: Have your students create digital storybooks that explain and illustrate challenging course topics. This intermediate level workshop requires basic skills in using CoPilot, Adobe Firefly, and Adobe Express.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519681" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="prompt engineering fundamentals practice hahn technology services">
+                <span class="event-date">July 22, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Useful and Iterative Prompt Engineering: Dan Hahn Technology Services</h3>
+                <p class="event-description">This session covers the fundamentals of prompt engineering, a key skill for leveraging AI. Through hands-on practice, participants will learn to craft prompts, curate AI output and further integrate AI into their research, writing, and teaching.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519893" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="writing humanities panel exploratory discussion">
+                <span class="event-date">July 17, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Panel Discussion: Exploratory Conversations Around Writing With or Without AI</h3>
+                <p class="event-description">This session will use short, lightning-round presentations and a discussion panel to explore how campus stakeholders in the humanities are integrating or foregoing generative AI in their instructional practices.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519544" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="panel discussion hope hesitations ethics faculty staff">
+                <span class="event-date">July 16, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Talking AI: Hope, Hesitations, and Higher Ed Panel Discussion</h3>
+                <p class="event-description">Join us for a dynamic panel exploring the promises and pitfalls of generative AI in higher education. Faculty and staff will share diverse perspectives on how AI is reshaping teaching, learning, ethics, and the future of academia.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519543" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="assignments ai-resistant ai-enhanced gies king nelson">
+                <span class="event-date">July 15, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>AI-Resistant or AI-Enhanced Assignments? Practical Strategies for Faculty - Adam King & Jamie Nelson, Gies College of Business</h3>
+                <p class="event-description">Join us for a candid discussion about the realities of creating AI-resistant assignments versus the benefits of embracing AI-enhanced learning. We'll explore techniques to make assignments harder for AI to complete—while acknowledging their limitations—then discuss why AI-enhanced assignments that teach responsible AI use may be more future-proof for student success.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33520388" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="llm introduction beginners workshop bosak citl illinois chat">
+                <span class="event-date">July 10, 2025</span>
+                <span class="event-type">Workshop</span>
+                <h3>Introduction to Illinois Chat: Przemek Bosak CITL</h3>
+                <p class="event-description">This hands-on beginners' workshop will walk the participants through the creation process of a custom LLM for classroom purposes with Illinois.chat created by the National Center for Supercomputing Applications (NCSA). Please bring your laptops.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519520" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="adobe firefly image generation beginners workshop bosak citl">
+                <span class="event-date">July 9, 2025</span>
+                <span class="event-type">Workshop</span>
+                <h3>Introduction to Adobe Firefly: Przemek Bosak CITL</h3>
+                <p class="event-description">This hands-on, hybrid, beginners' workshop will introduce participants to image (still and moving) generating AIs. We will explore their features and capabilities and apply them in higher education settings. You will learn how to safely streamline your work, reduce production time, and easily generate visual aids for your classroom needs.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519514" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="llm large language models text generation workshop bosak citl">
+                <span class="event-date">July 8, 2025</span>
+                <span class="event-type">Workshop</span>
+                <h3>Introduction to LLMs: Przemek Bosak CITL</h3>
+                <p class="event-description">This hands-on beginners' Large Language Models workshop will introduce the participants to text generating AIs. We will explore their features and capabilities and apply them in streamlining teaching tasks and research. Other concepts will include: privacy/security, legal and ethical considerations of AI, and generative AI's place in higher education.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519507" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="illinois chat ncsa platform marwaha">
+                <span class="event-date">July 2, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Illinois Chat: Rohan Marwaha NCSA</h3>
+                <p class="event-description">This session will showcase what the Illinois Chat platform is about including the use cases and future plans.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519538" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="ai epistemology afrofuturism diversity inclusion adewunmi">
+                <span class="event-date">July 1, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Whose AI? For whose interests? Tobi Adéwùnmí</h3>
+                <p class="event-description">This session will attempt to approach AI and AI dystopia from the margins. By centering Black epistemologies and Afro-futurist aesthetics in two recent animations - Iwaju (Disney, 2024) and Jurassic World: Chaos Theory (Animation Works, 2024), I call for a more inclusive design thinking in developing and branding AI technologies for people of color, especially within predominantly white institutions.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519535" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="geopolitics us-china ai race winner-take-all sun ischool">
+                <span class="event-date">June 26, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>No Winner Will Take It All in AI: Meicen Sun iSchool</h3>
+                <p class="event-description">Taking stock of recent developments in the U.S.-China AI race, this talk offers a geostrategic analysis of why a winner-take-all approach to AI will fail and what it implies for humanity as a whole.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519537" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="historical research chatbot productivity morrissey history">
+                <span class="event-date">June 25, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>How does generative AI aid in historical research? Robert Morrissey Department of History</h3>
+                <p class="event-description">This presentation showcases workflows and use cases to leverage an AI chatbot for research tasks and project development. Mindful of flaws and many challenges, I conclude that use of the chat bot for research tasks often extends my productivity and saves time.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519534" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="copyright law lawsuits fair use jiang citl">
+                <span class="event-date">June 24, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Generative AI Meets Copyright Law: Lawsuits, Fair Use, and the Road Ahead - Andrew Jiang, CITL</h3>
+                <p class="event-description">In Thomson Reuters Enter. Ctr. GmbH v. Ross Intel. Inc., 2025 U.S. Dist. LEXIS 24296, one of the first legal decisions regarding GenAI and copyright infringement, the court found that an AI startup is liable for copyright infringement when it copied all the legal decision summaries in creating a legal research search engine powered by AI.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33520221" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="student success engagement feedback wentworth citl workshop">
+                <span class="event-date">June 24, 2025</span>
+                <span class="event-type">Workshop</span>
+                <h3>Supporting Student Success with AI: Jim Wentworth CITL</h3>
+                <p class="event-description">This hands-on workshop introduces practical strategies for using AI tools to support student success. Participants will explore how generative AI can be used to foster engagement, provide real-time feedback, enhance study habits, support diverse learning needs, and build academic confidence.</p>
+                <p class="event-location">Armory room 146 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519527" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="students perspectives voices panel discussion glover genis citl">
+                <span class="event-date">June 18, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Student's Voices: How do students feel about Gen AI? with Shenika Glover and Dulf Genis CITL</h3>
+                <p class="event-description">In this upcoming student voices panel, students will provide their own Gen AI perspectives. This will be an informative conversation about the use of Gen AI in student's educational journeys, personal lives, and career preparations.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519533" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="genai comparison chatgpt claude gemini perplexity copilot grok pliassas yfantis atlas">
+                <span class="event-date">June 17, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>GenAI Matchmaker: The GenAI Showdown for Every Task - Apostolos Pliassas with Kostas Yfantis, ATLAS</h3>
+                <p class="event-description">In today's rapidly evolving AI landscape, knowing which generative AI tool to use can make all the difference. This session offers a practical, side-by-side comparison of the leading GenAI platforms, including ChatGPT, Claude, Gemini, Perplexity, Copilot, Grok, and highlighting their unique strengths, limitations, and ideal use cases. Whether you're writing, coding, etc...</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33520208" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="digital humanities ethics privacy accessibility ton university library">
+                <span class="event-date">June 17, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>AI from a Digital Humanities Perspective: Mary Ton University Library</h3>
+                <p class="event-description">This workshop offers strategies for balancing innovation, ethics, privacy, intellectual property, and accessibility to create more inclusive learning environments. Digital humanities uses technology to support analysis, community, and connection. Situating AI among analog and digital technologies prepares educators and their students to engage thoughtfully with AI tools.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519532" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="professional development learning resources yfantis atlas">
+                <span class="event-date">June 12, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Learning about AI: Navigating Professional Development Opportunities: Kostas Yfantis ATLAS</h3>
+                <p class="event-description">In this interactive session, we'll explore the expanding landscape of AI learning resources, from "free" webinars and online courses to seminar offerings from organizations like EDUCAUSE and other entities. Whether you're just beginning your AI journey or looking to deepen your expertise, you'll discover options that suit your learning style, goals, and budget.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519531" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="custom ai agents chatgpt copilot wentworth citl workshop">
+                <span class="event-date">June 11, 2025</span>
+                <span class="event-type">Workshop</span>
+                <h3>Creating and Using Custom AI Agents: Jim Wentworth CITL</h3>
+                <p class="event-description">This session will focus on the ease of creating custom AI agents using ChatGPT and Copilot. Attendees will first explore existing custom AI agents and then learn how to easily create their own specialized agent.</p>
+                <p class="event-location">Armory room 146 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519522" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="aristai tutor accessibility ada wcag zhang thompson venda citl">
+                <span class="event-date">June 10, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Faster, Cheaper, Compliant: How AristAI Delivers Institutional Efficiency: Tony Zhang, Marc Thompson, and Sree Venda CITL</h3>
+                <p class="event-description">AristAI offers an AI Tutor that provides 24/7 personalized academic support and an Accessibility Tool that instantly scans and fixes LMS, document, and video content—helping educators enhance student learning and meet ADA and WCAG compliance with minimal IT effort.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519545" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="cheating learning cyberscholar cope education">
+                <span class="event-date">June 10, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>How can we know when AI extends rather than reduces student learning: William Cope College of Education</h3>
+                <p class="event-description">Generative AI has brought a serious problem to education. Speaking colloquially, the "cheating" now possible produces an obvious reduction in learning. Working towards a solution, I will demonstrate CyberScholar, offering learners full AI support while tracking negative and positive effects in their learning.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519530" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="llm introduction beginners workshop bosak citl illinois chat">
+                <span class="event-date">June 5, 2025</span>
+                <span class="event-type">Workshop</span>
+                <h3>Introduction to Illinois Chat: Przemek Bosak CITL</h3>
+                <p class="event-description">This hands-on beginners' workshop will walk the participants through the creation process of a custom LLM for classroom purposes with Illinois.chat created by the National Center for Supercomputing Applications (NCSA). Please bring your laptops.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519516" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="ai literacy education responsible use shehab siebel design">
+                <span class="event-date">June 5, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>A brief introduction to AI Literacy and its role in educational settings: Saad Shehab Siebel Center for Design</h3>
+                <p class="event-description">As AI tools continue to make it into classrooms and campuses, understanding how to use them responsibly and effectively is essential. This session introduces the core dimensions of AI literacy and explores how they can guide thoughtful integration of AI in educational settings.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519822" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="adobe firefly image generation beginners workshop bosak citl">
+                <span class="event-date">June 4, 2025</span>
+                <span class="event-type">Workshop</span>
+                <h3>Introduction to Adobe Firefly: Przemek Bosak CITL</h3>
+                <p class="event-description">This hands-on, hybrid, beginners' workshop will introduce participants to image (still and moving) generating AIs. We will explore their features and capabilities and apply them in higher education settings. You will learn how to safely streamline your work, reduce production time, and easily generate visual aids for your classroom needs.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519510" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="llm large language models text generation workshop bosak citl">
+                <span class="event-date">June 3, 2025</span>
+                <span class="event-type">Workshop</span>
+                <h3>Introduction to LLMs: Przemek Bosak CITL</h3>
+                <p class="event-description">This hands-on beginners' Large Language Models (LLMs) workshop will introduce the participants to text generating AIs. We will explore their features and capabilities and apply them in streamlining teaching tasks and research. Other concepts will include: privacy/security, legal and ethical considerations of AI, and generative AI's place in higher education.</p>
+                <p class="event-location">Armory room 156 and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33519506" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+
+            <div class="event-card" data-series="summer" data-year="2025" data-keywords="kickoff showcase demos launch siebel">
+                <span class="event-date">May 29, 2025</span>
+                <span class="event-type">Informational</span>
+                <h3>Summer of AI Kickoff and Showcase</h3>
+                <p class="event-description">The Kick-off event will include a Gen AI showcase featuring brief demos of several AI tools, and launch us into the "Summer of AI" filled with workshops, lectures, and panel discussions about the many aspects of this new and revolutionary technology.</p>
+                <p class="event-location">Siebel Center for Design and online via Zoom</p>
+                <a href="https://calendars.illinois.edu/detail/8230?eventId=33518537" target="_blank" class="event-link">View Event Details →</a>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results hidden" id="noResults">
+            <h3>No events found</h3>
+            <p>Try adjusting your search or filter</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Created by Claude for the <a href="https://citl.illinois.edu">Center for Innovation in Teaching & Learning</a></p>
+        <p>Last updated January 2026</p>
+    </div>
+
+    <script>
+        let currentSeries = 'all';
+
+        function filterSeries(series) {
+            currentSeries = series;
+            
+            // Update active tab
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            applyFilters();
+        }
+
+        function searchEvents() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.event-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const series = card.dataset.series;
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('.event-description').textContent.toLowerCase();
+                const keywords = card.dataset.keywords.toLowerCase();
+
+                const seriesMatch = currentSeries === 'all' || series === currentSeries;
+                const searchMatch = searchTerm === '' || 
+                                   title.includes(searchTerm) || 
+                                   description.includes(searchTerm) ||
+                                   keywords.includes(searchTerm);
+
+                if (seriesMatch && searchMatch) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Show/hide no results message
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

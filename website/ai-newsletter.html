@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Newsletter | CITL</title>
+    <link rel="stylesheet" href="https://cdn.brand.illinois.edu/illinois.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1D1D1D;
+            background: #fff;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .ai-title-bar {
+            background: #13294B;
+            color: #fff;
+            text-align: center;
+            padding: 15px 20px;
+            border-bottom: 4px solid #E84A27;
+        }
+
+        .ai-title-bar h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .breadcrumb {
+            background: #F8F9FA;
+            padding: 12px 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #E84A27;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #13294B 0%, #1D3E6F 100%);
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(232, 74, 39, 0.15) 0%, transparent 60%);
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero-banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .subscribe-section {
+            background: #F8F9FA;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 2px solid #E8E8E8;
+            text-align: center;
+        }
+
+        .subscribe-section h3 {
+            color: #13294B;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .subscribe-section p {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .subscribe-input {
+            flex: 1;
+            padding: 14px 18px;
+            font-size: 1rem;
+            border: 2px solid #E8E8E8;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .subscribe-input:focus {
+            border-color: #E84A27;
+        }
+
+        .subscribe-button {
+            background: #E84A27;
+            color: #fff;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .subscribe-button:hover {
+            background: #13294B;
+            transform: translateY(-2px);
+        }
+
+        .archive-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #E84A27;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .archive-controls h2 {
+            color: #13294B;
+            font-size: 1.8rem;
+        }
+
+        .controls-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 10px 40px 10px 15px;
+            font-size: 0.9rem;
+            border: 2px solid #E8E8E8;
+            border-radius: 6px;
+            outline: none;
+            width: 250px;
+        }
+
+        .search-input:focus {
+            border-color: #E84A27;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .year-filter {
+            display: flex;
+            gap: 10px;
+        }
+
+        .year-tab {
+            background: #fff;
+            border: 2px solid #E8E8E8;
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .year-tab:hover {
+            border-color: #E84A27;
+            color: #E84A27;
+        }
+
+        .year-tab.active {
+            background: #E84A27;
+            border-color: #E84A27;
+            color: #fff;
+        }
+
+        .newsletter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .newsletter-card {
+            background: #fff;
+            border: 2px solid #E8E8E8;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .newsletter-card:hover {
+            border-color: #E84A27;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-card.hidden {
+            display: none;
+        }
+
+        .newsletter-date {
+            background: #E84A27;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-card h3 {
+            color: #13294B;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .newsletter-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-link {
+            color: #E84A27;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .newsletter-link:hover {
+            text-decoration: underline;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .no-results.hidden {
+            display: none;
+        }
+
+        .no-results h3 {
+            color: #13294B;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background: #F8F9FA;
+            border-top: 3px solid #E84A27;
+            padding: 30px 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer a {
+            color: #13294B;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #E84A27;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner h2 {
+                font-size: 1.8rem;
+            }
+
+            .subscribe-form {
+                flex-direction: column;
+            }
+
+            .newsletter-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .archive-controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .controls-right {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .year-filter {
+                width: 100%;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ai-title-bar">
+        <h1>Generative Artificial Intelligence at CITL</h1>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+                       <a href="citl-ai-resources.html">Generative AI at CITL</a> / <span>Newsletter</span>
+        </div>
+    </div>
+
+    <div class="hero-banner">
+        <div class="hero-content">
+            <h2>AI in Education Newsletter</h2>
+            <p>Stay informed about the latest AI tools, teaching strategies, workshops, and resources delivered directly to your inbox</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Subscribe Section -->
+        <div class="subscribe-section">
+            <h3>Subscribe to Our AI Newsletter</h3>
+            <p>Get biweekly updates on AI training opportunities, campus tools, quick tips, and upcoming events</p>
+            
+            <form class="subscribe-form" onsubmit="event.preventDefault(); alert('Subscription form would submit here');">
+                <input type="email" class="subscribe-input" placeholder="Enter your email address" required>
+                <button type="submit" class="subscribe-button">Subscribe</button>
+            </form>
+        </div>
+
+        <!-- Archive Controls -->
+        <div class="archive-controls">
+            <h2>Newsletter Archive</h2>
+            <div class="controls-right">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search newsletters..." onkeyup="searchNewsletters()">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="year-filter">
+                    <div class="year-tab active" onclick="filterYear('all')">All</div>
+                    <div class="year-tab" onclick="filterYear('2026')">2026</div>
+                    <div class="year-tab" onclick="filterYear('2025')">2025</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter Grid -->
+        <div class="newsletter-grid" id="newsletterGrid">
+            <!-- Newsletter 1 -->
+            <div class="newsletter-card" data-year="2025" data-keywords="fall semester wrap-up recap december autumn">
+                <span class="newsletter-date">December 15, 2025</span>
+                <h3>Fall Into AI 2025 Wrap-up</h3>
+                <p class="newsletter-description">Recap of the fall semester with highlights of AI resources, opportunities, and initiatives from the academic year.</p>
+                <a href="https://emails.illinois.edu/newsletter/65/2049333565.html" target="_blank" class="newsletter-link">Read Newsletter →</a>
+            </div>
+
+            <!-- Newsletter 2 -->
+            <div class="newsletter-card" data-year="2025" data-keywords="october fall updates resources training">
+                <span class="newsletter-date">October 22, 2025</span>
+                <h3>Fall Into AI&nbsp; Issue 2</h3>
+                <p class="newsletter-description">October updates on generative AI tools, workshops, and teaching strategies for the fall semester.</p>
+                <a href="https://emails.illinois.edu/newsletter/60/781383760.html" target="_blank" class="newsletter-link">Read Newsletter →</a>
+            </div>
+
+            <!-- Newsletter 3 -->
+            <div class="newsletter-card" data-year="2025" data-keywords="september fall updates resources training">
+                <span class="newsletter-date">September 29, 2025</span>
+                <h3>Fall Into AI  Issue 1</h3>
+                <p class="newsletter-description">The first newsletter of the fall semester featuring AI updates, training opportunities, and campus resources.</p>
+                <a href="https://emails.illinois.edu/newsletter/33/1718773033.html" target="_blank" class="newsletter-link">Read Newsletter →</a>
+            </div>
+
+            <!-- Newsletter 4 -->
+            <div class="newsletter-card" data-year="2025" data-keywords="summer memories reflection recap highlights community">
+                <span class="newsletter-date">August 11, 2025</span>
+                <h3>Summer of AI 2025 Memories</h3>
+                <p class="newsletter-description">Summer of AI Newsletter Issue 7 - Reflect on the highlights and key takeaways from the Summer of AI 2025 program.</p>
+                <a href="https://emails.illinois.edu/newsletter/12/1425753712.html" target="_blank" class="newsletter-link">Read Newsletter →</a>
+            </div>
+
+            <!-- Newsletter 5 -->
+            <div class="newsletter-card" data-year="2025" data-keywords="writing ai authorship composition skills summer">
+                <span class="newsletter-date">August 4, 2025</span>
+                <h3>Writing With and Without AI</h3>
+                <p class="newsletter-description">Summer of AI Newsletter Issue 6 - Examine the evolving relationship between writing and AI tools, and strategies for effective composition.</p>
+                <a href="https://emails.illinois.edu/newsletter/83/1264555283.html" target="_blank" class="newsletter-link">Read Newsletter →</a>
+            </div>
+
+            <!-- Newsletter 6 -->
+            <div class="newsletter-card" data-year="2025" data-keywords="ai creativity media content generation art summer">
+                <span class="newsletter-date">July 21, 2025</span>
+                <h3>AI Creativity and Media</h3>
+                <p class="newsletter-description">Summer of AI Newsletter Issue 5 - Discover how AI is transforming creative processes and media production in educational contexts.</p>
+                <a href="https://emails.illinois.edu/newsletter/99/1217203499.html" target="_blank" class="newsletter-link">Read Newsletter →</a>
+            </div>
+
+            <!-- Newsletter 7 -->
+            <div class="newsletter-card" data-year="2025" data-keywords="ai policy politics governance ethics summer">
+                <span class="newsletter-date">July 9, 2025</span>
+                <h3>AI Policies and Politics</h3>
+                <p class="newsletter-description">Summer of AI Newsletter Issue 4 - Navigate the policy landscape around AI in education and understand the political dimensions of AI integration.</p>
+                <a href="https://emails.illinois.edu/newsletter/08/2062486908.html" target="_blank" class="newsletter-link">Read Newsletter →</a>
+            </div>
+
+            <!-- Newsletter 8 -->
+            <div class="newsletter-card" data-year="2025" data-keywords="ai literacy students future education preparation summer">
+                <span class="newsletter-date">June 23, 2025</span>
+                <h3>AI Literacy: Preparing Students for the Future</h3>
+                <p class="newsletter-description">Summer of AI Newsletter Issue 3 - Continue exploring strategies for building AI literacy and preparing students for an AI-integrated future.</p>
+                <a href="https://emails.illinois.edu/newsletter/86/882690586.html" target="_blank" class="newsletter-link">Read Newsletter →</a>
+            </div>
+
+            <!-- Newsletter 9 -->
+
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results hidden" id="noResults">
+            <h3>No newsletters found</h3>
+            <p>Try adjusting your search or filter</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Created by Claude for the <a href="https://citl.illinois.edu">Center for Innovation in Teaching & Learning</a></p>
+        <p>Last updated January 2026</p>
+    </div>
+
+    <script>
+        let currentYear = 'all';
+
+        function filterYear(year) {
+            currentYear = year;
+            
+            // Update active tab
+            document.querySelectorAll('.year-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            applyFilters();
+        }
+
+        function searchNewsletters() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.newsletter-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const year = card.dataset.year;
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('.newsletter-description').textContent.toLowerCase();
+                const keywords = card.dataset.keywords.toLowerCase();
+
+                const yearMatch = currentYear === 'all' || year === currentYear;
+                const searchMatch = searchTerm === '' || 
+                                   title.includes(searchTerm) || 
+                                   description.includes(searchTerm) ||
+                                   keywords.includes(searchTerm);
+
+                if (yearMatch && searchMatch) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Show/hide no results message
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

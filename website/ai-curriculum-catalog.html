@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Curriculum Catalog | CITL</title>
+    <link rel="stylesheet" href="https://cdn.brand.illinois.edu/illinois.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1D1D1D;
+            background: #fff;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .ai-title-bar {
+            background: #13294B;
+            color: #fff;
+            text-align: center;
+            padding: 15px 20px;
+            border-bottom: 4px solid #E84A27;
+        }
+
+        .ai-title-bar h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .breadcrumb {
+            background: #F8F9FA;
+            padding: 12px 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #E84A27;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #13294B 0%, #1D3E6F 100%);
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .hero-banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .filter-section {
+            background: #F8F9FA;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 2px solid #E8E8E8;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .filter-header h3 {
+            color: #13294B;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .clear-filters {
+            color: #E84A27;
+            background: none;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-decoration: underline;
+        }
+
+        .clear-filters:hover {
+            color: #13294B;
+        }
+
+        .filter-groups {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 25px;
+        }
+
+        .filter-group h4 {
+            color: #13294B;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .filter-checkbox input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: #E84A27;
+        }
+
+        .filter-checkbox label {
+            font-size: 0.85rem;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #E84A27;
+        }
+
+        .results-count {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .jump-menu {
+            padding: 8px 12px;
+            border: 2px solid #E8E8E8;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #555;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .jump-menu:focus {
+            outline: none;
+            border-color: #E84A27;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .module-card {
+            background: #fff;
+            border: 2px solid #E8E8E8;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-card:hover {
+            border-color: #E84A27;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .module-card.hidden {
+            display: none;
+        }
+
+        .module-level {
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
+            width: fit-content;
+        }
+
+        .module-level.beginner {
+            background: #2E7D32;
+        }
+
+        .module-level.intermediate {
+            background: #1565C0;
+        }
+
+        .module-level.advanced {
+            background: #E84A27;
+        }
+
+        .module-card h3 {
+            color: #13294B;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .module-description {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: auto;
+            flex-grow: 1;
+        }
+
+        .module-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .module-arrow {
+            color: #E84A27;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .module-card:hover .module-arrow {
+            transform: translateX(5px);
+        }
+
+        .category-section {
+            margin-bottom: 50px;
+        }
+
+        .category-section.hidden {
+            display: none;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #F8F9FA 0%, #E8E8E8 100%);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #E84A27;
+        }
+
+        .category-header h2 {
+            color: #13294B;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .category-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            background: #F8F9FA;
+            border-top: 3px solid #E84A27;
+            padding: 30px 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer a {
+            color: #13294B;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #E84A27;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner h2 {
+                font-size: 1.5rem;
+            }
+
+            .filter-groups {
+                grid-template-columns: 1fr;
+            }
+
+            .catalog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ai-title-bar">
+        <h1>Generative Artificial Intelligence at CITL</h1>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+           <a href="citl-ai-resources.html">Generative AI at CITL</a> / <span>AI Curriculum Catalog</span>
+        </div>
+    </div>
+
+    <div class="hero-banner">
+        <h2>AI Curriculum</h2>
+        <p>Explore our comprehensive collection of AI training modules, workshops, and learning resources designed for educators at all levels.</p>
+    </div>
+
+    <div class="container">
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3>Filter Offerings</h3>
+                <button class="clear-filters" onclick="clearFilters()">Clear All</button>
+            </div>
+            <div class="filter-groups">
+                <div class="filter-group">
+                    <h4>Modality</h4>
+                    <div class="filter-options">
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="live" name="modality" value="live" onchange="applyFilters()">
+                            <label for="live">Live Workshop</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="asynchronous" name="modality" value="asynchronous" onchange="applyFilters()">
+                            <label for="asynchronous">Asynchronous</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="hybrid" name="modality" value="hybrid" onchange="applyFilters()">
+                            <label for="hybrid">Hybrid</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Topic Area</h4>
+                    <div class="filter-options">
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="fluency" name="topic" value="fluency" onchange="applyFilters()">
+                            <label for="fluency">AI Fluency</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="course-design" name="topic" value="course-design" onchange="applyFilters()">
+                            <label for="course-design">Course Design</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="content-creation" name="topic" value="content-creation" onchange="applyFilters()">
+                            <label for="content-creation">Content Creation</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="coding" name="topic" value="coding" onchange="applyFilters()">
+                            <label for="coding">Coding & Development</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="multimodal" name="topic" value="multimodal" onchange="applyFilters()">
+                            <label for="multimodal">Multimodal AI</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Header -->
+        <div class="results-header">
+            <div class="results-count">Showing <strong id="count">30</strong> offerings</div>
+            <select class="jump-menu" onchange="jumpToSection(this.value)">
+                <option value="">Jump to...</option>
+                <option value="fluency-section">AI Fluency</option>
+                <option value="multimodal-section">Multimodal AI</option>
+                <option value="content-creation-section">Content Creation</option>
+                <option value="course-design-section">Course Design</option>
+                <option value="coding-section">Coding & Development</option>
+            </select>
+        </div>
+
+        <!-- AI Fluency -->
+        <div class="category-section" id="fluency-section" data-topic="fluency">
+            <div class="category-header">
+                <h2>AI Fluency</h2>
+                <p>Essential foundations for understanding and using generative AI in education</p>
+            </div>
+            <div class="catalog-grid">
+                <div class="module-card" data-modality="asynchronous" data-topic="fluency">
+                    <span class="module-level beginner">Beginner</span>
+                    <h3>Understanding Generative AI</h3>
+                    <p class="module-description">Explore the fundamentals of generative AI, including how large language models work, their capabilities and limitations, and implications for higher education.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="asynchronous" data-topic="fluency">
+                    <span class="module-level beginner">Beginner</span>
+                    <h3>Iterative Prompting</h3>
+                    <p class="module-description">Master the art of crafting effective prompts through iteration and refinement. Learn strategies for getting better results from AI tools.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="asynchronous" data-topic="fluency">
+                    <span class="module-level beginner">Beginner</span>
+                    <h3>Collaborating with Generative AI</h3>
+                    <p class="module-description">Discover effective strategies for working alongside AI tools to enhance productivity, creativity, and teaching effectiveness.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="hybrid" data-topic="fluency">
+                    <span class="module-level intermediate">Intermediate</span>
+                    <h3>Advanced Prompt Engineering</h3>
+                    <p class="module-description">Master complex prompting techniques including chain-of-thought, few-shot learning, and role-based prompting for sophisticated outputs.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Multimodal AI -->
+        <div class="category-section" id="multimodal-section" data-topic="multimodal">
+            <div class="category-header">
+                <h2>Multimodal AI</h2>
+                <p>Work with AI tools across text, images, audio, and video</p>
+            </div>
+            <div class="catalog-grid">
+                <div class="module-card" data-modality="asynchronous" data-topic="multimodal">
+                    <span class="module-level beginner">Beginner</span>
+                    <h3>Introduction to Multimodal AI</h3>
+                    <p class="module-description">Explore AI tools that work across text, images, audio, and video. Learn how to leverage multimodal capabilities in teaching and learning.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="live" data-topic="multimodal">
+                    <span class="module-level beginner">Beginner</span>
+                    <h3>AI Image Generation</h3>
+                    <p class="module-description">Create stunning visuals using Midjourney, DALL-E, and Adobe Firefly. Perfect for lecture slides, course materials, and visual storytelling.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="hybrid" data-topic="multimodal">
+                    <span class="module-level intermediate">Intermediate</span>
+                    <h3>AI Video Production</h3>
+                    <p class="module-description">Explore AI-powered video creation, editing, and enhancement tools to produce engaging educational videos efficiently.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="asynchronous" data-topic="multimodal">
+                    <span class="module-level beginner">Beginner</span>
+                    <h3>AI Audio & Podcasting</h3>
+                    <p class="module-description">Create professional audio content including podcasts, voiceovers, and audio lectures using AI voice synthesis and editing tools.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Creation -->
+        <div class="category-section" id="content-creation-section" data-topic="content-creation">
+            <div class="category-header">
+                <h2>Content Creation with AI</h2>
+                <p>Harness AI tools for creating interactive content, websites, and multimedia educational materials</p>
+            </div>
+            <div class="catalog-grid">
+                <div class="module-card" data-modality="hybrid" data-topic="content-creation">
+                    <span class="module-level intermediate">Intermediate</span>
+                    <h3>Building Interactive Websites with AI</h3>
+                    <p class="module-description">Use AI coding assistants to create engaging educational websites, portfolios, and interactive learning resources without extensive coding knowledge.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="live" data-topic="content-creation">
+                    <span class="module-level intermediate">Intermediate</span>
+                    <h3>AI-Generated Interactive Elements</h3>
+                    <p class="module-description">Design quizzes, simulations, visualizations, and other interactive components using AI to enhance student engagement and learning.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="asynchronous" data-topic="content-creation">
+                    <span class="module-level advanced">Advanced</span>
+                    <h3>Custom Learning Platforms with AI</h3>
+                    <p class="module-description">Build sophisticated educational web applications and platforms that integrate AI capabilities for personalized, adaptive learning experiences.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="live" data-topic="content-creation">
+                    <span class="module-level intermediate">Intermediate</span>
+                    <h3>Interactive Multimedia with AI</h3>
+                    <p class="module-description">Combine AI-generated text, images, audio, and video to create rich, interactive learning experiences and multimedia presentations.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Design -->
+        <div class="category-section" id="course-design-section" data-topic="course-design">
+            <div class="category-header">
+                <h2>Course Design with AI</h2>
+                <p>Transform your curriculum design process using AI-powered tools and strategies</p>
+            </div>
+            <div class="catalog-grid">
+                <div class="module-card" data-modality="live" data-topic="course-design">
+                    <span class="module-level beginner">Beginner</span>
+                    <h3>AI-Powered Syllabus Design</h3>
+                    <p class="module-description">Create comprehensive, engaging syllabi with AI assistance. Learn to develop learning objectives, schedules, and course policies.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="live" data-topic="course-design">
+                    <span class="module-level intermediate">Intermediate</span>
+                    <h3>AI for Assessment Design</h3>
+                    <p class="module-description">Learn to use AI to create rubrics, develop assessment questions, and design meaningful evaluations that promote student learning.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="hybrid" data-topic="course-design">
+                    <span class="module-level intermediate">Intermediate</span>
+                    <h3>Creating Engaging Assignments with AI</h3>
+                    <p class="module-description">Design authentic, meaningful assignments that leverage AI while promoting critical thinking and deep learning.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="live" data-topic="course-design">
+                    <span class="module-level intermediate">Intermediate</span>
+                    <h3>AI Ethics & Academic Integrity</h3>
+                    <p class="module-description">Navigate the ethical challenges of AI in education. Develop policies and practices that promote responsible AI use.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="hybrid" data-topic="course-design">
+                    <span class="module-level intermediate">Intermediate</span>
+                    <h3>Assignment Redesign with AI</h3>
+                    <p class="module-description">Reimagine traditional assignments for the AI era. Create assessments that are AI-resistant or AI-enhanced while maintaining academic rigor.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="asynchronous" data-topic="course-design">
+                    <span class="module-level beginner">Beginner</span>
+                    <h3>Writing with AI</h3>
+                    <p class="module-description">Explore effective strategies for using AI as a writing partner. Learn to draft, revise, and polish course materials, feedback, and academic writing.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coding & Development -->
+        <div class="category-section" id="coding-section" data-topic="coding">
+            <div class="category-header">
+                <h2>AI for Coding & Development</h2>
+                <p>Leverage AI to enhance coding workflows, debug code, and develop educational technology</p>
+            </div>
+            <div class="catalog-grid">
+                <div class="module-card" data-modality="asynchronous" data-topic="coding">
+                    <span class="module-level beginner">Beginner</span>
+                    <h3>AI Coding Assistants</h3>
+                    <p class="module-description">Learn to work with GitHub Copilot, ChatGPT, and other AI coding tools to write, debug, and optimize code more efficiently.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="hybrid" data-topic="coding">
+                    <span class="module-level intermediate">Intermediate</span>
+                    <h3>Building Educational Tools with AI APIs</h3>
+                    <p class="module-description">Develop custom educational applications using OpenAI, Anthropic, and other AI APIs to solve specific teaching challenges.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="live" data-topic="coding">
+                    <span class="module-level intermediate">Intermediate</span>
+                    <h3>AI-Enhanced Data Analysis</h3>
+                    <p class="module-description">Use AI tools to analyze educational data, generate insights, and create visualizations for research and assessment.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="live" data-topic="coding">
+                    <span class="module-level advanced">Advanced</span>
+                    <h3>Fine-Tuning AI Models for Education</h3>
+                    <p class="module-description">Advanced techniques for customizing and fine-tuning large language models for specific educational contexts and disciplines.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Topics -->
+        <div class="category-section" id="advanced-section" data-topic="advanced">
+            <div class="category-header">
+                <h2>Advanced Topics</h2>
+                <p>Cutting-edge applications and specialized AI techniques for expert practitioners</p>
+            </div>
+            <div class="catalog-grid">
+                <div class="module-card" data-modality="live" data-topic="advanced">
+                    <span class="module-level advanced">Advanced</span>
+                    <h3>AI for Research & Scholarship</h3>
+                    <p class="module-description">Leverage AI for literature reviews, data analysis, hypothesis generation, and research writing in academic scholarship.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="hybrid" data-topic="advanced">
+                    <span class="module-level advanced">Advanced</span>
+                    <h3>Custom AI Agents for Education</h3>
+                    <p class="module-description">Design and deploy autonomous AI agents for tutoring, advising, and personalized learning support at scale.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="live" data-topic="advanced">
+                    <span class="module-level advanced">Advanced</span>
+                    <h3>Multimodal AI Integration</h3>
+                    <p class="module-description">Build sophisticated learning experiences that seamlessly combine text, image, audio, and video AI capabilities.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="module-card" data-modality="hybrid" data-topic="advanced">
+                    <span class="module-level advanced">Advanced</span>
+                    <h3>AI Safety & Alignment in Education</h3>
+                    <p class="module-description">Explore emerging challenges in AI safety, bias mitigation, and ethical alignment specific to educational contexts.</p>
+                    <div class="module-footer">
+                        <span class="module-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Created by Claude for the <a href="https://citl.illinois.edu">Center for Innovation in Teaching & Learning</a></p>
+        <p>Last updated January 2026</p>
+    </div>
+
+    <script>
+        function applyFilters() {
+            const modalityChecked = Array.from(document.querySelectorAll('input[name="modality"]:checked')).map(cb => cb.value);
+            const topicChecked = Array.from(document.querySelectorAll('input[name="topic"]:checked')).map(cb => cb.value);
+            
+            const cards = document.querySelectorAll('.module-card');
+            const sections = document.querySelectorAll('.category-section');
+            let visibleCount = 0;
+            
+            // If no filters selected, show all
+            if (modalityChecked.length === 0 && topicChecked.length === 0) {
+                cards.forEach(card => {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                });
+                sections.forEach(section => section.classList.remove('hidden'));
+            } else {
+                cards.forEach(card => {
+                    const cardModality = card.dataset.modality;
+                    const cardTopic = card.dataset.topic;
+                    
+                    const modalityMatch = modalityChecked.length === 0 || modalityChecked.includes(cardModality);
+                    const topicMatch = topicChecked.length === 0 || topicChecked.includes(cardTopic);
+                    
+                    if (modalityMatch && topicMatch) {
+                        card.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+                
+                // Hide sections with no visible cards
+                sections.forEach(section => {
+                    const visibleCards = section.querySelectorAll('.module-card:not(.hidden)');
+                    if (visibleCards.length === 0) {
+                        section.classList.add('hidden');
+                    } else {
+                        section.classList.remove('hidden');
+                    }
+                });
+            }
+            
+            document.getElementById('count').textContent = visibleCount;
+        }
+        
+        function clearFilters() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            applyFilters();
+        }
+        
+        function jumpToSection(sectionId) {
+            if (sectionId) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                // Reset the select
+                setTimeout(() => {
+                    document.querySelector('.jump-menu').value = '';
+                }, 100);
+            }
+        }
+    </script>
+</body>
+</html>

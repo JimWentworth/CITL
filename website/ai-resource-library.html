@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resource Library | CITL</title>
+    <link rel="stylesheet" href="https://cdn.brand.illinois.edu/illinois.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1D1D1D;
+            background: #fff;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .ai-title-bar {
+            background: #13294B;
+            color: #fff;
+            text-align: center;
+            padding: 15px 20px;
+            border-bottom: 4px solid #E84A27;
+        }
+
+        .ai-title-bar h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .breadcrumb {
+            background: #F8F9FA;
+            padding: 12px 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #E84A27;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #13294B 0%, #1D3E6F 100%);
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .hero-banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .search-section {
+            background: #F8F9FA;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 2px solid #E8E8E8;
+        }
+
+        .search-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .search-header h3 {
+            color: #13294B;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .clear-search {
+            color: #E84A27;
+            background: none;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-decoration: underline;
+        }
+
+        .clear-search:hover {
+            color: #13294B;
+        }
+
+        .filter-groups {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 25px;
+        }
+
+        .filter-group h4 {
+            color: #13294B;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .filter-checkbox input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: #E84A27;
+        }
+
+        .filter-checkbox label {
+            font-size: 0.85rem;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .search-box {
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            font-size: 0.95rem;
+            border: 2px solid #E8E8E8;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #E84A27;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .filter-tab {
+            background: #fff;
+            border: 2px solid #E8E8E8;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .filter-tab:hover {
+            border-color: #E84A27;
+            color: #E84A27;
+        }
+
+        .filter-tab.active {
+            background: #E84A27;
+            border-color: #E84A27;
+            color: #fff;
+        }
+
+        .category-section {
+            margin-bottom: 50px;
+        }
+
+        .category-section.hidden {
+            display: none;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #E84A27;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: #E84A27;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .category-header h2 {
+            color: #13294B;
+            font-size: 1.5rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-card {
+            background: #fff;
+            border: 2px solid #E8E8E8;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-card:hover {
+            border-color: #E84A27;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .resource-card.hidden {
+            display: none;
+        }
+
+        .resource-type {
+            background: #F8F9FA;
+            color: #666;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .resource-type.quick-tip {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .resource-type.tutorial {
+            background: #E3F2FD;
+            color: #1565C0;
+        }
+
+        .resource-type.tool {
+            background: #FFF3E0;
+            color: #E65100;
+        }
+
+        .resource-type.guide {
+            background: #F3E5F5;
+            color: #6A1B9A;
+        }
+
+        .resource-card h3 {
+            color: #13294B;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .resource-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .resource-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .resource-meta {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .resource-arrow {
+            color: #E84A27;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .no-results.hidden {
+            display: none;
+        }
+
+        .no-results h3 {
+            color: #13294B;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background: #F8F9FA;
+            border-top: 3px solid #E84A27;
+            padding: 30px 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer a {
+            color: #13294B;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #E84A27;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner h2 {
+                font-size: 1.5rem;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-tabs {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ai-title-bar">
+        <h1>Generative Artificial Intelligence at CITL</h1>
+    </div>
+
+    <div class="breadcrumb">
+     <div class="breadcrumb-content">
+            <a href="citl-ai-resources.html">Generative AI at CITL</a> / <span>Resource Library</span>
+        </div>
+    </div>
+
+    <div class="hero-banner">
+        <h2>AI Resource Library</h2>
+        <p>Quick tips, tutorials, tools, and guides to help you effectively integrate AI into your teaching practice</p>
+    </div>
+
+    <div class="container">
+        <!-- Filter Section -->
+        <div class="search-section">
+            <div class="search-header">
+                <h3>Search & Filter Resources</h3>
+                <button class="clear-search" onclick="clearAll()">Clear All</button>
+            </div>
+            <div class="filter-groups">
+                <div class="filter-group">
+                    <h4>Resource Type</h4>
+                    <div class="filter-options">
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="quick-tip" name="type" value="quick-tip" onchange="applyFilters()">
+                            <label for="quick-tip">Quick Tips</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="tutorial" name="type" value="tutorial" onchange="applyFilters()">
+                            <label for="tutorial">Tutorials</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="tool" name="type" value="tool" onchange="applyFilters()">
+                            <label for="tool">Tools</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="guide" name="type" value="guide" onchange="applyFilters()">
+                            <label for="guide">Guides</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Topic Area</h4>
+                    <div class="filter-options">
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="fluency" name="topic" value="fluency" onchange="applyFilters()">
+                            <label for="fluency">AI Fluency</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="course-design" name="topic" value="course-design" onchange="applyFilters()">
+                            <label for="course-design">Course Design</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="assessment" name="topic" value="assessment" onchange="applyFilters()">
+                            <label for="assessment">Assessment</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="content-creation" name="topic" value="content-creation" onchange="applyFilters()">
+                            <label for="content-creation">Content Creation</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="accessibility" name="topic" value="accessibility" onchange="applyFilters()">
+                            <label for="accessibility">Accessibility</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="policy" name="topic" value="policy" onchange="applyFilters()">
+                            <label for="policy">Policy & Ethics</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search by keyword..." id="searchInput" onkeyup="applyFilters()">
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+
+        <!-- Campus Tools -->
+        <div class="category-section" data-category="tools">
+            <div class="category-header">
+                <div class="category-icon">🔧</div>
+                <h2>Campus AI Tools</h2>
+            </div>
+            <p style="color: #666; margin-bottom: 20px; font-size: 0.95rem;">University-licensed AI applications available to Illinois faculty, staff, and students</p>
+   
+            <div class="resources-grid">
+                <div class="resource-card" data-type="tool" data-topic="fluency" data-keywords="chatgpt openai chat campus access university edu subscription">
+                    <span class="resource-type tool">Tool</span>
+                    <h3>ChatGPT Edu</h3>
+                    <p class="resource-description">Educational license version of ChatGPT with enhanced privacy and security. Available to faculty and staff via WebStore subscription.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">Campus Tool</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="tool" data-topic="content-creation" data-keywords="adobe firefly image generation creative cloud campus">
+                    <span class="resource-type tool">Tool</span>
+                    <h3>Adobe Firefly</h3>
+                    <p class="resource-description">Generate images and graphics using Adobe's AI tools, available through campus Creative Cloud subscription.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">Campus Tool</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="tool" data-topic="fluency" data-keywords="microsoft copilot office 365 campus m365 chat">
+                    <span class="resource-type tool">Tool</span>
+                    <h3>Microsoft Copilot Chat</h3>
+                    <p class="resource-description">Secure AI-powered chat assistant integrated into Microsoft 365 apps. Available to all faculty, staff, and students at no additional cost.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">Campus Tool</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="tool" data-topic="fluency" data-keywords="illinois chat chatbot platform custom university">
+                    <span class="resource-type tool">Tool</span>
+                    <h3>Illinois Chat</h3>
+                    <p class="resource-description">University-developed platform for building and sharing custom AI chatbots with control over data sources and functionality.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">Campus Tool</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="tool" data-topic="accessibility" data-keywords="zoom ai companion meeting summaries transcripts captions">
+                    <span class="resource-type tool">Tool</span>
+                    <h3>Zoom AI Companion</h3>
+                    <p class="resource-description">Provides meeting summaries, transcripts, and message summaries. Available to all faculty, staff, and students at no additional cost.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">Campus Tool</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="tool" data-topic="fluency" data-keywords="google gemini multimodal search assistant research">
+                    <span class="resource-type tool">Tool</span>
+                    <h3>Google Gemini</h3>
+                    <p class="resource-description">Multimodal AI that can process text, images, and audio for rich conversational and reasoning tasks. Available for public and internal data.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">Campus Tool</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div style="background: #E3F2FD; border-left: 4px solid #1565C0; padding: 15px 20px; margin-bottom: 20px; border-radius: 4px;">
+                <p style="color: #1565C0; font-size: 0.9rem; margin: 0;"><strong>View the complete list of campus AI tools:</strong> <a href="https://genai.illinois.edu/ai-apps/" target="_blank" style="color: #1565C0; text-decoration: underline;">genai.illinois.edu/ai-apps</a></p>
+            </div>
+        <!-- Quick Tips -->
+        <div class="category-section" data-category="tips">
+            <div class="category-header">
+                <div class="category-icon">💡</div>
+                <h2>Quick Tips</h2>
+            </div>
+            <p style="color: #666; margin-bottom: 20px; font-size: 0.95rem;">Short, actionable advice you can apply immediately to enhance your teaching with AI</p>
+            <div class="resources-grid">
+                <div class="resource-card" data-type="quick-tip" data-topic="fluency" data-keywords="prompt engineering writing effective prompts">
+                    <span class="resource-type quick-tip">Quick Tip</span>
+                    <h3>5 Prompt Writing Principles</h3>
+                    <p class="resource-description">Simple guidelines to get better results from AI tools in under 5 minutes.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">2 min read</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="quick-tip" data-topic="course-design" data-keywords="syllabus design course planning">
+                    <span class="resource-type quick-tip">Quick Tip</span>
+                    <h3>Using AI for Syllabus Drafting</h3>
+                    <p class="resource-description">Quick strategies for using AI to create and refine your course syllabus.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">3 min read</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="quick-tip" data-topic="assessment" data-keywords="feedback grading assessment students">
+                    <span class="resource-type quick-tip">Quick Tip</span>
+                    <h3>AI-Assisted Feedback Writing</h3>
+                    <p class="resource-description">Save time while providing personalized, constructive feedback to students.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">3 min read</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="quick-tip" data-topic="policy" data-keywords="academic integrity plagiarism detection policy">
+                    <span class="resource-type quick-tip">Quick Tip</span>
+                    <h3>Setting AI Expectations in Your Syllabus</h3>
+                    <p class="resource-description">Sample language and strategies for communicating AI policies to students.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">4 min read</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="quick-tip" data-topic="assessment" data-keywords="quiz questions test assessment generation">
+                    <span class="resource-type quick-tip">Quick Tip</span>
+                    <h3>Generating Quiz Questions with AI</h3>
+                    <p class="resource-description">Create varied, thoughtful assessment questions aligned to your learning objectives.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">3 min read</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="quick-tip" data-topic="content-creation" data-keywords="images slides presentation visual design">
+                    <span class="resource-type quick-tip">Quick Tip</span>
+                    <h3>Creating Custom Course Images</h3>
+                    <p class="resource-description">Use AI image generators to create unique, relevant visuals for your courses.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">4 min read</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step-by-Step Tutorials -->
+        <div class="category-section" data-category="tutorials">
+            <div class="category-header">
+                <div class="category-icon">📝</div>
+                <h2>Step-by-Step Tutorials</h2>
+            </div>
+            <p style="color: #666; margin-bottom: 20px; font-size: 0.95rem;">Detailed walkthroughs with clear instructions to accomplish specific tasks</p>
+            <div class="resources-grid">
+                <div class="resource-card" data-type="tutorial" data-topic="assessment" data-keywords="rubric assessment grading criteria design">
+                    <span class="resource-type tutorial">Tutorial</span>
+                    <h3>Building a Rubric with ChatGPT</h3>
+                    <p class="resource-description">Complete walkthrough for creating detailed, effective assessment rubrics using AI.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">10 steps</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="tutorial" data-topic="content-creation" data-keywords="lecture notes slides presentation powerpoint">
+                    <span class="resource-type tutorial">Tutorial</span>
+                    <h3>Transforming Lecture Notes into Slides</h3>
+                    <p class="resource-description">Turn your raw notes into structured, engaging presentation slides with AI assistance.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">8 steps</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="tutorial" data-topic="accessibility" data-keywords="video captions subtitles accessibility transcript">
+                    <span class="resource-type tutorial">Tutorial</span>
+                    <h3>Auto-Generating Video Captions</h3>
+                    <p class="resource-description">Use AI to create accurate captions and transcripts for your educational videos.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">6 steps</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="tutorial" data-topic="accessibility" data-keywords="translation multilingual international students language">
+                    <span class="resource-type tutorial">Tutorial</span>
+                    <h3>Creating Multilingual Course Materials</h3>
+                    <p class="resource-description">Translate and adapt your materials for international students using AI tools.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">9 steps</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="tutorial" data-topic="course-design" data-keywords="case study scenario problem-based learning active">
+                    <span class="resource-type tutorial">Tutorial</span>
+                    <h3>Designing Case Studies with AI</h3>
+                    <p class="resource-description">Create realistic, discipline-specific case studies for problem-based learning.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">7 steps</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="tutorial" data-topic="course-design" data-keywords="adaptive learning personalization differentiation student">
+                    <span class="resource-type tutorial">Tutorial</span>
+                    <h3>Creating Differentiated Learning Paths</h3>
+                    <p class="resource-description">Design personalized content and activities for students at different skill levels.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">10 steps</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comprehensive Guides -->
+        <div class="category-section" data-category="guides">
+            <div class="category-header">
+                <div class="category-icon">📚</div>
+                <h2>Comprehensive Guides</h2>
+            </div>
+            <p style="color: #666; margin-bottom: 20px; font-size: 0.95rem;">In-depth reading materials covering concepts, strategies, and best practices</p>
+            <div class="resources-grid">
+                <div class="resource-card" data-type="guide" data-topic="course-design" data-keywords="prompt engineering advanced techniques chain-of-thought">
+                    <span class="resource-type guide">Guide</span>
+                    <h3>Complete Prompt Engineering Guide</h3>
+                    <p class="resource-description">Master advanced prompting techniques including few-shot learning, chain-of-thought, and role-based prompting.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">25 min read</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="guide" data-topic="policy" data-keywords="academic integrity policy syllabus ethics plagiarism">
+                    <span class="resource-type guide">Guide</span>
+                    <h3>AI Policy Development Guide</h3>
+                    <p class="resource-description">Comprehensive resource for creating clear, effective AI policies for your courses.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">20 min read</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="guide" data-topic="accessibility" data-keywords="accessibility inclusive design universal UDL accommodation">
+                    <span class="resource-type guide">Guide</span>
+                    <h3>AI for Accessible Course Design</h3>
+                    <p class="resource-description">Use AI to create more accessible, inclusive learning materials and experiences.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">18 min read</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-type="guide" data-topic="assessment" data-keywords="assignment design resistant authentic assessment">
+                    <span class="resource-type guide">Guide</span>
+                    <h3>Redesigning Assignments for the AI Era</h3>
+                    <p class="resource-description">Strategies for creating AI-resistant or AI-enhanced assignments that promote authentic learning.</p>
+                    <div class="resource-footer">
+                        <span class="resource-meta">22 min read</span>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results hidden" id="noResults">
+            <h3>No resources found</h3>
+            <p>Try adjusting your search or filters</p>
+        </div>
+
+        <!-- Newsletter CTA -->
+        <div style="background: linear-gradient(135deg, #13294B 0%, #1D3E6F 100%); border-radius: 10px; padding: 40px; text-align: center; margin-top: 50px; color: #fff;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: #fff;">Stay Updated on AI in Education</h3>
+            <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 25px; max-width: 600px; margin-left: auto; margin-right: auto;">Subscribe to our newsletter for the latest AI tools, tips, and training opportunities delivered to your inbox.</p>
+            <a href="ai-newsletter.html" style="display: inline-block; background: #E84A27; color: #fff; padding: 14px 35px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; font-size: 1rem;">Subscribe to AI Newsletter</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Created by Claude for the <a href="https://citl.illinois.edu">Center for Innovation in Teaching & Learning</a></p>
+        <p>Last updated January 2026</p>
+    </div>
+
+    <script>
+        function applyFilters() {
+            const typeChecked = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value);
+            const topicChecked = Array.from(document.querySelectorAll('input[name="topic"]:checked')).map(cb => cb.value);
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            const cards = document.querySelectorAll('.resource-card');
+            const sections = document.querySelectorAll('.category-section');
+            let visibleCount = 0;
+            
+            cards.forEach(card => {
+                const cardType = card.dataset.type;
+                const cardTopic = card.dataset.topic;
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('.resource-description').textContent.toLowerCase();
+                const keywords = card.dataset.keywords || '';
+                
+                const typeMatch = typeChecked.length === 0 || typeChecked.includes(cardType);
+                const topicMatch = topicChecked.length === 0 || topicChecked.includes(cardTopic);
+                const searchMatch = searchTerm === '' || 
+                                   title.includes(searchTerm) || 
+                                   description.includes(searchTerm) ||
+                                   keywords.includes(searchTerm);
+                
+                if (typeMatch && topicMatch && searchMatch) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            
+            // Hide sections with no visible cards
+            sections.forEach(section => {
+                const visibleCards = section.querySelectorAll('.resource-card:not(.hidden)');
+                if (visibleCards.length === 0) {
+                    section.classList.add('hidden');
+                } else {
+                    section.classList.remove('hidden');
+                }
+            });
+            
+            // Show/hide no results message
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+        
+        function clearAll() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.getElementById('searchInput').value = '';
+            applyFilters();
+        }
+    </script>
+</body>
+</html>
