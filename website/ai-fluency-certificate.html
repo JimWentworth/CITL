@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI Fluency Certificate | CITL</title>
+    <link rel="stylesheet" href="https://cdn.brand.illinois.edu/illinois.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1D1D1D;
+            background: #fff;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .ai-title-bar {
+            background: #13294B;
+            color: #fff;
+            text-align: center;
+            padding: 15px 20px;
+            border-bottom: 4px solid #E84A27;
+        }
+
+        .ai-title-bar h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .breadcrumb {
+            background: #F8F9FA;
+            padding: 12px 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #E84A27;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #13294B 0%, #1D3E6F 100%);
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(232, 74, 39, 0.15) 0%, transparent 60%);
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-banner h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-banner p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .certificate-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .intro-section {
+            background: #F8F9FA;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border-left: 5px solid #E84A27;
+        }
+
+        .intro-section h3 {
+            color: #13294B;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .intro-section p {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .section-heading {
+            color: #13294B;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #E84A27;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-icon {
+            font-size: 1.8rem;
+            color: #E84A27;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .module-card {
+            background: #fff;
+            border: 2px solid #E8E8E8;
+            border-radius: 10px;
+            padding: 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: #E84A27;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .module-card:hover {
+            border-color: #E84A27;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .module-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .module-image-placeholder {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #13294B;
+        }
+
+        .module-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .module-card h4 {
+            color: #13294B;
+            font-size: 1.3rem;
+            margin: 20px 25px 15px 25px;
+            line-height: 1.4;
+        }
+
+        .module-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0 25px 25px 25px;
+        }
+
+        .electives-section {
+            background: linear-gradient(135deg, #F8F9FA 0%, #fff 100%);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 2px solid #E8E8E8;
+        }
+
+        .electives-section h3 {
+            color: #13294B;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .electives-section p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .electives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .elective-column h4 {
+            color: #13294B;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #E84A27;
+        }
+
+        .elective-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .elective-column li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .elective-column li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #E84A27;
+            font-weight: 700;
+        }
+
+        .elective-column a {
+            color: #13294B;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .elective-column a:hover {
+            color: #E84A27;
+            text-decoration: underline;
+        }
+
+        .completion-section {
+            background: #13294B;
+            color: #fff;
+            border-radius: 10px;
+            padding: 50px 40px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .completion-section h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .completion-section p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .requirements-list {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 700px;
+            text-align: left;
+        }
+
+        .requirements-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .requirements-list li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .requirements-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #E84A27;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .requirements-list ul ul {
+            margin-top: 10px;
+        }
+
+        .requirements-list ul ul li {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .time-commitment {
+            background: rgba(232, 74, 39, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            font-weight: 600;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #E84A27;
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(232, 74, 39, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #13294B;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(19, 41, 75, 0.4);
+        }
+
+        .contact-info {
+            background: #F8F9FA;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-info p {
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: #E84A27;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background: #F8F9FA;
+            border-top: 3px solid #E84A27;
+            padding: 30px 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer a {
+            color: #13294B;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #E84A27;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner h2 {
+                font-size: 2rem;
+            }
+
+            .hero-banner p {
+                font-size: 1rem;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .electives-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ai-title-bar">
+        <h1>GENERATIVE ARTIFICIAL INTELLIGENCE</h1>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="index.html">AI Resources</a> / <span>AI Fluency Certificate</span>
+        </div>
+    </div>
+
+    <div class="hero-banner">
+        <div class="hero-content">
+            <div class="certificate-badge">🎓 PROFESSIONAL CERTIFICATE PROGRAM</div>
+            <h2>Generative AI Fluency Certificate</h2>
+            <p>A practical, skills-based program designed to equip lifelong learners with the foundational knowledge and strategic capabilities required to responsibly and effectively utilize Generative AI tools in academic, creative, and workplace contexts.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <div class="intro-section">
+            <h3>Build Your AI Fluency — Your Way</h3>
+            <p>The Generative AI Fluency Certificate is a practical, skills-based program designed to equip lifelong learners with the foundational knowledge and strategic capabilities required to responsibly and effectively utilize Generative AI tools in academic, creative, and workplace contexts.</p>
+            <p>Through a flexible combination of modules and electives, participants explore how AI generates content, practice iterative prompting for idea development, learn to design consistent and ethical outputs, and gain fluency across text, image, and video creation. Hands-on experience with tools like ChatGPT, Claude, Gemini, Copilot, Firefly, and Notebook LM ensures participants graduate with both confidence and critical awareness in their use of AI.</p>
+        </div>
+
+        <!-- Core Modules Section -->
+        <h2 class="section-heading">
+            <span class="section-icon">📚</span>
+            Core AI Modules
+        </h2>
+
+        <div class="intro-section">
+            <p>CITL offers a growing collection of AI fluency modules covering essential topics in generative AI. Each module is designed as a self-paced, asynchronous learning experience that combines guided instruction with hands-on practice.</p>
+            <p><strong>Module topics include:</strong></p>
+            <ul style="list-style-position: inside; color: #555; font-size: 1.05rem; line-height: 2; max-width: 800px; margin: 20px auto;">
+                <li>Understanding what generative AI is and what it isn't</li>
+                <li>Collaborative iteration and prompting techniques</li>
+                <li>Designing interactions for consistency</li>
+                <li>Engaging with multimodal AI (text, image, video)</li>
+                <li>AI literacy for students</li>
+                <li>Prompt engineering for teaching and learning</li>
+                <li>Cognitive impacts of generative AI</li>
+                <li>Using and creating custom AI agents</li>
+            </ul>
+            <p style="margin-top: 30px;"><a href="citl_ai_modules.html" class="cta-button" style="display: inline-block; padding: 15px 35px; font-size: 1rem;">Explore Available Modules →</a></p>
+        </div>
+
+        <!-- Electives Section -->
+        <div class="electives-section">
+            <h3>🎯 Optional Electives</h3>
+            <p>Want to explore beyond CITL's modules? You may substitute up to two modules with qualifying AI-related events, workshops, or training sessions from campus or online programs. This flexibility allows you to customize the certificate to align with your specific professional goals or specialized interests.</p>
+
+            <div class="electives-grid">
+                <div class="elective-column">
+                    <h4>Campus Events</h4>
+                    <ul>
+                        <li><a href="https://calendars.illinois.edu/list/5064" target="_blank">CITL AI Workshops and Panel Discussions</a></li>
+                        <li><a href="https://designcenter.illinois.edu/events/SignatureEvents/GenAI-Dialogues" target="_blank">GenAI Dialogues</a></li>
+                        <li><a href="https://uiuc.libcal.com/calendar/savvy" target="_blank">Savvy Researcher Workshops</a></li>
+                        <li><a href="https://humanresources.illinois.edu/ai-professional-development-series/" target="_blank">IHR AI Literacy Workshops</a></li>
+                        <li><a href="https://careercenter.illinois.edu/" target="_blank">Career Center Workshops</a></li>
+                    </ul>
+                </div>
+
+                <div class="elective-column">
+                    <h4>Online Options</h4>
+                    <ul>
+                        <li><a href="https://www.coursera.org/courses?query=artificial%20intelligence" target="_blank">Coursera AI Courses</a></li>
+                        <li><a href="https://www.linkedin.com/learning/topics/artificial-intelligence" target="_blank">LinkedIn Learning</a></li>
+                        <li><a href="https://grow.google/ai/" target="_blank">Google AI Training</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 0.95rem; color: #666;"><strong>Note:</strong> All electives require some form of documented completion. You may submit a short personal reflection detailing how the session furthered your understanding of generative AI, or provide a certificate of completion for external training sessions.</p>
+        </div>
+		     <!-- Learning Reflection Project -->
+        <div class="intro-section">
+            <h3>📝 Learning Reflection Project</h3>
+            <p>Throughout the certificate, participants will build a <strong>learning journal or portfolio</strong> that captures their developing fluency with generative AI. Each module contributes artifacts like prompt examples, AI-assisted drafts, reflections, or multimodal creations that document growth in both skill and awareness.</p>
+            <p>By the end of the program, the journal serves as both evidence of learning and a personal guide for continued exploration.</p>
+        </div>
+
+        <!-- Completion Requirements -->
+        <div class="completion-section">
+            <h3>🏆 Certificate of Completion</h3>
+            <p>To earn the CITL Generative AI Fluency Certificate, complete the following requirements in any order:</p>
+
+            <div class="requirements-list">
+                <ul>
+                    <li>Complete any six CITL AI modules (or substitute up to two with qualifying electives)
+                        <ul>
+                            <li>Attendance counts as completion for live sessions</li>
+                            <li>Asynchronous modules require completion of activities and a passing quiz score of at least 80%</li>
+                        </ul>
+                    </li>
+                    <li>Complete a learning reflection project documenting your AI fluency journey</li>
+                </ul>
+            </div>
+
+            <div class="time-commitment">
+                ⏱️ Time Commitment: 15–20 total hours of engagement
+            </div>
+
+            <p style="margin-top: 25px;">This time includes a combination of guided instruction, hands-on experimentation with AI tools, and the creation of a documented learning artifact. <strong>No specific module order required</strong> — design your learning path to match your schedule and interests.</p>
+        </div>
+
+   
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <a href="https://canvas.illinois.edu/enroll/7HX8LJ" class="cta-button" target="_blank">Get Started with the Certificate →</a>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+            <p>For additional information please reach out to:</p>
+            <p><a href="mailto:citl-info@illinois.edu">citl-info@illinois.edu</a></p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Created by Claude for the <a href="https://citl.illinois.edu">Center for Innovation in Teaching & Learning</a></p>
+        <p>Last updated January 2026</p>
+    </div>
+</body>
+</html>

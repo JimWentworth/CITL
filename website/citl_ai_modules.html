@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Learning Modules | CITL</title>
+    <link rel="stylesheet" href="https://cdn.brand.illinois.edu/illinois.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1D1D1D;
+            background: #fff;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .ai-title-bar {
+            background: #13294B;
+            color: #fff;
+            text-align: center;
+            padding: 15px 20px;
+            border-bottom: 4px solid #E84A27;
+        }
+
+        .ai-title-bar h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .breadcrumb {
+            background: #F8F9FA;
+            padding: 12px 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #E84A27;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #13294B 0%, #1D3E6F 100%);
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(232, 74, 39, 0.15) 0%, transparent 60%);
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-banner h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-banner p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .hero-highlight {
+            background: rgba(232, 74, 39, 0.2);
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin: 30px auto;
+            max-width: 700px;
+        }
+
+        .hero-highlight strong {
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .intro-section h3 {
+            color: #13294B;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .intro-section p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 15px auto;
+        }
+
+        .key-features {
+            background: #F8F9FA;
+            border-radius: 10px;
+            padding: 30px 40px;
+            margin: 40px auto;
+            max-width: 900px;
+            border-left: 5px solid #E84A27;
+        }
+
+        .key-features p {
+            color: #13294B;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .tools-section {
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .tools-section h3 {
+            color: #13294B;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+            perspective: 1000px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            height: 200px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border: 2px solid #E8E8E8;
+        }
+
+        .flip-card-front {
+            background: #fff;
+        }
+
+        .flip-card-front h4 {
+            color: #13294B;
+            font-size: 1.3rem;
+            margin-top: 15px;
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, #13294B 0%, #1D3E6F 100%);
+            color: #fff;
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-back p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .modules-section-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .modules-section-heading h2 {
+            color: #13294B;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .modules-section-heading p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .module-card {
+            background: #fff;
+            border: 2px solid #E8E8E8;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-card:hover {
+            border-color: #E84A27;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .module-image {
+            width: 110%;
+            
+            background: linear-gradient(135deg, #13294B 0%, #1D3E6F 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .module-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .module-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-card h3 {
+            color: #13294B;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .module-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .module-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .module-duration {
+            color: #888;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .module-link {
+            background: #E84A27;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .module-link:hover {
+            background: #13294B;
+            transform: translateX(3px);
+        }
+
+        .certificate-banner {
+            background: linear-gradient(135deg, #13294B 0%, #1D3E6F 100%);
+            color: #fff;
+            border-radius: 15px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 80px 0 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certificate-banner::before {
+            content: '🎓';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .certificate-banner-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .certificate-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .certificate-banner p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .certificate-cta {
+            display: inline-block;
+            background: #E84A27;
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(232, 74, 39, 0.4);
+        }
+
+        .certificate-cta:hover {
+            background: #fff;
+            color: #13294B;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .footer {
+            background: #F8F9FA;
+            border-top: 3px solid #E84A27;
+            padding: 30px 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer a {
+            color: #13294B;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #E84A27;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner h2 {
+                font-size: 2rem;
+            }
+
+            .hero-banner p {
+                font-size: 1.1rem;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certificate-banner {
+                padding: 40px 20px;
+            }
+
+            .certificate-banner h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ai-title-bar">
+        <h1>GENERATIVE ARTIFICIAL INTELLIGENCE</h1>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="../index.html">AI Resources</a> / <span>Learning Modules</span>
+        </div>
+    </div>
+
+    <div class="hero-banner">
+        <div class="hero-content">
+		  <h2>AI Fluency Modules</h2>
+			 <p>Our asynchronous modules provide flexible opportunities to build both practical skills and conceptual understanding of generative AI. Modules combine short, guided instruction with applied activities that encourage experimentation, reflection, and critical use of campus-supported AI tools.</p>
+        </div>
+    </div>
+
+    <div class="container">
+       
+        <!-- Modules Section -->
+        <div class="modules-section-heading">
+         
+            <h3>Explore our collection of AI Fluency modules</h3>
+        </div>
+
+        <div class="modules-grid">
+			       <!-- Module 5 -->
+            <div class="module-card">
+                <div class="module-image">
+                    <img src="images/literacy.png" alt="AI Literacy for Students">
+                    <div class="self-paced-badge">SELF-PACED</div>
+                </div>
+                <div class="module-content">
+                    <h3>AI Literacy for Students</h3>
+                    <p>Explore strategies for helping students develop critical AI literacy skills. Prepare learners to use AI tools responsibly, understand their capabilities and limitations, and integrate AI into academic work with integrity.</p>
+                    <div class="module-footer">
+                        <div class="module-duration">⏱️ 2-3 hours</div>
+                        <a href="https://canvas.illinois.edu/courses/63548" class="module-link" target="_blank">Start Module →</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Module 1 -->
+            <div class="module-card">
+                <div class="module-image">
+                    <img src="images/understanding.png" alt="What GenAI Is">
+                    <div class="self-paced-badge">SELF-PACED</div>
+                </div>
+                <div class="module-content">
+			
+                    <h3>Understanding Generative AI</h3>
+                    <p>Lay the groundwork for understanding how generative AI works and where it falls short. Examine the mechanisms that drive generative models, recognize their constraints, and develop a grounded sense of how to use them creatively and productively.</p>
+                    <div class="module-footer">
+                        <div class="module-duration">⏱️ 60-120 min</div>
+                        <a href="https://canvas.illinois.edu/courses/63548" class="module-link" target="_blank">Start Module →</a>
+                    </div>
+              </div>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="module-card">
+                <div class="module-image">
+                    <img src="images/collaboration.png" alt="Collaborative Iteration">
+                    <div class="self-paced-badge">SELF-PACED</div>
+                </div>
+                <div class="module-content">
+                    <h3>Collaborative Iteration with GenAI</h3>
+                    <p>Shift focus from passively receiving AI outputs to actively engaging AI as a collaborator. Learn to structure conversations that build on your own thinking using prompts as iterative tools for exploration and refinement.</p>
+                    <div class="module-footer">
+                        <div class="module-duration">⏱️ 2-3 hours</div>
+                        <a href="https://canvas.illinois.edu/courses/63548" class="module-link" target="_blank">Start Module →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="module-card">
+                <div class="module-image">
+                    <img src="images/designing.png" alt="Designing Interaction">
+                    <div class="self-paced-badge">SELF-PACED</div>
+                </div>
+                <div class="module-content">
+                    <h3>Designing Interaction for Consistency</h3>
+                    <p>Design AI interactions for consistency through prompt patterns, reusable templates, and custom settings. Learn advanced techniques such as retrieval-augmented generation (RAG) to ground outputs in accuracy and relevance.</p>
+                    <div class="module-footer">
+                        <div class="module-duration">⏱️ 2-3 hours</div>
+                        <a href="https://canvas.illinois.edu/courses/63548" class="module-link" target="_blank">Start Module →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="module-card">
+                <div class="module-image">
+                    <img src="images/multimodal.png" alt="Multimodal GenAI">
+                    <div class="self-paced-badge">SELF-PACED</div>
+                </div>
+                <div class="module-content">
+                    <h3>Engaging with Multimodal GenAI</h3>
+                    <p>Expand from text to multimodal creation with tools that generate images, audio, and video. Learn how to combine these modes effectively and assess outputs for clarity, accuracy, and appropriateness.</p>
+                    <div class="module-footer">
+                        <div class="module-duration">⏱️ 2-3 hours</div>
+                        <a href="https://canvas.illinois.edu/courses/63548" class="module-link" target="_blank">Start Module →</a>
+                    </div>
+                </div>
+            </div>
+
+     
+
+            <!-- Module 6 -->
+            <div class="module-card">
+                <div class="module-image">
+                    <img src="images/prompting.png" alt="Prompt Engineering">
+                    <div class="self-paced-badge">SELF-PACED</div>
+                </div>
+                <div class="module-content">
+                    <h3>Prompt Engineering for Teaching & Learning</h3>
+                    <p>Discover advanced prompt engineering techniques designed for educational contexts. Craft effective prompts that support lesson planning, assessment design, student feedback, and personalized learning experiences.</p>
+                    <div class="module-footer">
+                        <div class="module-duration">⏱️ 2-3 hours</div>
+                        <a href="https://canvas.illinois.edu/courses/63548" class="module-link" target="_blank">Start Module →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 7 -->
+            <div class="module-card">
+                <div class="module-image">
+                    <img src="images/cognitive.png" alt="Cognitive Impacts">
+                    <div class="self-paced-badge">SELF-PACED</div>
+                </div>
+                <div class="module-content">
+                    <h3>The Cognitive Impacts of Generative AI</h3>
+                    <p>Examine how generative AI affects thinking, learning, and cognitive processes. Explore the neuroscience and psychology behind AI-assisted work and its impact on student cognition and learning outcomes.</p>
+                    <div class="module-footer">
+                        <div class="module-duration">⏱️ 2-3 hours</div>
+                        <a href="https://canvas.illinois.edu/courses/63548" class="module-link" target="_blank">Start Module →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 8 -->
+            <div class="module-card">
+                <div class="module-image">
+                    <img src="images/custom_agents.png" alt="Custom Agents">
+                    <div class="self-paced-badge">SELF-PACED</div>
+                </div>
+                <div class="module-content">
+                    <h3>Using and Creating Custom Agents</h3>
+                    <p>Learn to leverage and build custom AI agents tailored to specific tasks and workflows. Gain hands-on experience creating specialized AI assistants using platforms like ChatGPT and Copilot.</p>
+                    <div class="module-footer">
+                        <div class="module-duration">⏱️ 2-3 hours</div>
+                        <a href="https://canvas.illinois.edu/courses/63548" class="module-link" target="_blank">Start Module →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+	  <!-- Introduction -->
+        <div class="intro-section">
+            <h3>Build AI Skills on Your Schedule</h3>
+           
+            
+          <div class="key-features">
+                <p><strong>Self-paced learning</strong> means you can complete modules on your own schedule. </br><strong>Hands-on practice</strong> with real AI tools helps you build practical skills.</br> <strong>Skills-based content</strong> focuses on applications for teaching and learning.</br> <strong>Choose your path</strong> by selecting modules that match your interests and goals.</p>
+            </div>
+        </div>
+
+
+      <!-- Tools Section -->
+        <div class="tools-section">
+            <h3>Explore These AI Tools</h3>
+            <div class="tools-grid">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="tool-icon">💬</div>
+                            <h4>ChatGPT</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>OpenAI's conversational AI for text generation, brainstorming, and problem-solving</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="tool-icon">🤖</div>
+                            <h4>Microsoft Copilot</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Microsoft's AI assistant integrated with productivity tools for writing and research</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="tool-icon">✨</div>
+                            <h4>Google Gemini</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Google's multimodal AI for text, image analysis, and creative content generation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="tool-icon">📓</div>
+                            <h4>Notebook LM</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Google's AI research assistant that helps you synthesize information from documents</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="tool-icon">🎨</div>
+                            <h4>Adobe Firefly</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Adobe's creative AI for generating images, graphics, and visual content</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="tool-icon">📝</div>
+                            <h4>Github Copilot</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>AI-powered coding tool for writing, organizing, and managing github repos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="tool-icon">🏛️</div>
+                            <h4>Illinois Chat</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Campus-developed AI platform built for University of Illinois educational needs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificate Banner -->
+        <div class="certificate-banner">
+            <div class="certificate-banner-content">
+                <h2>Earn Your AI Fluency Certificate</h2>
+                <p>Complete any six modules and a learning reflection project to earn the CITL Generative AI Fluency Certificate. This professional credential demonstrates your commitment to developing practical AI skills for education.</p>
+                <a href="ai-fluency-certificate.html" class="certificate-cta">Learn About the Certificate →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Created by Claude for the <a href="https://citl.illinois.edu">Center for Innovation in Teaching & Learning</a></p>
+        <p>Last updated February 2026</p>
+    </div>
+</body>
+</html>
