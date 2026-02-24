@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LLM Cognitive Architecture Curriculum</title>
+  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <p class="title">LLM Cognitive Architecture Curriculum</p>
+        <p class="subtitle">Landing page</p>
+      </div>
+      <nav class="nav" aria-label="Site navigation"><a href="index.html">Home</a><a href="modules.html">Modules</a><a href="facilitator_guide.html">Facilitator guide</a><a href="capstone.html">Capstone</a></nav>
+    </div>
+  </div>
+
+  <div class="container">
+<div class="hero">
+  <h1>Designing LLM behavior as cognitive architecture</h1>
+  <p>
+    This site packages four mini-sites into one coherent curriculum. The idea is simple:
+    “prompting” is only one layer. Reliable use comes from engineering the model’s full working environment.
+  </p>
+  <div class="actions">
+    <a class="btn primary" href="modules.html">Start with modules →</a>
+    <a class="btn" href="facilitator_guide.html">Facilitator guide</a>
+    <a class="btn" href="capstone.html">Capstone exercise</a>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Framework diagram</h3>
+  <p class="meta">Use this stack to introduce the four layers and the logic of the curriculum.</p>
+  
+<svg width="100%" viewBox="0 0 920 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four-layer LLM cognitive architecture stack">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="rgba(19,41,75,0.06)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="920" height="320" rx="18" fill="url(#bg)" stroke="rgba(0,0,0,0.10)"/>
+  <g font-family="Montserrat, system-ui, -apple-system, Segoe UI, Roboto" font-weight="700" fill="#13294B">
+    <text x="40" y="52" font-size="20">LLM Cognitive Architecture</text>
+    <text x="40" y="78" font-size="12" font-weight="600" fill="#4f4f4f">Four controllable layers that shape output quality</text>
+  </g>
+
+  <g font-family="Source Sans 3, system-ui, -apple-system, Segoe UI, Roboto" font-weight="600">
+    <rect x="520" y="78" width="340" height="54" rx="14" fill="rgba(255,95,5,0.12)" stroke="rgba(255,95,5,0.45)"/>
+    <text x="540" y="110" font-size="16" fill="#111">Epistemic layer</text>
+    <text x="540" y="128" font-size="12" fill="#4f4f4f" font-weight="500">uncertainty, confidence, refusal</text>
+
+    <rect x="520" y="140" width="340" height="54" rx="14" fill="rgba(19,41,75,0.08)" stroke="rgba(19,41,75,0.28)"/>
+    <text x="540" y="172" font-size="16" fill="#111">Reasoning layer</text>
+    <text x="540" y="190" font-size="12" fill="#4f4f4f" font-weight="500">decomposition, evaluation, iteration</text>
+
+    <rect x="520" y="202" width="340" height="54" rx="14" fill="rgba(255,95,5,0.08)" stroke="rgba(255,95,5,0.35)"/>
+    <text x="540" y="234" font-size="16" fill="#111">Context layer</text>
+    <text x="540" y="252" font-size="12" fill="#4f4f4f" font-weight="500">priority, grounding, memory</text>
+
+    <rect x="520" y="264" width="340" height="46" rx="14" fill="rgba(19,41,75,0.06)" stroke="rgba(19,41,75,0.22)"/>
+    <text x="540" y="292" font-size="16" fill="#111">Prompt layer</text>
+    <text x="540" y="308" font-size="12" fill="#4f4f4f" font-weight="500">instructions, constraints, examples</text>
+
+    <path d="M 448 92 C 470 92 490 110 510 122" fill="none" stroke="rgba(19,41,75,0.45)" stroke-width="3"/>
+    <path d="M 448 170 C 470 170 490 170 510 170" fill="none" stroke="rgba(19,41,75,0.45)" stroke-width="3"/>
+    <path d="M 448 244 C 470 244 490 224 510 210" fill="none" stroke="rgba(19,41,75,0.45)" stroke-width="3"/>
+    <path d="M 510 170 l -12 -6 l 0 12 z" fill="rgba(19,41,75,0.45)"/>
+    <path d="M 510 122 l -12 -6 l 0 12 z" fill="rgba(19,41,75,0.45)"/>
+    <path d="M 510 210 l -12 -6 l 0 12 z" fill="rgba(19,41,75,0.45)"/>
+
+    <g>
+      <text x="40" y="120" font-size="14" fill="#111">Design the model’s working environment:</text>
+      <text x="40" y="144" font-size="13" fill="#4f4f4f" font-weight="500">• what it is told to do</text>
+      <text x="40" y="166" font-size="13" fill="#4f4f4f" font-weight="500">• what it knows and prioritizes</text>
+      <text x="40" y="188" font-size="13" fill="#4f4f4f" font-weight="500">• how it reasons</text>
+      <text x="40" y="210" font-size="13" fill="#4f4f4f" font-weight="500">• how it represents uncertainty</text>
+
+      <text x="40" y="250" font-size="14" fill="#111">Quality = f(instructions, knowledge, reasoning, epistemics)</text>
+      <text x="40" y="274" font-size="12" fill="#4f4f4f" font-weight="500">The same model can behave very differently under different architectures.</text>
+    </g>
+  </g>
+</svg>
+
+</div>
+
+<div class="section">
+  <h3>Modules at a glance</h3>
+  <p class="meta">Each module contains six activities with baseline vs engineered comparisons.</p>
+  
+<div class="grid">
+  <div class="card">
+    <h2><a href="modules/prompt/index.html">Prompt engineering</a></h2>
+    <p>Control instructions, constraints, and output structure.</p>
+    <div class="badges"><span class="badge blue">Instructions</span><span class="badge orange">Constraints</span></div>
+  </div>
+  <div class="card">
+    <h2><a href="modules/context/index.html">Context engineering</a></h2>
+    <p>Control what the model knows, prioritizes, ignores, and trusts.</p>
+    <div class="badges"><span class="badge blue">Knowledge</span><span class="badge orange">Attention</span></div>
+  </div>
+  <div class="card">
+    <h2><a href="modules/reasoning/index.html">Reasoning engineering</a></h2>
+    <p>Control how the model reasons: strategy, decomposition, iteration, evaluation.</p>
+    <div class="badges"><span class="badge blue">Cognition</span><span class="badge orange">Workflow</span></div>
+  </div>
+  <div class="card">
+    <h2><a href="modules/uncertainty/index.html">Uncertainty engineering</a></h2>
+    <p>Make epistemic boundaries explicit: calibration, refusal, hypotheses, propagation.</p>
+    <div class="badges"><span class="badge blue">Epistemics</span><span class="badge orange">Reliability</span></div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h3>What changes after this curriculum</h3>
+  <div class="callout">
+    Participants stop asking “what’s the magic prompt?” and start asking
+    “what architecture does this task require: context, reasoning workflow, and epistemic controls?”
+  </div>
+</div>
+</div>
+
+  <div class="footer">
+    Illini Orange <span style="color:var(--il-orange);font-weight:700;">#FF5F05</span> • Illini Blue <span style="color:var(--il-blue);font-weight:700;">#13294B</span> • Updated 2026-02-24.
+  </div>
+</body>
+</html>

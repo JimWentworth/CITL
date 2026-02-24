@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Example 1: Priority stack (what matters most)</title>
+  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <p class="title">Context Engineering: 6 Hands-on LLM Examples</p>
+        <p class="subtitle">Example 1 of 6</p>
+      </div>
+      <nav class="nav" aria-label="Site navigation"><a href="index.html">Home</a><a href="example_1.html">1</a><a href="example_2.html">2</a><a href="example_3.html">3</a><a href="example_4.html">4</a><a href="example_5.html">5</a><a href="example_6.html">6</a></nav>
+    </div>
+  </div>
+  <div class="container">
+<div class="hero">
+  <div class="badges" style="margin-top:0;">
+    <span class="badge blue">Example 1</span>
+    <span class="badge orange">Context engineering</span>
+  </div>
+  <h1>Example 1: Priority stack (what matters most)</h1>
+  <p>Teach the model what to optimize for by ranking context into priority tiers.</p>
+  <div class="pager">
+    <a href="index.html"><strong>← Home</strong></a>
+    <a href="example_2.html"><strong>Example 2 →</strong></a>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Try this prompt</h3>
+  <p class="meta">Copy/paste into your LLM. Keep the labels intact.</p>
+  <pre>You are advising a student choosing a laptop.
+
+GENERAL CONTEXT (nice-to-have):
+- High RAM improves multitasking.
+- Faster CPUs improve computation speed.
+- SSDs improve file access speed.
+
+PRIORITY CONTEXT (most important):
+The student is a graphic design major using Adobe Creative Cloud daily.
+Color accuracy and GPU performance are critical.
+Battery life matters for studio work.
+
+Question:
+Recommend laptop specifications for this student, prioritized by impact.
+Output:
+1) Top 5 specs to prioritize (bullets)
+2) One sentence trade-off warning
+</pre>
+</div>
+
+<div class="section">
+  <h3>What this demonstrates</h3>
+  <ul><li>Context weighting via explicit priority tiers</li><li>Goal shaping (optimize for display/GPU rather than generic specs)</li><li>Structured output for comparability</li></ul>
+</div>
+
+<div class="section">
+  <h3>Facilitator tip</h3>
+  <p style="margin:0;">Run it twice: once with priorities, once without. Compare what rises to the top.</p>
+</div>
+
+<div class="pager">
+  <a href="index.html"><strong>← Home</strong></a>
+  <a href="example_2.html"><strong>Example 2 →</strong></a>
+</div>
+</div>
+  <div class="footer">
+    Illini Orange <span style="color:var(--il-orange);font-weight:700;">#FF5F05</span> • Illini Blue <span style="color:var(--il-blue);font-weight:700;">#13294B</span> • Generated 2026-02-24.
+  </div>
+</body>
+</html>

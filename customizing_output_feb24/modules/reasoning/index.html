@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reasoning Engineering Examples (1–6)</title>
+  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <p class="title">Reasoning Engineering: 6 Hands-on LLM Exercises</p>
+        <p class="subtitle">A connected mini-site (Illinois styling) for hands-on practice</p>
+      </div>
+      <nav class="nav" aria-label="Site navigation"><a href="../../index.html">Home</a><a href="example_1.html">1</a><a href="example_2.html">2</a><a href="example_3.html">3</a><a href="example_4.html">4</a><a href="example_5.html">5</a><a href="example_6.html">6</a></nav>
+    </div>
+  </div>
+
+  <div class="container">
+<div class="hero">
+  <h1>Six reasoning engineering exercises</h1>
+  <p>
+    These activities focus on controlling <em>how</em> the model reasons: strategy, decomposition, representation,
+    attention, iteration, and evaluation. The goal is more stable, auditable outputs—especially for teaching and assessment.
+  </p>
+  <div class="callout" style="margin-top:14px;">
+    <strong style="font-family:var(--display);">Recommended sequence:</strong>
+    1 → 2 → 4 for control basics, then 3 for representation, then 5–6 for refinement + evaluation workflows.
+  </div>
+  <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+    <a href="example_1.html" style="background:var(--il-orange);color:#fff;border:1px solid rgba(0,0,0,.08);padding:10px 14px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.06);font-family:var(--display);font-weight:700;">Start: Example 1 →</a>
+    <a href="example_5.html" style="background:#fff;color:var(--il-blue);border:1px solid var(--border);padding:10px 14px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.04);font-family:var(--display);font-weight:700;">Jump to iteration (Ex. 5)</a>
+  </div>
+</div>
+
+<div class="grid">
+<div class="card">
+  <h2><a href="example_1.html">Example 1: Reasoning strategy switch (same task, different approach)</a></h2>
+  <p>Teach that you can control the model’s approach (strategy), not just its answer.</p>
+  <div class="badges">
+    <span class="badge blue">Strategy</span>
+    <span class="badge orange">A/B/C comparison</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_2.html">Example 2: Forced decomposition (prevent big jumps)</a></h2>
+  <p>Improve reliability by splitting a complex task into ordered sub-tasks with constraints.</p>
+  <div class="badges">
+    <span class="badge blue">Decomposition</span>
+    <span class="badge orange">Alignment</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_3.html">Example 3: Representation engineering (change the output structure)</a></h2>
+  <p>Show that forcing a representation can improve clarity and reasoning quality.</p>
+  <div class="badges">
+    <span class="badge blue">Representation</span>
+    <span class="badge orange">Clarity</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_4.html">Example 4: Attention constraints (focus only on X, ignore Y)</a></h2>
+  <p>Constrain the model’s attention so it evaluates the right dimension (and stops grading ‘vibes’).</p>
+  <div class="badges">
+    <span class="badge blue">Attention</span>
+    <span class="badge orange">Scope control</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_5.html">Example 5: Iterative refinement loop (draft → critique → revise)</a></h2>
+  <p>Teach multi-pass workflows that reliably improve output quality.</p>
+  <div class="badges">
+    <span class="badge blue">Iteration</span>
+    <span class="badge orange">Revision loop</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_6.html">Example 6: Evaluation engineering (rank answers using a rubric)</a></h2>
+  <p>Train the model to judge quality explicitly, not just generate content.</p>
+  <div class="badges">
+    <span class="badge blue">Evaluation</span>
+    <span class="badge orange">Rubric scoring</span>
+  </div>
+</div>
+</div>
+
+<div class="section">
+  <h3>Simple scoring rubric for outputs</h3>
+  <ul>
+    <li><strong>Auditability:</strong> Can you see why it concluded what it did?</li>
+    <li><strong>Completeness:</strong> Did it address all required parts?</li>
+    <li><strong>Constraint adherence:</strong> Did it follow the structure and limits?</li>
+    <li><strong>Teaching usefulness:</strong> Does it support learning (not just answering)?</li>
+  </ul>
+</div>
+</div>
+
+  <div class="footer">
+    Illini Orange <span style="color:var(--il-orange);font-weight:700;">#FF5F05</span> • Illini Blue <span style="color:var(--il-blue);font-weight:700;">#13294B</span> • Generated 2026-02-24.
+  </div>
+</body>
+</html>

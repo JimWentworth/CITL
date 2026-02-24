@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Example 5: Teach a custom labeling schema (taxonomy + edge cases)</title>
+  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <p class="title">Prompt-based Teaching: 6 Hands-on LLM Examples</p>
+        <p class="subtitle">Example 5 of 6</p>
+      </div>
+      <nav class="nav" aria-label="Site navigation">
+        <a href="index.html">Home</a><a href="example_1.html">1</a><a href="example_2.html">2</a><a href="example_3.html">3</a><a href="example_4.html">4</a><a href="example_5.html">5</a><a href="example_6.html">6</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <div class="hero">
+      <div class="badge blue" style="display:inline-block;margin-bottom:8px;">Example 5</div>
+      <h1 class="page-title">Example 5: Teach a custom labeling schema (taxonomy + edge cases)</h1>
+      <p class="kicker">Define categories and disambiguation rules; the model applies them to new items.</p>
+      
+    <div class="pager">
+      <a href="example_4.html"><strong>← Example 4</strong></a>
+      <a href="example_6.html"><strong>Example 6 →</strong></a>
+    </div>
+    
+    </div>
+
+    <div class="section">
+      <h3>Try this prompt</h3>
+      <p class="meta">Copy/paste into your LLM. Replace bracketed placeholders as needed.</p>
+      <pre>You are a content triage assistant. Classify each item into exactly ONE label using the schema below.
+
+Labels:
+1) FACT: Verifiable statement about the world.
+2) OPINION: Value judgment or preference.
+3) INSTRUCTION: Tells someone what to do.
+4) QUESTION: Seeks information.
+5) META: About the conversation, the prompt, or the model.
+
+Rules:
+- If an item contains both a fact and an opinion, choose the dominant intent.
+- Rhetorical questions that imply a judgment are OPINION unless they genuinely seek info.
+- Statements about what "you (the assistant)" will do are META.
+
+Examples:
+"Paris is the capital of France." -> FACT
+"Chocolate ice cream is the best." -> OPINION
+"Click the Submit button." -> INSTRUCTION
+"How do I reset my password?" -> QUESTION
+"As an AI model, I cannot browse the web." -> META
+"Isn't it obvious this policy is unfair?" -> OPINION
+
+Now label the items below. Output as a numbered list: N) LABEL — short justification (max 12 words).
+
+Items:
+1. "The meeting starts at 3pm."
+2. "Please summarize the attached document."
+3. "I think this interface is confusing."
+4. "Can you explain what 'latent space' means?"
+5. "Earlier you said you would remember this."
+</pre>
+    </div>
+
+    <div class="section">
+      <h3>What this teaches</h3>
+      <ul><li>Schema induction (lightweight ontology)</li><li>Edge-case control via explicit rules</li><li>Justification constraint to prevent rambling</li></ul>
+    </div>
+
+    <div class="section">
+      <h3>Facilitator tip</h3>
+      <p style="margin:0;">Add one new edge-case rule and rerun; observe boundary changes.</p>
+    </div>
+
+    
+    <div class="pager">
+      <a href="example_4.html"><strong>← Example 4</strong></a>
+      <a href="example_6.html"><strong>Example 6 →</strong></a>
+    </div>
+    
+    
+  </div>
+
+  <div class="footer">
+    Built with Illini Orange <span style="color:var(--il-orange);font-weight:700;">#FF5F05</span> and Illini Blue <span style="color:var(--il-blue);font-weight:700;">#13294B</span> per Illinois brand guidance. Generated 2026-02-24.
+  </div>
+</body>
+</html>

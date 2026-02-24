@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Example 4: Attention constraints (focus only on X, ignore Y)</title>
+  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <p class="title">Reasoning Engineering: 6 Hands-on LLM Exercises</p>
+        <p class="subtitle">Example 4 of 6</p>
+      </div>
+      <nav class="nav" aria-label="Site navigation"><a href="index.html">Home</a><a href="example_1.html">1</a><a href="example_2.html">2</a><a href="example_3.html">3</a><a href="example_4.html">4</a><a href="example_5.html">5</a><a href="example_6.html">6</a></nav>
+    </div>
+  </div>
+
+  <div class="container">
+<div class="hero">
+  <div class="badges" style="margin-top:0;">
+    <span class="badge blue">Example 4</span>
+    <span class="badge orange">Reasoning control</span>
+  </div>
+  <h1>Example 4: Attention constraints (focus only on X, ignore Y)</h1>
+  <p>Constrain the model’s attention so it evaluates the right dimension (and stops grading ‘vibes’).</p>
+  <div class="pager">
+    <a href="example_3.html"><strong>← Example 3</strong></a>
+    <a href="example_5.html"><strong>Example 5 →</strong></a>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Try this prompt</h3>
+  <p class="meta">Copy/paste into your LLM. Preserve the step labels and constraints.</p>
+  <pre>You will review a student paragraph.
+
+Focus ONLY on:
+- argument structure
+- logical coherence
+- use of evidence
+
+Ignore entirely:
+- grammar
+- spelling
+- writing style
+
+Output format:
+1) One-sentence summary of the argument
+2) Two strengths (bullets)
+3) Two logical gaps or missing evidence (bullets)
+4) One revision suggestion (one sentence)
+
+Student paragraph:
+[PASTE TEXT HERE]
+</pre>
+</div>
+
+<div class="section">
+  <h3>What this demonstrates</h3>
+  <ul><li>Scope control for evaluation tasks</li><li>Prevents overreach into irrelevant criteria</li><li>Improves consistency across graders</li></ul>
+</div>
+
+<div class="section">
+  <h3>Facilitator tip</h3>
+  <p style="margin:0;">Add a deliberate grammar error and confirm it doesn’t comment on it.</p>
+</div>
+
+<div class="section">
+  <h3>Suggested comparison</h3>
+  <div class="two-col">
+    <div class="mini">
+      <h4>Single-shot run</h4>
+      <p>Ask once without structure; compare completeness and coherence.</p>
+    </div>
+    <div class="mini">
+      <h4>Structured run</h4>
+      <p>Use the scaffold; check whether reasoning is more stable and auditable.</p>
+    </div>
+  </div>
+</div>
+
+<div class="pager">
+  <a href="example_3.html"><strong>← Example 3</strong></a>
+  <a href="example_5.html"><strong>Example 5 →</strong></a>
+</div>
+</div>
+
+  <div class="footer">
+    Illini Orange <span style="color:var(--il-orange);font-weight:700;">#FF5F05</span> • Illini Blue <span style="color:var(--il-blue);font-weight:700;">#13294B</span> • Generated 2026-02-24.
+  </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Example 2: Context filtering (what to ignore)</title>
+  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <p class="title">Context Engineering: 6 Hands-on LLM Examples</p>
+        <p class="subtitle">Example 2 of 6</p>
+      </div>
+      <nav class="nav" aria-label="Site navigation"><a href="index.html">Home</a><a href="example_1.html">1</a><a href="example_2.html">2</a><a href="example_3.html">3</a><a href="example_4.html">4</a><a href="example_5.html">5</a><a href="example_6.html">6</a></nav>
+    </div>
+  </div>
+  <div class="container">
+<div class="hero">
+  <div class="badges" style="margin-top:0;">
+    <span class="badge blue">Example 2</span>
+    <span class="badge orange">Context engineering</span>
+  </div>
+  <h1>Example 2: Context filtering (what to ignore)</h1>
+  <p>Demonstrate attention control: explicitly mark irrelevant content to prevent distraction.</p>
+  <div class="pager">
+    <a href="example_1.html"><strong>← Example 1</strong></a>
+    <a href="example_3.html"><strong>Example 3 →</strong></a>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Try this prompt</h3>
+  <p class="meta">Copy/paste into your LLM. Keep the labels intact.</p>
+  <pre>You are diagnosing why a car will not start.
+
+RELEVANT:
+- The engine does not turn over.
+- The battery is 7 years old.
+- A clicking sound occurs when turning the key.
+
+IGNORE (irrelevant to diagnosis):
+- The car is blue.
+- The owner likes jazz music.
+- The tires were replaced last year.
+
+Task:
+Give the top 3 likely causes in order with one test for each.
+</pre>
+</div>
+
+<div class="section">
+  <h3>What this demonstrates</h3>
+  <ul><li>Noise suppression via explicit ignore zones</li><li>Causal reasoning anchored to labeled relevance</li><li>Actionable outputs (tests), not just guesses</li></ul>
+</div>
+
+<div class="section">
+  <h3>Facilitator tip</h3>
+  <p style="margin:0;">Add one “tempting but irrelevant” detail (e.g., ‘recent oil change’) and see if it distracts.</p>
+</div>
+
+<div class="pager">
+  <a href="example_1.html"><strong>← Example 1</strong></a>
+  <a href="example_3.html"><strong>Example 3 →</strong></a>
+</div>
+</div>
+  <div class="footer">
+    Illini Orange <span style="color:var(--il-orange);font-weight:700;">#FF5F05</span> • Illini Blue <span style="color:var(--il-blue);font-weight:700;">#13294B</span> • Generated 2026-02-24.
+  </div>
+</body>
+</html>

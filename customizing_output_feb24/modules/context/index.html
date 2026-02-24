@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Context Engineering Examples (1–6)</title>
+  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <p class="title">Context Engineering: 6 Hands-on LLM Examples</p>
+        <p class="subtitle">A connected mini-site (Illinois styling) for hands-on practice</p>
+      </div>
+      <nav class="nav" aria-label="Site navigation"><a href="../../index.html">Home</a><a href="example_1.html">1</a><a href="example_2.html">2</a><a href="example_3.html">3</a><a href="example_4.html">4</a><a href="example_5.html">5</a><a href="example_6.html">6</a></nav>
+    </div>
+  </div>
+  <div class="container">
+<div class="hero">
+  <h1>Six context engineering exercises</h1>
+  <p>
+    Context engineering shapes the model’s working environment: what it prioritizes, ignores, trusts,
+    remembers, and refuses. These six prompts isolate common levers used in real systems (tutors, RAG, evaluators).
+  </p>
+  <div class="callout" style="margin-top:14px;">
+    <strong style="font-family:var(--display);">Suggested flow:</strong>
+    Start with priority + filtering (1–2), then audience (3), then state/history (4), then grounding (5), then authority (6).
+  </div>
+  <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+    <a href="example_1.html" style="background:var(--il-orange);color:#fff;border:1px solid rgba(0,0,0,.08);padding:10px 14px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.06);font-family:var(--display);font-weight:700;">Start: Example 1 →</a>
+    <a href="example_5.html" style="background:#fff;color:var(--il-blue);border:1px solid var(--border);padding:10px 14px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.04);font-family:var(--display);font-weight:700;">Jump to grounding (Ex. 5)</a>
+  </div>
+</div>
+
+<div class="grid">
+<div class="card">
+  <h2><a href="example_1.html">Example 1: Priority stack (what matters most)</a></h2>
+  <p>Teach the model what to optimize for by ranking context into priority tiers.</p>
+  <div class="badges">
+    <span class="badge blue">Priority tiers</span>
+    <span class="badge orange">Goal weighting</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_2.html">Example 2: Context filtering (what to ignore)</a></h2>
+  <p>Demonstrate attention control: explicitly mark irrelevant content to prevent distraction.</p>
+  <div class="badges">
+    <span class="badge blue">Filtering</span>
+    <span class="badge orange">Noise control</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_3.html">Example 3: Persona + audience model injection</a></h2>
+  <p>Shape explanations by injecting a learner profile (knowledge level, preferences, constraints).</p>
+  <div class="badges">
+    <span class="badge blue">Persona injection</span>
+    <span class="badge orange">Audience model</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_4.html">Example 4: Temporal context + state (history matters)</a></h2>
+  <p>Show that ordering and explicit state updates change interpretation and recommendations.</p>
+  <div class="badges">
+    <span class="badge blue">Temporal state</span>
+    <span class="badge orange">History</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_5.html">Example 5: Grounding to a provided reference (bounded knowledge)</a></h2>
+  <p>Demonstrate document-grounded answers by restricting the model to a supplied mini-knowledge base.</p>
+  <div class="badges">
+    <span class="badge blue">Grounding</span>
+    <span class="badge orange">Bounded knowledge</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_6.html">Example 6: Conflict resolution via authority weighting</a></h2>
+  <p>Teach precedence rules for conflicting context using reliability labels.</p>
+  <div class="badges">
+    <span class="badge blue">Authority</span>
+    <span class="badge orange">Conflict resolution</span>
+  </div>
+</div>
+</div>
+
+<div class="section">
+  <h3>How to run as a lab</h3>
+  <ul>
+    <li>Run each prompt “as-is,” then change exactly one context lever.</li>
+    <li>Collect outputs and annotate: what changed, what stayed stable, what broke.</li>
+    <li>Require a short “context diff” note: what you edited and why.</li>
+  </ul>
+</div>
+</div>
+  <div class="footer">
+    Illini Orange <span style="color:var(--il-orange);font-weight:700;">#FF5F05</span> • Illini Blue <span style="color:var(--il-blue);font-weight:700;">#13294B</span> • Generated 2026-02-24.
+  </div>
+</body>
+</html>

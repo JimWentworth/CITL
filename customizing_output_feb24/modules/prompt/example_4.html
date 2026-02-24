@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Example 4: Teach a grading rubric and calibration (consistent evaluation)</title>
+  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <p class="title">Prompt-based Teaching: 6 Hands-on LLM Examples</p>
+        <p class="subtitle">Example 4 of 6</p>
+      </div>
+      <nav class="nav" aria-label="Site navigation">
+        <a href="index.html">Home</a><a href="example_1.html">1</a><a href="example_2.html">2</a><a href="example_3.html">3</a><a href="example_4.html">4</a><a href="example_5.html">5</a><a href="example_6.html">6</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <div class="hero">
+      <div class="badge blue" style="display:inline-block;margin-bottom:8px;">Example 4</div>
+      <h1 class="page-title">Example 4: Teach a grading rubric and calibration (consistent evaluation)</h1>
+      <p class="kicker">Embed a rubric plus anchor examples so evaluations are consistent and defensible.</p>
+      
+    <div class="pager">
+      <a href="example_3.html"><strong>← Example 3</strong></a>
+      <a href="example_5.html"><strong>Example 5 →</strong></a>
+    </div>
+    
+    </div>
+
+    <div class="section">
+      <h3>Try this prompt</h3>
+      <p class="meta">Copy/paste into your LLM. Replace bracketed placeholders as needed.</p>
+      <pre>You are a strict but fair grader. Use ONLY this rubric and the anchor examples to grade.
+
+Rubric (0–4 each; total /12):
+A) Claim clarity: 0=unclear, 2=somewhat clear, 4=precise claim
+B) Evidence use: 0=none, 2=some evidence but weak connection, 4=strong evidence linked to claim
+C) Reasoning: 0=illogical, 2=some logic gaps, 4=coherent reasoning with no major gaps
+
+Anchor examples:
+Example 1 (Score 10/12):
+Student: "Sleep improves memory consolidation because hippocampal replay strengthens synapses. A study found better recall after sleep."
+Rationale: Clear claim (4), evidence (3), reasoning (3).
+
+Example 2 (Score 4/12):
+Student: "Sleep is good. It helps you remember stuff. Everyone knows that."
+Rationale: Claim (2), evidence (0), reasoning (2).
+
+Now grade the student response below. Output EXACTLY:
+- Total score: X/12
+- Subscores: A=?, B=?, C=?
+- 2 strengths (bullets)
+- 2 improvements (bullets)
+- One sentence of feedback using neutral tone
+
+Student response:
+"[PASTE STUDENT RESPONSE HERE]"
+</pre>
+    </div>
+
+    <div class="section">
+      <h3>What this teaches</h3>
+      <ul><li>Rubric injection (explicit criteria)</li><li>Calibration via anchors to reduce drift</li><li>Constrained output format for reliability</li></ul>
+    </div>
+
+    <div class="section">
+      <h3>Facilitator tip</h3>
+      <p style="margin:0;">Grade the same response with and without anchors; compare variability.</p>
+    </div>
+
+    
+    <div class="pager">
+      <a href="example_3.html"><strong>← Example 3</strong></a>
+      <a href="example_5.html"><strong>Example 5 →</strong></a>
+    </div>
+    
+    
+  </div>
+
+  <div class="footer">
+    Built with Illini Orange <span style="color:var(--il-orange);font-weight:700;">#FF5F05</span> and Illini Blue <span style="color:var(--il-blue);font-weight:700;">#13294B</span> per Illinois brand guidance. Generated 2026-02-24.
+  </div>
+</body>
+</html>

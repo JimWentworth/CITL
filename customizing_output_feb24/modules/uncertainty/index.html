@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Uncertainty Engineering Examples (1–6)</title>
+  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <p class="title">Uncertainty Engineering: 6 Hands-on LLM Exercises</p>
+        <p class="subtitle">A connected mini-site (Illinois styling) for hands-on practice</p>
+      </div>
+      <nav class="nav" aria-label="Site navigation"><a href="../../index.html">Home</a><a href="example_1.html">1</a><a href="example_2.html">2</a><a href="example_3.html">3</a><a href="example_4.html">4</a><a href="example_5.html">5</a><a href="example_6.html">6</a></nav>
+    </div>
+  </div>
+
+  <div class="container">
+<div class="hero">
+  <h1>Six uncertainty engineering exercises</h1>
+  <p>
+    These activities teach models (and people) to stop collapsing ambiguity into confident prose.
+    The objective is not “less helpful,” but more honest and more actionable outputs: what is known,
+    what is inferred, and what would reduce uncertainty next.
+  </p>
+  <div class="callout" style="margin-top:14px;">
+    <strong style="font-family:var(--display);">Workshop structure:</strong>
+    For each example, run “no scaffold” vs “with scaffold,” then discuss differences in certainty, scope, and usefulness.
+  </div>
+  <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+    <a href="example_1.html" style="background:var(--il-orange);color:#fff;border:1px solid rgba(0,0,0,.08);padding:10px 14px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.06);font-family:var(--display);font-weight:700;">Start: Example 1 →</a>
+    <a href="example_4.html" style="background:#fff;color:var(--il-blue);border:1px solid var(--border);padding:10px 14px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.04);font-family:var(--display);font-weight:700;">Jump to refusal (Ex. 4)</a>
+  </div>
+</div>
+
+<div class="grid">
+<div class="card">
+  <h2><a href="example_1.html">Example 1: Evidence tagging (KNOWN vs INFERRED vs UNKNOWN)</a></h2>
+  <p>Force epistemic boundaries: separate what’s stated, inferred, or missing.</p>
+  <div class="badges">
+    <span class="badge blue">Epistemic labels</span>
+    <span class="badge orange">Auditability</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_2.html">Example 2: Missing-information checklist (gap detection)</a></h2>
+  <p>Teach the model to identify what it needs before concluding.</p>
+  <div class="badges">
+    <span class="badge blue">Gap detection</span>
+    <span class="badge orange">Next-step questions</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_3.html">Example 3: Confidence calibration (0–100 with a scale)</a></h2>
+  <p>Align confidence with evidence strength; reduce overconfidence when grounding is absent.</p>
+  <div class="badges">
+    <span class="badge blue">Calibration scale</span>
+    <span class="badge orange">Evidence strength</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_4.html">Example 4: Refusal protocol (when not to answer)</a></h2>
+  <p>Teach a crisp refusal behavior to block hallucination.</p>
+  <div class="badges">
+    <span class="badge blue">Refusal rule</span>
+    <span class="badge orange">Anti-hallucination</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_5.html">Example 5: Competing hypotheses (structured uncertainty)</a></h2>
+  <p>Represent uncertainty as alternatives with tests, not a single guess.</p>
+  <div class="badges">
+    <span class="badge blue">Hypotheses</span>
+    <span class="badge orange">Tests to resolve</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2><a href="example_6.html">Example 6: Uncertainty propagation (track it through conclusions)</a></h2>
+  <p>Prevent certainty inflation across multi-step reasoning.</p>
+  <div class="badges">
+    <span class="badge blue">Propagation</span>
+    <span class="badge orange">Assumption visibility</span>
+  </div>
+</div>
+</div>
+
+<div class="section">
+  <h3>One practical scoring rubric</h3>
+  <ul>
+    <li><strong>Grounding:</strong> Claims tied to provided context (yes/no).</li>
+    <li><strong>Disclosure:</strong> Unknowns explicitly stated (0–2).</li>
+    <li><strong>Actionability:</strong> Clear next evidence to collect (0–2).</li>
+    <li><strong>Overclaiming:</strong> Any unjustified certainty (penalty).</li>
+  </ul>
+</div>
+</div>
+
+  <div class="footer">
+    Illini Orange <span style="color:var(--il-orange);font-weight:700;">#FF5F05</span> • Illini Blue <span style="color:var(--il-blue);font-weight:700;">#13294B</span> • Generated 2026-02-24.
+  </div>
+</body>
+</html>
