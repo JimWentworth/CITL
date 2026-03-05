@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimodal AI Workshop - University of Illinois</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        body { 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: #fff; 
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            border-bottom: 3px solid #E84A27;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 { 
+            color: #13294B; 
+            font-size: 2.5em; 
+            font-weight: 700; 
+            margin-bottom: 10px; 
+        }
+
+        .page-subtitle { 
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        h2 { 
+            color: #13294B; 
+            font-size: 1.5em; 
+            margin: 40px 0 15px 0; 
+            font-weight: 600; 
+        }
+
+        h3 { 
+            color: #13294B; 
+            font-size: 1.2em; 
+            margin: 20px 0 10px 0; 
+            font-weight: 600; 
+        }
+
+        h4 {
+            color: #13294B;
+            font-size: 1.1em;
+            margin: 15px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .info-box { 
+            background: #f0f4f8; 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-left: 4px solid #13294B; 
+        }
+
+        .tip { 
+            background: #fff8e1; 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-left: 4px solid #F6BE00; 
+        }
+
+        .warning {
+            background: #fff8e1;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #F6BE00;
+        }
+
+        .section { 
+            background: #f9f9f9; 
+            padding: 20px; 
+            margin: 20px 0; 
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+        }
+
+        th { 
+            background: #13294B; 
+            color: white; 
+            padding: 12px; 
+            text-align: left; 
+        }
+
+        td { 
+            padding: 12px; 
+            border-bottom: 1px solid #ddd; 
+        }
+
+        tr:hover { 
+            background: #f9f9f9; 
+        }
+
+        ul { 
+            margin: 10px 0 10px 25px; 
+        }
+
+        ol { 
+            margin: 10px 0 10px 25px; 
+        }
+
+        a {
+            color: #13294B;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #E84A27;
+            text-decoration: underline;
+        }
+
+        .scenario-box {
+            background: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #E84A27;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Multimodal AI Workshop</h1>
+            <p class="page-subtitle">Exploring AI Tools Across Text, Image, Audio, and Video</p>
+            <p style="margin-top: 10px; color: #666;">University of Illinois</p>
+        </header>
+        
+        <div class="content">
+            <p style="font-size: 1.1em; margin-bottom: 30px;">
+                This hands-on workshop explores state-of-the-art multimodal AI tools that work across different media types. 
+                Learn to leverage specialized AI for everyday productivity, design, conversation, research, voice synthesis, and video creation.
+            </p>
+            
+            <div class="info-box">
+                <h3>What is Multimodal AI?</h3>
+                <p>Multimodal AI systems can understand and generate multiple types of content—text, images, audio, and video. 
+                This workshop focuses on practical tools that excel in specific domains, showing you when and how to use each one effectively.</p>
+            </div>
+            
+            <h2>Workshop Tools Overview</h2>
+            
+            <div class="section">
+                <h3>🤖 Microsoft Copilot - AI-Powered Assistant</h3>
+                <p><strong>Best for:</strong> Daily productivity, web browsing, document assistance, image generation</p>
+                <p><strong>Key Features:</strong></p>
+                <ul>
+                    <li>Integrated into Windows, Edge browser, and Office 365</li>
+                    <li>Web search with current information</li>
+                    <li>Document creation and summarization</li>
+                    <li>Image generation with DALL-E 3</li>
+                    <li>Code assistance and explanations</li>
+                    <li>Free tier available with Microsoft account</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Workshop Demo:</strong> Use Copilot to research a topic, generate a summary document, 
+                and create accompanying visuals—all in one integrated workflow.</p>
+            </div>
+            
+            <div class="section">
+                <h3>🎨 Adobe Firefly - Generative AI for Design</h3>
+                <p><strong>Best for:</strong> Image generation, graphic design, creative assets</p>
+                <p><strong>Key Features:</strong></p>
+                <ul>
+                    <li>Text-to-image generation with commercial safety</li>
+                    <li>Generative fill and expand for photo editing</li>
+                    <li>Text effects and style transfer</li>
+                    <li>Built into Adobe Creative Cloud apps</li>
+                    <li>Trained on licensed Adobe Stock content</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Workshop Demo:</strong> Create a complete social media graphic from a text prompt, 
+                then use generative fill to modify specific elements.</p>
+            </div>
+            
+            <div class="section">
+                <h3>💬 ChatGPT - Conversational AI & Advanced Reasoning</h3>
+                <p><strong>Best for:</strong> General conversation, analysis, writing, problem-solving</p>
+                <p><strong>Key Features:</strong></p>
+                <ul>
+                    <li>Advanced reasoning with o1 model</li>
+                    <li>Image understanding and generation (DALL-E 3)</li>
+                    <li>Web browsing for current information</li>
+                    <li>Data analysis and visualization</li>
+                    <li>Custom GPTs for specialized tasks</li>
+                    <li>Voice conversation mode</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Workshop Demo:</strong> Compare responses between standard GPT-4 and o1 reasoning model 
+                on a complex problem requiring multi-step thinking.</p>
+            </div>
+            
+            <div class="section">
+                <h3>✨ Google Gemini - Multimodal Understanding</h3>
+                <p><strong>Best for:</strong> Document analysis, video understanding, long-context tasks</p>
+                <p><strong>Key Features:</strong></p>
+                <ul>
+                    <li>Native multimodal processing (text, images, audio, video)</li>
+                    <li>Extremely long context window (up to 1M tokens)</li>
+                    <li>Deep integration with Google Workspace</li>
+                    <li>Video understanding and summarization</li>
+                    <li>Real-time information through Google Search</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Workshop Demo:</strong> Upload a lecture video and have Gemini create comprehensive notes, 
+                identify key concepts, and generate quiz questions.</p>
+            </div>
+            
+            <div class="section">
+                <h3>📓 NotebookLM - AI Research Assistant</h3>
+                <p><strong>Best for:</strong> Academic research, document synthesis, study materials</p>
+                <p><strong>Key Features:</strong></p>
+                <ul>
+                    <li>Upload up to 50 sources (PDFs, docs, websites, YouTube)</li>
+                    <li>Source-grounded responses with citations</li>
+                    <li>Automatic study guide generation</li>
+                    <li>Audio overview (AI-generated podcast discussion)</li>
+                    <li>Private workspace for each project</li>
+                    <li>Perfect for literature reviews and exam prep</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Workshop Demo:</strong> Create a notebook with research papers, generate an audio overview, 
+                and use it to prepare for comprehensive exam questions.</p>
+            </div>
+            
+            <div class="section">
+                <h3>🎙️ ElevenLabs - AI Voice Synthesis</h3>
+                <p><strong>Best for:</strong> Voice-overs, audiobooks, accessibility, podcasts</p>
+                <p><strong>Key Features:</strong></p>
+                <ul>
+                    <li>Ultra-realistic text-to-speech in 29 languages</li>
+                    <li>Voice cloning from short audio samples</li>
+                    <li>Emotion and speaking style control</li>
+                    <li>Long-form audio generation</li>
+                    <li>Sound effects generation</li>
+                    <li>API for integration into apps</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Workshop Demo:</strong> Convert a written article to natural-sounding audio narration 
+                with appropriate pacing and emotion. Compare different voice styles.</p>
+            </div>
+            
+            <div class="section">
+                <h3>🎬 HeyGen - AI Video Creation</h3>
+                <p><strong>Best for:</strong> Training videos, presentations, marketing content</p>
+                <p><strong>Key Features:</strong></p>
+                <ul>
+                    <li>AI avatars that speak any text naturally</li>
+                    <li>100+ languages with accurate lip-sync</li>
+                    <li>Custom avatar creation from photos</li>
+                    <li>Voice cloning for personalized videos</li>
+                    <li>Templates for various video types</li>
+                    <li>Background removal and scene customization</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Workshop Demo:</strong> Create a short educational video from a script, 
+                choosing an avatar, voice, and background. Show the same content delivered in different languages.</p>
+            </div>
+            
+            <h2>Comparison Matrix</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Primary Use</th>
+                        <th>Input Types</th>
+                        <th>Output Types</th>
+                        <th>Best Feature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Microsoft Copilot</strong></td>
+                        <td>Productivity</td>
+                        <td>Text, Images, Voice</td>
+                        <td>Text, Images</td>
+                        <td>OS & Office integration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Firefly</strong></td>
+                        <td>Design</td>
+                        <td>Text, Images</td>
+                        <td>Images</td>
+                        <td>Commercial-safe content</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ChatGPT</strong></td>
+                        <td>Reasoning</td>
+                        <td>Text, Images</td>
+                        <td>Text, Images</td>
+                        <td>Advanced reasoning (o1)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gemini</strong></td>
+                        <td>Multimodal</td>
+                        <td>Text, Images, Audio, Video</td>
+                        <td>Text</td>
+                        <td>Long context (1M tokens)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NotebookLM</strong></td>
+                        <td>Research</td>
+                        <td>PDFs, Docs, URLs, Audio</td>
+                        <td>Text, Audio</td>
+                        <td>Source-grounded answers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ElevenLabs</strong></td>
+                        <td>Voice</td>
+                        <td>Text, Audio samples</td>
+                        <td>Audio</td>
+                        <td>Voice cloning quality</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HeyGen</strong></td>
+                        <td>Video</td>
+                        <td>Text, Images</td>
+                        <td>Video</td>
+                        <td>Multilingual lip-sync</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>Integrated Workflow Examples</h2>
+            
+            <p>See how these tools work together in real-world scenarios:</p>
+            
+            <div class="scenario-box">
+                <h4>Scenario 1: Create an Online Course Module</h4>
+                <ol>
+                    <li><strong>ChatGPT:</strong> Outline course content and learning objectives</li>
+                    <li><strong>NotebookLM:</strong> Research and synthesize source materials</li>
+                    <li><strong>Firefly:</strong> Generate custom graphics and diagrams</li>
+                    <li><strong>ElevenLabs:</strong> Create voice-over narration</li>
+                    <li><strong>HeyGen:</strong> Produce final video with AI presenter</li>
+                </ol>
+            </div>
+            
+            <div class="scenario-box">
+                <h4>Scenario 2: Build a Research Presentation</h4>
+                <ol>
+                    <li><strong>NotebookLM:</strong> Upload and analyze research papers</li>
+                    <li><strong>Gemini:</strong> Process long documents and extract key findings</li>
+                    <li><strong>ChatGPT:</strong> Create presentation outline and talking points</li>
+                    <li><strong>Firefly:</strong> Design custom slide backgrounds and graphics</li>
+                    <li><strong>ElevenLabs:</strong> Record practice narration for timing</li>
+                </ol>
+            </div>
+            
+            <div class="scenario-box">
+                <h4>Scenario 3: Develop Marketing Content</h4>
+                <ol>
+                    <li><strong>Microsoft Copilot:</strong> Research market trends and competitor analysis</li>
+                    <li><strong>ChatGPT:</strong> Write compelling copy and messaging</li>
+                    <li><strong>Firefly:</strong> Create brand-aligned visuals and graphics</li>
+                    <li><strong>ElevenLabs:</strong> Generate professional voice-overs</li>
+                    <li><strong>HeyGen:</strong> Create multilingual video ads with AI presenters</li>
+                </ol>
+            </div>
+            
+            <h2>Hands-On Exercises</h2>
+            
+            <div class="section">
+                <h3>Exercise 1: Content Creation Pipeline</h3>
+                <p><strong>Goal:</strong> Create a complete mini-lesson on a topic of your choice</p>
+                <p><strong>Steps:</strong></p>
+                <ol>
+                    <li>Use ChatGPT to outline your lesson structure</li>
+                    <li>Generate an illustration with Firefly</li>
+                    <li>Create voice narration with ElevenLabs</li>
+                    <li>Combine into a video with HeyGen (optional)</li>
+                </ol>
+                <p><strong>Time:</strong> 20 minutes</p>
+            </div>
+            
+            <div class="section">
+                <h3>Exercise 2: Research to Presentation</h3>
+                <p><strong>Goal:</strong> Transform research materials into presentation content</p>
+                <p><strong>Steps:</strong></p>
+                <ol>
+                    <li>Upload 2-3 articles to NotebookLM</li>
+                    <li>Generate study guide and audio overview</li>
+                    <li>Use ChatGPT to create presentation outline</li>
+                    <li>Generate supporting graphics with Firefly</li>
+                </ol>
+                <p><strong>Time:</strong> 15 minutes</p>
+            </div>
+            
+            <div class="section">
+                <h3>Exercise 3: Productivity Workflow</h3>
+                <p><strong>Goal:</strong> Use Microsoft Copilot for daily tasks</p>
+                <p><strong>Steps:</strong></p>
+                <ol>
+                    <li>Research a topic and gather information</li>
+                    <li>Draft a summary document</li>
+                    <li>Generate a supporting image</li>
+                    <li>Get suggestions for follow-up actions</li>
+                </ol>
+                <p><strong>Time:</strong> 15 minutes</p>
+            </div>
+            
+            <h2>Access and Pricing</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Free Tier</th>
+                        <th>Paid Plans Start At</th>
+                        <th>Student Discounts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Microsoft Copilot</strong></td>
+                        <td>✅ Available</td>
+                        <td>$20/month (Pro)</td>
+                        <td>✅ Office 365 Education</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Adobe Firefly</strong></td>
+                        <td>✅ Limited</td>
+                        <td>$4.99/month</td>
+                        <td>✅ Student Creative Cloud</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ChatGPT</strong></td>
+                        <td>✅ GPT-4o mini</td>
+                        <td>$20/month</td>
+                        <td>❌</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gemini</strong></td>
+                        <td>✅ Available</td>
+                        <td>$20/month</td>
+                        <td>❌</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NotebookLM</strong></td>
+                        <td>✅ Free</td>
+                        <td>Free</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ElevenLabs</strong></td>
+                        <td>✅ 10k chars/month</td>
+                        <td>$5/month</td>
+                        <td>❌</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HeyGen</strong></td>
+                        <td>✅ 1 minute credit</td>
+                        <td>$24/month</td>
+                        <td>❌</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>Best Practices & Tips</h2>
+            
+            <div class="tip">
+                <h3>Choosing the Right Tool</h3>
+                <ul>
+                    <li><strong>For daily tasks:</strong> Microsoft Copilot for integrated productivity</li>
+                    <li><strong>For images:</strong> Firefly for commercial work, DALL-E 3 (ChatGPT/Copilot) for quick prototypes</li>
+                    <li><strong>For research:</strong> NotebookLM for synthesis, Gemini for very long documents</li>
+                    <li><strong>For audio:</strong> ElevenLabs for high-quality voice, ChatGPT voice mode for conversations</li>
+                    <li><strong>For video:</strong> HeyGen for AI avatars, create assets separately for traditional video editing</li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                <h3>Important Considerations</h3>
+                <ul>
+                    <li><strong>Copyright:</strong> Check licensing terms, especially for Firefly vs. other image generators</li>
+                    <li><strong>Privacy:</strong> Don't upload confidential data to public AI tools</li>
+                    <li><strong>Verification:</strong> Always review AI-generated content for accuracy</li>
+                    <li><strong>Attribution:</strong> Follow academic integrity policies when using AI tools</li>
+                    <li><strong>Voice/Image Rights:</strong> Get consent before cloning voices or creating AI videos of real people</li>
+                </ul>
+            </div>
+            
+            <h2>Resources for Further Learning</h2>
+            
+            <div class="section">
+                <h3>Official Documentation</h3>
+                <ul>
+                    <li><a href="https://copilot.microsoft.com/" target="_blank">Microsoft Copilot</a></li>
+                    <li><a href="https://www.adobe.com/products/firefly.html" target="_blank">Adobe Firefly</a></li>
+                    <li><a href="https://platform.openai.com/docs" target="_blank">OpenAI Platform Docs</a></li>
+                    <li><a href="https://ai.google.dev/gemini-api/docs" target="_blank">Gemini API Docs</a></li>
+                    <li><a href="https://notebooklm.google.com/" target="_blank">NotebookLM</a></li>
+                    <li><a href="https://elevenlabs.io/docs" target="_blank">ElevenLabs Documentation</a></li>
+                    <li><a href="https://help.heygen.com/" target="_blank">HeyGen Help Center</a></li>
+                </ul>
+            </div>
+            
+            <div style="background: #e8f5e9; padding: 20px; margin: 30px 0; border-left: 4px solid #2D6A4F;">
+                <h3>Workshop Takeaways</h3>
+                <p><strong>By the end of this workshop, you will:</strong></p>
+                <ul>
+                    <li>Understand the strengths and limitations of each multimodal AI tool</li>
+                    <li>Know how to select the right tool for specific tasks</li>
+                    <li>Have hands-on experience creating content across multiple modalities</li>
+                    <li>Understand how to combine tools for complete workflows</li>
+                    <li>Be aware of ethical considerations and best practices</li>
+                </ul>
+            </div>
+            
+            <div class="info-box" style="margin-top: 30px;">
+                <h3>Next Steps</h3>
+                <p>After the workshop:</p>
+                <ol>
+                    <li>Sign up for free tiers of tools you found useful</li>
+                    <li>Explore Office 365 Education for Microsoft Copilot access</li>
+                    <li>Apply for student access to Adobe Creative Cloud</li>
+                    <li>Practice with the hands-on exercises on your own projects</li>
+                    <li>Explore tool combinations for your specific use cases</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
