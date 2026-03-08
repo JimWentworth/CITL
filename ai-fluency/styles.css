@@ -1,0 +1,650 @@
+/* ===================================
+   Search to Co-Creation Form Styles
+   =================================== */
+
+/* Root variables for consistent theming */
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #7c3aed;
+  --accent-color: #ec4899;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --neutral-bg: #f9fafb;
+  --neutral-border: #e5e7eb;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+/* ===================================
+   Global Styles
+   =================================== */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-dark);
+  background-color: var(--neutral-bg);
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ===================================
+   Form Container
+   =================================== */
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  padding: 40px;
+}
+
+.form-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+}
+
+.form-subtitle {
+  font-size: 16px;
+  color: var(--text-light);
+  margin-bottom: 30px;
+}
+
+/* ===================================
+   Progress Indicator
+   =================================== */
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.progress-container::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--neutral-border);
+  z-index: 0;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.progress-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--neutral-bg);
+  border: 2px solid var(--neutral-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 10px;
+  transition: var(--transition);
+}
+
+.progress-step.active .progress-circle {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.progress-step.completed .progress-circle {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: white;
+}
+
+.progress-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.progress-step.active .progress-label {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* ===================================
+   Form Sections
+   =================================== */
+
+.form-section {
+  margin-bottom: 30px;
+  display: none;
+}
+
+.form-section.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+}
+
+/* ===================================
+   Form Groups & Labels
+   =================================== */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+
+label .required {
+  color: var(--error-color);
+}
+
+/* ===================================
+   Input Fields
+   =================================== */
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="search"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-dark);
+  background-color: white;
+  transition: var(--transition);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ===================================
+   Radio & Checkbox Styles
+   =================================== */
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radio-option,
+.checkbox-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.radio-option:hover,
+.checkbox-option:hover {
+  background-color: var(--neutral-bg);
+  border-color: var(--primary-color);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
+}
+
+.option-label {
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* ===================================
+   Helper Text & Validation
+   =================================== */
+
+.helper-text {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 6px;
+}
+
+.form-group.error input,
+.form-group.error textarea,
+.form-group.error select {
+  border-color: var(--error-color);
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.error-message {
+  font-size: 12px;
+  color: var(--error-color);
+  margin-top: 6px;
+  display: none;
+}
+
+.form-group.error .error-message {
+  display: block;
+}
+
+.success-message {
+  font-size: 12px;
+  color: var(--success-color);
+  margin-top: 6px;
+  display: none;
+}
+
+.form-group.success .success-message {
+  display: block;
+}
+
+/* ===================================
+   Buttons
+   =================================== */
+
+.button-container {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  justify-content: space-between;
+}
+
+button,
+.btn {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #1d4ed8;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--neutral-bg);
+  border-color: var(--primary-color);
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: #059669;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-danger {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #dc2626;
+}
+
+button:disabled,
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===================================
+   Search Section Specific
+   =================================== */
+
+.search-input-wrapper {
+  position: relative;
+}
+
+.search-input-wrapper input {
+  padding-left: 40px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 16px;
+}
+
+.search-results {
+  margin-top: 20px;
+  padding: 16px;
+  background-color: var(--neutral-bg);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--neutral-border);
+}
+
+.search-result-item {
+  padding: 12px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  margin-bottom: 10px;
+  cursor: pointer;
+  border: 1px solid var(--neutral-border);
+  transition: var(--transition);
+}
+
+.search-result-item:hover {
+  background-color: var(--neutral-bg);
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.search-result-title {
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.search-result-description {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* ===================================
+   Co-Creation Section Specific
+   =================================== */
+
+.co-creation-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.co-creation-card {
+  padding: 20px;
+  border: 2px solid var(--neutral-border);
+  border-radius: var(--border-radius);
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.co-creation-card:hover {
+  border-color: var(--primary-color);
+  background-color: var(--neutral-bg);
+  box-shadow: var(--shadow-md);
+}
+
+.co-creation-card.selected {
+  border-color: var(--primary-color);
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.co-creation-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.co-creation-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+
+.co-creation-description {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* ===================================
+   Tags Input
+   =================================== */
+
+.tags-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--border-radius);
+  background-color: white;
+  min-height: 44px;
+}
+
+.tag {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.tag-remove {
+  cursor: pointer;
+  opacity: 0.8;
+  transition: var(--transition);
+}
+
+.tag-remove:hover {
+  opacity: 1;
+}
+
+/* ===================================
+   Alert & Messages
+   =================================== */
+
+.alert {
+  padding: 16px;
+  border-radius: var(--border-radius);
+  margin-bottom: 20px;
+  border-left: 4px solid;
+}
+
+.alert-info {
+  background-color: rgba(37, 99, 235, 0.1);
+  border-left-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.alert-success {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-left-color: var(--success-color);
+  color: var(--success-color);
+}
+
+.alert-warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  border-left-color: var(--warning-color);
+  color: var(--warning-color);
+}
+
+.alert-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-left-color: var(--error-color);
+  color: var(--error-color);
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+
+@media (max-width: 768px) {
+  .form-container {
+    padding: 24px;
+  }
+
+  .form-title {
+    font-size: 22px;
+  }
+
+  .progress-container {
+    margin-bottom: 30px;
+  }
+
+  .progress-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .progress-label {
+    font-size: 11px;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  button,
+  .btn {
+    width: 100%;
+  }
+
+  .co-creation-options {
+    grid-template-columns: 1fr;
+  }
+
+  .radio-group,
+  .checkbox-group {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+  }
+
+  .form-container {
+    padding: 16px;
+  }
+
+  .form-title {
+    font-size: 18px;
+  }
+
+  .section-title {
+    font-size: 16px;
+  }
+
+  .progress-container::before {
+    display: none;
+  }
+
+  .progress-step {
+    flex: 0 1 auto;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="date"],
+  input[type="search"],
+  textarea,
+  select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
