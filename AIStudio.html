@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer AI Studio - Illinois Interactive Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: University of Illinois Identity (Navy: #13294B, Orange: #FF5F05). Background is white/slate-50 for high readability and professional academic tone. -->
+    <!-- Application Structure Plan: The SPA uses a focused dashboard approach. It sections the content into four key pillars: Program Overview (Impact), Timeline (Pacing starting June 15), Detailed Support Roles (Ecosystem), and Deliverables (Requirements). The Timeline has been adjusted to a side-by-side layout on medium screens to allow for easier scanning of weeks while reading details. -->
+    <!-- Visualization & Content Choices: 
+         1. Goals -> Visual Grid Cards (HTML/CSS) -> Focus on pedagogical aims without distracting charts.
+         2. Timeline -> Interactive Split-Pane UI (JS) -> Side-by-side layout (md breakpoint) for weeks and details.
+         3. Support Network -> Enhanced Drill-down Cards (JS) -> Expanded to include the 6 distinct roles with detailed responsibilities.
+         4. Deliverables -> Document-style Checklist (HTML/CSS) -> Ensures clarity on the "Teaching Package" requirements.
+         Confirming NO SVG graphics used. Confirming NO Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        :root {
+            --ui-navy: #13294B;
+            --ui-orange: #FF5F05;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        
+        .section-container {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .section-container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-link.active-nav {
+            border-bottom-width: 4px;
+            border-color: var(--ui-orange);
+            color: var(--ui-orange);
+            font-weight: 700;
+        }
+        
+        .interactive-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: var(--ui-orange);
+        }
+
+        .active-card {
+            border-color: var(--ui-orange);
+            background-color: #fff7ed; /* orange-50 */
+            border-width: 2px;
+        }
+
+        .ui-btn-primary {
+            background-color: var(--ui-navy);
+            color: white;
+            transition: background-color 0.2s;
+        }
+
+        .ui-btn-primary:hover {
+            background-color: #1a3a6a;
+        }
+
+        .role-icon {
+            font-size: 1.5rem;
+            color: var(--ui-navy);
+        }
+
+        /* Timeline specific side-by-side height matching */
+        .timeline-scroll-area {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+<nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div class="w-10 h-10 bg-[#13294B] flex items-center justify-center rounded">
+                        <span class="text-white font-bold text-xl">I</span>
+                    </div>
+                    <span class="font-bold text-xl text-[#13294B] tracking-tight">Summer AI Studio</span>
+                </div>
+                <div class="hidden lg:flex space-x-8">
+                    <button onclick="navigate('overview')" id="nav-overview" class="nav-link active-nav pb-6 pt-7 text-slate-600 hover:text-[#FF5F05] font-medium transition-colors">Overview</button>
+                    <button onclick="navigate('timeline')" id="nav-timeline" class="nav-link pb-6 pt-7 text-slate-600 hover:text-[#FF5F05] font-medium transition-colors">Timeline</button>
+                    <button onclick="navigate('support')" id="nav-support" class="nav-link pb-6 pt-7 text-slate-600 hover:text-[#FF5F05] font-medium transition-colors">Support Ecosystem</button>
+                    <button onclick="navigate('deliverables')" id="nav-deliverables" class="nav-link pb-6 pt-7 text-slate-600 hover:text-[#FF5F05] font-medium transition-colors">Teaching Package</button>
+                </div>
+                <div class="lg:hidden flex items-center">
+                    <select id="mobile-nav" onchange="navigate(this.value)" class="bg-slate-100 border border-slate-300 text-slate-900 text-sm rounded-lg p-2.5">
+                        <option value="overview">Overview</option>
+                        <option value="timeline">Timeline</option>
+                        <option value="support">Support Ecosystem</option>
+                        <option value="deliverables">Teaching Package</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-8 w-full">
+        
+        <!-- SECTION: OVERVIEW -->
+        <section id="section-overview" class="section-container active">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-10 mb-8 border border-slate-200">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                  <div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-[#13294B]">Program Foundations</h1>
+                      <p class="text-lg text-slate-600 mt-2">The AI-enabled course studio: From ideation to integration</p>
+                    </div>
+                    <div class="bg-orange-50 border border-orange-200 px-6 py-3 rounded-lg">
+                        <span class="block text-xs text-orange-800 uppercase tracking-widest font-bold">Launch Date</span>
+                        <span class="block text-2xl font-bold text-[#FF5F05]">June 15, 2026</span>
+                    </div>
+                </div>
+
+                <div class="prose prose-slate max-w-none mb-10">
+                  <p class="text-slate-700 leading-relaxed text-lg"> This Summer intensive is a 5-week workshop designed to equip 40–60 faculty members with the skills to effectively, reflectively, and responsibly integrate AI into their curriculum. Through hands-on workshops, collaborative design sessions, and expert guidance, faculty will redesign course components to incorporate AI in ways that enhance learning, critical thinking, and student engagement.&nbsp;</p>
+                  <p class="text-slate-700 leading-relaxed text-lg">&nbsp;</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 bg-slate-50 rounded-xl border-t-4 border-[#13294B]">
+                        <div class="text-2xl mb-3">🎓</div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">AI Fluency</h3>
+                        <p class="text-sm text-slate-600">Equipping students to be effective, reflective, and responsible users of AI in their academic and professional lives.</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 rounded-xl border-t-4 border-[#FF5F05]">
+                        <div class="text-2xl mb-3">🚀</div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Innovation</h3>
+                        <p class="text-sm text-slate-600">Creating pathways for students to become innovators within their specific domains using AI tools.</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 rounded-xl border-t-4 border-[#13294B]">
+                        <div class="text-2xl mb-3">🔗</div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Integration</h3>
+                        <p class="text-sm text-slate-600">Embedding AI strategically into gateway courses, mid-level tools, and senior capstone projects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+                    <h2 class="text-2xl font-bold text-[#13294B] mb-6 border-b pb-2">Program Impact Goals</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <span class="bg-orange-100 text-orange-600 p-1 rounded">✔</span>
+                            <p class="text-slate-700"><strong>40–60 Faculty</strong> participants from across all colleges and ranks.</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="bg-orange-100 text-orange-600 p-1 rounded">✔</span>
+                            <p class="text-slate-700"><strong>AY26-27 Readiness:</strong> Functional course elements ready for fall deployment.</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="bg-orange-100 text-orange-600 p-1 rounded">✔</span>
+                            <p class="text-slate-700"><strong>Scale & Mentor:</strong> Fostering a community of experts who can lead AI efforts in their departments.</p>
+                        </li>
+                    </ul>  </div>
+              
+                <div class="bg-[#13294B] p-8 rounded-xl text-white">
+                    <h2 class="text-2xl font-bold text-orange-400 mb-6 border-b border-orange-400/30 pb-2">Expectations</h2>
+                    <p class="text-slate-300 mb-4">The Studio is a high-engagement environment requiring a commitment to innovation and collaboration.</p>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center text-sm">
+                            <span>Program Duration</span>
+                            <span class="font-bold text-orange-400">5 Weeks</span>
+                        </div>
+                        <div class="w-full bg-slate-700 h-2 rounded-full">
+                            <div class="bg-orange-500 h-2 rounded-full" style="width: 75%"></div>
+                        </div>
+                        <div class="flex justify-between items-center text-sm pt-2">
+                            <span>Weekly Time Commitment</span>
+                            <span class="font-bold text-orange-400">10+ Hours</span>
+                        </div>
+                        <div class="w-full bg-slate-700 h-2 rounded-full">
+                            <div class="bg-orange-500 h-2 rounded-full" style="width: 100%"></div>
+							
+                        </div>
+                    </div>
+                </div>
+				</div>
+						
+        
+        </section>
+
+        <!-- SECTION: TIMELINE -->
+        <section id="section-timeline" class="section-container">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-10 border border-slate-200">
+                <h1 class="text-3xl font-bold text-[#13294B] mb-4">Development Timeline</h1>
+                <p class="text-lg text-slate-600 mb-8">
+                    The 5-week schedule is designed to guide you through three critical phases. On larger screens, select a week on the left to see full details on the right.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Left Side: Week Buttons -->
+                    <div class="md:col-span-1 space-y-3" id="timeline-list">
+                        <!-- Populated by JS -->
+                    </div>
+                    
+                    <!-- Right Side: Detail Pane -->
+                    <div class="md:col-span-2 h-full">
+                        <div id="timeline-details" class="bg-slate-50 rounded-xl p-8 border border-slate-200 h-full min-h-[400px]">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: SUPPORT -->
+        <section id="section-support" class="section-container">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-10 border border-slate-200">
+                <h1 class="text-3xl font-bold text-[#13294B] mb-4">Support Ecosystem</h1>
+                <p class="text-lg text-slate-600 mb-8">
+                    Success in the Studio is a shared responsibility. Click on a role to view detailed responsibilities and requirements.
+                </p>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8" id="roles-selector">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div id="role-expansion" class="bg-white border-2 border-[#13294B] rounded-xl p-8 hidden animate-fadeIn">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                        <h2 id="role-title" class="text-2xl font-bold text-[#13294B]"></h2>
+                        <span id="role-tag" class="bg-orange-100 text-[#FF5F05] px-3 py-1 rounded text-sm font-bold uppercase tracking-widest"></span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-sm font-bold uppercase text-slate-400 tracking-wider mb-4">Core Responsibilities</h4>
+                            <ul id="role-resps" class="space-y-3 text-slate-700">
+                                <!-- Populated by JS -->
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-lg border border-slate-100">
+                            <h4 class="text-sm font-bold uppercase text-slate-400 tracking-wider mb-4">Requirements</h4>
+                            <ul id="role-reqs" class="space-y-2 text-slate-600 text-sm">
+                                <!-- Populated by JS -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: DELIVERABLES -->
+        <section id="section-deliverables" class="section-container">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-10 border border-slate-200">
+                <h1 class="text-3xl font-bold text-[#13294B] mb-4">The Teaching Package</h1>
+                <p class="text-lg text-slate-600 mb-8">
+                    At the conclusion of the Studio, each participant submits a structured Teaching Package. This serves as the roadmap for your Fall course.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-12">
+                    <div class="md:col-span-3 space-y-6">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-[#13294B] text-white flex items-center justify-center rounded-lg font-bold">1</div>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900">Teaching Context</h3>
+                                <p class="text-slate-600">Course learning objectives and specific placement of the AI component within the semester schedule.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-[#13294B] text-white flex items-center justify-center rounded-lg font-bold">2</div>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900">AI Integration Design</h3>
+                                <p class="text-slate-600">How students will use AI, tool/prompt selections, and the specific pedagogical support the AI provides.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-[#13294B] text-white flex items-center justify-center rounded-lg font-bold">3</div>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900">Student Instructions</h3>
+                                <p class="text-slate-600">Ready-to-deploy, student-facing documentation for the assignment or activity.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-[#13294B] text-white flex items-center justify-center rounded-lg font-bold">4</div>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900">Assessment Strategy</h3>
+                                <p class="text-slate-600">Clear criteria for evaluating student learning and AI-assisted outputs.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-[#13294B] text-white flex items-center justify-center rounded-lg font-bold">5</div>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900">Transparency Policy</h3>
+                                <p class="text-slate-600">Explicit rules on how students must document and disclose their use of AI tools.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-2 bg-[#f8fafc] p-8 rounded-xl border border-slate-200">
+                        <h2 class="text-xl font-bold text-[#13294B] mb-6 flex items-center gap-2">
+                            <span>⚖️</span> Evaluation Rubric
+                        </h2>
+                        <div class="space-y-6">
+                            <div class="border-l-4 border-orange-500 pl-4">
+                                <h4 class="font-bold text-slate-800 text-sm">AI Pedagogical Value</h4>
+                                <p class="text-xs text-slate-500 mt-1">Enhances learning rather than replacing thinking.</p>
+                            </div>
+                            <div class="border-l-4 border-orange-500 pl-4">
+                                <h4 class="font-bold text-slate-800 text-sm">Curricular Alignment</h4>
+                                <p class="text-xs text-slate-500 mt-1">Directly supports identified course objectives.</p>
+                            </div>
+                            <div class="border-l-4 border-orange-500 pl-4">
+                                <h4 class="font-bold text-slate-800 text-sm">Clarity of Instructions</h4>
+                                <p class="text-xs text-slate-500 mt-1">Student expectations are unambiguous and ethical.</p>
+                            </div>
+                            <div class="border-l-4 border-orange-500 pl-4">
+                                <h4 class="font-bold text-slate-800 text-sm">Critical Engagement</h4>
+                                <p class="text-xs text-slate-500 mt-1">Activity requires high-level active participation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#13294B] text-slate-400 py-10">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <span class="text-white font-bold text-xl block mb-2">Summer AI Studio</span>
+                <p class="text-sm">A collaborative project of CITL, OCIO, and the University Library at the University of Illinois.</p>
+            </div>
+            <div class="md:text-right text-xs uppercase tracking-widest">
+                Faculty Development & Innovation Intensive • Summer 2026
+            </div>
+        </div>
+    </footer>
+
+<script>
+        const timelineData = [
+            { id: 1, date: "June 15 - June 19", phase: "Explore", title: "Phase 1: Foundations", activities: ["Synchronous workshops on AI ethics & campus ecosystems", "Disciplinary modeling by Faculty Fellows", "Formation of Communities of Practice (CoP) on Friday"] },
+            { id: 2, date: "June 22 - June 26", phase: "Explore", title: "Phase 1: Ideation", activities: ["Mapping AI activities to learning objectives", "Identifying friction points in transparency", "Drafting initial teaching contexts"] },
+            { id: 3, date: "June 29 - July 3", phase: "Design", title: "Phase 2: Prototyping", activities: ["Hands-on activity building within CoPs", "Technical consultation with EdTech community", "Prompt engineering and dataset configuration"] },
+            { id: 4, date: "July 6 - July 10", phase: "Implement", title: "Phase 3: Refine", activities: ["Peer review and simulation of student experiences", "Evaluating AI outputs for assessment strategy", "Drafting transparency policies"] },
+            { id: 5, date: "July 13 - July 17", phase: "Implement", title: "Phase 3: Finalize", activities: ["Integrating components into Fall syllabi", "Final Teaching Package submission", "Reflection and community sharing session"] }
+        ];
+
+        const rolesData = {
+            leadership: {
+                title: "Program Oversight",
+                tag: "Leadership",
+                resps: ["Lead and deliver core curriculum in Weeks 1-2 (Ethics, Frameworks)", "Define strategic objectives and university alignment", "Coordinate with university leadership and secure resources"],
+                reqs: ["Expertise in instructional design, library science, or campus IT infrastructure", "Commitment to high-level program evaluation and reporting"]
+            },
+            pm: {
+                title: "Project Manager",
+                tag: "Orchestrator",
+                resps: ["Primary bridge between leadership, fellows, participants, and support teams", "Oversee master calendar, session logistics, and catering/stipends", "Monitor engagement and project team status to identify bottlenecks"],
+                reqs: ["Strong organizational and project management skills", "Ability to manage multi-stakeholder communications"]
+            },
+            fellows: {
+                title: "Faculty AI Fellows",
+                tag: "Mentors",
+                resps: ["Model AI integration from their own disciplines in early weeks", "Guide Communities of Practice (CoP) through design and prototyping", "Provide pedagogical peer review on project designs"],
+                reqs: ["Prior experience with AI tools in teaching or research", "Availability to lead weekly small-group mentorship meetings"]
+            },
+            edtech: {
+                title: "EdTech Community",
+                tag: "Tech Experts",
+                resps: ["1-on-1 technical consultation on AI tool selection and prompt strategy", "Assist faculty in translating pedagogical ideas into functional activities", "Troubleshoot technical hurdles related to AI tool access"],
+                reqs: ["Proficiency with generative AI tools and edtech platforms", "Experience in small-group consulting"]
+            },
+            tas: {
+                title: "Graduate Affiliates",
+                tag: "Boots on Ground",
+                resps: ["Assist faculty with drafting prompts, building datasets, or configuring tools", "Test assignments as proxies to provide feedback on clarity and workload", "Support Project Managers with documenting team progress"],
+                reqs: ["Graduate student status with interest in EdTech or AI", "Willingness to provide hands-on technical help"]
+            },
+            faculty: {
+                title: "Participating Faculty",
+                tag: "Participants",
+                resps: ["Complete pre-work and attend synchronous sessions in Weeks 1-2", "Work collaboratively with mentors to build a 'Teaching Package'", "Deploy AI component in a live Fall course and reflect on results"],
+                reqs: ["Commitment to ~10 hours per week for the 5-week duration", "Willingness to share design work with campus community"]
+            }
+        };
+
+        function navigate(sectionId) {
+            document.querySelectorAll('.section-container').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active-nav'));
+            
+            document.getElementById(`section-${sectionId}`).classList.add('active');
+            const navBtn = document.getElementById(`nav-${sectionId}`);
+            if(navBtn) navBtn.classList.add('active-nav');
+            document.getElementById('mobile-nav').value = sectionId;
+        }
+
+        function renderTimeline() {
+            const list = document.getElementById('timeline-list');
+            timelineData.forEach((item, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-4 rounded-xl border-2 transition-all ${idx === 0 ? 'border-[#FF5F05] bg-orange-50' : 'border-slate-200 bg-white hover:border-orange-300'}`;
+                btn.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-xs font-bold text-[#13294B] uppercase tracking-tighter">Week ${item.id}</span>
+                        <span class="text-xs text-orange-600 font-bold">${item.phase}</span>
+                    </div>
+                    <div class="font-bold text-slate-800 leading-tight">${item.title}</div>
+                    <div class="text-xs text-slate-500 mt-1">${item.date}</div>
+                `;
+                btn.onclick = () => {
+                    Array.from(list.children).forEach(c => {
+                        c.classList.remove('border-[#FF5F05]', 'bg-orange-50');
+                        c.classList.add('border-slate-200', 'bg-white');
+                    });
+                    btn.classList.add('border-[#FF5F05]', 'bg-orange-50');
+                    updateTimelineDetails(item);
+                };
+                list.appendChild(btn);
+            });
+            updateTimelineDetails(timelineData[0]);
+        }
+
+        function updateTimelineDetails(item) {
+            const details = document.getElementById('timeline-details');
+            details.innerHTML = `
+                <div class="animate-fadeIn">
+                    <span class="bg-[#13294B] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">${item.phase} Phase</span>
+                    <h2 class="text-3xl font-bold text-slate-900 mt-4">${item.title}</h2>
+                    <p class="text-orange-600 font-semibold mb-6">🗓️ ${item.date}</p>
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Key Milestones & Activities</h4>
+                        <div class="grid gap-3">
+                            ${item.activities.map(act => `
+                                <div class="bg-white p-4 rounded-lg border border-slate-200 flex items-start gap-3 shadow-sm">
+                                    <span class="text-orange-500 font-bold">→</span>
+                                    <span class="text-slate-700">${act}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderRoles() {
+            const grid = document.getElementById('roles-selector');
+            Object.entries(rolesData).forEach(([key, data]) => {
+                const card = document.createElement('div');
+                card.className = 'interactive-card bg-white rounded-lg p-4 flex flex-col items-center justify-center text-center h-28';
+                card.innerHTML = `
+                    <div class="role-icon mb-1">👥</div>
+                    <div class="text-xs font-bold text-slate-800 leading-tight">${data.title}</div>
+                `;
+                card.onclick = () => {
+                    Array.from(grid.children).forEach(c => c.classList.remove('active-card'));
+                    card.classList.add('active-card');
+                    showRoleDetail(key);
+                };
+                grid.appendChild(card);
+            });
+        }
+
+        function showRoleDetail(key) {
+            const data = rolesData[key];
+            const pane = document.getElementById('role-expansion');
+            document.getElementById('role-title').innerText = data.title;
+            document.getElementById('role-tag').innerText = data.tag;
+            
+            const respList = document.getElementById('role-resps');
+            respList.innerHTML = data.resps.map(r => `<li class="flex items-start gap-2"><span class="text-orange-500 mt-1">●</span><span>${r}</span></li>`).join('');
+            
+            const reqList = document.getElementById('role-reqs');
+            reqList.innerHTML = data.reqs.map(r => `<li>– ${r}</li>`).join('');
+            
+            pane.classList.remove('hidden');
+        }
+
+        window.onload = () => {
+            renderTimeline();
+            renderRoles();
+        };
+    </script>
+</body>
+</html>
