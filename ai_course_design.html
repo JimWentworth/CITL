@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Integrated Course Design</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Georgia,'Times New Roman',serif;background:#faf9f7;color:#1a1a1a;line-height:1.7}
+a{color:#2a5fa5;text-decoration:none}
+a:hover{text-decoration:underline}
+
+.hero{background:#1c2b3a;color:#fff;padding:3rem 2rem 2rem;text-align:center}
+.hero-eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#7eb8e0;margin-bottom:.75rem;font-family:system-ui,sans-serif;font-weight:500}
+.hero h1{font-size:2.2rem;font-weight:400;line-height:1.25;max-width:700px;margin:0 auto 1rem}
+.hero p{font-size:1rem;color:#b8cdd9;max-width:640px;margin:0 auto;font-family:system-ui,sans-serif}
+
+.principle{background:#2a5fa5;color:#fff;padding:1rem 2rem;text-align:center;font-size:.9rem;font-family:system-ui,sans-serif}
+.principle strong{font-weight:600}
+
+.tab-bar{background:#fff;border-bottom:2px solid #1c2b3a;position:sticky;top:0;z-index:100;overflow-x:auto}
+.tab-bar-inner{display:flex;max-width:860px;margin:0 auto;padding:0 1rem}
+.tab-btn{padding:.75rem 1rem;font-family:system-ui,sans-serif;font-size:.8rem;font-weight:500;color:#666;background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px;margin-bottom:-2px;transition:color .15s}
+.tab-btn:hover{color:#1c2b3a}
+.tab-btn.active{color:#1c2b3a;border-bottom-color:#1c2b3a}
+.tab-btn .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-plan{background:#3b82f6}
+.dot-draft{background:#22c55e}
+.dot-review{background:#eab308}
+.dot-assess{background:#ec4899}
+.dot-media{background:#8b5cf6}
+.dot-promo{background:#f97316}
+.dot-gov{background:#ef4444}
+
+.container{max-width:860px;margin:0 auto;padding:0 1.5rem}
+.tab-content{display:none;padding:2rem 0 3rem}
+.tab-content.active{display:block}
+
+table{width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;font-size:.88rem}
+thead tr{background:#1c2b3a;color:#fff}
+thead th{padding:.7rem 1rem;text-align:left;font-weight:500;font-size:.75rem;letter-spacing:.05em;text-transform:uppercase}
+tbody tr{border-bottom:.5px solid #ddd}
+tbody tr:nth-child(even){background:#f3f1ed}
+td{padding:.7rem 1rem;vertical-align:top;line-height:1.5}
+td:first-child{font-weight:500;color:#1c2b3a;width:22%}
+
+.section-head{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;padding-bottom:.6rem;border-bottom:2px solid #1c2b3a}
+.section-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.section-head h2{font-size:1.15rem;font-weight:500;color:#1c2b3a;font-family:system-ui,sans-serif}
+.ic-plan{background:#dbeafe;color:#1e4272}
+.ic-draft{background:#dcfce7;color:#14532d}
+.ic-review{background:#fef9c3;color:#713f12}
+.ic-assess{background:#fce7f3;color:#831843}
+.ic-media{background:#ede9fe;color:#3b0764}
+.ic-promo{background:#ffedd5;color:#7c2d12}
+.ic-gov{background:#fee2e2;color:#7f1d1d}
+
+/* Pills now sit below each content block */
+.examples-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+.ex-link{display:inline-flex;align-items:center;gap:5px;font-family:system-ui,sans-serif;font-size:.78rem;padding:.3rem .7rem;border-radius:20px;border:.5px solid #2a5fa5;color:#2a5fa5;background:#f0f5ff;transition:background .15s}
+.ex-link:hover{background:#dbeafe;text-decoration:none}
+.ex-link.placeholder{border-color:#ccc;color:#aaa;background:#f9f9f9;pointer-events:none}
+.ex-link i{font-size:10px}
+
+.content-blocks{display:grid;gap:1.75rem}
+.content-block h3{font-size:1rem;font-weight:500;color:#1c2b3a;font-family:system-ui,sans-serif;margin-bottom:.5rem;border-left:3px solid #2a5fa5;padding-left:.6rem}
+.content-block p{font-size:.9rem;color:#444;font-family:system-ui,sans-serif;line-height:1.65;margin-bottom:.6rem}
+.content-block p:last-child{margin-bottom:0}
+.hint-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#2a5fa5;font-weight:600;font-family:system-ui,sans-serif;margin-top:.85rem;margin-bottom:.25rem}
+.prompt-box{background:#f3f1ed;border-left:3px solid #2a5fa5;padding:.65rem .9rem;border-radius:0 4px 4px 0;font-size:.8rem;font-family:'Courier New',monospace;color:#333;line-height:1.5;margin-top:.3rem}
+.block-divider{border:none;border-top:.5px solid #ddd;margin:0}
+
+.conclusion{background:#1c2b3a;color:#d4e4f0;border-radius:8px;padding:1.75rem 2rem;margin-top:2rem;font-family:system-ui,sans-serif}
+.conclusion h3{font-size:.75rem;font-weight:500;color:#7eb8e0;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.08em}
+.conclusion p{font-size:.9rem;line-height:1.7;margin-bottom:.7rem}
+.conclusion p:last-child{margin-bottom:0;color:#b8cdd9}
+
+footer{background:#1c2b3a;color:#7b9ab0;text-align:center;padding:1.25rem;font-size:.78rem;font-family:system-ui,sans-serif;margin-top:2rem}
+footer span{color:#7eb8e0}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">CITL AI Fluency Certificate &mdash; Production Process</div>
+  <h1>Behind the Curtain: AI Use in Course Design</h1>
+  <p>A structured account of how generative AI was used across every phase of the Generative AI Fluency Certificate.</p>
+</div>
+
+<div class="principle">
+  <strong>Core principle:</strong> AI was used to generate, compare, critique, and transform materials<br>
+Human reviewers remained responsible for judgment, approval, and accountability. </div>
+
+<div class="tab-bar">
+  <div class="tab-bar-inner">
+    <button class="tab-btn active" onclick="showTab('glance',this)">At a Glance</button>
+    <button class="tab-btn" onclick="showTab('plan',this)"><span class="dot dot-plan"></span>Planning</button>
+    <button class="tab-btn" onclick="showTab('draft',this)"><span class="dot dot-draft"></span>Drafting</button>
+    <button class="tab-btn" onclick="showTab('review',this)"><span class="dot dot-review"></span>Review</button>
+    <button class="tab-btn" onclick="showTab('assess',this)"><span class="dot dot-assess"></span>Assessment</button>
+    <button class="tab-btn" onclick="showTab('media',this)"><span class="dot dot-media"></span>Media &amp; Production</button>
+    <button class="tab-btn" onclick="showTab('promo',this)"><span class="dot dot-promo"></span>Promotional Materials</button>
+    <button class="tab-btn" onclick="showTab('gov',this)"><span class="dot dot-gov"></span>Governance</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- AT A GLANCE -->
+  <div id="tab-glance" class="tab-content active">
+    <p style="font-family:system-ui,sans-serif;font-size:.95rem;color:#333;line-height:1.7;margin-bottom:1.5rem;padding-top:.5rem">AI played a meaningful role in the development of the Generative AI Fluency Certificate, but its role was bounded. It helped accelerate drafting, broaden explanatory options, support consistency, generate examples, draft quiz items, support media workflows, and review material against explicit criteria.</p>
+    <table>
+      <thead><tr><th>Production area</th><th>AI-supported work</th><th>Human responsibility</th></tr></thead>
+      <tbody>
+        <tr><td>Course framework</td><td>Compared drafts against canonical documents and module boundaries.</td><td>Defined the learning arc, outcomes, and instructional priorities.</td></tr>
+        <tr><td>Drafting</td><td>Generated first-pass prose, examples, and alternate explanations.</td><td>Reviewed for accuracy, depth, tone, and institutional fit.</td></tr>
+        <tr><td>Critical review</td><td>Tested drafts against explicit sufficiency standards.</td><td>Determined whether critiques were valid and revisions were needed.</td></tr>
+        <tr><td>Consistency</td><td>Identified repetition, drift, and blurred module boundaries.</td><td>Maintained the intended conceptual sequence.</td></tr>
+        <tr><td>Assessment &amp; reflection</td><td>Drafted knowledge checks, distractors, feedback, and portfolio prompts.</td><td>Validated instructional alignment and answer-key accuracy.</td></tr>
+        <tr><td>Canvas production</td><td>Converted reviewed prose into Canvas-ready structures.</td><td>Approved accessibility, structure, versioning, and publication readiness.</td></tr>
+      </tbody>
+    </table>
+    <div class="conclusion">
+      <h3>Conclusion</h3>
+      <p>AI played a meaningful role in the development of the Generative AI Fluency Certificate, but its role was bounded. It helped accelerate drafting, broaden explanatory options, support consistency, generate examples, draft quiz items, support media workflows, and review material against explicit criteria.</p>
+      <p>The governing work remained human: defining the learning arc, interpreting institutional responsibilities, setting accessibility constraints, judging sufficiency, and deciding what learners should understand and practice.</p>
+    </div>
+  </div>
+
+  <!-- PLANNING -->
+  <div id="tab-plan" class="tab-content">
+    <div class="section-head">
+      <div class="section-icon ic-plan"><i class="fa-solid fa-compass-drafting"></i></div>
+      <h2>Planning &amp; framework</h2>
+    </div>
+    <div class="content-blocks">
+      <div class="content-block">
+        <h3>The central production assumption</h3>
+        <p>A common assumption is that AI involvement automatically makes a course less trustworthy. The more important question is not whether AI was involved, but how that involvement was constrained, reviewed, documented, and made accountable.</p>
+        <p>AI was useful because it could rapidly generate language, surface alternative framings, and help compare content against standards. It was risky for the same reasons it is in any knowledge-work context: overgeneralization, confident but unsupported language, and the appearance of completeness before instructional work was done.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Before using AI, define the standard against which the output will be judged. AI should not be asked simply to produce content; it should be asked to work within documented expectations.</p>
+      </div>
+		<div class="examples-row">
+          <a class="ex-link" href="https://jimwentworth.github.io/CITL/website/ai-fluency-certificate.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Certificate site</a>
+        </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>Canonical documents as the source of authority</h3>
+        <p>Production depended on a set of canonical reference documents that functioned as a governance layer for AI-assisted content generation. They clarified what the certificate was designed to teach, how modules were sequenced, what counted as sufficient instructional depth, and how accessibility and versioning should be handled.</p>
+        <p>The canonical overview defined the learning arc — Understanding, Collaborating, Designing, Expanding — which became the organizing logic for content generation. AI drafted and elaborated within that structure but did not determine the sequence on its own.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Use AI with a stable reference set: course overview, module map, instructional standards, accessibility expectations, and production rules.</p>
+        <div class="examples-row">
+          <a class="ex-link" href="https://jimwentworth.github.io/CITL/website/ai-fluency-certificate.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Certificate site</a>
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: learning outcomes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRAFTING -->
+  <div id="tab-draft" class="tab-content">
+    <div class="section-head">
+      <div class="section-icon ic-draft"><i class="fa-solid fa-pen-nib"></i></div>
+      <h2>Drafting &amp; content generation</h2>
+    </div>
+    <div class="content-blocks">
+      <div class="content-block">
+        <h3>AI as drafting partner</h3>
+        <p>AI produced first-pass instructional language from structured requirements — most useful when concept, audience, module location, and instructional purpose were already defined. AI-generated drafts were treated as provisional material for human review, not final copy.</p>
+        <p>A typical drafting prompt anchored the request in course architecture, specified module context, required academic but accessible language, and insisted on four depth moves: challenge an assumption, explain the mechanism, identify a consequence, and carry the implication forward.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Use AI to move from structured requirements to a draft, not from a vague topic to final content.</p>
+        <div class="hint-label">Example prompt</div>
+
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: drafted module page</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>AI and learner-facing explanations</h3>
+        <p>AI generated multiple possible explanations of the same concept at different levels of abstraction, serving a varied audience of students, faculty, and staff. This helped identify language that was too technical, too casual, too tool-specific, or too vague.</p>
+        <p>A key limitation: AI can make difficult ideas sound easier than they are. Revision therefore did not aim simply to simplify — it aimed to make the real difficulty legible.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Ask AI for several explanatory versions, then choose and revise the one that preserves the real difficulty of the concept without becoming inaccessible.</p>
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: alternate explanations</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>AI and prompt examples</h3>
+        <p>Prompt examples were designed not merely to show learners how to get better outputs, but to model a more responsible relationship with AI: asking for clarification before generation, making constraints explicit, using AI to critique rather than simply produce, and requiring the user to retain judgment.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>When developing prompt examples, evaluate what behavior the prompt teaches. A strong example should model judgment, constraint-setting, clarification, or critique.</p>
+        <div class="hint-label">Example prompt</div>
+     
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: prompt library</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEW -->
+  <div id="tab-review" class="tab-content">
+    <div class="section-head">
+      <div class="section-icon ic-review"><i class="fa-solid fa-magnifying-glass"></i></div>
+      <h2>Review &amp; quality control</h2>
+    </div>
+    <div class="content-blocks">
+      <div class="content-block">
+        <h3>AI as a critical reader</h3>
+        <p>AI was used to test whether a page met the project's own standards. Review prompts were tied to explicit criteria: alignment with the canonical overview, presence of required depth moves, clarity for a varied university audience, and avoidance of unsupported claims or tool-centric framing.</p>
+        <p>AI review was not a substitute for human review. AI can identify likely gaps but can also reinforce assumptions embedded in a draft. Human judgment determined whether a critique was valid and what revisions were needed.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Ask AI to diagnose before it rewrites. This prevents surface-level revision that makes a weak section smoother without making it stronger.</p>
+        <div class="hint-label">Example prompt</div>
+      
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: reviewed draft</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>AI as a consistency tool across modules</h3>
+        <p>AI helped compare drafts across modules and identify language that blurred conceptual boundaries. It also flagged when drafts introduced concepts too early, repeated material without new cognitive work, or weakened the larger arc.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Use AI to compare a draft against the intended scope of a module, especially when concepts overlap across a course.</p>
+        <div class="hint-label">Example prompt</div>
+  
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: consistency check</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>AI and accessibility-oriented drafting</h3>
+        <p>Accessibility was treated as a production constraint from the beginning, not a final checklist. AI helped identify ambiguous headings, overly complex sentences, missing explanatory context, and places where interactive elements required equivalent text.</p>
+        <p>AI cannot certify accessibility compliance. The project's process required human review, appropriate semantic structure, keyboard operability, meaningful labels, and defensible documentation when tradeoffs existed.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Use AI to identify possible accessibility and cognitive-load issues, but do not treat AI review as compliance verification.</p>
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: accessibility notes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASSESSMENT -->
+  <div id="tab-assess" class="tab-content">
+    <div class="section-head">
+      <div class="section-icon ic-assess"><i class="fa-solid fa-circle-check"></i></div>
+      <h2>Assessment &amp; reflection</h2>
+    </div>
+    <div class="content-blocks">
+      <div class="content-block">
+        <h3>AI, quiz creation, and knowledge checks</h3>
+        <p>AI helped identify common misconceptions, draft plausible distractors, vary question difficulty, align items with module-level purposes, and revise feedback so that incorrect answers became learning opportunities rather than simple indications of failure.</p>
+        <p>Strong items asked learners to distinguish fluency from authority, identify risks in AI-assisted workflows, recognize when human judgment remains non-delegable, or evaluate whether a proposed AI use was appropriately constrained.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Use AI to generate a larger pool of candidate items, but keep human review responsible for validity, alignment, and final selection.</p>
+        <div class="hint-label">Example prompt</div>
+    
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: quiz questions</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>AI and learning journal / portfolio workflows</h3>
+        <p>AI helped draft reflection prompts asking learners to document their process, preserve artifacts, reflect on judgment, and connect experimentation to the certificate's larger learning arc. Prompts required review to ensure learners were not asked to disclose sensitive information or treat AI output as evidence of competence without analysis.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Use AI to draft reflection prompts, then review them for privacy, evidence quality, and whether they ask learners to analyze their process rather than simply submit an artifact.</p>
+        <div class="hint-label">Example prompt</div>
+     
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: journal prompts</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>AI and pilot feedback analysis</h3>
+        <p>AI helped analyze learner feedback from pilot offerings by identifying recurring themes, surfacing friction points, and distinguishing conceptual feedback from access, timing, media, or technical issues. Learner feedback may contain personally identifiable information or context requiring human interpretation — AI organized the feedback, but humans determined what it meant.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>De-identify feedback before using AI, then ask AI to categorize rather than overinterpret the comments.</p>
+        <div class="hint-label">Example prompt</div>
+     
+        <div class="examples-row">
+          <a class="ex-link" href="https://jimwentworth.github.io/CITL/fluency-results2.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Pilot feedback results</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIA -->
+  <div id="tab-media" class="tab-content">
+    <div class="section-head">
+      <div class="section-icon ic-media"><i class="fa-solid fa-film"></i></div>
+      <h2>Media &amp; production</h2>
+    </div>
+    <div class="content-blocks">
+      <div class="content-block">
+        <h3>AI and Canvas-ready production</h3>
+        <p>AI helped convert reviewed instructional prose into Canvas-compatible structures: organizing content into required sections, preserving heading hierarchy, preparing prompt examples as blockquotes, and checking whether content belonged in a Canvas page or an Interactive Learning Object.</p>
+        <p>Canvas pages were treated as narrative containers, not places for executable logic. AI-produced Canvas structures required review for semantic order, excess styling, and prohibited logic before use.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Use AI for conversion and structure, but keep publication decisions separate from formatting output.</p>
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: Canvas page</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>AI and interactive learning objects</h3>
+        <p>AI helped brainstorm interaction designs, generate draft explanatory text, and reason through whether an interaction added pedagogical value. The standard was not to add interaction for novelty alone — it needed to serve an instructional purpose that static content could not meet as effectively.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Ask AI to generate interaction concepts, then evaluate each against a simple test: does interaction improve the learning, or merely make the page feel more active?</p>
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: interactive object</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>AI and specialized media production</h3>
+        <p>Specialized AI tools were used for script drafting, narration, slide-to-video workflows, visual generation, and caption support. Media tools can compress ideas, smooth over uncertainty, or generate visuals that appear more authoritative than the underlying material warrants.</p>
+        <p>AI-supported video production always began with reviewed instructional prose. Each output required human review for accuracy, accessibility, tone, and module alignment.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Treat AI-generated media as a derivative instructional artifact, not a replacement for reviewed written content.</p>
+        <div class="hint-label">Example prompt</div>
+        <div class="prompt-box">Convert the following reviewed instructional section into a two-minute explainer-video script. Preserve the central learner assumption, the mechanism that explains why the assumption fails, and the carry-forward implication. Do not introduce new claims, statistics, or examples not present in the source text.</div>
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: explainer video</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>AI and Canvas / DesignPLUS assembly</h3>
+        <p>AI supported preparing content for Canvas using the approved DesignPLUS scaffold: converting prose into the Read, Watch, and Check Your Knowledge structure; preserving heading hierarchy; and verifying that Canvas pages did not contain prohibited interactive logic.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Use AI to prepare draft Canvas structures, then inspect the markup for semantic order, excess styling, and prohibited logic.</p>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>AI and content extraction for external review</h3>
+        <p>AI can process exported course cartridges — which contain complex technical markup — by converting that structure into clean instructional prose while preserving key elements like heading hierarchy and blockquoted prompt examples. This accelerates the feedback process while maintaining human accountability.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Use AI to transform technical LMS exports into reviewable documents, then have humans review the instructional content for accuracy, alignment, and accessibility.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMOTIONAL MATERIALS -->
+  <div id="tab-promo" class="tab-content">
+    <div class="section-head">
+      <div class="section-icon ic-promo"><i class="fa-solid fa-bullhorn"></i></div>
+      <h2>Promotional materials &amp; website content</h2>
+    </div>
+    <div class="content-blocks">
+      <div class="content-block">
+        <h3>AI and website content generation</h3>
+        <p>AI supported the drafting of website materials describing the certificate, including landing page copy, course overviews, and learner-facing descriptions of module content. These materials required a different register than instructional prose — accessible, inviting, and concise — while remaining accurate about what the certificate teaches and who it is designed for.</p>
+        <p>AI was useful for generating multiple draft versions at different lengths and tones, which could then be evaluated for institutional fit, audience alignment, and accuracy. A common risk was promotional language that overstated outcomes or implied guarantees the course could not deliver. Human review focused specifically on ensuring that web copy did not misrepresent the certificate's scope or make unsupported claims about learner results.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Ask AI to generate web copy at multiple lengths and tones, then review each version for accuracy, appropriate scope, and alignment with institutional voice before selecting and revising.</p>
+        <div class="hint-label">Example prompt</div>
+     
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: course landing page</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>AI and promotional email and announcement drafting</h3>
+        <p>AI helped draft outreach emails and internal announcements promoting the certificate to faculty, staff, and students. Promotional emails required a different structure than instructional content — a clear subject line, a concise value proposition, a specific call to action, and an appropriate sender voice. AI could generate usable drafts quickly, but those drafts required review for tone, accuracy, and alignment with institutional communication standards.</p>
+        <p>A particular concern was ensuring that promotional language reflected the certificate's actual content rather than generic AI enthusiasm. Emails that oversold the novelty of the topic without grounding it in the certificate's specific learning outcomes risked attracting the wrong audience or setting inaccurate expectations.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>When drafting promotional emails with AI, provide the learning outcomes and intended audience explicitly. Review the draft for accuracy before tone — a well-voiced email that misrepresents the course is more harmful than a plain one that does not.</p>
+        <div class="hint-label">Example prompt</div>
+        <div class="prompt-box">Draft a promotional email announcing the Generative AI Fluency Certificate to faculty and staff at a research university. The email should describe the certificate's learning arc, name the intended audience, include a clear call to action, and avoid hype or unsupported claims about AI. Keep it under 600 characters. Use a collegial, informational tone appropriate for an institutional newsletter or direct email from a center for teaching and learning.</div>
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: promotional email</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>AI and social media and short-form content</h3>
+        <p>AI supported the generation of short-form promotional content for social media platforms, including post drafts, suggested hashtags, and brief descriptions suitable for institutional channels. Short-form content introduced its own challenges: compression can distort nuance, and a post that simplifies the certificate's message too aggressively may attract participants with mismatched expectations.</p>
+        <p>AI was particularly helpful for generating multiple post variations from a single source description, allowing human reviewers to select the version that best balanced brevity with accuracy.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Use AI to generate a set of post variations, then select the one that preserves the certificate's distinctive emphasis rather than defaulting to the most broadly appealing version.</p>
+        <div class="hint-label">Example prompt</div>
+  
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: social media copy</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>Risks specific to AI-assisted promotional content</h3>
+        <p>Promotional content carries risks that differ from instructional content. Where instructional prose can be reviewed against explicit depth and sufficiency standards, promotional copy is harder to evaluate because persuasive effectiveness is part of its purpose. AI tends to default to enthusiasm, which can produce copy that sounds compelling but misrepresents the course.</p>
+        <p>Human review of promotional materials should focus specifically on accuracy of scope, appropriateness of claimed outcomes, alignment with institutional voice, and avoidance of language that implies the certificate is more comprehensive, transformative, or authoritative than it is designed to be.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Review AI-generated promotional copy against the course's actual learning outcomes, not just for tone. Enthusiasm is easy to generate and easy to accept — accuracy requires deliberate verification.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOVERNANCE -->
+  <div id="tab-gov" class="tab-content">
+    <div class="section-head">
+      <div class="section-icon ic-gov"><i class="fa-solid fa-scale-balanced"></i></div>
+      <h2>Governance &amp; accountability</h2>
+    </div>
+    <div class="content-blocks">
+      <div class="content-block">
+        <h3>What AI did not do</h3>
+        <p>AI did not independently determine the certificate's conceptual framework, learning outcomes, module sequence, accessibility obligations, or production governance. It did not replace human responsibility for accuracy, instructional judgment, institutional fit, or final approval.</p>
+        <p>AI did not make the course neutral. The use of AI made some choices easier to draft and compare, but it did not remove the need to make them deliberately.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>State the boundaries of AI use directly. Transparency should include both what AI contributed and what it did not control.</p>
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: AI use disclosure</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>Human review and accountability</h3>
+        <p>Human oversight was central at every stage. Reviewers interpreted canonical documents, judged whether AI-generated language fit the intended audience, revised drafts for tone and accuracy, and ensured the course maintained its emphasis on human agency, ethical responsibility, and transparency.</p>
+        <p>The review process treated AI output as material to be evaluated, not as evidence of correctness. AI can generate text that appears complete before it has satisfied the instructional purpose.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Build a review stage into every AI-assisted production process. Do not let polished language stand in for verified instructional quality.</p>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>Documentation, versioning, and traceability</h3>
+        <p>Published instructional artifacts should not be silently modified. Substantive changes require review, documentation, and new versions. If AI helps generate a revision that changes instructional intent, interaction behavior, or accessibility conditions, that change should be treated as substantive rather than cosmetic.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Document substantive AI-assisted changes, especially when they affect meaning, assessment, accessibility, interaction behavior, or learner interpretation.</p>
+        <div class="examples-row">
+          <a class="ex-link placeholder"><i class="fa-solid fa-arrow-up-right-from-square"></i> Example: version log</a>
+        </div>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>Risks introduced by AI-assisted development</h3>
+        <p>Predictable risks included: generic content that sounds educational but does not advance the specific learning arc; overstated certainty; blurred module boundaries; inaccessible or semantically weak structures; and an illusion of completion through polished prose before conceptual review.</p>
+        <p>These risks were addressed through canonical constraints, structured prompting, human review, accessibility expectations, and versioning rules. These controls made the risks more visible and manageable, not risk-free.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>Use a predictable risk checklist when reviewing AI-assisted content: generic language, overstated certainty, blurred boundaries, weak accessibility, and premature polish.</p>
+      </div>
+      <hr class="block-divider">
+      <div class="content-block">
+        <h3>Why AI use was appropriate for this course</h3>
+        <p>Using AI in the development of a generative AI fluency course was appropriate because the course itself teaches critical, constrained, and reflective AI use. The development process provided an opportunity to practice the same principles the certificate asks learners to adopt.</p>
+        <p>There is also a pedagogical integrity argument for transparency. A course that teaches AI fluency should not hide AI use, nor celebrate it uncritically. The responsible position is to disclose with enough specificity that stakeholders can understand both the contribution and the controls.</p>
+        <div class="hint-label">Workflow hint</div>
+        <p>When disclosing AI use, avoid both defensiveness and promotion. Describe the role, the constraints, the review process, and the human accountability structure.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>CITL AI Fluency Certificate &mdash; <span>Production Documentation</span></footer>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
