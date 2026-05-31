@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Capabilities, Bloom’s Taxonomy, and Cognitive Offloading</title>
+
+<style>
+  :root {
+    --illinois-blue: #13294B;
+    --illinois-orange: #FF5F05;
+    --light-gray: #F5F7FA;
+    --border-gray: #D9DDE3;
+
+    --learning-zone: #E8F1FA;
+    --automation-zone: #E6F4EA;
+    --collaboration-zone: #FFF4CC;
+    --judgment-zone: #FCE8E6;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--illinois-blue);
+    background: #ffffff;
+    line-height: 1.55;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 36px;
+  }
+
+  header {
+    border-left: 10px solid var(--illinois-orange);
+    padding-left: 22px;
+    margin-bottom: 28px;
+  }
+
+  h1 {
+    margin: 0 0 8px 0;
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    color: var(--illinois-blue);
+    margin-top: 32px;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .intro,
+  .callout {
+    background: var(--light-gray);
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+
+  .callout {
+    border-left: 7px solid var(--illinois-orange);
+  }
+
+  .framework-grid,
+  .key-grid {
+    display: grid;
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .framework-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .key-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .card {
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    padding: 16px;
+    background: #ffffff;
+  }
+
+  .learning-zone {
+    background: var(--learning-zone);
+  }
+
+  .automation-zone {
+    background: var(--automation-zone);
+  }
+
+  .collaboration-zone {
+    background: var(--collaboration-zone);
+  }
+
+  .judgment-zone {
+    background: var(--judgment-zone);
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    margin-top: 18px;
+  }
+
+  table {
+    width: 100%;
+    min-width: 1250px;
+    border-collapse: collapse;
+  }
+
+  th {
+    background: var(--illinois-blue);
+    color: #ffffff;
+    padding: 14px;
+    border: 1px solid #ffffff;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th span {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: normal;
+    margin-top: 4px;
+  }
+
+  td {
+    padding: 14px;
+    border: 1px solid var(--border-gray);
+    vertical-align: top;
+  }
+
+  .capability {
+    background: #E8E9EB;
+    font-weight: bold;
+  }
+
+  .reflection-list li {
+    margin-bottom: 8px;
+  }
+
+  .footer-note {
+    margin-top: 28px;
+    font-size: 0.9rem;
+    color: #555555;
+  }
+
+  @media (max-width: 900px) {
+    .container {
+      padding: 20px;
+    }
+
+    .framework-grid,
+    .key-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media print {
+    body {
+      font-size: 11px;
+    }
+
+    .container {
+      padding: 18px;
+    }
+
+    .table-wrap {
+      overflow: visible;
+      border: none;
+    }
+
+    table {
+      min-width: 0;
+    }
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <header>
+    <h1>AI Capabilities, Bloom’s Taxonomy, and Cognitive Offloading</h1>
+    <p class="subtitle">
+      A University of Illinois–branded framework for helping faculty decide where AI can support learning and where student cognition should remain visible.
+    </p>
+  </header>
+
+  <section class="intro">
+    <h2>Why This Framework?</h2>
+    <p>
+      Faculty often ask whether students should be allowed to use AI on a particular assignment. A more useful question is:
+      <strong>what cognitive work should remain with the learner?</strong>
+    </p>
+    <p>
+      This framework combines AI capability, Bloom’s Taxonomy, and cognitive offloading. It is designed to help instructors distinguish between tasks that build foundational understanding, tasks that can be productively automated, tasks that benefit from collaboration with AI, and tasks where student judgment should remain central.
+    </p>
+  </section>
+
+  <section class="callout">
+    <h2>How to Read This Framework</h2>
+
+    <div class="framework-grid">
+      <div class="card">
+        <strong>1. AI Capability</strong>
+        <p>
+          What kind of AI function is being used, such as natural language processing, computer vision, coding, or multimodal generation?
+        </p>
+      </div>
+
+      <div class="card">
+        <strong>2. Bloom’s Taxonomy</strong>
+        <p>
+          What level of cognitive complexity is involved, from remembering and understanding to evaluating and creating?
+        </p>
+      </div>
+
+      <div class="card">
+        <strong>3. Cognitive Offloading</strong>
+        <p>
+          How much of the thinking is being performed by the student, and how much is being shifted to the AI system?
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="callout">
+    <h2>Cognitive Offloading Zones</h2>
+
+    <div class="key-grid">
+      <div class="card learning-zone">
+        <strong>Learning Zone</strong>
+        <p>
+          Foundational knowledge and skills students should substantially build themselves.
+        </p>
+      </div>
+
+      <div class="card automation-zone">
+        <strong>Automation Zone</strong>
+        <p>
+          Routine or procedural work where AI may reduce effort without undermining learning.
+        </p>
+      </div>
+
+      <div class="card collaboration-zone">
+        <strong>Collaboration Zone</strong>
+        <p>
+          Tasks where AI can contribute ideas, drafts, specifications, or analysis while students remain active decision-makers.
+        </p>
+      </div>
+
+      <div class="card judgment-zone">
+        <strong>Judgment Zone</strong>
+        <p>
+          Tasks involving evaluation, critique, ethical reasoning, or disciplinary judgment that should remain visibly student-led.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <h2>AI Capabilities Across Bloom’s Taxonomy</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>AI Capability</th>
+          <th>Remember <span>Learning Zone: recognize or define the capability</span></th>
+          <th>Understand <span>Learning Zone: explain access, purpose, and basic use</span></th>
+          <th>Apply <span>Automation Zone: use the capability to complete a task</span></th>
+          <th>Analyze <span>Collaboration Zone: determine task requirements and specifications</span></th>
+          <th>Evaluate <span>Judgment Zone: judge output quality and fitness for purpose</span></th>
+          <th>Create <span>Collaboration Zone: design advanced workflows, tools, or models</span></th>
+        </tr>
+      </thead>
+
+      <tbody>
+  <tr>
+    <td class="capability">Natural Language Processing</td>
+    <td class="learning-zone">Define NLP and recognize examples such as summarization, translation, classification, and sentiment analysis.</td>
+    <td class="learning-zone">Explain how to access NLP tools and describe what kinds of text-based tasks they can support.</td>
+    <td class="automation-zone">Use NLP to summarize, classify, translate, rewrite, or extract information from text.</td>
+    <td class="collaboration-zone">Analyze the task requirements to determine whether the need is summarization, classification, extraction, translation, or generation.</td>
+    <td class="judgment-zone">Evaluate NLP output for accuracy, bias, omissions, tone, reasoning quality, and fitness for purpose.</td>
+    <td class="collaboration-zone">Design or fine-tune an NLP workflow, chatbot, custom assistant, or model for a specific communication task.</td>
+  </tr>
+
+  <tr>
+    <td class="capability">Computer Vision</td>
+    <td class="learning-zone">Define computer vision and identify examples such as object detection, image classification, and visual recognition.</td>
+    <td class="learning-zone">Explain how to access tools that interpret, classify, or describe images.</td>
+    <td class="automation-zone">Use computer vision to identify objects, read visual information, compare images, or describe visual scenes.</td>
+    <td class="collaboration-zone">Analyze the visual task to determine whether it requires detection, classification, segmentation, comparison, or interpretation.</td>
+    <td class="judgment-zone">Evaluate computer vision output for accuracy, misclassification, bias, missing context, and visual ambiguity.</td>
+    <td class="collaboration-zone">Design or train a computer vision workflow or model for a specific visual recognition or analysis task.</td>
+  </tr>
+
+  <tr>
+    <td class="capability">Data Processing & Analytics</td>
+    <td class="learning-zone">Define AI-supported data processing and recognize examples such as cleaning, sorting, summarizing, and pattern detection.</td>
+    <td class="learning-zone">Explain how AI tools can help organize, transform, visualize, and interpret datasets.</td>
+    <td class="automation-zone">Use AI to clean data, generate summaries, identify trends, create charts, or perform basic analysis.</td>
+    <td class="judgment-zone">Analyze the data task to determine what variables, methods, comparisons, or transformations are needed.</td>
+    <td class="judgment-zone">Evaluate AI-generated analysis for validity, assumptions, statistical weakness, misleading patterns, or unsupported conclusions.</td>
+    <td class="collaboration-zone">Design an AI-supported analytics workflow, dashboard, model, or decision-support process.</td>
+  </tr>
+
+  <tr>
+    <td class="capability">Coding & Software Development</td>
+    <td class="learning-zone">Define AI-assisted coding and recognize examples such as code explanation, debugging, documentation, and generation.</td>
+    <td class="learning-zone">Explain how to access coding assistants and describe what kinds of programming tasks they can support.</td>
+    <td class="learning-zone">Use AI to explain code, generate functions, debug errors, write documentation, or modify scripts.</td>
+    <td class="collaboration-zone">Analyze software requirements to determine needed logic, structure, dependencies, inputs, outputs, and constraints.</td>
+    <td class="judgment-zone">Evaluate AI-generated code for correctness, security, efficiency, maintainability, and alignment with requirements.</td>
+    <td class="collaboration-zone">Design or build a software application, automation, agent, or coding workflow using AI as part of development.</td>
+  </tr>
+
+  <tr>
+    <td class="capability">Image & Video Generation</td>
+    <td class="learning-zone">Define generative image and video AI and recognize examples such as text-to-image, image editing, and video generation.</td>
+    <td class="learning-zone">Explain how to access image or video generation tools and describe how prompts influence output.</td>
+    <td class="automation-zone">Use AI to generate, revise, extend, or edit images and videos for a defined purpose.</td>
+    <td class="collaboration-zone">Analyze the visual communication need, including audience, style, medium, constraints, and design requirements.</td>
+    <td class="judgment-zone">Evaluate generated media for accuracy, aesthetics, accessibility, ethical concerns, bias, and effectiveness.</td>
+    <td class="judgment-zone">Create a visual campaign, storyboard, design system, or media production workflow using generative tools.</td>
+  </tr>
+
+  <tr>
+    <td class="capability">Multimodal Generation</td>
+    <td class="learning-zone">Define multimodal AI and recognize systems that combine text, image, audio, video, code, and data.</td>
+    <td class="learning-zone">Explain how multimodal tools process or generate across more than one type of media.</td>
+    <td class="automation-zone">Use AI to combine text, images, audio, video, or data into a coherent product or explanation.</td>
+    <td class="collaboration-zone">Analyze the communication or learning task to determine which modalities are needed and how they should interact.</td>
+    <td class="judgment-zone">Evaluate a multimodal product for coherence, accessibility, accuracy, cognitive load, and audience fit.</td>
+    <td class="judgment-zone">Design a multimodal learning experience, presentation, simulation, or interactive resource using AI tools.</td>
+  </tr>
+
+  <tr>
+    <td class="capability">Knowledge Graphs & Structured Reasoning</td>
+    <td class="learning-zone">Define knowledge graphs and recognize entities, concepts, relationships, and structured connections.</td>
+    <td class="learning-zone">Explain how knowledge graphs organize information and support retrieval, reasoning, and relationship mapping.</td>
+    <td class="automation-zone">Use a knowledge graph or mapping tool to trace relationships, organize concepts, or explore linked information.</td>
+    <td class="collaboration-zone">Analyze the domain to determine relevant entities, relationships, hierarchies, and missing connections.</td>
+    <td class="judgment-zone">Evaluate a knowledge structure for accuracy, completeness, bias, usefulness, and conceptual coherence.</td>
+    <td class="judgment-zone">Create an ontology, knowledge map, reasoning model, or structured knowledge system for a specific domain.</td>
+  </tr>
+</tbody>
+    </table>
+  </div>
+
+  <section class="callout">
+    <h2>Reflection Questions for Faculty</h2>
+    <ul class="reflection-list">
+      <li>Which parts of this assignment are foundational for student understanding?</li>
+      <li>Which parts are routine enough that AI support would not undermine learning?</li>
+      <li>Where could AI serve as a collaborator without replacing student thinking?</li>
+      <li>Where must students demonstrate their own judgment, critique, or disciplinary reasoning?</li>
+      <li>How will students document their use of AI, their decisions, and their revisions?</li>
+    </ul>
+  </section>
+
+  <section class="callout">
+    <h2>Key Takeaway</h2>
+    <p>
+      AI literacy is not simply about knowing how to use AI. It is about making intentional instructional decisions regarding which cognitive work should remain with learners, which work can be shared with AI, and which work can be safely automated.
+    </p>
+  </section>
+
+  <p class="footer-note">
+    University of Illinois • Center for Innovation in Teaching & Learning • AI Literacy Framework
+  </p>
+
+</div>
+</body>
+</html>
