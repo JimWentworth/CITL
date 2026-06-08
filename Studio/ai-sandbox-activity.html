@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer AI Studio — AI Sandbox</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;color:#1a1a1a;min-height:100vh}
+:root{--or:#E84A27;--bl:#13294B;--or-mid:#f26644;--bl2:#1d3d6b}
+
+header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;gap:12px}
+.logo{background:var(--or);color:#fff;font-size:11px;font-weight:700;padding:5px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;line-height:1.3;flex-shrink:0}
+.header-text h1{font-size:17px;font-weight:600;color:#fff}
+.header-text p{font-size:12px;color:rgba(255,255,255,.65);margin-top:2px}
+
+.main{max-width:820px;margin:0 auto;padding:2rem 1.5rem}
+
+/* TABS */
+.tab-bar{display:flex;gap:0;border-bottom:2px solid #ddd;margin-bottom:2rem}
+.tab{padding:.75rem 1.5rem;font-size:14px;font-weight:600;color:#666;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s;user-select:none;line-height:1.3;text-align:center}
+.tab:hover{color:var(--bl)}
+.tab.active{color:var(--or);border-bottom-color:var(--or)}
+.tab .tab-sub{display:block;font-size:11px;font-weight:400;color:inherit;opacity:.75;margin-top:2px}
+
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* HERO CARD */
+.hero{background:var(--bl);border-radius:10px;padding:1.5rem 1.75rem;margin-bottom:1.75rem;color:#fff}
+.hero-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.55);margin-bottom:.4rem}
+.hero h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:.5rem}
+.hero-quote{font-size:14px;color:rgba(255,255,255,.75);font-style:italic;line-height:1.6;border-left:3px solid var(--or);padding-left:1rem;margin-bottom:1rem}
+.hero-meta{display:flex;flex-wrap:wrap;gap:1rem}
+.hero-stat{font-size:13px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:5px}
+.hero-stat strong{color:#fff}
+
+/* SECTION */
+.section{background:#fff;border:1px solid #ddd;border-radius:10px;padding:1.5rem;margin-bottom:1.25rem}
+.section-title{font-size:13px;font-weight:700;color:var(--bl);text-transform:uppercase;letter-spacing:.7px;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.section-title .icon{font-size:16px}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0}
+.tl-item{display:flex;gap:1rem;position:relative}
+.tl-item:not(:last-child)::before{content:'';position:absolute;left:19px;top:36px;bottom:0;width:1px;background:#ddd}
+.tl-dot{width:38px;height:38px;border-radius:50%;background:var(--bl);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1}
+.tl-body{padding-bottom:1.25rem;flex:1}
+.tl-time{font-size:11px;font-weight:700;color:var(--or);text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px}
+.tl-title{font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:.35rem}
+.tl-desc{font-size:13px;color:#555;line-height:1.6}
+
+/* DEBRIEF */
+.debrief-box{background:#f5f5f5;border-left:4px solid var(--or);border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin-top:.75rem}
+.debrief-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--or);margin-bottom:.4rem}
+.debrief-q{font-size:14px;font-style:italic;color:#222;line-height:1.6;font-weight:500}
+
+/* TIPS GRID */
+.tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.tip-card{background:#f8f8f8;border:1px solid #e8e8e8;border-radius:8px;padding:.9rem 1rem}
+.tip-card h4{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:.3rem}
+.tip-card p{font-size:12px;color:#555;line-height:1.55}
+
+/* PROMPT EXAMPLE */
+.prompt-ex{background:#fff;border:1px solid #ddd;border-radius:8px;overflow:hidden;margin-top:.75rem}
+.prompt-ex-header{background:var(--bl);padding:.5rem 1rem;display:flex;align-items:center;justify-content:space-between}
+.prompt-ex-label{font-size:11px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.5px}
+.copy-btn{padding:3px 10px;border:1px solid rgba(255,255,255,.3);border-radius:4px;background:transparent;color:#fff;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s}
+.copy-btn:hover{background:var(--or);border-color:var(--or)}
+.copy-btn.copied{background:var(--or);border-color:var(--or)}
+.prompt-ex-body{padding:.9rem 1rem;font-size:13px;color:#333;line-height:1.65;white-space:pre-wrap}
+
+/* FELLOW PREP */
+.prep-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.prep-list li{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#444;line-height:1.5}
+.prep-list li::before{content:'→';color:var(--or);font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* DOOR */
+.door-box{background:var(--bl);border-radius:8px;padding:1rem 1.25rem;margin-top:.75rem;display:flex;gap:10px;align-items:flex-start}
+.door-icon{font-size:18px;flex-shrink:0}
+.door-body{font-size:13px;color:rgba(255,255,255,.85);line-height:1.6}
+.door-body strong{color:#fff}
+
+/* TOOLS */
+.tool-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:.6rem}
+.tool-chip{font-size:12px;padding:3px 10px;border-radius:12px;background:#fff;border:1px solid #ccc;color:#444;font-weight:600;text-decoration:none;transition:all .15s}
+.tool-chip:hover{background:var(--bl);color:#fff;border-color:var(--bl)}
+
+/* CONSTRAINT BADGE */
+.constraint{display:inline-block;background:#1a1a1a;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;margin-bottom:.75rem;letter-spacing:.3px}
+
+@media(max-width:600px){
+  .tips-grid{grid-template-columns:1fr}
+  .tab{padding:.6rem .9rem;font-size:13px}
+  .main{padding:1rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Summer<br>AI Studio</div>
+  <div class="header-text">
+    <h1>AI Sandbox: Explore, Implement, Build</h1>
+    <p>Faculty Fellow Activity Guide — University of Illinois</p>
+  </div>
+</header>
+
+<div class="main">
+
+  <div class="tab-bar">
+    <div class="tab active" onclick="showTab('explore')">
+      Explore
+      <span class="tab-sub">Still investigating</span>
+    </div>
+    <div class="tab" onclick="showTab('implement')">
+      Implement
+      <span class="tab-sub">Have an idea to test</span>
+    </div>
+    <div class="tab" onclick="showTab('build')">
+      Build
+      <span class="tab-sub">Creating something reusable</span>
+    </div>
+  </div>
+
+  <!-- ===================== EXPLORE ===================== -->
+  <div class="tab-content active" id="tab-explore">
+
+    <div class="hero">
+      <div class="hero-label">Level 1</div>
+      <h2>Explore</h2>
+      <div class="hero-quote">"I'm still investigating what I think about these new tools."</div>
+      <div class="hero-meta">
+        <div class="hero-stat">⏱ <strong>30 min</strong> in-room</div>
+        <div class="hero-stat">👥 <strong>Self-selected group</strong></div>
+        <div class="hero-stat">🎯 <strong>Record reflections in Canvas</strong></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">🔬</span>The activity: The Discipline Test</div>
+      <p style="font-size:13px;color:#555;line-height:1.6;margin-bottom:1.25rem">Faculty use their own expertise as the evaluator. Each person picks something they know deeply from their field and asks two different AI tools the same question about it — then evaluates the responses not for general quality, but through an expert lens. The goal is curiosity, not judgment.</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">0'</div>
+          <div class="tl-body">
+            <div class="tl-time">0 – 5 min</div>
+            <div class="tl-title">Frame the activity</div>
+            <div class="tl-desc">Introduce the premise: "You already know your field better than any AI does. Today you're the expert evaluator, not the student." Ask everyone to think of one concept, question, or claim from their discipline they'd feel confident evaluating. Open two AI tool tabs.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">5'</div>
+          <div class="tl-body">
+            <div class="tl-time">5 – 20 min</div>
+            <div class="tl-title">Run the test</div>
+            <div class="tl-desc">Each person asks the same question to two different tools. They take notes: Where is the AI confident but wrong? Where does it surprise them positively? Where does it feel authoritative but hollow? Encourage people to push back — ask the AI to justify its answer, or give a counterexample.</div>
+            <div class="prompt-ex">
+              <div class="prompt-ex-header">
+                <span class="prompt-ex-label">Example opening prompt</span>
+                <button class="copy-btn" onclick="copyText(this,'Explain [a concept from your discipline] as you would to an advanced undergraduate student. Be specific and avoid vague generalities.')">Copy</button>
+              </div>
+              <div class="prompt-ex-body">Explain [a concept from your discipline] as you would to an advanced undergraduate student. Be specific and avoid vague generalities.</div>
+            </div>
+            <div class="prompt-ex" style="margin-top:.5rem">
+              <div class="prompt-ex-header">
+                <span class="prompt-ex-label">Follow-up push prompt</span>
+                <button class="copy-btn" onclick="copyText(this,'What are the most common misconceptions about this topic that even advanced students hold? Give me specific examples, not just categories.')">Copy</button>
+              </div>
+              <div class="prompt-ex-body">What are the most common misconceptions about this topic that even advanced students hold? Give me specific examples, not just categories.</div>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">20'</div>
+          <div class="tl-body">
+            <div class="tl-time">20 – 30 min</div>
+            <div class="tl-title">Group debrief</div>
+            <div class="tl-desc">Pairs or full group share what they found. Fellows anchor the conversation around the two debrief questions below — resist the urge to evaluate AI in general. Keep it specific to what each person found.</div>
+            <div class="debrief-box">
+              <div class="debrief-label">Debrief question 1</div>
+              <div class="debrief-q">"What did you catch that a student in your course probably wouldn't? What would they have needed to know to catch it?"</div>
+            </div>
+            <div class="debrief-box" style="margin-top:.6rem">
+              <div class="debrief-label">Debrief question 2</div>
+              <div class="debrief-q">"Was there anything the AI did better than you expected? What does that tell you?"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">🚀</span>Suggested tools</div>
+      <p style="font-size:12px;color:#777;margin-bottom:.5rem">Have these open and ready at the start. Suggest pairs rather than all four at once.</p>
+      <div class="tool-chips">
+        <a class="tool-chip" href="https://chatgpt.com" target="_blank">ChatGPT</a>
+        <a class="tool-chip" href="https://claude.ai" target="_blank">Claude</a>
+        <a class="tool-chip" href="https://gemini.google.com" target="_blank">Gemini</a>
+        <a class="tool-chip" href="https://copilot.microsoft.com" target="_blank">Copilot</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">📝</span>Canvas reflection prompt</div>
+      <p style="font-size:13px;color:#555;line-height:1.6;margin-bottom:.9rem">Ask faculty to post a brief response to these three prompts in the Canvas discussion before moving to the 8 Lenses activity. Remind them there are no right answers — the goal is to capture their thinking while it's fresh.</p>
+      <div class="debrief-box">
+        <div class="debrief-label">Tool explored</div>
+        <div class="debrief-q">Which AI tool(s) did you try, and what did you ask them?</div>
+      </div>
+      <div class="debrief-box" style="margin-top:.6rem">
+        <div class="debrief-label">Most promising use case discovered</div>
+        <div class="debrief-q">Where did you see the most potential for meaningful use in your discipline or course?</div>
+      </div>
+      <div class="debrief-box" style="margin-top:.6rem">
+        <div class="debrief-label">One question or concern</div>
+        <div class="debrief-q">What is one thing you're still uncertain about, or a concern this experience raised for you?</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">✅</span>Fellow prep checklist</div>
+      <ul class="prep-list">
+        <li>Prepare one example from your own discipline — a question you'd feel comfortable evaluating — to model the activity at the start</li>
+        <li>Have two browser tabs open with different AI tools before the session begins</li>
+        <li>Keep the debrief question visible — on a slide or written on a whiteboard</li>
+        <li>Remind the group: no output required, no "right" conclusion. The goal is noticing.</li>
+        <li>If the group finishes early, prompt: "Ask the AI what it can't do well in your field" — this reliably extends the conversation</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">🚪</span>The door this opens</div>
+      <div class="door-box">
+        <div class="door-icon">💡</div>
+        <div class="door-body">Faculty leave with a <strong>specific example of AI's disciplinary limitations</strong> — something they found themselves, not something they were told. That experience becomes the foundation for every conversation in the 8 Lenses activity that follows. Encourage them to try this again with a different topic or tool on their own time.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===================== IMPLEMENT ===================== -->
+  <div class="tab-content" id="tab-implement">
+
+    <div class="hero">
+      <div class="hero-label">Level 2</div>
+      <h2>Implement</h2>
+      <div class="hero-quote">"I have an integration idea I'd like to explore."</div>
+      <div class="hero-meta">
+        <div class="hero-stat">⏱ <strong>30 min</strong> in-room</div>
+        <div class="hero-stat">👥 <strong>Self-selected group</strong></div>
+        <div class="hero-stat">🎯 <strong>One design insight to take home</strong></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">🎭</span>The activity: Run It as a Student</div>
+      <p style="font-size:13px;color:#555;line-height:1.6;margin-bottom:1.25rem">Faculty complete their own assignment using AI — not as an instructor evaluating AI, but as a motivated student trying to produce a good result with AI support. The experience of sitting on the other side of the assignment reveals design gaps that are nearly impossible to see from the instructor's perspective.</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">0'</div>
+          <div class="tl-body">
+            <div class="tl-time">0 – 5 min</div>
+            <div class="tl-title">Set up and frame</div>
+            <div class="tl-desc">Ask everyone to pull up an assignment they're thinking about integrating AI into — or describe one out loud if they don't have it handy. Frame the mindset shift: "For the next 15 minutes you are a student who wants to do well and is comfortable using AI. Your job is not to resist it — use it fully." Fellows should have a fallback assignment ready for anyone who doesn't bring one.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">5'</div>
+          <div class="tl-body">
+            <div class="tl-time">5 – 20 min</div>
+            <div class="tl-title">Complete the assignment as a student</div>
+            <div class="tl-desc">Faculty work through their assignment using AI — genuinely, not sarcastically. Encourage them to use follow-up prompts, ask for revisions, and try to produce something they'd consider submitting. The goal is to discover where AI makes the work easy and where they still had to think.</div>
+            <div class="prompt-ex">
+              <div class="prompt-ex-header">
+                <span class="prompt-ex-label">Student-mode starter prompt</span>
+                <button class="copy-btn" onclick="copyText(this,'I have this assignment: [paste your assignment]. Help me work through it step by step. Start by helping me understand what the instructor is really looking for, then help me build a strong response.')">Copy</button>
+              </div>
+              <div class="prompt-ex-body">I have this assignment: [paste your assignment]. Help me work through it step by step. Start by helping me understand what the instructor is really looking for, then help me build a strong response.</div>
+            </div>
+            <div class="prompt-ex" style="margin-top:.5rem">
+              <div class="prompt-ex-header">
+                <span class="prompt-ex-label">Push further</span>
+                <button class="copy-btn" onclick="copyText(this,'Make this response stronger. Where is it weakest? Revise those sections so the overall submission would receive the highest possible grade.')">Copy</button>
+              </div>
+              <div class="prompt-ex-body">Make this response stronger. Where is it weakest? Revise those sections so the overall submission would receive the highest possible grade.</div>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">20'</div>
+          <div class="tl-body">
+            <div class="tl-time">20 – 30 min</div>
+            <div class="tl-title">Debrief as instructors</div>
+            <div class="tl-desc">Switch back to instructor mode. The two debrief questions below anchor a fast, honest conversation. Fellows should resist turning this into a general AI ethics discussion — keep it focused on the specific assignment each person brought.</div>
+            <div class="debrief-box">
+              <div class="debrief-label">Debrief question 1</div>
+              <div class="debrief-q">"If a student submitted what you just produced, what grade would it get — and how do you feel about that?"</div>
+            </div>
+            <div class="debrief-box" style="margin-top:.6rem">
+              <div class="debrief-label">Debrief question 2</div>
+              <div class="debrief-q">"Where in the assignment did you still have to think? Is that the part you most want students to think about too?"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">🚀</span>Suggested tools</div>
+      <p style="font-size:12px;color:#777;margin-bottom:.5rem">For this activity, one tool is enough — depth over breadth. ChatGPT and Claude both handle document uploads well if faculty want to paste a full assignment.</p>
+      <div class="tool-chips">
+        <a class="tool-chip" href="https://chatgpt.com" target="_blank">ChatGPT</a>
+        <a class="tool-chip" href="https://claude.ai" target="_blank">Claude</a>
+        <a class="tool-chip" href="https://gemini.google.com" target="_blank">Gemini</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">📝</span>Canvas reflection prompt</div>
+      <p style="font-size:13px;color:#555;line-height:1.6;margin-bottom:.9rem">Ask faculty to post a brief response to these three prompts in the Canvas discussion before moving to the 8 Lenses activity.</p>
+      <div class="debrief-box">
+        <div class="debrief-label">Tool explored</div>
+        <div class="debrief-q">Which AI tool did you use to run your assignment, and how did you approach it?</div>
+      </div>
+      <div class="debrief-box" style="margin-top:.6rem">
+        <div class="debrief-label">Most promising use case discovered</div>
+        <div class="debrief-q">Where did you see the clearest potential for meaningful AI integration in the assignment you tested?</div>
+      </div>
+      <div class="debrief-box" style="margin-top:.6rem">
+        <div class="debrief-label">One question or concern</div>
+        <div class="debrief-q">What surprised or unsettled you about sitting on the student side of your own assignment?</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">✅</span>Fellow prep checklist</div>
+      <ul class="prep-list">
+        <li>Prepare a fallback assignment — something from your own course — for anyone who arrives without one</li>
+        <li>Do the activity yourself beforehand with your own assignment. Your experience is the most useful facilitation material you'll have.</li>
+        <li>Frame the mindset shift clearly at the start — "student mode" is the whole mechanism of the activity</li>
+        <li>Watch for people who resist using AI fully. Gently push: "What would a student who really wanted a good grade do here?"</li>
+        <li>Keep the debrief tight — 10 minutes is enough if the questions are specific</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">🚪</span>The door this opens</div>
+      <div class="door-box">
+        <div class="door-icon">💡</div>
+        <div class="door-body">Most faculty leave wanting to <strong>redesign something specific</strong> — a prompt, a constraint, a deliverable — in their actual assignment. That impulse is exactly where the 8 Lenses tool picks up. Encourage them to bring the assignment they tested into that activity and use the Engagement and Authentic Assessment lenses on it.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===================== BUILD ===================== -->
+  <div class="tab-content" id="tab-build">
+
+    <div class="hero">
+      <div class="hero-label">Level 3</div>
+      <h2>Build</h2>
+      <div class="hero-quote">"I want to create something reusable for my students."</div>
+      <div class="hero-meta">
+        <div class="hero-stat">⏱ <strong>30 min</strong> in-room</div>
+        <div class="hero-stat">👥 <strong>Self-selected group</strong></div>
+        <div class="hero-stat">🎯 <strong>One tested, usable prompt</strong></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">🔨</span>The activity: Build One Prompt, Test It Twice</div>
+      <p style="font-size:13px;color:#555;line-height:1.6;margin-bottom:.75rem">Faculty identify one specific moment in their course where students consistently struggle — a concept, a step in a project, a type of analysis — and build a prompt that scaffolds AI support for students at exactly that moment. The goal is one tested, usable prompt. Not a system. Not a policy. One good prompt a student could pick up and use without additional instructions.</p>
+
+      <div class="constraint">Constraint: a student should be able to use this prompt without any additional instructions from you.</div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">0'</div>
+          <div class="tl-body">
+            <div class="tl-time">0 – 5 min</div>
+            <div class="tl-title">Identify the moment</div>
+            <div class="tl-desc">Each person names one specific place in their course where students get stuck — not a general topic, but a precise moment. "When they try to move from data to argument." "When they're writing their literature review introduction." "When they hit their first integration problem." Fellows should share their own example to model the specificity needed.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">5'</div>
+          <div class="tl-body">
+            <div class="tl-time">5 – 15 min</div>
+            <div class="tl-title">Write and test the first version</div>
+            <div class="tl-desc">Faculty write a draft prompt for a student to use at that moment and test it live. The test question: does the AI response actually help a student move forward, or does it do the work for them? Revise once based on what comes back.</div>
+            <div class="prompt-ex">
+              <div class="prompt-ex-header">
+                <span class="prompt-ex-label">Prompt template to start from</span>
+                <button class="copy-btn" onclick="copyText(this,`I am a student working on [describe the assignment or task]. I'm stuck at the point where [describe the specific moment of difficulty]. I don't want you to do this for me — instead, ask me three questions that will help me figure out the next step on my own.`)">Copy</button>
+              </div>
+              <div class="prompt-ex-body">I am a student working on [describe the assignment or task]. I'm stuck at the point where [describe the specific moment of difficulty]. I don't want you to do this for me — instead, ask me three questions that will help me figure out the next step on my own.</div>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">15'</div>
+          <div class="tl-body">
+            <div class="tl-time">15 – 25 min</div>
+            <div class="tl-title">Stress-test and refine</div>
+            <div class="tl-desc">Swap prompts with someone else in the group. Each person tries the other's prompt and reports back: "As a student, would this help me or let me off the hook?" Revise based on what comes back. Fellows circulate and watch for prompts that are either too open (AI does everything) or too closed (AI can't do anything useful).</div>
+            <div class="prompt-ex">
+              <div class="prompt-ex-header">
+                <span class="prompt-ex-label">Stress-test prompt to run on your own prompt</span>
+                <button class="copy-btn" onclick="copyText(this,'Here is a prompt I have written for students to use when they get stuck on an assignment: [paste your prompt]. Respond as a student who wants to do as little original thinking as possible. Show me how you would use this prompt to get a good result without really engaging with the problem yourself.')">Copy</button>
+              </div>
+              <div class="prompt-ex-body">Here is a prompt I have written for students to use when they get stuck on an assignment: [paste your prompt]. Respond as a student who wants to do as little original thinking as possible. Show me how you would use this prompt to get a good result without really engaging with the problem yourself.</div>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">25'</div>
+          <div class="tl-body">
+            <div class="tl-time">25 – 30 min</div>
+            <div class="tl-title">Share and close</div>
+            <div class="tl-desc">Each person reads their final prompt aloud in one sentence: what it's for and what it's designed to do. No lengthy explanation — if it needs explaining, it needs more revision. Fellows close with the door question below.</div>
+            <div class="debrief-box">
+              <div class="debrief-label">Closing question</div>
+              <div class="debrief-q">"Where else in your course is there a moment like this — where one well-designed prompt could scaffold student thinking without replacing it?"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">🚀</span>Suggested tools</div>
+      <p style="font-size:12px;color:#777;margin-bottom:.5rem">Claude and ChatGPT both handle iterative prompt refinement well. Encourage faculty to use the same tool throughout so they can see how revisions change the output.</p>
+      <div class="tool-chips">
+        <a class="tool-chip" href="https://claude.ai" target="_blank">Claude</a>
+        <a class="tool-chip" href="https://chatgpt.com" target="_blank">ChatGPT</a>
+        <a class="tool-chip" href="https://gemini.google.com" target="_blank">Gemini</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">📝</span>Canvas reflection prompt</div>
+      <p style="font-size:13px;color:#555;line-height:1.6;margin-bottom:.9rem">Ask faculty to post a brief response to these three prompts in the Canvas discussion before moving to the 8 Lenses activity.</p>
+      <div class="debrief-box">
+        <div class="debrief-label">Tool explored</div>
+        <div class="debrief-q">Which AI tool did you use to build and test your prompt, and what was the moment in your course you targeted?</div>
+      </div>
+      <div class="debrief-box" style="margin-top:.6rem">
+        <div class="debrief-label">Most promising use case discovered</div>
+        <div class="debrief-q">Share the prompt you built. What makes you think it could work for students?</div>
+      </div>
+      <div class="debrief-box" style="margin-top:.6rem">
+        <div class="debrief-label">One question or concern</div>
+        <div class="debrief-q">What did the stress-test reveal — and what would you still want to know before giving this to students?</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">✅</span>Fellow prep checklist</div>
+      <ul class="prep-list">
+        <li>Write and test your own example prompt before the session — bring it as a model, not as the answer</li>
+        <li>Keep the scope constraint visible throughout: "One prompt. One moment. A student could use it right now without asking you."</li>
+        <li>Watch for over-scoping — faculty who want to build a whole system. Redirect: "Start with the hardest moment. One prompt. You can build more later."</li>
+        <li>The peer swap in the middle is the most valuable part — protect that time even if writing runs long</li>
+        <li>Have a shared doc or slide ready so everyone can paste their final prompt — it becomes a small collective prompt library to take home</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="icon">🚪</span>The door this opens</div>
+      <div class="door-box">
+        <div class="door-icon">💡</div>
+        <div class="door-body">Faculty who complete this activity realize that <strong>a prompt is a design artifact</strong> — it has intention, constraints, and consequences, just like an assignment does. That reframe is the bridge to the 8 Lenses activity, where the Engagement and Critical AI Literacy lenses build directly on what they just experienced. Encourage them to bring their prompt into the 8 Lenses tool and use it as the assignment context.</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    const ids=['explore','implement','build'];
+    t.classList.toggle('active',ids[i]===id);
+  });
+  document.querySelectorAll('.tab-content').forEach(c=>{
+    c.classList.toggle('active',c.id==='tab-'+id);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function copyText(btn,text){
+  const done=(ok)=>{
+    btn.textContent=ok?'Copied!':'Failed';
+    if(ok) btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},2000);
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>done(true)).catch(()=>legacy(text,done));
+  } else legacy(text,done);
+}
+
+function legacy(text,done){
+  const ta=document.createElement('textarea');
+  ta.value=text;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;width:1px;height:1px';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{done(document.execCommand('copy'));}catch(e){done(false);}
+  document.body.removeChild(ta);
+}
+</script>
+</body>
+</html>
