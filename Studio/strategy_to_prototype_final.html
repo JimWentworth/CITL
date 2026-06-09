@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer AI Studio — From Strategy to Prototype</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;color:#1a1a1a;min-height:100vh}
+:root{--or:#E84A27;--bl:#13294B;--or-mid:#f26644;--bl2:#1d3d6b}
+
+header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;gap:12px}
+.logo{background:var(--or);color:#fff;font-size:11px;font-weight:700;padding:5px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;line-height:1.3;flex-shrink:0}
+.header-text h1{font-size:17px;font-weight:600;color:#fff}
+.header-text p{font-size:12px;color:rgba(255,255,255,.65);margin-top:2px}
+
+.main{max-width:720px;margin:0 auto;padding:2rem 1.5rem}
+
+/* INTRO */
+.intro{background:var(--bl);border-radius:10px;padding:1.5rem 1.75rem;margin-bottom:1.75rem}
+.intro-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.55);margin-bottom:.4rem}
+.intro h2{font-size:20px;font-weight:700;color:#fff;margin-bottom:.5rem}
+.intro p{font-size:13px;color:rgba(255,255,255,.78);line-height:1.65;margin-bottom:.75rem}
+.intro p:last-child{margin-bottom:0}
+.intro-meta{display:flex;flex-wrap:wrap;gap:1rem;margin-top:.9rem;padding-top:.9rem;border-top:1px solid rgba(255,255,255,.15)}
+.intro-stat{font-size:13px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:5px}
+.intro-stat strong{color:#fff}
+
+/* SECTION */
+.section{background:#fff;border:1px solid #ddd;border-radius:10px;padding:1.5rem;margin-bottom:1.25rem}
+.section-title{font-size:13px;font-weight:700;color:var(--bl);text-transform:uppercase;letter-spacing:.7px;margin-bottom:.9rem}
+
+/* PATHWAY TABS */
+.tab-bar{display:flex;gap:0;margin-bottom:1.25rem;border-radius:8px;overflow:hidden;border:1.5px solid var(--bl)}
+.tab-btn{flex:1;padding:10px 8px;background:#fff;border:none;font-size:13px;font-weight:700;color:var(--bl);cursor:pointer;font-family:inherit;transition:background .15s,color .15s;border-right:1.5px solid var(--bl);line-height:1.3}
+.tab-btn:last-child{border-right:none}
+.tab-btn.active{background:var(--bl);color:#fff}
+.tab-btn:hover:not(.active){background:#dbe5f1}
+
+.pathway{display:none}
+.pathway.active{display:block}
+
+/* PATHWAY HEADER */
+.pathway-head{border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:1.25rem}
+.pathway-head.explore{background:#dbe5f1}
+.pathway-head.implement{background:#fde8e3}
+.pathway-head.build{background:#e9f4e9}
+.pathway-head h3{font-size:17px;font-weight:700;margin-bottom:.3rem}
+.pathway-head.explore h3{color:#13294b}
+.pathway-head.implement h3{color:#a5300f}
+.pathway-head.build h3{color:#2a6b2a}
+.pathway-head p{font-size:13px;line-height:1.6;color:#333}
+.pathway-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 10px;border-radius:3px;margin-bottom:.6rem}
+.tag-explore{background:#13294b;color:#fff}
+.tag-implement{background:#e84a27;color:#fff}
+.tag-build{background:#2a6b2a;color:#fff}
+
+/* STEPS */
+.step-list{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.25rem}
+.step-item{display:flex;gap:12px;align-items:flex-start}
+.step-num{width:26px;height:26px;border-radius:50%;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.num-explore{background:#13294b}
+.num-implement{background:#e84a27}
+.num-build{background:#2a6b2a}
+.step-body h4{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:.2rem}
+.step-body p{font-size:13px;color:#555;line-height:1.55}
+
+/* PROMPT BLOCK */
+.prompt-block{background:#f8f8f8;border:1px solid #ddd;border-radius:8px;overflow:hidden;margin:.75rem 0}
+.prompt-head{padding:.55rem 1rem;display:flex;align-items:center;justify-content:space-between}
+.ph-explore{background:var(--bl)}
+.ph-implement{background:#a5300f}
+.ph-build{background:#2a6b2a}
+.prompt-label{font-size:11px;font-weight:700;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.05em}
+.copy-btn{padding:3px 11px;border:1px solid rgba(255,255,255,.35);border-radius:4px;background:transparent;color:#fff;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap}
+.copy-btn:hover{background:var(--or);border-color:var(--or)}
+.copy-btn.copied{background:var(--or);border-color:var(--or)}
+.prompt-text{padding:1rem 1.25rem;font-size:13px;color:#333;line-height:1.75;white-space:pre-wrap;font-family:Georgia,serif}
+
+/* TOOL LINKS */
+.tool-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:.75rem}
+.tool-link{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:5px;border:1.5px solid var(--bl);color:var(--bl);font-size:12px;font-weight:700;text-decoration:none;transition:all .15s;background:#fff}
+.tool-link:hover{background:var(--bl);color:#fff}
+
+/* NOTE */
+.note{background:#f5f5f5;border-left:4px solid var(--bl);border-radius:0 6px 6px 0;padding:.85rem 1rem;font-size:13px;color:#444;line-height:1.6;margin:.75rem 0}
+.note strong{color:var(--bl)}
+
+/* ARTIFACT BOX */
+.artifact-box{border:2px dashed #d8dde6;border-radius:8px;padding:1rem 1.25rem;margin:.75rem 0;background:#fafafa}
+.artifact-box p{font-size:13px;color:#555;line-height:1.6;margin-bottom:.5rem}
+.artifact-box p:last-child{margin-bottom:0}
+.artifact-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#888;margin-bottom:.4rem}
+
+/* SHARE OUT */
+.shareout{background:#f7f9fc;border:1px solid #d8dde6;border-radius:8px;padding:1.1rem 1.25rem;margin-top:.75rem}
+.shareout h4{font-size:14px;font-weight:700;color:var(--bl);margin-bottom:.5rem}
+.shareout ul{padding-left:18px;font-size:13px;color:#444;line-height:1.7}
+
+@media(max-width:600px){
+  .main{padding:1rem}
+  .tab-btn{font-size:12px;padding:9px 4px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Summer<br>AI Studio</div>
+  <div class="header-text">
+    <h1>From Strategy to Prototype</h1>
+    <p>2:00–2:45 &middot; Small group activity &middot; University of Illinois</p>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- INTRO -->
+  <div class="intro">
+    <div class="intro-label">Afternoon activity</div>
+    <h2>From the student view to your own practice</h2>
+    <p>You've just heard directly from undergraduate students about how they experience AI in their courses. Now it's your turn to work with AI tools hands-on — and advance the draft strategy you wrote this morning.</p>
+    <p>Pull up your <strong>Draft Strategy for AI Integration</strong> submission before you begin. The integration idea, course context, lens insights, and concern you named there are your starting point. This session asks you to take that draft one step further — turning it into a small, testable artifact using AI tools.</p>
+    <p>Select your pathway below based on where your draft strategy currently sits. Work in your small group and use the prompts to guide your AI session. At 2:40, each group will share out their artifact and one thing they noticed.</p>
+    <div class="intro-meta">
+      <div class="intro-stat">⏱ <strong>45 min</strong> total</div>
+      <div class="intro-stat">👥 <strong>Small groups</strong></div>
+      <div class="intro-stat">🎯 <strong>One testable artifact</strong></div>
+    </div>
+  </div>
+
+  <!-- DRAFT STRATEGY CALLOUT -->
+  <div style="background:#fff;border:1px solid #d8dde6;border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.25rem;">
+    <div style="font-size:13px;font-weight:700;color:var(--bl);text-transform:uppercase;letter-spacing:.7px;margin-bottom:.75rem;">📋 Before you select a pathway</div>
+    <p style="font-size:13px;color:#555;line-height:1.6;margin-bottom:.85rem">Review your Draft Strategy submission and note these four things — you'll use them in your pathway prompt:</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:#f7f9fc;border-left:4px solid var(--bl);padding:10px 14px;font-size:13px;line-height:1.5;">
+        <strong style="display:block;color:var(--bl);font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;">Your integration idea</strong>
+        The AI-related activity, assignment, or assessment you described
+      </div>
+      <div style="background:#f7f9fc;border-left:4px solid var(--bl);padding:10px 14px;font-size:13px;line-height:1.5;">
+        <strong style="display:block;color:var(--bl);font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;">Your course context</strong>
+        The course, level, and learning environment you named
+      </div>
+      <div style="background:#f7f9fc;border-left:4px solid var(--or);padding:10px 14px;font-size:13px;line-height:1.5;">
+        <strong style="display:block;color:var(--or);font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;">Your lens insights</strong>
+        The two or more lenses that shaped your thinking
+      </div>
+      <div style="background:#f7f9fc;border-left:4px solid var(--or);padding:10px 14px;font-size:13px;line-height:1.5;">
+        <strong style="display:block;color:var(--or);font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;">Your named concern</strong>
+        The tension or limitation you still need to address
+      </div>
+    </div>
+    <p style="font-size:12px;color:#888;margin-top:.85rem;font-style:italic">Each pathway prompt below has a placeholder for your draft strategy. Paste or summarize it there so the AI has your specific context — not a generic starting point.</p>
+  </div>
+
+  <!-- PATHWAY SELECTOR -->
+  <div class="section">
+    <div class="section-title">Choose your pathway</div>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="showPathway('explore',this)">🔍 Explore</button>
+      <button class="tab-btn" onclick="showPathway('implement',this)">⚙️ Implement</button>
+      <button class="tab-btn" onclick="showPathway('build',this)">🛠 Build</button>
+    </div>
+
+    <!-- EXPLORE -->
+    <div class="pathway active" id="pathway-explore">
+      <div class="pathway-head explore">
+        <span class="pathway-tag tag-explore">Explore</span>
+        <h3>The Discipline Test</h3>
+        <p>Your draft strategy has an integration idea but you're still not sure how AI will actually perform in your disciplinary context. This pathway uses your expert knowledge to evaluate AI output critically — and determine whether the tool you're imagining can do what you need it to do.</p>
+      </div>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num num-explore">1</div>
+          <div class="step-body">
+            <h4>Identify the specific task from your draft strategy</h4>
+            <p>Look at the integration idea you described this morning. What is the actual student-facing task — the question they'd ask AI, the thing they'd use it to produce or evaluate? Start there, not with a generic version of it.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num num-explore">2</div>
+          <div class="step-body">
+            <h4>Run it through an AI tool and evaluate as an expert</h4>
+            <p>Use the prompt below — it includes a placeholder for your draft strategy context. Then read the response the way your students would encounter it. What does it get right? What does it miss, flatten, or oversimplify in ways your lens insights predicted?</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num num-explore">3</div>
+          <div class="step-body">
+            <h4>Document whether your integration idea holds up</h4>
+            <p>Does this AI output support the integration you described in your draft? Does it expose the concern you named? Note what you'd need to change about your plan based on what you saw.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-head ph-explore">
+          <span class="prompt-label">Discipline Test Prompt</span>
+          <button class="copy-btn" onclick="copyPrompt('pt-explore',this)">Copy</button>
+        </div>
+        <div class="prompt-text" id="pt-explore">I'm a university instructor testing whether an AI tool can support a specific integration idea I'm developing.
+
+Here is my draft integration plan:
+[Paste or summarize your Draft Strategy submission here — your course context, integration idea, what you want students to gain, and the concern you named]
+
+The specific task I want to test: [describe the exact thing a student would ask AI to do in this integration — e.g., "generate a first draft of a lab report discussion section based on this data"]
+
+Please respond the way you would if a student in my course submitted this request directly.
+
+---
+
+After you respond, I'll evaluate your output as a disciplinary expert. I'll be looking at: accuracy for my field, whether it would actually support the learning outcome I described, and whether it exposes or sidesteps the concern I named in my draft strategy.
+
+Then I'll tell you what I found and we'll discuss what this means for my integration plan.</div>
+      </div>
+
+      <div class="note">
+        <strong>After the AI responds:</strong> Ask — <em>"Based on my integration plan and this output, what specific change to my assignment design would best address the concern I named?"</em>
+      </div>
+
+      <div class="artifact-box">
+        <div class="artifact-label">Your artifact for share-out</div>
+        <p>A brief written comparison: what the AI got right or wrong against your disciplinary standard, and one specific revision to your draft integration plan based on what you found.</p>
+      </div>
+
+      <div style="margin-top:1rem">
+        <p style="font-size:13px;font-weight:700;color:var(--bl);margin-bottom:.5rem">Open your tool</p>
+        <div class="tool-row">
+          <a class="tool-link" href="https://claude.ai" target="_blank">Claude ↗</a>
+          <a class="tool-link" href="https://manus.im" target="_blank">Manus ↗</a>
+          <a class="tool-link" href="https://chatgpt.com" target="_blank">ChatGPT ↗</a>
+          <a class="tool-link" href="https://notebooklm.google/" target="_blank">NotebookLM ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMPLEMENT -->
+    <div class="pathway" id="pathway-implement">
+      <div class="pathway-head implement">
+        <span class="pathway-tag tag-implement">Implement</span>
+        <h3>Run It as a Student</h3>
+        <p>Your draft strategy describes an integration idea you're ready to stress-test. This pathway asks you to sit in the student seat — use AI the way your students would, on the actual task you designed, and see whether the learning outcome you described holds up.</p>
+      </div>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num num-implement">1</div>
+          <div class="step-body">
+            <h4>Pull the student-facing task from your draft strategy</h4>
+            <p>Your draft describes an assignment, activity, or assessment. What does it look like from the student's side? Use the actual prompt or task description — not a summary of it.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num num-implement">2</div>
+          <div class="step-body">
+            <h4>Complete it using AI, the way a student would</h4>
+            <p>Use the prompt below — it includes a placeholder for your draft plan. Don't use your expert knowledge to guide it. Approximate how a typical student in your course would actually use AI for this task.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num num-implement">3</div>
+          <div class="step-body">
+            <h4>Evaluate it against the learning outcome you named this morning</h4>
+            <p>Does this output demonstrate what you wanted students to learn? Does it expose the concern you flagged in your draft? What would you need to change about your design?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-head ph-implement">
+          <span class="prompt-label">Run It as a Student Prompt</span>
+          <button class="copy-btn" onclick="copyPrompt('pt-implement',this)">Copy</button>
+        </div>
+        <div class="prompt-text" id="pt-implement">I'm going to give you a student assignment from one of my courses. I want you to complete it the way a student would — using AI assistance as I intend to allow it in my integration plan.
+
+Here is my draft integration plan:
+[Paste or summarize your Draft Strategy submission — your course context, integration idea, learning outcome, AI's intended role, and the concern you named]
+
+The student-facing task: [paste or describe the specific assignment prompt, question, or task the student would receive]
+
+The AI's intended role as I've designed it: [e.g., "students may use AI to generate a first draft, but must revise it using their own analysis" — be as specific as your draft allows]
+
+Please complete the task now, within those constraints.
+
+---
+
+After you respond, I'll evaluate the output as the instructor: Does it meet the learning outcome I described? Does it expose or sidestep the concern I named? What would I need to change about the assignment design?</div>
+      </div>
+
+      <div class="note">
+        <strong>Follow-up to try:</strong> <em>"Based on my integration plan and this student output, what one change to my assignment design would best protect the learning outcome I described while still using AI in the way I intended?"</em>
+      </div>
+
+      <div class="artifact-box">
+        <div class="artifact-label">Your artifact for share-out</div>
+        <p>The AI's student output alongside your evaluation: does it meet your learning outcome? Does it confirm or change the concern you named? Include at least one specific revision to your draft integration plan.</p>
+      </div>
+
+      <div style="margin-top:1rem">
+        <p style="font-size:13px;font-weight:700;color:var(--bl);margin-bottom:.5rem">Open your tool</p>
+        <div class="tool-row">
+          <a class="tool-link" href="https://claude.ai" target="_blank">Claude ↗</a>
+          <a class="tool-link" href="https://manus.im" target="_blank">Manus ↗</a>
+          <a class="tool-link" href="https://chatgpt.com" target="_blank">ChatGPT ↗</a>
+          <a class="tool-link" href="https://genai.illinois.edu/ai-apps/" target="_blank">Illinois AI Apps ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUILD -->
+    <div class="pathway" id="pathway-build">
+      <div class="pathway-head build">
+        <span class="pathway-tag tag-build">Build</span>
+        <h3>Build One Prompt, Test It Twice</h3>
+        <p>Your draft strategy identifies a specific moment where students need support and you're ready to build something reusable. This pathway asks you to design a prompt for that moment, test it twice, and iterate — producing an artifact another instructor could pick up and use.</p>
+      </div>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num num-build">1</div>
+          <div class="step-body">
+            <h4>Name the moment from your draft strategy</h4>
+            <p>Your draft describes a point in your course where AI could support students. Get more specific: not "during the writing process" but "when students move from summarizing a source to constructing their own argument." The more precisely you name the moment, the more useful the prompt will be.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num num-build">2</div>
+          <div class="step-body">
+            <h4>Build and test your prompt once</h4>
+            <p>Use the framework below — it includes a placeholder for your draft strategy. Run the prompt and evaluate: Does it scaffold without doing the thinking? Does it address the concern you named? Is it specific enough to your context?</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num num-build">3</div>
+          <div class="step-body">
+            <h4>Revise based on what your lens insights predicted — then test again</h4>
+            <p>Change one thing: a constraint, the framing, the level of scaffolding, or the question the AI leads with. Run it a second time. Document what changed between runs and connect it back to the lens insight that motivated the revision.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-head ph-build">
+          <span class="prompt-label">Prompt Builder Framework</span>
+          <button class="copy-btn" onclick="copyPrompt('pt-build',this)">Copy</button>
+        </div>
+        <div class="prompt-text" id="pt-build">I'm building a reusable AI prompt for a specific moment in my course where students need support. Here is the context from my draft integration plan:
+
+[Paste or summarize your Draft Strategy — your course context, the moment of integration, what you want students to gain, the lens insights that shaped your thinking, and the concern you named]
+
+THE SPECIFIC MOMENT: [narrow it down further — e.g., "when students need to move from summarizing a secondary source to constructing their own historical argument"]
+
+WHAT I WANT THE AI TO DO: [e.g., "ask the student three questions that help them identify the gap between what the source says and what they want to argue, without generating the argument for them"]
+
+WHAT I DON'T WANT THE AI TO DO: [e.g., "do not write the thesis or provide a model argument the student could copy — this is where my concern about overreliance lives"]
+
+THE STUDENT WILL START BY SAYING: [e.g., "I've read my sources and I have notes but I don't know how to start my argument."]
+
+Please act as the AI tool students would use in this moment. Begin the interaction now.
+
+---
+
+After this first run, I'll evaluate the output, revise the prompt with one change informed by my lens insights, and run a second test to compare.</div>
+      </div>
+
+      <div class="note">
+        <strong>Between your two tests:</strong> Connect your revision to one of the lenses from this morning. If you change the constraint because of an overreliance concern — that's a critical AI literacy or student engagement lens revision. Name it. That reasoning is part of your artifact.
+      </div>
+
+      <div class="artifact-box">
+        <div class="artifact-label">Your artifact for share-out</div>
+        <p>Your two prompt versions, the two AI outputs side by side, the one change you made between runs, and which lens insight motivated that change. Written so another instructor in a different discipline could adapt and use it.</p>
+      </div>
+
+      <div style="margin-top:1rem">
+        <p style="font-size:13px;font-weight:700;color:var(--bl);margin-bottom:.5rem">Open your tool</p>
+        <div class="tool-row">
+          <a class="tool-link" href="https://claude.ai" target="_blank">Claude ↗</a>
+          <a class="tool-link" href="https://manus.im" target="_blank">Manus ↗</a>
+          <a class="tool-link" href="https://chatgpt.com" target="_blank">ChatGPT ↗</a>
+          <a class="tool-link" href="https://notebooklm.google/" target="_blank">NotebookLM ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CANVAS LIBRARY CONTRIBUTION -->
+  <div class="section">
+    <div class="section-title">📚 Contribute to the Canvas AI Tool Library</div>
+    <p style="font-size:13px;color:#555;line-height:1.6;margin-bottom:1rem">The AI tool library in Canvas is a living resource built from what this cohort discovers. Before you share out, add one entry — a tool, a prompt, a finding, or a use case your group explored today. Consider what the student panelists said as you frame your contribution: what did their perspective reveal about how students actually encounter AI tools? Use the prompt below to format your contribution, then paste it into the Canvas library discussion.</p>
+
+    <div class="prompt-block">
+      <div class="prompt-head ph-explore">
+        <span class="prompt-label">Library Contribution Prompt</span>
+        <button class="copy-btn" onclick="copyPrompt('pt-library',this)">Copy</button>
+      </div>
+      <div class="prompt-text" id="pt-library">Help me write a brief entry for a shared AI tool library for university instructors.
+
+My pathway today: [Explore / Implement / Build]
+
+The tool or approach I tested: [tool name and what I asked it to do]
+
+What I found — the most useful thing: [one or two sentences on what worked, in what context, and for what type of student task]
+
+A limitation or caveat instructors should know: [what the tool got wrong, oversimplified, or where it shouldn't be used without caution]
+
+Discipline context: [your field, so others can judge relevance]
+
+Format this as a 3–4 sentence library entry another instructor could use to decide whether this tool or approach is worth exploring for their own course.</div>
+    </div>
+    <p style="font-size:12px;color:#888;margin-top:.5rem;font-style:italic">✏️ Fill in the bracketed fields, copy into Claude or another tool, then paste the output into the Canvas AI Tool Library discussion.</p>
+  </div>
+
+  <!-- SHARE OUT -->
+  <div class="section">
+    <div class="section-title">🎤 Share-out — 2:40 PM</div>
+    <div class="shareout">
+      <h4>Each group shares (3–4 minutes):</h4>
+      <ul>
+        <li>Which pathway you worked in and what you focused on</li>
+        <li>The artifact you produced — show it, don't just describe it</li>
+        <li>One thing the student panel made you think about differently — and whether it showed up in your AI session</li>
+        <li>One thing you're taking back to your course design</li>
+      </ul>
+    </div>
+    <div class="note" style="margin-top:.85rem">
+      <strong>The goal of the share-out</strong> is not polish — it's specificity. The cohort learns more from a real finding ("the AI flattened my discipline's standard of evidence in a way students wouldn't catch") than from a general impression ("it was pretty good but had some issues").
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showPathway(id, btn) {
+  document.querySelectorAll('.pathway').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('pathway-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function copyPrompt(id, btn) {
+  const text = document.getElementById(id).textContent;
+  const orig = btn.textContent;
+  const done = (ok) => {
+    btn.textContent = ok ? '✓ Copied!' : 'Failed';
+    if (ok) btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2500);
+  };
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(text).then(() => done(true)).catch(() => legacy(text, done));
+  } else legacy(text, done);
+}
+
+function legacy(text, done) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;width:1px;height:1px';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { done(document.execCommand('copy')); } catch(e) { done(false); }
+  document.body.removeChild(ta);
+}
+</script>
+</body>
+</html>
