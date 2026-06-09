@@ -35,12 +35,10 @@ header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;
 
 .why-box{background:#f5f5f5;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:13px;color:#444;line-height:1.6;border-left:3px solid var(--bl)}
 
-/* doc tip box */
 .doc-tip{background:#fff;border:1px solid #d0d0d0;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;gap:10px;align-items:flex-start}
 .doc-tip-icon{font-size:18px;flex-shrink:0;margin-top:1px}
 .doc-tip-body h4{font-size:13px;font-weight:700;color:var(--bl);margin-bottom:.3rem}
 .doc-tip-body p{font-size:12px;color:#555;line-height:1.55}
-.doc-tip-body strong{color:#1a1a1a}
 
 .prompts-label{font-size:11px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.8px;margin-bottom:.5rem}
 .prompts-intro{font-size:12px;color:#777;margin-bottom:.9rem;line-height:1.5}
@@ -49,11 +47,9 @@ header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;
 .prompt-card-header{display:flex;align-items:center;justify-content:space-between;padding:.55rem 1rem;background:#f7f7f7;border-bottom:1px solid #e8e8e8;gap:8px}
 .prompt-card.special .prompt-card-header{background:var(--bl);border-bottom-color:rgba(255,255,255,.15)}
 .prompt-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0}
-/* standard tags — monochrome */
 .tag-starter{background:#e8e8e8;color:#333}
 .tag-deeper{background:#e8e8e8;color:#333}
 .tag-critical{background:#333;color:#fff}
-/* pattern tags — Illinois orange accent on dark header */
 .tag-flipped{background:var(--or);color:#fff}
 .tag-persona{background:var(--or);color:#fff}
 .tag-reversal{background:var(--or);color:#fff}
@@ -69,7 +65,6 @@ header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;
 .copy-btn{padding:4px 11px;border:1px solid #bbb;border-radius:5px;background:#fff;font-size:12px;font-weight:600;color:#444;cursor:pointer;transition:all .15s;white-space:nowrap}
 .copy-btn:hover{background:var(--bl);color:#fff;border-color:var(--bl)}
 .copy-btn.copied{background:var(--bl);color:#fff;border-color:var(--bl)}
-/* copy btn on dark header */
 .prompt-card.special .copy-btn{background:transparent;border-color:rgba(255,255,255,.4);color:#fff}
 .prompt-card.special .copy-btn:hover,.prompt-card.special .copy-btn.copied{background:var(--or);border-color:var(--or);color:#fff}
 
@@ -107,7 +102,6 @@ header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;
 .report-lens-name{font-size:13px;font-weight:700;color:var(--bl);margin-bottom:.4rem}
 .report-insight{font-size:14px;color:#333;line-height:1.6;white-space:pre-wrap}
 .empty-report{text-align:center;padding:2.5rem;color:#aaa;font-size:14px}
-
 .prog-bar-wrap{background:#fff;border:1px solid #ddd;border-radius:8px;padding:.9rem 1.1rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:12px}
 .prog-bar{flex:1;background:#e5e5e5;border-radius:4px;height:7px;overflow:hidden}
 .prog-fill{background:var(--or);height:100%;border-radius:4px;transition:width .4s}
@@ -164,23 +158,10 @@ const TAG_META={
   constraint:{cls:'tag-constraint',label:'🔒 Constraint',special:true, note:'<strong>Constraint prompt:</strong> the AI must follow a rule while responding. Constraints force more targeted, creative output and prevent the AI from defaulting to safe generalities.'},
 };
 
-// docTip: appears on 3 lenses to guide document upload directly in the AI tool
 const DOC_TIPS={
-  assignment:{
-    icon:'📄',
-    title:'Bring your assignment into the AI tool',
-    body:'Before trying the prompts below, open your AI tool of choice and upload or paste your existing assignment prompt. Most tools (ChatGPT, Claude, Gemini) accept file uploads or pasted text. Once it\'s loaded, add the prompt — the AI will use your actual assignment as context.'
-  },
-  objectives:{
-    icon:'🎯',
-    title:'Bring your learning objectives into the AI tool',
-    body:'Before trying the prompts below, open your AI tool and paste or upload your course learning objectives. You can copy them from your syllabus, LMS, or course design document. Adding them gives the AI specific goals to work with rather than guessing at your intent.'
-  },
-  syllabus:{
-    icon:'📋',
-    title:'Bring your syllabus into the AI tool',
-    body:'Before trying the prompts below, open your AI tool and upload your syllabus — or paste the most relevant section (course description, policies, major assignments). Most tools accept PDF or Word uploads directly. This gives the AI real context about your course structure and expectations.'
-  }
+  assignment:{icon:'📄',title:'Bring your assignment into the AI tool',body:'Before trying the prompts below, open your AI tool of choice and upload or paste your existing assignment prompt. Most tools (ChatGPT, Claude, Gemini) accept file uploads or pasted text. Once it\'s loaded, add the prompt — the AI will use your actual assignment as context.'},
+  objectives:{icon:'🎯',title:'Bring your learning objectives into the AI tool',body:'Before trying the prompts below, open your AI tool and paste or upload your course learning objectives. You can copy them from your syllabus, LMS, or course design document. Adding them gives the AI specific goals to work with rather than guessing at your intent.'},
+  syllabus:  {icon:'📋',title:'Bring your syllabus into the AI tool',body:'Before trying the prompts below, open your AI tool and upload your syllabus — or paste the most relevant section. Most tools accept PDF or Word uploads directly. This gives the AI real context about your course structure and expectations.'},
 };
 
 const LENSES=[
@@ -190,9 +171,9 @@ const LENSES=[
     docTip:'objectives',
     why:`Before inviting AI into an assignment, it's worth asking: does this help students <strong>achieve</strong> the learning goal, or does it let them bypass it? This lens helps you map the relationship between AI capabilities and what you actually want students to learn.`,
     prompts:[
-      {tag:'starter',  text:`Considering all of the capabilities of generative AI systems today, how might I integrate AI in a meaningful way in my course — specifically in ways that genuinely support my students in achieving their learning objectives, rather than replacing the thinking I want them to do?`},
-      {tag:'flipped',  text:`I want to think carefully about whether and how to integrate AI into a course assignment. I'd like you to help me work through this by asking me one question at a time — wait for my answer before asking the next. Start by asking me what the assignment is, then use my answers to probe how AI might support or undermine what I want students to learn. Don't give me your analysis until I ask for it. Begin with your first question now.`},
-      {tag:'persona',  text:`I'm considering integrating AI into a learning objective in my course. Respond as a skeptical faculty colleague in my discipline who has serious reservations about AI in higher education. Ask me the hardest questions you'd want answered before you'd feel comfortable with this integration. Be direct and don't soften your concerns.`},
+      {tag:'starter', text:`Considering all of the capabilities of generative AI systems today, how might I integrate AI in a meaningful way in my course — specifically in ways that genuinely support my students in achieving their learning objectives, rather than replacing the thinking I want them to do?`},
+      {tag:'flipped', text:`I want to think carefully about whether and how to integrate AI into a course assignment. I'd like you to help me work through this by asking me one question at a time — wait for my answer before asking the next. Start by asking me what the assignment is, then use my answers to probe how AI might support or undermine what I want students to learn. Don't give me your analysis until I ask for it. Begin with your first question now.`},
+      {tag:'persona', text:`I'm considering integrating AI into a learning objective in my course. Respond as a skeptical faculty colleague in my discipline who has serious reservations about AI in higher education. Ask me the hardest questions you'd want answered before you'd feel comfortable with this integration. Be direct and don't soften your concerns.`},
     ],
     tryIt:`Try the flipped prompt first — let the AI interview you before it offers analysis. Then try the persona prompt and notice how a skeptical "colleague" surfaces different concerns than a neutral assistant.`,
     insightPrompt:`What surprised you? Did the AI identify alignment issues or bypass risks you hadn't considered?`
@@ -232,7 +213,7 @@ const LENSES=[
       {tag:'starter',   text:`Considering all of the capabilities of generative AI systems today — including content generation, brainstorming, feedback, research support, coding, language assistance, and more — how might I integrate AI in a meaningful way in my course? For each capability area, explain where it adds genuine value and where it introduces risk.`},
       {tag:'deeper',    text:`Pick one AI capability most relevant to your course — such as giving feedback on student drafts, helping with research, or generating examples. Ask an AI tool to demonstrate that capability on a real task from your course, then ask it to identify its own limitations and failure modes for that same task.`},
       {tag:'flipped',   text:`I want to stress-test my assumptions about which AI capabilities are actually appropriate for my course. Ask me one question at a time — wait for my answer before continuing. Your goal is to help me discover, through my own reasoning, where I might be overestimating or underestimating what AI can reliably do in my disciplinary context. Stay curious and push back gently where I'm vague. Don't offer analysis until I ask. Start with your first question now.`},
-      {tag:'iterative', text:`Ask an AI: "What are the three most common ways you produce plausible-sounding but incorrect output in [your discipline]?" Copy the response. Then send this follow-up in the same conversation: "Now design a short student activity that would teach learners to recognize each of those failure modes in practice."`},
+      {tag:'iterative', text:`Ask an AI tool: "What are the three most common ways you produce plausible-sounding but incorrect output in [your discipline]?" Copy the response. Then send this follow-up in the same conversation: "Now design a short student activity that would teach learners to recognize each of those failure modes in practice."`},
     ],
     tryIt:`The iterative prompt is a two-step sequence — run it in order within the same conversation window and watch the second instruction transform the first response into a ready-to-use classroom activity.`,
     insightPrompt:`Which capabilities seemed most valuable? Where did you find limitations you hadn't anticipated?`
@@ -248,8 +229,22 @@ const LENSES=[
       {tag:'steelman',  text:`Make the strongest possible case that integrating AI into my course's major assessment would actually increase the authenticity of what students demonstrate — not undermine it. Argue that restricting AI makes the assessment less, not more, connected to real disciplinary practice. Steel-man this position as forcefully as you can, even if you ultimately disagree with it.`},
       {tag:'flipped',   text:`I want to examine what authentic disciplinary mastery really looks like in my field and whether my current assessments capture it in the presence of AI. Ask me one question at a time, waiting for my answer before continuing. Help me surface, through my own reasoning, what I truly value and whether my assignments reflect that. Be Socratic and patient. Don't give me your conclusions until I ask. Start with your first question now.`},
     ],
-    tryIt:`Upload your syllabus into the AI tool first, then try the steelman prompt — even if you're skeptical. Follow it with the persona prompt. The two together reveal where your actual values lie.`,
+    tryIt:`Try the steelman prompt even if — especially if — you're skeptical. Then try the persona prompt. The combination of a forceful "for" and a practitioner's "against" often reveals where your actual values lie.`,
     insightPrompt:`What did the AI's arguments or questions reveal about your discipline's signature thinking — or gaps between what you value and what you assess?`
+  },
+  {
+    id:'environmental',title:'Environmental responsibility',
+    purpose:'Reckon with the ecological cost of AI and design accordingly.',
+    docTip:null,
+    why:`Every AI interaction consumes energy and water. Training large models and running inference at scale has a measurable environmental footprint — one that is easy to ignore because it's invisible at the point of use. This lens asks faculty to consider that footprint honestly, weigh it against educational value, and think about whether and how to bring that reckoning into their teaching.`,
+    prompts:[
+      {tag:'starter',   text:`Considering the energy consumption, water use, and carbon footprint associated with running generative AI systems at scale, how should I think about the environmental cost of integrating AI into my course? What is currently known about the ecological impact of AI use, and what does responsible integration look like in light of that?`},
+      {tag:'flipped',   text:`I want to think honestly about the environmental cost of the AI integration I'm planning for my course, and whether that cost is justified by the educational value. Ask me one question at a time — wait for my answer before continuing. Help me work through the tradeoffs between environmental impact and learning benefit without letting me off the hook too easily. Start with your first question now.`},
+      {tag:'steelman',  text:`Make the strongest possible case that faculty have a professional and ethical obligation to limit or avoid AI integration in their courses specifically because of AI's environmental footprint — that the educational benefits do not justify the ecological cost at the current scale of AI deployment. Argue this as forcefully as you can, even if you disagree with it.`},
+      {tag:'constraint',text:`Help me design an AI integration approach for my course that explicitly minimizes environmental impact — but you must follow this constraint: you cannot suggest simply avoiding AI altogether. Propose the most educationally valuable integration possible within the smallest reasonable ecological footprint. Consider frequency of use, task type, model size, and student awareness of the cost.`},
+    ],
+    tryIt:`Start with the steelman prompt — it's harder to dismiss the environmental concern after reading the strongest version of the argument. Then use the constraint prompt to think about what responsible, minimal-footprint integration could actually look like.`,
+    insightPrompt:`How did this lens change — or complicate — your integration idea? Is the environmental cost justified by the learning value you're creating? What would you want students to understand about this tradeoff?`
   },
   {
     id:'constraints',title:'Constraints & limitations',
@@ -278,20 +273,6 @@ const LENSES=[
     ],
     tryIt:`The iterative prompt builds a ready-to-use classroom activity from a real example of AI error. Run it as a two-step sequence in the same conversation — send the follow-up after you receive the first response.`,
     insightPrompt:`What did you notice when critically evaluating AI responses? What made errors easier or harder to spot?`
-  },
-  {
-    id:'synthesis',title:'Integrated synthesis',
-    purpose:'Bring it all together into a concrete recommendation.',
-    docTip:null,
-    why:`After exploring multiple lenses, patterns emerge — strengths, tensions, and tradeoffs that point toward clearer design decisions. This final lens helps you move from analysis to action.`,
-    prompts:[
-      {tag:'starter',    text:`Considering all of the capabilities of generative AI systems today, and reflecting on the concerns I've identified around learning objectives, student engagement, scope of integration, AI limitations, authentic assessment, equity, and critical literacy — how might I integrate AI in a meaningful way in my course that honestly accounts for all of those dimensions?`},
-      {tag:'steelman',   text:`I've been analyzing an AI integration plan for my course and I'm leaning toward a cautious, limited approach. Make the strongest possible case that I'm being too conservative — that a bolder integration would serve my students better and that my caution is a disservice to them. Then, in the same response, make the strongest case for my caution. Present both sides at full strength.`},
-      {tag:'flipped',    text:`I've been exploring several lenses for thinking about AI integration in my course and I'm ready to make a decision — but I want to test my reasoning before I commit. Ask me one question at a time about what I've discovered, what I value, and what I'm still uncertain about. Wait for my answer before continuing. Help me arrive at my own recommendation through the conversation. Don't tell me what to do until I explicitly ask. Start with your first question now.`},
-      {tag:'constraint', text:`Help me write a one-paragraph AI integration policy for my course syllabus. Constraint: it must be written so that a first-generation student who has never used AI understands exactly what is expected, and a student who uses AI regularly understands exactly where the limits are. No jargon. Maximum 100 words.`},
-    ],
-    tryIt:`End with the flipped prompt to synthesize through conversation, then use the constraint prompt to turn your decision into a concrete syllabus statement you can actually use.`,
-    insightPrompt:`What is your takeaway? Do you plan to proceed, modify, pilot, or reconsider? What was the most important tension you worked through?`
   }
 ];
 
@@ -343,6 +324,25 @@ function saveInsight(id){
   }
 }
 
+function copyAllInsights(){
+  const completed=LENSES.filter(l=>state.insights[l.id]);
+  if(!completed.length){alert('No insights saved yet. Explore some lenses first!');return;}
+  let text='Summer AI Studio — 8 Lenses Reflection\n'+'='.repeat(42)+'\n\n';
+  completed.forEach(l=>{
+    text+=`${l.title.toUpperCase()}\n${l.purpose}\n\n${state.insights[l.id]}\n\n${'-'.repeat(38)}\n\n`;
+  });
+  text=text.trim();
+  const btn=document.getElementById('copy-all-btn');
+  const done=(ok)=>{
+    btn.textContent=ok?'✓ Copied!':'Failed — select text manually';
+    if(ok) btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy all for Canvas';btn.classList.remove('copied');},3000);
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>done(true)).catch(()=>legacyCopy(text,done));
+  } else legacyCopy(text,done);
+}
+
 function toolChipsHTML(){
   return TOOLS.map(t=>`<a class="tool-chip" href="${t.url}" target="_blank" rel="noopener noreferrer">${t.name}</a>`).join('');
 }
@@ -350,10 +350,7 @@ function toolChipsHTML(){
 function docTipHTML(key){
   if(!key) return '';
   const d=DOC_TIPS[key];
-  return `<div class="doc-tip">
-    <div class="doc-tip-icon">${d.icon}</div>
-    <div class="doc-tip-body"><h4>${d.title}</h4><p>${d.body}</p></div>
-  </div>`;
+  return `<div class="doc-tip"><div class="doc-tip-icon">${d.icon}</div><div class="doc-tip-body"><h4>${d.title}</h4><p>${d.body}</p></div></div>`;
 }
 
 function promptCardHTML(p){
@@ -438,25 +435,6 @@ function renderReport(){
     <button class="nav-btn" onclick="state.active=0;reportMode=false;render()">← Back to lenses</button>
   </div>`;
   return html;
-}
-
-function copyAllInsights(){
-  const completed=LENSES.filter(l=>state.insights[l.id]);
-  if(!completed.length){alert('No insights saved yet. Explore some lenses first!');return;}
-  let text='Summer AI Studio — 8 Lenses Reflection\n'+'='.repeat(42)+'\n\n';
-  completed.forEach(l=>{
-    text+=`${l.title.toUpperCase()}\n${l.purpose}\n\n${state.insights[l.id]}\n\n${'-'.repeat(38)}\n\n`;
-  });
-  text=text.trim();
-  const btn=document.getElementById('copy-all-btn');
-  const done=(ok)=>{
-    btn.textContent=ok?'✓ Copied!':'Failed — select text manually';
-    if(ok) btn.classList.add('copied');
-    setTimeout(()=>{btn.textContent='Copy all for Canvas';btn.classList.remove('copied');},3000);
-  };
-  if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(()=>done(true)).catch(()=>legacyCopy(text,done));
-  } else legacyCopy(text,done);
 }
 
 function goTo(idx){
