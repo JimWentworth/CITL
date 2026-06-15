@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a1a;max-width:760px;margin:0 auto;padding:1.5rem;background:#fff;line-height:1.6">
+
+<!-- PAGE HEADER -->
+<div style="background:#13294B;border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem">
+  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.5);margin-bottom:.3rem">Summer AI Studio 2026 · Live Session</div>
+  <h1 style="font-size:20px;font-weight:700;color:#fff;margin:0 0 .3rem 0">Who Are We? Exploring Our Cohort Survey</h1>
+  <p style="font-size:13px;color:rgba(255,255,255,.72);line-height:1.6;margin:0">Use AI tools to analyze what your colleagues said — then share back what you found.</p>
+</div>
+
+<!-- INTRO -->
+<div style="background:#f5f5f5;border-left:4px solid #E84A27;border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:13px;color:#444;line-height:1.6">
+  <strong style="color:#13294B">The idea:</strong> Before the program started, 34 of us answered a survey about our concerns, hopes, and current AI use. Today you'll use that data as the raw material for your first hands-on exploration of an AI tool. Choose your level tab below, follow the steps, and come back ready to share what you found with the group.
+</div>
+
+<!-- UPLOAD CALLOUT -->
+<div style="background:#fff;border:2px solid #E84A27;border-radius:10px;padding:1.1rem 1.5rem;margin-bottom:1.75rem;display:flex;gap:12px;align-items:flex-start">
+  <div style="font-size:24px;flex-shrink:0;margin-top:2px">📎</div>
+  <div>
+    <h3 style="font-size:14px;font-weight:700;color:#13294B;margin:0 0 .3rem 0">Before you do anything — upload the survey file</h3>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin:0">You have been given the file <strong>FacultyAISurveyBaselineResults.docx</strong>. Open your AI tool, look for a paperclip or attachment icon, and upload the file before starting. Explore and Implement users: upload to both tools. Build users: upload to Tool 1 first — instructions will tell you when to open Tool 2.</p>
+  </div>
+</div>
+
+<!-- TABS -->
+<div style="display:flex;border-bottom:2px solid #ddd;margin-bottom:1.75rem;background:#fff;border-radius:10px 10px 0 0;overflow:hidden">
+  <div id="tab-explore" onclick="showTab('explore')" style="flex:1;padding:.9rem .75rem;font-size:13px;font-weight:600;cursor:pointer;text-align:center;border-bottom:3px solid #E84A27;margin-bottom:-2px;color:#E84A27;background:#fff;border-right:1px solid #eee;user-select:none">
+    Explore
+    <div style="font-size:11px;font-weight:400;opacity:.75;margin-top:2px">New to this</div>
+  </div>
+  <div id="tab-implement" onclick="showTab('implement')" style="flex:1;padding:.9rem .75rem;font-size:13px;font-weight:600;cursor:pointer;text-align:center;border-bottom:3px solid transparent;margin-bottom:-2px;color:#666;background:#f9f9f9;border-right:1px solid #eee;user-select:none">
+    Implement
+    <div style="font-size:11px;font-weight:400;opacity:.75;margin-top:2px">Use AI regularly</div>
+  </div>
+  <div id="tab-build" onclick="showTab('build')" style="flex:1;padding:.9rem .75rem;font-size:13px;font-weight:600;cursor:pointer;text-align:center;border-bottom:3px solid transparent;margin-bottom:-2px;color:#666;background:#f9f9f9;user-select:none">
+    Build
+    <div style="font-size:11px;font-weight:400;opacity:.75;margin-top:2px">Ready to go deep</div>
+  </div>
+</div>
+
+<!-- ===================== EXPLORE ===================== -->
+<div id="content-explore">
+
+  <div style="border:1px solid #ddd;border-radius:10px;overflow:hidden;margin-bottom:1.5rem">
+    <div style="background:#13294B;padding:1rem 1.5rem">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.5);margin-bottom:3px">Level 1</div>
+      <h2 style="font-size:17px;font-weight:700;color:#fff;margin:0 0 3px 0">Explore — Find the biggest themes in what we said</h2>
+      <p style="font-size:13px;color:rgba(255,255,255,.72);margin:0">Run the same prompt in two tools and compare what each one finds.</p>
+    </div>
+    <div style="padding:1.5rem">
+
+      <div style="background:#f5f5f5;border-left:3px solid #13294B;border-radius:0 6px 6px 0;padding:.85rem 1.1rem;margin-bottom:1.25rem;font-size:13px;color:#444;line-height:1.6">
+        <strong style="color:#13294B">Your goal:</strong> Find the three biggest themes in what your colleagues said — then see whether two different tools reach the same conclusions from the same data.
+      </div>
+
+      <div style="background:#13294B;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.25rem">
+        <h4 style="font-size:13px;font-weight:700;color:#fff;margin:0 0 .3rem 0">Your two tools — upload the survey file to both before you start</h4>
+        <p style="font-size:12px;color:rgba(255,255,255,.72);margin:0 0 .6rem 0">Both are available through the University of Illinois. Sign in with your Illinois credentials.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <a href="https://copilot.microsoft.com" target="_blank" style="font-size:12px;padding:4px 12px;border-radius:12px;background:#E84A27;border:1px solid #E84A27;color:#fff;font-weight:600;text-decoration:none">Microsoft Copilot (campus)</a>
+          <a href="https://gemini.google.com" target="_blank" style="font-size:12px;padding:4px 12px;border-radius:12px;background:#E84A27;border:1px solid #E84A27;color:#fff;font-weight:600;text-decoration:none">Google Gemini</a>
+        </div>
+      </div>
+
+      <!-- Step 1 -->
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #f0f0f0">
+        <div style="min-width:32px;height:32px;border-radius:50%;background:#E84A27;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+        <div style="flex:1">
+          <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 .3rem 0">Paste this prompt into Copilot</h4>
+          <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden;margin-top:.5rem">
+            <div style="background:#13294B;padding:.4rem 1rem"><span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.5px">Your prompt</span></div>
+            <div style="padding:.9rem 1rem;font-size:13px;color:#333;line-height:1.7;background:#f8f8f8">I've uploaded a survey of 34 university faculty members about their concerns and hopes for using AI in their teaching. Please read it carefully and identify the three biggest themes across all the open-ended responses. For each theme: give it a short name, write one sentence describing it, and quote the single response that best captures it. Then tell me: is there anything in the data that surprised you, or that didn't fit neatly into your three themes?</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #f0f0f0">
+        <div style="min-width:32px;height:32px;border-radius:50%;background:#E84A27;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+        <div style="flex:1">
+          <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 .3rem 0">Paste the exact same prompt into Gemini</h4>
+          <p style="font-size:13px;color:#555;line-height:1.6;margin:0">Same prompt, same file, different tool. Don't change a word.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #f0f0f0">
+        <div style="min-width:32px;height:32px;border-radius:50%;background:#E84A27;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+        <div style="flex:1">
+          <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 .3rem 0">Compare the two responses</h4>
+          <p style="font-size:13px;color:#555;line-height:1.6;margin:0 0 .4rem 0">Read both side by side. Did both tools find the same three themes? Where did they agree — and where did they reach different conclusions from the same data? Which response feels more accurate to you, and why?</p>
+          <div style="background:#f5f5f5;border-left:3px solid #13294B;border-radius:0 6px 6px 0;padding:.7rem 1rem;font-size:12px;color:#555;line-height:1.55"><strong style="color:#13294B">This is the skill:</strong> the same input producing different outputs reveals that AI tools are not neutral or interchangeable. What they emphasize — and what they miss — reflects how each model processes language and weighs evidence.</div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div style="display:flex;gap:14px;align-items:flex-start">
+        <div style="min-width:32px;height:32px;border-radius:50%;background:#E84A27;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div>
+        <div style="flex:1">
+          <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 .3rem 0">Send this follow-up in whichever tool gave the more interesting response</h4>
+          <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden;margin-top:.5rem">
+            <div style="background:#333;padding:.4rem 1rem"><span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.5px">Follow-up prompt</span></div>
+            <div style="padding:.9rem 1rem;font-size:13px;color:#333;line-height:1.7;background:#f8f8f8">Is there a concern in the data that only one or two people raised, but that you think deserves more attention than it's getting? What is it, and why does it matter?</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#E84A27;border-radius:8px;padding:1rem 1.25rem;margin-top:1.25rem">
+        <h4 style="font-size:13px;font-weight:700;color:#fff;margin:0 0 .35rem 0">🗣 Ready to share back with the group</h4>
+        <p style="font-size:13px;color:rgba(255,255,255,.9);line-height:1.6;margin:0">Bring three things: the themes both tools identified, one place where they disagreed, and the under-the-radar concern the follow-up surfaced. You don't need all the answers — your observation is the contribution.</p>
+      </div>
+
+      <!-- EXTENSION -->
+      <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden;margin-top:1.25rem">
+        <div style="background:#f0f0f0;padding:.6rem 1rem;border-bottom:1px solid #ddd">
+          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#555">⚡ If you finish early</span>
+        </div>
+        <div style="padding:1rem 1.25rem;font-size:13px;color:#444;line-height:1.6">
+          <p style="margin:0 0 .6rem 0">Go back to whichever tool gave you the more interesting themes and send it this prompt:</p>
+          <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden">
+            <div style="background:#333;padding:.4rem 1rem"><span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.5px">Extension prompt</span></div>
+            <div style="padding:.9rem 1rem;font-size:13px;color:#333;line-height:1.7;background:#f8f8f8">You identified these three themes from the survey data: [paste the themes]. Now make the case that you got it wrong — what did you miss, overemphasize, or flatten? What would a more honest reading of the data say?</div>
+          </div>
+          <p style="margin:.6rem 0 0 0;font-size:12px;color:#888">Notice how easily the tool argues against itself. What does that tell you about how much to trust its first response?</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== IMPLEMENT ===================== -->
+<div id="content-implement" style="display:none">
+
+  <div style="border:1px solid #ddd;border-radius:10px;overflow:hidden;margin-bottom:1.5rem">
+    <div style="background:#13294B;padding:1rem 1.5rem">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.5);margin-bottom:3px">Level 2</div>
+      <h2 style="font-size:17px;font-weight:700;color:#fff;margin:0 0 3px 0">Implement — Build learner personas from the data</h2>
+      <p style="font-size:13px;color:rgba(255,255,255,.72);margin:0">Run the same prompt in two tools and evaluate how well each set of personas captures the real people in this room.</p>
+    </div>
+    <div style="padding:1.5rem">
+
+      <div style="background:#f5f5f5;border-left:3px solid #13294B;border-radius:0 6px 6px 0;padding:.85rem 1.1rem;margin-bottom:1.25rem;font-size:13px;color:#444;line-height:1.6">
+        <strong style="color:#13294B">Your goal:</strong> Ask both tools to build learner personas from the survey data — then compare whether the personas they generate are the same, and evaluate how well either set captures the real people in this room.
+      </div>
+
+      <div style="background:#13294B;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.25rem">
+        <h4 style="font-size:13px;font-weight:700;color:#fff;margin:0 0 .3rem 0">Your two tools — upload the survey file to both before you start</h4>
+        <p style="font-size:12px;color:rgba(255,255,255,.72);margin:0 0 .6rem 0">Pick two that are new to you. Copilot and Gemini use your Illinois credentials. Claude requires a free account.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <a href="https://copilot.microsoft.com" target="_blank" style="font-size:12px;padding:4px 12px;border-radius:12px;background:#E84A27;border:1px solid #E84A27;color:#fff;font-weight:600;text-decoration:none">Microsoft Copilot (campus)</a>
+          <a href="https://gemini.google.com" target="_blank" style="font-size:12px;padding:4px 12px;border-radius:12px;background:#E84A27;border:1px solid #E84A27;color:#fff;font-weight:600;text-decoration:none">Google Gemini</a>
+          <a href="https://chatgpt.com" target="_blank" style="font-size:12px;padding:4px 12px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;font-weight:600;text-decoration:none">ChatGPT</a>
+        </div>
+      </div>
+
+      <!-- Step 1 -->
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #f0f0f0">
+        <div style="min-width:32px;height:32px;border-radius:50%;background:#E84A27;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+        <div style="flex:1">
+          <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 .3rem 0">Paste this prompt into Tool 1</h4>
+          <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden;margin-top:.5rem">
+            <div style="background:#13294B;padding:.4rem 1rem"><span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.5px">Your prompt</span></div>
+            <div style="padding:.9rem 1rem;font-size:13px;color:#333;line-height:1.7;background:#f8f8f8">I've uploaded a survey of 34 university faculty members about their concerns and hopes for using AI in their teaching. Based on the open-ended responses, create 4 distinct faculty learner personas. For each persona include: a descriptive name (a type, not a real person), one sentence describing their current relationship to AI, their primary concern, their primary hope, and the one question they most need answered by the end of a faculty development program. Make the personas specific enough to be recognizable to someone in the room — not so broad they could describe anyone.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #f0f0f0">
+        <div style="min-width:32px;height:32px;border-radius:50%;background:#E84A27;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+        <div style="flex:1">
+          <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 .3rem 0">Paste the exact same prompt into Tool 2</h4>
+          <p style="font-size:13px;color:#555;line-height:1.6;margin:0">Same prompt, same file, different tool. Don't change a word.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #f0f0f0">
+        <div style="min-width:32px;height:32px;border-radius:50%;background:#E84A27;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+        <div style="flex:1">
+          <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 .3rem 0">Compare the two sets of personas</h4>
+          <p style="font-size:13px;color:#555;line-height:1.6;margin:0 0 .4rem 0">Read both sets side by side. Did the tools generate similar personas or very different ones? Which set feels more true to the actual survey responses? Is there a respondent in the data who doesn't fit any persona in either set?</p>
+          <div style="background:#f5f5f5;border-left:3px solid #13294B;border-radius:0 6px 6px 0;padding:.7rem 1rem;font-size:12px;color:#555;line-height:1.55"><strong style="color:#13294B">Why this matters:</strong> if two tools generate different personas from identical data, neither is objectively correct. The person who fits no persona is often the most important one in the room.</div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div style="display:flex;gap:14px;align-items:flex-start">
+        <div style="min-width:32px;height:32px;border-radius:50%;background:#E84A27;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div>
+        <div style="flex:1">
+          <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 .3rem 0">Send this follow-up in whichever tool gave the stronger personas</h4>
+          <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden;margin-top:.5rem">
+            <div style="background:#333;padding:.4rem 1rem"><span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.5px">Follow-up prompt</span></div>
+            <div style="padding:.9rem 1rem;font-size:13px;color:#333;line-height:1.7;background:#f8f8f8">Which of these personas is hardest to design a faculty development program for — and why? What would a program need to do differently to actually serve that person well?</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#E84A27;border-radius:8px;padding:1rem 1.25rem;margin-top:1.25rem">
+        <h4 style="font-size:13px;font-weight:700;color:#fff;margin:0 0 .35rem 0">🗣 Ready to share back with the group</h4>
+        <p style="font-size:13px;color:rgba(255,255,255,.9);line-height:1.6;margin:0">Bring: one key difference between the two sets of personas, the respondent who didn't fit either set, and one implication for how this program should be designed. Be ready to say which persona you think you are — or whether you don't fit any of them.</p>
+      </div>
+
+      <!-- EXTENSION -->
+      <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden;margin-top:1.25rem">
+        <div style="background:#f0f0f0;padding:.6rem 1rem;border-bottom:1px solid #ddd">
+          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#555">⚡ If you finish early</span>
+        </div>
+        <div style="padding:1rem 1.25rem;font-size:13px;color:#444;line-height:1.6">
+          <p style="margin:0 0 .6rem 0">Pick the persona you think best describes you and send this to whichever tool produced the stronger set:</p>
+          <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden">
+            <div style="background:#333;padding:.4rem 1rem"><span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.5px">Extension prompt</span></div>
+            <div style="padding:.9rem 1rem;font-size:13px;color:#333;line-height:1.7;background:#f8f8f8">Based on the persona [paste the persona name and description], design the ideal 30-minute session for this specific person in a faculty AI development program. What would the session cover, what would they actually do, and what would they leave with? Be specific — not a generic workshop description.</div>
+          </div>
+          <p style="margin:.6rem 0 0 0;font-size:12px;color:#888">This is exactly what program designers do with personas — and you'll be able to evaluate immediately whether the AI's design actually fits you.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== BUILD ===================== -->
+<div id="content-build" style="display:none">
+
+  <div style="border:1px solid #ddd;border-radius:10px;overflow:hidden;margin-bottom:1.5rem">
+    <div style="background:#13294B;padding:1rem 1.5rem">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.5);margin-bottom:3px">Level 3</div>
+      <h2 style="font-size:17px;font-weight:700;color:#fff;margin:0 0 3px 0">Build — Generate, then stress-test</h2>
+      <p style="font-size:13px;color:rgba(255,255,255,.72);margin:0">Use Tool 1 to produce a synthesis document. Use Tool 2 to challenge, critique, and improve it.</p>
+    </div>
+    <div style="padding:1.5rem">
+
+      <div style="background:#f5f5f5;border-left:3px solid #13294B;border-radius:0 6px 6px 0;padding:.85rem 1.1rem;margin-bottom:1.25rem;font-size:13px;color:#444;line-height:1.6">
+        <strong style="color:#13294B">Your goal:</strong> Tool 1 writes a synthesis document from the survey data. Tool 2 acts as an editor and adversary — pushing back on what Tool 1 produced, finding its weaknesses, and suggesting improvements. You direct both, then edit the final document yourself. The result should be better than what either tool could produce alone.
+      </div>
+
+      <div style="background:#13294B;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.25rem">
+        <h4 style="font-size:13px;font-weight:700;color:#fff;margin:0 0 .3rem 0">Your two tools</h4>
+        <p style="font-size:12px;color:rgba(255,255,255,.72);margin:0 0 .6rem 0">Upload the survey file to Tool 1 now. You'll open Tool 2 in Step 3 — no file upload needed for Tool 2. Choose any two from the options below.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <a href="https://copilot.microsoft.com" target="_blank" style="font-size:12px;padding:4px 12px;border-radius:12px;background:#E84A27;border:1px solid #E84A27;color:#fff;font-weight:600;text-decoration:none">Microsoft Copilot (campus)</a>
+          <a href="https://chatgpt.com" target="_blank" style="font-size:12px;padding:4px 12px;border-radius:12px;background:#E84A27;border:1px solid #E84A27;color:#fff;font-weight:600;text-decoration:none">ChatGPT</a>
+          <a href="https://platform.openai.com/codex" target="_blank" style="font-size:12px;padding:4px 12px;border-radius:12px;background:#E84A27;border:1px solid #E84A27;color:#fff;font-weight:600;text-decoration:none">Codex</a>
+          <a href="https://gemini.google.com" target="_blank" style="font-size:12px;padding:4px 12px;border-radius:12px;background:#E84A27;border:1px solid #E84A27;color:#fff;font-weight:600;text-decoration:none">Gemini</a>
+          <a href="https://claude.ai" target="_blank" style="font-size:12px;padding:4px 12px;border-radius:12px;background:#E84A27;border:1px solid #E84A27;color:#fff;font-weight:600;text-decoration:none">Claude</a>
+        </div>
+      </div>
+
+      <!-- Step 1 -->
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #f0f0f0">
+        <div style="min-width:32px;height:32px;border-radius:50%;background:#E84A27;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+        <div style="flex:1">
+          <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 .3rem 0">Paste this prompt into Tool 1 (with the file uploaded)</h4>
+          <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden;margin-top:.5rem">
+            <div style="background:#13294B;padding:.4rem 1rem"><span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.5px">Generation prompt — Tool 1</span></div>
+            <div style="padding:.9rem 1rem;font-size:13px;color:#333;line-height:1.7;background:#f8f8f8">I've uploaded a survey of 34 university faculty members about their concerns and hopes for using AI in their teaching. Produce a one-page synthesis document with four sections:
+
+1. Three dominant themes — each with a direct quote from the data as evidence
+2. The single most important tension in this cohort's relationship to AI — stated as one sentence
+3. Two concerns that appeared only once or twice but deserve more attention — and why
+4. Three design principles for a faculty AI development program that responds honestly to what these people actually said — not what a program would want to hear
+
+Write it as a professional document I can share with colleagues. I will edit it before I do.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #f0f0f0">
+        <div style="min-width:32px;height:32px;border-radius:50%;background:#E84A27;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+        <div style="flex:1">
+          <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 .3rem 0">Read the document Tool 1 produced</h4>
+          <p style="font-size:13px;color:#555;line-height:1.6;margin:0 0 .4rem 0">Before you move on, read it carefully. Note anything that seems too vague, too obvious, or that you suspect misreads the data. You'll use Tool 2 to challenge these specifically.</p>
+          <div style="background:#f5f5f5;border-left:3px solid #13294B;border-radius:0 6px 6px 0;padding:.7rem 1rem;font-size:12px;color:#555;line-height:1.55"><strong style="color:#13294B">Don't skip this step:</strong> the stress-test in Step 3 is only as good as your reading of Tool 1's output. The more specific you can be about what seems weak, the sharper Tool 2's critique will be.</div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #f0f0f0">
+        <div style="min-width:32px;height:32px;border-radius:50%;background:#E84A27;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+        <div style="flex:1">
+          <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 .3rem 0">Open Tool 2 and paste this stress-test prompt</h4>
+          <p style="font-size:13px;color:#555;line-height:1.6;margin:0 0 .5rem 0">Copy Tool 1's full document and paste it into the prompt below. No file upload needed for Tool 2 — the document is all the context it needs.</p>
+          <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden;margin-top:.5rem">
+            <div style="background:#333;padding:.4rem 1rem"><span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.5px">Stress-test prompt — Tool 2</span></div>
+            <div style="padding:.9rem 1rem;font-size:13px;color:#333;line-height:1.7;background:#f8f8f8">Here is a synthesis document produced by an AI tool analyzing a faculty survey about AI in teaching:
+
+[paste Tool 1's document here]
+
+I want you to act as a critical editor. Do the following:
+1. Identify the weakest of the three themes — where is the evidence thinnest or the claim most generic?
+2. Challenge the central tension statement. Is it accurate, or does it flatten something more complex?
+3. Evaluate the three design principles — which one is most likely to be ignored by a program enthusiastic about AI, and what would honoring it actually require?
+4. Suggest one specific revision to make the document stronger.
+
+Be direct. I want critique, not reassurance.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div style="display:flex;gap:14px;align-items:flex-start">
+        <div style="min-width:32px;height:32px;border-radius:50%;background:#E84A27;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div>
+        <div style="flex:1">
+          <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 .3rem 0">Edit the document — make it better than either tool produced</h4>
+          <p style="font-size:13px;color:#555;line-height:1.6;margin:0 0 .4rem 0">Go back to Tool 1's document. Use Tool 2's critique to make at least two substantive revisions — fix the weakest theme, sharpen the tension statement, or strengthen the design principle most at risk of being ignored. The document you share with the group should be visibly different from what Tool 1 first produced.</p>
+          <div style="background:#f5f5f5;border-left:3px solid #13294B;border-radius:0 6px 6px 0;padding:.7rem 1rem;font-size:12px;color:#555;line-height:1.55"><strong style="color:#13294B">The discipline:</strong> using one AI to critique another — then editing the result yourself — is a workflow most people haven't tried. It produces better output than any single tool and keeps you in control of the final judgment.</div>
+        </div>
+      </div>
+
+      <div style="background:#E84A27;border-radius:8px;padding:1rem 1.25rem;margin-top:1.25rem">
+        <h4 style="font-size:13px;font-weight:700;color:#fff;margin:0 0 .35rem 0">🗣 Ready to share back with the group</h4>
+        <p style="font-size:13px;color:rgba(255,255,255,.9);line-height:1.6;margin:0">Bring your edited synthesis document. Be ready to say: what Tool 2's critique identified as the weakest part of Tool 1's draft, what you revised and why, and which design principle you think this program is most at risk of ignoring.</p>
+      </div>
+
+      <!-- EXTENSION -->
+      <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden;margin-top:1.25rem">
+        <div style="background:#f0f0f0;padding:.6rem 1rem;border-bottom:1px solid #ddd">
+          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#555">⚡ If you finish early</span>
+        </div>
+        <div style="padding:1rem 1.25rem;font-size:13px;color:#444;line-height:1.6">
+          <p style="margin:0 0 .6rem 0">Take Tool 2's critique and feed it back to Tool 1 in the same conversation:</p>
+          <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden">
+            <div style="background:#333;padding:.4rem 1rem"><span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.5px">Extension prompt — back to Tool 1</span></div>
+            <div style="padding:.9rem 1rem;font-size:13px;color:#333;line-height:1.7;background:#f8f8f8">Here is a critique of the synthesis document you produced: [paste Tool 2's critique]. Revise the document to address these specific concerns. Where you disagree with the critique, explain why and keep the original language — but justify it.</div>
+          </div>
+          <p style="margin:.6rem 0 0 0;font-size:12px;color:#888">Compare this revision to the original. You've now run a full iterative loop across two tools — generating, critiquing, and revising. Notice what improved, what didn't, and where you still had to make the final call yourself.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- CANVAS HEADS UP -->
+<div style="background:#13294B;border-radius:10px;padding:1.25rem 1.5rem;margin-top:.5rem">
+  <h4 style="font-size:14px;font-weight:700;color:#fff;margin:0 0 .5rem 0">📋 After the group report-out — you'll be asked to document in Canvas</h4>
+  <p style="font-size:13px;color:rgba(255,255,255,.78);line-height:1.6;margin:0 0 .6rem 0">Keep these in mind as you work so you're ready to respond quickly:</p>
+  <ul style="padding-left:1.25rem;margin:0">
+    <li style="font-size:13px;color:rgba(255,255,255,.82);line-height:1.85"><strong style="color:#fff">Tools explored</strong> — which AI tools you tried today</li>
+    <li style="font-size:13px;color:rgba(255,255,255,.82);line-height:1.85"><strong style="color:#fff">Reflection on the differences in output</strong> — what you noticed when comparing the two tools</li>
+    <li style="font-size:13px;color:rgba(255,255,255,.82);line-height:1.85"><strong style="color:#fff">One question or concern</strong> — something this experience raised for you</li>
+  </ul>
+</div>
+
+<script>
+function showTab(id){
+  ['explore','implement','build'].forEach(function(t){
+    var tab = document.getElementById('tab-'+t);
+    var content = document.getElementById('content-'+t);
+    var active = t === id;
+    tab.style.color = active ? '#E84A27' : '#666';
+    tab.style.borderBottom = active ? '3px solid #E84A27' : '3px solid transparent';
+    tab.style.background = active ? '#fff' : '#f9f9f9';
+    content.style.display = active ? 'block' : 'none';
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
