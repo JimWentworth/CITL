@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Summer AI Studio — 8 Lenses</title>
+<title>8 Lenses for AI Integration — Summer AI Studio</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;color:#1a1a1a;min-height:100vh}
-:root{--or:#E84A27;--bl:#13294B;--or-mid:#f26644;--bl2:#1d3d6b}
+:root{--or:#E84A27;--bl:#13294B;--or-mid:#f26644}
 
 header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;gap:12px}
 .logo{background:var(--or);color:#fff;font-size:11px;font-weight:700;padding:5px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;line-height:1.3;flex-shrink:0}
@@ -15,6 +15,7 @@ header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;
 .header-text p{font-size:12px;color:rgba(255,255,255,.65);margin-top:2px}
 
 .shell{display:flex;min-height:calc(100vh - 56px)}
+
 .sidebar{width:220px;flex-shrink:0;background:#fff;border-right:1px solid #ddd;padding:1rem 0;position:sticky;top:0;height:calc(100vh - 56px);overflow-y:auto}
 .sidebar-title{font-size:10px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:1px;padding:0 1rem .5rem}
 .nav-item{display:flex;align-items:center;gap:8px;padding:9px 1rem;cursor:pointer;border-left:3px solid transparent;font-size:13px;color:#444;transition:all .15s;line-height:1.3}
@@ -26,51 +27,48 @@ header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;
 
 .content{flex:1;padding:1.75rem;max-width:720px}
 
+.intro-card{background:var(--bl);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.intro-card .kicker{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.5);margin-bottom:.3rem}
+.intro-card h2{font-size:18px;font-weight:700;color:#fff;margin-bottom:.4rem}
+.intro-card p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.6;margin:0}
+
 .lens-panel{background:#fff;border:1px solid #ddd;border-radius:10px;overflow:hidden;margin-bottom:1.5rem}
 .lens-header{background:var(--bl);padding:1.1rem 1.5rem}
 .lens-header .ln{font-size:11px;color:rgba(255,255,255,.55);font-weight:600;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
 .lens-header h2{font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
-.lens-header .purpose{font-size:13px;color:rgba(255,255,255,.72);line-height:1.5}
+.lens-header .purpose{font-size:13px;color:rgba(255,255,255,.72);line-height:1.5;margin:0}
 .lens-body{padding:1.5rem}
 
 .why-box{background:#f5f5f5;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:13px;color:#444;line-height:1.6;border-left:3px solid var(--bl)}
 
-.doc-tip{background:#fff;border:1px solid #d0d0d0;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;gap:10px;align-items:flex-start}
-.doc-tip-icon{font-size:18px;flex-shrink:0;margin-top:1px}
-.doc-tip-body h4{font-size:13px;font-weight:700;color:var(--bl);margin-bottom:.3rem}
-.doc-tip-body p{font-size:12px;color:#555;line-height:1.55}
+.doc-tip{background:#fff;border:1px solid #d0d0d0;border-radius:8px;padding:1rem 1.1rem;margin-bottom:1.5rem;display:flex;gap:10px;align-items:flex-start}
+.doc-tip-icon{font-size:16px;flex-shrink:0}
+.doc-tip-body h4{font-size:13px;font-weight:700;color:var(--bl);margin-bottom:3px}
+.doc-tip-body p{font-size:12px;color:#555;line-height:1.55;margin:0}
 
-.prompts-label{font-size:11px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.8px;margin-bottom:.5rem}
+.prompts-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#999;margin-bottom:.5rem}
 .prompts-intro{font-size:12px;color:#777;margin-bottom:.9rem;line-height:1.5}
 
-.prompt-card{border:1px solid #ddd;border-radius:8px;margin-bottom:.75rem;overflow:hidden}
-.prompt-card-header{display:flex;align-items:center;justify-content:space-between;padding:.55rem 1rem;background:#f7f7f7;border-bottom:1px solid #e8e8e8;gap:8px}
-.prompt-card.special .prompt-card-header{background:var(--bl);border-bottom-color:rgba(255,255,255,.15)}
-.prompt-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0}
-.tag-starter{background:#e8e8e8;color:#333}
-.tag-deeper{background:#e8e8e8;color:#333}
+.prompt{border:1px solid #ddd;border-radius:8px;margin-bottom:.75rem;overflow:hidden}
+.prompt-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:.55rem 1rem;background:#f7f7f7;border-bottom:1px solid #e8e8e8}
+.prompt.special .prompt-hd{background:var(--bl);border-bottom-color:rgba(255,255,255,.15)}
+.tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0}
+.tag-starter,.tag-deeper{background:#e8e8e8;color:#333}
 .tag-critical{background:#333;color:#fff}
-.tag-flipped{background:var(--or);color:#fff}
-.tag-persona{background:var(--or);color:#fff}
-.tag-reversal{background:var(--or);color:#fff}
-.tag-steelman{background:var(--or);color:#fff}
-.tag-iterative{background:var(--or);color:#fff}
-.tag-constraint{background:var(--or);color:#fff}
-
-.prompt-text{padding:.9rem 1rem;font-size:13px;color:#333;line-height:1.65;white-space:pre-wrap;background:#fff}
+.tag-special{background:var(--or);color:#fff}
+.prompt-body{padding:.9rem 1rem;font-size:13px;color:#333;line-height:1.65;white-space:pre-wrap;background:#fff}
 .prompt-note{font-size:12px;border-top:1px solid #eee;padding:.65rem 1rem;line-height:1.55;display:flex;gap:7px;align-items:flex-start;background:#f7f7f7;color:#555}
 .prompt-note strong{color:#1a1a1a}
 
-.btn-row{display:flex;gap:6px;flex-shrink:0}
-.copy-btn{padding:4px 11px;border:1px solid #bbb;border-radius:5px;background:#fff;font-size:12px;font-weight:600;color:#444;cursor:pointer;transition:all .15s;white-space:nowrap}
+.copy-btn{padding:4px 11px;border:1px solid #bbb;border-radius:5px;background:#fff;font-size:12px;font-weight:600;color:#444;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit}
 .copy-btn:hover{background:var(--bl);color:#fff;border-color:var(--bl)}
 .copy-btn.copied{background:var(--bl);color:#fff;border-color:var(--bl)}
-.prompt-card.special .copy-btn{background:transparent;border-color:rgba(255,255,255,.4);color:#fff}
-.prompt-card.special .copy-btn:hover,.prompt-card.special .copy-btn.copied{background:var(--or);border-color:var(--or);color:#fff}
+.prompt.special .copy-btn{background:transparent;border-color:rgba(255,255,255,.4);color:#fff}
+.prompt.special .copy-btn:hover,.prompt.special .copy-btn.copied{background:var(--or);border-color:var(--or);color:#fff}
 
 .try-it{background:var(--bl);border-radius:8px;padding:1.1rem 1.25rem;margin:1.5rem 0}
 .try-it h4{font-size:13px;font-weight:700;color:#fff;margin-bottom:.4rem}
-.try-it p{font-size:13px;color:rgba(255,255,255,.8);line-height:1.6}
+.try-it p{font-size:13px;color:rgba(255,255,255,.8);line-height:1.6;margin:0}
 .tool-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:.6rem}
 .tool-chip{font-size:12px;padding:3px 10px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,.35);color:rgba(255,255,255,.9);font-weight:600;text-decoration:none;transition:all .15s}
 .tool-chip:hover{background:var(--or);border-color:var(--or);color:#fff}
@@ -87,7 +85,7 @@ header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;
 .nav-btn{padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid #ccc;background:#fff;color:#444;font-family:inherit;transition:all .15s}
 .nav-btn:hover{border-color:var(--bl);color:var(--bl)}
 .nav-btn.primary{background:var(--bl);color:#fff;border-color:var(--bl)}
-.nav-btn.primary:hover{background:var(--bl2)}
+.nav-btn.primary:hover{background:#1d3d6b}
 .nav-btn:disabled{opacity:.3;cursor:not-allowed}
 
 .report-card{background:#fff;border:1px solid #ddd;border-radius:10px;overflow:hidden;margin-bottom:1.25rem}
@@ -118,6 +116,7 @@ header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;
 </style>
 </head>
 <body>
+
 <header>
   <div class="logo">Summer<br>AI Studio</div>
   <div class="header-text">
@@ -125,6 +124,7 @@ header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;
     <p>Prompting Activities for Faculty — University of Illinois</p>
   </div>
 </header>
+
 <div class="shell">
   <nav class="sidebar">
     <div class="sidebar-title">Lenses</div>
@@ -137,6 +137,7 @@ header{background:var(--bl);padding:1rem 1.5rem;display:flex;align-items:center;
   </nav>
   <div class="content" id="main-content"></div>
 </div>
+
 <script>
 const TOOLS=[
   {name:'ChatGPT',url:'https://chatgpt.com'},
@@ -147,21 +148,21 @@ const TOOLS=[
 ];
 
 const TAG_META={
-  starter:   {cls:'tag-starter',  label:'Starter',      special:false, note:null},
-  deeper:    {cls:'tag-deeper',   label:'Go deeper',    special:false, note:null},
-  critical:  {cls:'tag-critical', label:'Push it',      special:false, note:null},
-  flipped:   {cls:'tag-flipped',  label:'↩ Flipped',    special:true,  note:'<strong>Flipped prompt:</strong> paste this in and the AI will interview <em>you</em>, one question at a time. Respond naturally and let it lead — don\'t ask it to summarize until you\'re ready.'},
-  persona:   {cls:'tag-persona',  label:'👤 Persona',   special:true,  note:'<strong>Persona prompt:</strong> the AI responds from a specific role or perspective. The shift in viewpoint surfaces concerns a neutral assistant tends to smooth over.'},
-  reversal:  {cls:'tag-reversal', label:'🔄 Role reversal',special:true,note:'<strong>Role reversal:</strong> the AI takes the student\'s perspective and tries to complete or game the assignment. What it produces reveals design gaps you can\'t easily see from the instructor\'s side.'},
-  steelman:  {cls:'tag-steelman', label:'⚖️ Steelman',  special:true,  note:'<strong>Steelman prompt:</strong> the AI makes the strongest possible case for a position — even one you resist. Use it to pressure-test your own reasoning before you commit to a decision.'},
-  iterative: {cls:'tag-iterative',label:'🔁 Iterative', special:true,  note:'<strong>Iterative refinement:</strong> a two-step prompt. Run the first instruction, then feed the AI\'s response back in with the follow-up instruction shown. Best used in the same conversation window.'},
-  constraint:{cls:'tag-constraint',label:'🔒 Constraint',special:true, note:'<strong>Constraint prompt:</strong> the AI must follow a rule while responding. Constraints force more targeted, creative output and prevent the AI from defaulting to safe generalities.'},
+  starter:   {cls:'tag-starter',  label:'Starter',         special:false, note:null},
+  deeper:    {cls:'tag-deeper',   label:'Go deeper',       special:false, note:null},
+  critical:  {cls:'tag-critical', label:'Push it',         special:false, note:null},
+  flipped:   {cls:'tag-special',  label:'↩ Flipped',       special:true,  note:'<strong>Flipped prompt:</strong> paste this in and the AI will interview <em>you</em>, one question at a time. Respond naturally and let it lead — don\'t ask it to summarize until you\'re ready.'},
+  persona:   {cls:'tag-special',  label:'👤 Persona',      special:true,  note:'<strong>Persona prompt:</strong> the AI responds from a specific role or perspective. The shift in viewpoint surfaces concerns a neutral assistant tends to smooth over.'},
+  reversal:  {cls:'tag-special',  label:'🔄 Role reversal',special:true,  note:'<strong>Role reversal:</strong> the AI takes the student\'s perspective and tries to complete or game the assignment. What it produces reveals design gaps you can\'t easily see from the instructor\'s side.'},
+  steelman:  {cls:'tag-special',  label:'⚖️ Steelman',     special:true,  note:'<strong>Steelman prompt:</strong> the AI makes the strongest possible case for a position — even one you resist. Use it to pressure-test your own reasoning before you commit to a decision.'},
+  iterative: {cls:'tag-special',  label:'🔁 Iterative',    special:true,  note:'<strong>Iterative refinement:</strong> a two-step prompt. Run the first instruction, then feed the AI\'s response back in with the follow-up instruction shown. Best used in the same conversation window.'},
+  constraint:{cls:'tag-special',  label:'🔒 Constraint',   special:true,  note:'<strong>Constraint prompt:</strong> the AI must follow a rule while responding. Constraints force more targeted, creative output and prevent the AI from defaulting to safe generalities.'},
 };
 
 const DOC_TIPS={
-  assignment:{icon:'📄',title:'Bring your assignment into the AI tool',body:'Before trying the prompts below, open your AI tool of choice and upload or paste your existing assignment prompt. Most tools (ChatGPT, Claude, Gemini) accept file uploads or pasted text. Once it\'s loaded, add the prompt — the AI will use your actual assignment as context.'},
-  objectives:{icon:'🎯',title:'Bring your learning objectives into the AI tool',body:'Before trying the prompts below, open your AI tool and paste or upload your course learning objectives. You can copy them from your syllabus, LMS, or course design document. Adding them gives the AI specific goals to work with rather than guessing at your intent.'},
-  syllabus:  {icon:'📋',title:'Bring your syllabus into the AI tool',body:'Before trying the prompts below, open your AI tool and upload your syllabus — or paste the most relevant section. Most tools accept PDF or Word uploads directly. This gives the AI real context about your course structure and expectations.'},
+  objectives:{icon:'🎯',title:'Bring your learning objectives into the AI tool',body:'Before trying the prompts below, paste or upload your course learning objectives into your AI tool. This gives the AI specific goals to work with rather than guessing at your intent.'},
+  assignment: {icon:'📄',title:'Bring your assignment into the AI tool',body:'Before trying the prompts below, open your AI tool and upload or paste your existing assignment prompt. The AI will use your actual assignment as context.'},
+  syllabus:   {icon:'📋',title:'Bring your syllabus into the AI tool',body:'Before trying the prompts below, upload your syllabus or paste a relevant section into your AI tool. This gives the AI real context about your course structure and expectations.'},
 };
 
 const LENSES=[
@@ -171,9 +172,9 @@ const LENSES=[
     docTip:'objectives',
     why:`Before inviting AI into an assignment, it's worth asking: does this help students <strong>achieve</strong> the learning goal, or does it let them bypass it? This lens helps you map the relationship between AI capabilities and what you actually want students to learn.`,
     prompts:[
-      {tag:'starter', text:`Considering all of the capabilities of generative AI systems today, how might I integrate AI in a meaningful way in my course — specifically in ways that genuinely support my students in achieving their learning objectives, rather than replacing the thinking I want them to do?`},
-      {tag:'flipped', text:`I want to think carefully about whether and how to integrate AI into a course assignment. I'd like you to help me work through this by asking me one question at a time — wait for my answer before asking the next. Start by asking me what the assignment is, then use my answers to probe how AI might support or undermine what I want students to learn. Don't give me your analysis until I ask for it. Begin with your first question now.`},
-      {tag:'persona', text:`I'm considering integrating AI into a learning objective in my course. Respond as a skeptical faculty colleague in my discipline who has serious reservations about AI in higher education. Ask me the hardest questions you'd want answered before you'd feel comfortable with this integration. Be direct and don't soften your concerns.`},
+      {tag:'starter',  text:`Considering all of the capabilities of generative AI systems today, how might I integrate AI in a meaningful way in my course — specifically in ways that genuinely support my students in achieving their learning objectives, rather than replacing the thinking I want them to do?`},
+      {tag:'flipped',  text:`I want to think carefully about whether and how to integrate AI into a course assignment. I'd like you to help me work through this by asking me one question at a time — wait for my answer before asking the next. Start by asking me what the assignment is, then use my answers to probe how AI might support or undermine what I want students to learn. Don't give me your analysis until I ask for it. Begin with your first question now.`},
+      {tag:'persona',  text:`I'm considering integrating AI into a learning objective in my course. Respond as a skeptical faculty colleague in my discipline who has serious reservations about AI in higher education. Ask me the hardest questions you'd want answered before you'd feel comfortable with this integration. Be direct and don't soften your concerns.`},
     ],
     tryIt:`Try the flipped prompt first — let the AI interview you before it offers analysis. Then try the persona prompt and notice how a skeptical "colleague" surfaces different concerns than a neutral assistant.`,
     insightPrompt:`What surprised you? Did the AI identify alignment issues or bypass risks you hadn't considered?`
@@ -236,7 +237,7 @@ const LENSES=[
     id:'environmental',title:'Environmental responsibility',
     purpose:'Reckon with the ecological cost of AI and design accordingly.',
     docTip:null,
-    why:`Every AI interaction consumes energy and water. Training large models and running inference at scale has a measurable environmental footprint — one that is easy to ignore because it's invisible at the point of use. This lens asks faculty to consider that footprint honestly, weigh it against educational value, and think about whether and how to bring that reckoning into their teaching.`,
+    why:`Every AI interaction consumes energy and water. Training large models and running inference at scale has a measurable environmental footprint — one that is easy to ignore because it's invisible at the point of use. This lens asks faculty to consider that footprint honestly and weigh it against educational value.`,
     prompts:[
       {tag:'starter',   text:`Considering the energy consumption, water use, and carbon footprint associated with running generative AI systems at scale, how should I think about the environmental cost of integrating AI into my course? What is currently known about the ecological impact of AI use, and what does responsible integration look like in light of that?`},
       {tag:'flipped',   text:`I want to think honestly about the environmental cost of the AI integration I'm planning for my course, and whether that cost is justified by the educational value. Ask me one question at a time — wait for my answer before continuing. Help me work through the tradeoffs between environmental impact and learning benefit without letting me off the hook too easily. Start with your first question now.`},
@@ -244,7 +245,7 @@ const LENSES=[
       {tag:'constraint',text:`Help me design an AI integration approach for my course that explicitly minimizes environmental impact — but you must follow this constraint: you cannot suggest simply avoiding AI altogether. Propose the most educationally valuable integration possible within the smallest reasonable ecological footprint. Consider frequency of use, task type, model size, and student awareness of the cost.`},
     ],
     tryIt:`Start with the steelman prompt — it's harder to dismiss the environmental concern after reading the strongest version of the argument. Then use the constraint prompt to think about what responsible, minimal-footprint integration could actually look like.`,
-    insightPrompt:`How did this lens change — or complicate — your integration idea? Is the environmental cost justified by the learning value you're creating? What would you want students to understand about this tradeoff?`
+    insightPrompt:`How did this lens change — or complicate — your integration idea? Is the environmental cost justified by the learning value you're creating?`
   },
   {
     id:'constraints',title:'Constraints & limitations',
@@ -279,170 +280,167 @@ const LENSES=[
 const state={active:0,insights:{}};
 let reportMode=false;
 
-function renderNav(){
-  const c=document.getElementById('nav-items');
-  c.innerHTML='';
-  LENSES.forEach((l,i)=>{
-    const div=document.createElement('div');
-    const isActive=!reportMode&&state.active===i;
-    div.className='nav-item'+(isActive?' active':'')+(state.insights[l.id]?' done':'');
-    div.innerHTML=`<span class="nav-dot"></span><span>${l.title}</span>`;
-    div.onclick=()=>{reportMode=false;state.active=i;render();};
-    c.appendChild(div);
-  });
-  const rpt=document.getElementById('nav-report');
-  if(rpt) rpt.className='nav-item'+(reportMode?' active':'');
-}
-
 function copyText(btn,text){
-  const lbl=btn.dataset.label||'Copy';
-  const done=(ok)=>{
+  var lbl=btn.dataset.label||'Copy';
+  var done=function(ok){
     btn.textContent=ok?'Copied!':'Failed';
     if(ok) btn.classList.add('copied');
-    setTimeout(()=>{btn.textContent=lbl;btn.classList.remove('copied');},2000);
+    setTimeout(function(){btn.textContent=lbl;btn.classList.remove('copied');},2000);
   };
   if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(()=>done(true)).catch(()=>legacyCopy(text,done));
-  } else legacyCopy(text,done);
+    navigator.clipboard.writeText(text).then(function(){done(true);}).catch(function(){legacyCopy(text,done);});
+  } else { legacyCopy(text,done); }
 }
 
 function legacyCopy(text,done){
-  const ta=document.createElement('textarea');
-  ta.value=text;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;width:1px;height:1px';
+  var ta=document.createElement('textarea');
+  ta.value=text;
+  ta.style.cssText='position:fixed;opacity:0;top:0;left:0;width:1px;height:1px';
   document.body.appendChild(ta);ta.focus();ta.select();
   try{done(document.execCommand('copy'));}catch(e){done(false);}
   document.body.removeChild(ta);
 }
 
+function renderNav(){
+  var c=document.getElementById('nav-items');
+  c.innerHTML='';
+  LENSES.forEach(function(l,i){
+    var div=document.createElement('div');
+    var isActive=!reportMode&&state.active===i;
+    div.className='nav-item'+(isActive?' active':'')+(state.insights[l.id]?' done':'');
+    div.innerHTML='<span class="nav-dot"></span><span>'+l.title+'</span>';
+    div.onclick=(function(idx){return function(){reportMode=false;state.active=idx;render();};})(i);
+    c.appendChild(div);
+  });
+  var rpt=document.getElementById('nav-report');
+  if(rpt) rpt.className='nav-item'+(reportMode?' active':'');
+}
+
 function saveInsight(id){
-  const ta=document.getElementById('insight-'+id);
+  var ta=document.getElementById('insight-'+id);
   if(ta&&ta.value.trim()){
     state.insights[id]=ta.value.trim();
-    const btn=document.getElementById('save-'+id);
-    if(btn){btn.textContent='✓ Saved';setTimeout(()=>{btn.textContent='Save insight';},1800);}
+    var btn=document.getElementById('save-'+id);
+    if(btn){btn.textContent='✓ Saved';setTimeout(function(){btn.textContent='Save insight';},1800);}
     renderNav();
   }
 }
 
 function copyAllInsights(){
-  const completed=LENSES.filter(l=>state.insights[l.id]);
+  var completed=LENSES.filter(function(l){return state.insights[l.id];});
   if(!completed.length){alert('No insights saved yet. Explore some lenses first!');return;}
-  let text='Summer AI Studio — 8 Lenses Reflection\n'+'='.repeat(42)+'\n\n';
-  completed.forEach(l=>{
-    text+=`${l.title.toUpperCase()}\n${l.purpose}\n\n${state.insights[l.id]}\n\n${'-'.repeat(38)}\n\n`;
+  var text='Summer AI Studio — 8 Lenses Reflection\n'+'='.repeat(42)+'\n\n';
+  completed.forEach(function(l){
+    text+=l.title.toUpperCase()+'\n'+l.purpose+'\n\n'+state.insights[l.id]+'\n\n'+'-'.repeat(38)+'\n\n';
   });
   text=text.trim();
-  const btn=document.getElementById('copy-all-btn');
-  const done=(ok)=>{
+  var btn=document.getElementById('copy-all-btn');
+  var done=function(ok){
     btn.textContent=ok?'✓ Copied!':'Failed — select text manually';
     if(ok) btn.classList.add('copied');
-    setTimeout(()=>{btn.textContent='Copy all for Canvas';btn.classList.remove('copied');},3000);
+    setTimeout(function(){btn.textContent='Copy all for Canvas';btn.classList.remove('copied');},3000);
   };
   if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(()=>done(true)).catch(()=>legacyCopy(text,done));
-  } else legacyCopy(text,done);
+    navigator.clipboard.writeText(text).then(function(){done(true);}).catch(function(){legacyCopy(text,done);});
+  } else { legacyCopy(text,done); }
 }
 
 function toolChipsHTML(){
-  return TOOLS.map(t=>`<a class="tool-chip" href="${t.url}" target="_blank" rel="noopener noreferrer">${t.name}</a>`).join('');
+  return TOOLS.map(function(t){return '<a class="tool-chip" href="'+t.url+'" target="_blank" rel="noopener noreferrer">'+t.name+'</a>';}).join('');
 }
 
 function docTipHTML(key){
   if(!key) return '';
-  const d=DOC_TIPS[key];
-  return `<div class="doc-tip"><div class="doc-tip-icon">${d.icon}</div><div class="doc-tip-body"><h4>${d.title}</h4><p>${d.body}</p></div></div>`;
+  var d=DOC_TIPS[key];
+  return '<div class="doc-tip"><div class="doc-tip-icon">'+d.icon+'</div><div class="doc-tip-body"><h4>'+d.title+'</h4><p>'+d.body+'</p></div></div>';
 }
 
 function promptCardHTML(p){
-  const m=TAG_META[p.tag];
-  const esc=p.text.replace(/\\/g,'\\\\').replace(/`/g,'\\`').replace(/\$/g,'\\$');
-  const note=m.note?`<div class="prompt-note"><span>ℹ</span><span>${m.note}</span></div>`:'';
-  const special=m.special?' special':'';
-  return `<div class="prompt-card${special}">
-    <div class="prompt-card-header">
-      <span class="prompt-tag ${m.cls}">${m.label}</span>
-      <div class="btn-row">
-        <button class="copy-btn" data-label="Copy" onclick='copyText(this,\`${esc}\`)'>Copy</button>
-      </div>
-    </div>
-    <div class="prompt-text">${p.text}</div>
-    ${note}
-  </div>`;
+  var m=TAG_META[p.tag];
+  var esc=p.text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  var note=m.note?'<div class="prompt-note"><span>ℹ</span><span>'+m.note+'</span></div>':'';
+  var special=m.special?' special':'';
+  var btnId='btn-'+Math.random().toString(36).substr(2,9);
+  return '<div class="prompt'+special+'">'
+    +'<div class="prompt-hd">'
+    +'<span class="tag '+m.cls+'">'+m.label+'</span>'
+    +'<button class="copy-btn" id="'+btnId+'" data-label="Copy" data-text="'+esc+'">Copy</button>'
+    +'</div>'
+    +'<div class="prompt-body">'+p.text+'</div>'
+    +note
+    +'</div>';
 }
 
 function renderLens(idx){
-  const l=LENSES[idx];
-  const saved=state.insights[l.id]||'';
-  return `<div class="lens-panel">
-    <div class="lens-header">
-      <div class="ln">Lens ${idx+1} of ${LENSES.length}</div>
-      <h2>${l.title}</h2>
-      <div class="purpose">${l.purpose}</div>
-    </div>
-    <div class="lens-body">
-      <div class="why-box">${l.why}</div>
-      ${docTipHTML(l.docTip)}
-      <div class="prompts-label">Prompts to try</div>
-      <p class="prompts-intro">Copy any prompt and paste it into an AI tool. Darker prompt cards show a specific prompting pattern — each includes a note explaining how and why it works differently.</p>
-      ${l.prompts.map(promptCardHTML).join('')}
-      <div class="try-it">
-        <h4>🚀 Try it</h4>
-        <p>${l.tryIt}</p>
-        <div class="tool-chips">${toolChipsHTML()}</div>
-      </div>
-      <div class="insight-section">
-        <label>💡 What did you discover?</label>
-        <p>${l.insightPrompt} Jot down your key insight — it will appear in your report out.</p>
-        <textarea class="insight-textarea" id="insight-${l.id}" placeholder="Type your insight here...">${saved}</textarea>
-        <button class="save-btn" id="save-${l.id}" onclick="saveInsight('${l.id}')">Save insight</button>
-      </div>
-    </div>
-  </div>
-  <div class="nav-footer">
-    <button class="nav-btn" onclick="goTo(${idx-1})" ${idx===0?'disabled':''}>← Previous</button>
-    ${idx<LENSES.length-1
-      ?`<button class="nav-btn primary" onclick="goTo(${idx+1})">Next lens →</button>`
-      :`<button class="nav-btn primary" onclick="showReport()">📋 See report out</button>`}
-  </div>`;
+  var l=LENSES[idx];
+  var saved=state.insights[l.id]||'';
+  var html='<div class="lens-panel">'
+    +'<div class="lens-header">'
+    +'<div class="ln">Lens '+(idx+1)+' of '+LENSES.length+'</div>'
+    +'<h2>'+l.title+'</h2>'
+    +'<p class="purpose">'+l.purpose+'</p>'
+    +'</div>'
+    +'<div class="lens-body">'
+    +'<div class="why-box">'+l.why+'</div>'
+    +docTipHTML(l.docTip)
+    +'<div class="prompts-label">Prompts to try</div>'
+    +'<p class="prompts-intro">Click Copy on any prompt and paste it into an AI tool. Darker cards use a specific prompting pattern — explained in the note below each one.</p>'
+    +l.prompts.map(promptCardHTML).join('')
+    +'<div class="try-it"><h4>🚀 Try it</h4><p>'+l.tryIt+'</p><div class="tool-chips">'+toolChipsHTML()+'</div></div>'
+    +'<div class="insight-section">'
+    +'<label>💡 What did you discover?</label>'
+    +'<p>'+l.insightPrompt+' Jot down your key insight — it will appear in your report out.</p>'
+    +'<textarea class="insight-textarea" id="insight-'+l.id+'" placeholder="Type your insight here...">'+saved+'</textarea>'
+    +'<button class="save-btn" id="save-'+l.id+'" onclick="saveInsight(\''+l.id+'\')">Save insight</button>'
+    +'</div>'
+    +'</div></div>'
+    +'<div class="nav-footer">'
+    +'<button class="nav-btn" onclick="goTo('+(idx-1)+')" '+(idx===0?'disabled':'')+'>← Previous</button>'
+    +(idx<LENSES.length-1
+      ?'<button class="nav-btn primary" onclick="goTo('+(idx+1)+')">Next lens →</button>'
+      :'<button class="nav-btn primary" onclick="showReport()">📋 See report out</button>')
+    +'</div>';
+  return html;
 }
 
 function renderReport(){
-  const completed=LENSES.filter(l=>state.insights[l.id]);
-  const pct=Math.round(completed.length/LENSES.length*100);
-  let html=`<div class="prog-bar-wrap">
-    <div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
-    <span class="prog-label">${completed.length} of ${LENSES.length} lenses explored</span>
-  </div>
-  <div class="copy-all-hint">✂️ <strong>Ready to post to Canvas?</strong> Click "Copy all for Canvas" to copy your saved insights as formatted text, then paste directly into your Canvas discussion post.</div>
-  <div class="report-card">
-    <div class="report-head">
-      <span>Your insights</span>
-      <button class="report-copy-btn" id="copy-all-btn" onclick="copyAllInsights()">Copy all for Canvas</button>
-    </div>
-    <div class="report-body">`;
+  var completed=LENSES.filter(function(l){return state.insights[l.id];});
+  var pct=Math.round(completed.length/LENSES.length*100);
+  var html='<div class="prog-bar-wrap"><div class="prog-bar"><div class="prog-fill" style="width:'+pct+'%"></div></div><span class="prog-label">'+completed.length+' of '+LENSES.length+' lenses explored</span></div>'
+    +'<div class="copy-all-hint">✂️ <strong>Ready to post to Canvas?</strong> Click "Copy all for Canvas" to copy your saved insights as formatted text, then paste directly into your Canvas discussion post.</div>'
+    +'<div class="report-card"><div class="report-head"><span>Your insights</span><button class="report-copy-btn" id="copy-all-btn" onclick="copyAllInsights()">Copy all for Canvas</button></div><div class="report-body">';
   if(!completed.length){
-    html+=`<div class="empty-report">No insights saved yet.<br>Explore some lenses and save your discoveries.</div>`;
+    html+='<div class="empty-report">No insights saved yet.<br>Explore some lenses and save your discoveries.</div>';
   } else {
-    completed.forEach(l=>{
-      html+=`<div class="report-item">
-        <div class="report-lens-name">Lens ${LENSES.indexOf(l)+1}: ${l.title} <span style="font-weight:400;color:#888;font-size:12px">— ${l.purpose}</span></div>
-        <div class="report-insight">${state.insights[l.id]}</div>
-      </div>`;
+    completed.forEach(function(l){
+      html+='<div class="report-item"><div class="report-lens-name">Lens '+(LENSES.indexOf(l)+1)+': '+l.title+' <span style="font-weight:400;color:#888;font-size:12px">— '+l.purpose+'</span></div><div class="report-insight">'+state.insights[l.id]+'</div></div>';
     });
   }
-  html+=`</div></div>
-  <div class="nav-footer">
-    <button class="nav-btn" onclick="state.active=0;reportMode=false;render()">← Back to lenses</button>
-  </div>`;
+  html+='</div></div><div class="nav-footer"><button class="nav-btn" onclick="state.active=0;reportMode=false;render()">← Back to lenses</button></div>';
   return html;
 }
 
 function goTo(idx){
   state.active=Math.max(0,Math.min(LENSES.length-1,idx));
-  reportMode=false;render();window.scrollTo({top:0,behavior:'smooth'});
+  reportMode=false;render();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
+
 function showReport(){reportMode=true;render();window.scrollTo({top:0,behavior:'smooth'});}
-function render(){renderNav();document.getElementById('main-content').innerHTML=reportMode?renderReport():renderLens(state.active);}
+
+function attachCopyButtons(){
+  document.querySelectorAll('.copy-btn[data-text]').forEach(function(btn){
+    btn.onclick=function(){copyText(btn, btn.getAttribute('data-text').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"'));};
+  });
+}
+
+function render(){
+  renderNav();
+  var mc=document.getElementById('main-content');
+  mc.innerHTML=reportMode?renderReport():renderLens(state.active);
+  attachCopyButtons();
+}
+
 render();
 </script>
 </body>
