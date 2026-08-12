@@ -361,7 +361,7 @@
   .modal-tags .fam-tag{ font-family: var(--font-head); font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 9px; color:#fff; }
   .modal-meta{ display:flex; flex-wrap:wrap; gap: 6px 14px; margin-top: 12px; font-family: var(--font-head); font-weight: 600; font-size: 11px; color: var(--il-storm-80); text-transform: uppercase; letter-spacing: 0.03em; }
 
-  .modal-body{ padding: 24px 26px 28px; overflow-y: auto; flex: 1; }
+  .modal-body{ padding: 24px 26px 28px; overflow-y: auto; flex: 1; min-height: 0; }
   .modal-body .desc{ font-size: 15.5px; color: var(--il-storm-10); margin: 0 0 20px; }
   .modal-section{ margin-bottom: 20px; }
   .modal-section:last-child{ margin-bottom: 0; }
@@ -496,10 +496,10 @@
     <h1 class="title"> <span class="accent">AI in the classroom</span></h1>
     <div class="hero-grid">
       <p class="hero-lede">
-      Thirty-four&nbsp; instructors    spent&nbsp; five weeks in the Summer AI Studio designing how generative AI could be integrated into their courses. The entries below are complied from the final "AI Integration Design Document" submitted by each participant.&nbsp;The taxonomy sorts each submission by the role the AI plays as described in the design documents.</p>
+      Thirty-five instructors    spent&nbsp; five weeks in the Summer AI Studio designing how generative AI could be integrated into their courses. The entries below are complied from the final "AI Integration Design Document" submitted each participant.&nbsp;The taxonomy sorts each submission by the role the AI plays as described in the design documents.</p>
       <div class="stat-block">
         <div class="stat"><div class="num" id="statDesigns">33</div><div class="label">course designs</div></div>
-        <div class="stat"><div class="num" id="statFamilies">5</div><div class="label">Integration strategies</div></div>
+        <div class="stat"><div class="num" id="statFamilies">5</div><div class="label">pedagogical families</div></div>
         <div class="stat"><div class="num" id="statDepts">22</div><div class="label">departments</div></div>
         <div class="stat"><div class="num">15&#8211;640</div><div class="label">enrollment range</div></div>
       </div>
@@ -530,7 +530,7 @@
 <section class="families" aria-labelledby="families-heading">
   <div class="wrap">
     <div class="section-head">
-      <h2 id="families-heading">Six AI Integration Strategies</h2>
+      <h2 id="families-heading">Five families</h2>
       <div class="hint">Select a family to filter the projects below</div>
     </div>
     <div class="family-grid" id="familyGrid" role="group" aria-label="Filter projects by pedagogical family"></div>
@@ -570,8 +570,10 @@
       <h2 id="feedback-heading" class="method-label">Early feedback</h2>
       <div class="method-text">
         <p>Thirty Summer AI Studio participants rated the overall quality of the program's two halves: two weeks
-        of in-person training, followed by three weeks of individual project work. Nobody rated either half "poor" or "very poor,"
-        and only a few rated either half merely "fair". The gap between the two means comes mostly from a "good" vs. "excellent" split: the in-person training pulled a
+        of in-person training, followed by three weeks of individual project work &mdash; the design documents
+        cataloged in the Field Guide tab. Both halves scored well. Nobody rated either half "poor" or "very poor,"
+        and only a few rated either half merely "fair" (1 for the training weeks, 2 for the project weeks). The gap
+        between the two means comes mostly from a "good" vs. "excellent" split: the in-person training pulled a
         slightly stronger share of top marks (15 of 30 "excellent"), while the individual project weeks skewed a
         bit more toward "good" than "excellent" (16 and 12).</p>
         <p class="disclosure">Source: Q11 of the Summer AI Studio participant survey, "Please rate the overall
