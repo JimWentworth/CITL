@@ -327,13 +327,17 @@
     border: none;
     background: #fff;
     box-shadow: 0 24px 60px rgba(19,41,75,0.35);
+  }
+  /* Scoped to [open] so closing the dialog (which removes this attribute) actually hides it —
+     an unconditional `display` here would out-specificity the browser's native dialog:not([open]){display:none} rule. */
+  dialog#projectModal[open]{
     display: flex;
     flex-direction: column;
     overflow: hidden;
   }
   dialog#projectModal::backdrop{ background: rgba(19,41,75,0.55); }
   @media (prefers-reduced-motion: no-preference){
-    dialog#projectModal{ animation: modal-in .18s ease; }
+    dialog#projectModal[open]{ animation: modal-in .18s ease; }
   }
   @keyframes modal-in{ from{ opacity:0; transform: translateY(8px); } to{ opacity:1; transform: translateY(0); } }
 
@@ -492,7 +496,7 @@
     <h1 class="title"> <span class="accent">AI in the classroom</span></h1>
     <div class="hero-grid">
       <p class="hero-lede">
-      Thirty-five instructors    spent&nbsp; five weeks in the Summer AI Studio designing how generative AI could be integrated into their courses. The entries below are complied from the final "AI Integration Design Document" submitted each participant.&nbsp;The taxonomy sorts each submission by the role the AI plays as described in the design documents.</p>
+      Thirty-four&nbsp; instructors    spent&nbsp; five weeks in the Summer AI Studio designing how generative AI could be integrated into their courses. The entries below are complied from the final "AI Integration Design Document" submitted by each participant.&nbsp;The taxonomy sorts each submission by the role the AI plays as described in the design documents.</p>
       <div class="stat-block">
         <div class="stat"><div class="num" id="statDesigns">33</div><div class="label">course designs</div></div>
         <div class="stat"><div class="num" id="statFamilies">5</div><div class="label">pedagogical families</div></div>
@@ -566,10 +570,8 @@
       <h2 id="feedback-heading" class="method-label">Early feedback</h2>
       <div class="method-text">
         <p>Thirty Summer AI Studio participants rated the overall quality of the program's two halves: two weeks
-        of in-person training, followed by three weeks of individual project work &mdash; the design documents
-        cataloged in the Field Guide tab. Both halves scored well. Nobody rated either half "poor" or "very poor,"
-        and only a few rated either half merely "fair" (1 for the training weeks, 2 for the project weeks). The gap
-        between the two means comes mostly from a "good" vs. "excellent" split: the in-person training pulled a
+        of in-person training, followed by three weeks of individual project work. Nobody rated either half "poor" or "very poor,"
+        and only a few rated either half merely "fair". The gap between the two means comes mostly from a "good" vs. "excellent" split: the in-person training pulled a
         slightly stronger share of top marks (15 of 30 "excellent"), while the individual project weeks skewed a
         bit more toward "good" than "excellent" (16 and 12).</p>
         <p class="disclosure">Source: Q11 of the Summer AI Studio participant survey, "Please rate the overall
@@ -1228,7 +1230,13 @@ document.addEventListener('click', (e) => {
   const btn = e.target.closest('.details-btn');
   if (!btn) return;
   const n = parseInt(btn.dataset.project, 10);
-  window.location.hash = `project-${n}`;
+  try {
+    window.location.hash = `project-${n}`;
+  } catch (err) {
+    // Some sandboxed preview contexts (e.g. srcdoc iframes) block URL/history writes.
+    // Fall back to just opening the modal directly without touching the URL.
+    openProjectModal(n, btn);
+  }
 });
 
 modalClose.addEventListener('click', () => closeProjectModal());
@@ -1243,7 +1251,14 @@ projectModal.addEventListener('click', (e) => {
 // Native close (Esc key, .close() calls) — clear the hash and restore focus
 projectModal.addEventListener('close', () => {
   if (/^#project-\d+$/.test(window.location.hash)) {
-    history.replaceState(null, '', window.location.pathname + window.location.search);
+    try {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    } catch (err) {
+      // Sandboxed preview contexts (e.g. srcdoc iframes) can reject replaceState with a
+      // SecurityError since they have no real URL to rewrite. Falling back to clearing the
+      // hash directly still closes the modal cleanly; it just adds a history entry there.
+      try { window.location.hash = ''; } catch (err2) { /* give up quietly — modal is already closed */ }
+    }
   }
   if (lastFocusedTrigger && document.contains(lastFocusedTrigger)) {
     lastFocusedTrigger.focus();
