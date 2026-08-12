@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Field Guide to AI in the Classroom — Summer AI Studio 2026 — Illinois</title>
+<meta name="description" content="An unofficial taxonomy of 31 AI course-integration designs from the University of Illinois Urbana-Champaign Summer AI Studio, sorted by the pedagogical role AI plays in each design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Official Illinois brand tokens — brand.illinois.edu/visual-identity/color */
+    --il-orange: #FF5F05;
+    --il-blue: #13294B;
+    --il-altgeld: #C84113;      /* accessible orange substitute for small/body text */
+    --il-storm: #707372;
+    --il-storm-60: #8E9090;
+    --il-storm-80: #C6C7C6;
+    --il-storm-95: #F4F4F4;
+    --il-storm-10: #252525;     /* default body text on light backgrounds */
+    --il-industrial: #1D58A7;   /* supporting: default link on white/gray */
+    --il-arches: #009FD4;
+    --il-patina: #007E8E;
+    --il-berry: #5C0E41;
+    --il-harvest: #FCB316;
+    --il-prairie: #006230;
+    --il-earth: #7D3E13;
+    --il-white: #FFFFFF;
+
+    --font-head: 'Montserrat', Arial, sans-serif;
+    --font-body: 'Source Sans 3', Arial, sans-serif;
+
+    --focus-ring: 3px solid var(--il-orange);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--il-white);
+    color: var(--il-storm-10);
+    font-family: var(--font-body);
+    font-size: 16.5px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: var(--il-industrial); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover, a:focus-visible{ color: var(--il-altgeld); }
+
+  :focus-visible{ outline: var(--focus-ring); outline-offset: 2px; }
+  button, input, select{ font-family: inherit; }
+
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  .skip-link{
+    position:absolute; left:12px; top:-60px;
+    background: var(--il-blue); color:#fff; padding: 12px 18px;
+    font-family: var(--font-head); font-weight:700; font-size:14px;
+    z-index: 100; transition: top .15s ease;
+    text-decoration:none;
+  }
+  .skip-link:focus{ top:12px; }
+
+  .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead{
+    background: var(--il-blue);
+    color: #fff;
+    padding: 10px 0;
+    font-family: var(--font-head);
+  }
+  .masthead .wrap{ display:flex; align-items:center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .masthead .unit{
+    display:flex; align-items:center; gap:10px;
+    font-size: 13px; letter-spacing: 0.03em;
+  }
+  .block-i{
+    width: 26px; height: 26px;
+    background: var(--il-orange);
+    color: var(--il-blue);
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 800; font-size: 16px; flex-shrink:0;
+    font-family: var(--font-head);
+  }
+  .masthead .tag{
+    font-size: 11.5px;
+    color: var(--il-storm-80);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    background: var(--il-blue);
+    color: #fff;
+    padding: 56px 0 60px;
+    border-bottom: 6px solid var(--il-orange);
+  }
+  .eyebrow{
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--il-harvest);
+    display:flex; align-items:center; gap: 10px;
+    margin-bottom: 20px;
+  }
+  .eyebrow::after{ content:""; flex:1; height:1px; background: rgba(255,255,255,0.25); }
+
+  h1.title{
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(34px, 5.4vw, 60px);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    margin: 0 0 22px;
+    max-width: 18ch;
+    color: #fff;
+  }
+  h1.title .accent{ color: var(--il-orange); }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  .hero-lede{
+    font-size: 18.5px;
+    color: var(--il-storm-80);
+    max-width: 156ch;
+  }
+  .hero-lede strong{ color: #fff; font-weight: 600; }
+
+  .stat-block{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 24px;
+    border-left: 1px solid rgba(255,255,255,0.25);
+    padding-left: 26px;
+  }
+  .stat .num{
+    font-family: var(--font-head);
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--il-orange);
+    line-height:1;
+  }
+  .stat .label{
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--il-storm-80);
+    margin-top: 7px;
+  }
+
+  /* ---------- METHOD ---------- */
+  section.method{ padding: 44px 0 8px; border-bottom: 1px solid var(--il-storm-80); background: var(--il-storm-95); }
+  .method-inner{ display:grid; grid-template-columns: 200px 1fr; gap: 40px; padding-bottom: 44px; }
+  .method-label{
+    font-family: var(--font-head); font-weight: 700; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--il-blue);
+    padding-top: 4px;
+  }
+  .method-text{ font-size: 16px; color: var(--il-storm-10); max-width: 74ch; }
+  .method-text p{ margin: 0 0 14px; }
+  .method-text p:last-child{ margin-bottom:0; }
+  .method-text em{ font-style: italic; color: var(--il-blue); }
+  .disclosure{
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--il-storm-10);
+    border-left: 3px solid var(--il-storm-80);
+    padding-left: 14px;
+  }
+
+  /* ---------- FAMILIES ---------- */
+  section.families{ padding: 56px 0 12px; border-bottom: 1px solid var(--il-storm-80); }
+  .section-head{ display:flex; justify-content: space-between; align-items: baseline; margin-bottom: 26px; gap: 20px; flex-wrap: wrap; }
+  .section-head h2{ font-family: var(--font-head); font-weight: 800; font-size: 28px; margin: 0; color: var(--il-blue); }
+  .section-head .hint{ font-family: var(--font-head); font-weight: 600; font-size: 12px; color: var(--il-storm); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .family-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 46px; }
+
+  .family-card{
+    background: #fff;
+    border: 1px solid var(--il-storm-80);
+    border-top: 5px solid var(--fam-color, var(--il-blue));
+    padding: 18px 16px 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    display:flex; flex-direction: column; gap: 10px;
+    min-height: 216px;
+    width: 100%;
+    font-family: var(--font-body);
+    color: var(--il-storm-10);
+  }
+  .family-card:hover{ transform: translateY(-3px); box-shadow: 0 10px 22px rgba(19,41,75,0.16); }
+  .family-card[aria-pressed="true"]{
+    background: var(--il-storm-95);
+    box-shadow: 0 0 0 2px var(--fam-color, var(--il-blue)) inset;
+  }
+  .family-card .icon{ width: 28px; height: 28px; color: var(--fam-color, var(--il-blue)); }
+  .family-card .icon svg{ display:block; width:100%; height:100%; }
+  .fam-count-chip{
+    display:inline-block;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--fam-color, var(--il-blue));
+    padding: 3px 9px;
+    width: fit-content;
+  }
+  .family-card h3{ font-family: var(--font-head); font-weight: 700; font-size: 18px; margin: 0; line-height: 1.2; color: var(--il-blue); }
+  .family-card p{ font-size: 13.5px; color: var(--il-storm-10); margin: 0; flex: 1; }
+  .family-card .rule{
+    font-family: var(--font-body); font-style: italic; font-size: 12.5px;
+    color: var(--il-storm); border-top: 1px dashed var(--il-storm-80); padding-top: 8px;
+  }
+
+  /* ---------- CONTROLS ---------- */
+  section.controls{
+    padding: 26px 0; border-bottom: 1px solid var(--il-storm-80);
+    position: sticky; top: 0; background: #fff; z-index: 20;
+  }
+  .controls-inner{ display:flex; align-items:center; gap: 16px; flex-wrap: wrap; }
+  .search-box{
+    display:flex; align-items:center; gap: 8px;
+    background: #fff; border: 1px solid var(--il-storm-80);
+    padding: 10px 14px; flex: 1; min-width: 240px;
+  }
+  .search-box:focus-within{ border-color: var(--il-blue); box-shadow: 0 0 0 2px rgba(19,41,75,0.15); }
+  .search-box svg{ width:17px; height:17px; color: var(--il-storm); flex-shrink:0; }
+  .search-box input{
+    border:none; background: transparent; outline:none;
+    font-size: 15px; color: var(--il-storm-10); width: 100%;
+  }
+  .search-box input::placeholder{ color: var(--il-storm); }
+
+  select#deptFilter{
+    font-family: var(--font-head); font-weight: 600;
+    font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--il-blue); background: var(--il-storm-95);
+    border: 1px solid var(--il-storm-80); padding: 12px 14px; cursor: pointer;
+    min-height: 44px;
+  }
+
+  .clear-btn{
+    font-family: var(--font-head); font-weight: 700;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--il-blue); background: #fff;
+    border: 1px solid var(--il-blue); padding: 12px 18px; cursor: pointer;
+    white-space: nowrap; min-height: 44px;
+  }
+  .clear-btn:hover{ background: var(--il-blue); color: #fff; }
+
+  .result-count{ font-family: var(--font-head); font-weight: 600; font-size: 12.5px; color: var(--il-storm); padding-top: 14px; }
+  .result-count b{ color: var(--il-blue); font-weight: 700; }
+
+  /* ---------- PROJECTS ---------- */
+  section.projects{ padding: 36px 0 90px; background: var(--il-storm-95); }
+  .project-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+  .card{
+    background: #fff; border: 1px solid var(--il-storm-80);
+    padding: 20px 20px 18px; display:flex; flex-direction: column; gap: 12px;
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .card:hover, .card:focus-within{ box-shadow: 0 12px 26px rgba(19,41,75,0.16); transform: translateY(-2px); }
+  .card-top{ display:flex; justify-content: space-between; align-items:flex-start; gap: 10px; }
+  .accession{ font-family: var(--font-head); font-weight: 600; font-size: 11px; color: var(--il-storm); letter-spacing: 0.04em; }
+  .fam-tags{ display:flex; flex-wrap:wrap; gap:5px; justify-content:flex-end; }
+  .fam-tag{
+    font-family: var(--font-head); font-weight: 700; font-size: 9.5px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 3px 8px; white-space: nowrap; color: #fff;
+  }
+  .card h3{ font-family: var(--font-head); font-weight: 700; font-size: 18px; margin: 0; line-height: 1.25; color: var(--il-blue); }
+  .card .course-code{ font-family: var(--font-head); font-weight: 600; font-size: 12px; color: var(--il-altgeld); text-transform: uppercase; letter-spacing: 0.03em; }
+  .card .desc{ font-size: 14.5px; color: var(--il-storm-10); flex: 1; }
+  .card .meta{
+    display:flex; flex-wrap: wrap; gap: 6px 10px;
+    font-family: var(--font-head); font-weight: 600; font-size: 10.5px; color: var(--il-storm);
+    border-top: 1px dashed var(--il-storm-80); padding-top: 10px;
+    text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .card .meta span{ white-space: nowrap; }
+  .card .instructor{ font-family: var(--font-body); font-style: italic; font-size: 13.5px; color: var(--il-storm-10); }
+  .details-btn{
+    align-self: flex-start;
+    font-family: var(--font-head); font-weight: 700; font-size: 12.5px;
+    color: var(--il-industrial); background: transparent; border: none;
+    padding: 4px 0; margin-top: -4px; cursor: pointer;
+    min-height: 32px;
+  }
+  .details-btn:hover, .details-btn:focus-visible{ color: var(--il-altgeld); text-decoration: underline; }
+
+  .no-results{
+    grid-column: 1 / -1; text-align: center; padding: 60px 20px;
+    color: var(--il-storm); font-family: var(--font-head); font-weight: 600;
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em;
+    background: #fff; border: 1px dashed var(--il-storm-80);
+  }
+
+  /* ---------- PROJECT DETAIL MODAL ---------- */
+  dialog#projectModal{
+    width: min(680px, 92vw);
+    max-height: min(85vh, 900px);
+    padding: 0;
+    border: none;
+    background: #fff;
+    box-shadow: 0 24px 60px rgba(19,41,75,0.35);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  dialog#projectModal::backdrop{ background: rgba(19,41,75,0.55); }
+  @media (prefers-reduced-motion: no-preference){
+    dialog#projectModal{ animation: modal-in .18s ease; }
+  }
+  @keyframes modal-in{ from{ opacity:0; transform: translateY(8px); } to{ opacity:1; transform: translateY(0); } }
+
+  .modal-head{
+    background: var(--il-blue); color:#fff;
+    padding: 22px 26px 20px; border-top: 5px solid var(--il-orange);
+    flex-shrink: 0;
+  }
+  .modal-head .modal-top-row{ display:flex; justify-content: space-between; align-items:flex-start; gap: 14px; }
+  .modal-accession{ font-family: var(--font-head); font-weight: 600; font-size: 11px; color: var(--il-storm-80); letter-spacing: 0.04em; }
+  .modal-close{
+    background: transparent; border: 1px solid rgba(255,255,255,0.5); color: #fff;
+    width: 32px; height: 32px; font-size: 18px; line-height: 1; cursor: pointer;
+    flex-shrink: 0;
+  }
+  .modal-close:hover, .modal-close:focus-visible{ background: rgba(255,255,255,0.15); }
+  .modal-course-code{ font-family: var(--font-head); font-weight: 600; font-size: 12px; color: var(--il-harvest); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 10px; }
+  .modal-head h2{ font-family: var(--font-head); font-weight: 800; font-size: 24px; margin: 4px 0 8px; color: #fff; }
+  .modal-instructor{ font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--il-storm-80); }
+  .modal-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top: 12px; }
+  .modal-tags .fam-tag{ font-family: var(--font-head); font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 9px; color:#fff; }
+  .modal-meta{ display:flex; flex-wrap:wrap; gap: 6px 14px; margin-top: 12px; font-family: var(--font-head); font-weight: 600; font-size: 11px; color: var(--il-storm-80); text-transform: uppercase; letter-spacing: 0.03em; }
+
+  .modal-body{ padding: 24px 26px 28px; overflow-y: auto; flex: 1; }
+  .modal-body .desc{ font-size: 15.5px; color: var(--il-storm-10); margin: 0 0 20px; }
+  .modal-section{ margin-bottom: 20px; }
+  .modal-section:last-child{ margin-bottom: 0; }
+  .modal-section h3{
+    font-family: var(--font-head); font-weight: 700; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--il-blue);
+    margin: 0 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--il-storm-80);
+  }
+  .modal-section p{ font-size: 14.5px; color: var(--il-storm-10); margin: 0; }
+  .modal-section ul{ margin: 0; padding-left: 20px; font-size: 14.5px; color: var(--il-storm-10); }
+  .modal-section li{ margin-bottom: 4px; }
+  .modal-ai-note{
+    background: var(--il-storm-95); border-left: 3px solid var(--il-orange);
+    padding: 12px 14px; font-size: 14px; font-style: italic; color: var(--il-storm-10);
+  }
+  .modal-pending{
+    font-family: var(--font-head); font-weight: 600; font-size: 12.5px; color: var(--il-storm);
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .modal-footer{
+    display:flex; align-items:center; justify-content: space-between; gap: 12px;
+    padding: 14px 26px; border-top: 1px solid var(--il-storm-80); background: var(--il-storm-95);
+    flex-shrink: 0;
+  }
+  .modal-link-btn{
+    font-family: var(--font-head); font-weight: 700; font-size: 12px;
+    color: var(--il-blue); background: #fff; border: 1px solid var(--il-blue);
+    padding: 9px 14px; cursor: pointer; min-height: 40px;
+  }
+  .modal-link-btn:hover, .modal-link-btn:focus-visible{ background: var(--il-blue); color: #fff; }
+  .modal-link-status{ font-family: var(--font-head); font-weight: 600; font-size: 11.5px; color: var(--il-prairie); }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background: var(--il-blue); color: var(--il-storm-80); padding: 34px 0 44px; }
+  footer .wrap{ display:flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12.5px; }
+  footer .wrap p{ margin:0; max-width: 60ch; }
+  footer a{ color: #fff; }
+  footer a:hover, footer a:focus-visible{ color: var(--il-orange); }
+
+  /* ---------- TABS ---------- */
+  .tabbar{ background: var(--il-storm-95); border-bottom: 1px solid var(--il-storm-80); }
+  .tablist{ display:flex; gap: 4px; }
+  .tab-btn{
+    font-family: var(--font-head); font-weight: 700; font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--il-storm-10);
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 16px 18px;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .tab-btn:hover{ color: var(--il-blue); }
+  .tab-btn[aria-selected="true"]{
+    color: var(--il-blue);
+    border-bottom-color: var(--il-orange);
+  }
+  [role="tabpanel"]{ outline: none; }
+  [role="tabpanel"][hidden]{ display: none; }
+
+  /* ---------- FEEDBACK PANEL ---------- */
+  section.feedback-intro{ padding: 44px 0 8px; border-bottom: 1px solid var(--il-storm-80); background: var(--il-storm-95); }
+  section.feedback-stats{ padding: 44px 0 10px; }
+  section.feedback-charts{ padding: 10px 0 90px; }
+
+  .stat-cards{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .stat-card{
+    background: var(--il-blue); color:#fff;
+    padding: 24px 26px; border-top: 5px solid var(--il-orange);
+  }
+  .stat-card h3{ font-family: var(--font-head); font-weight: 700; font-size: 17px; margin: 0 0 16px; color:#fff; }
+  .stat-card .stat-row{ display:flex; gap: 26px; flex-wrap: wrap; }
+  .stat-card .metric{ }
+  .stat-card .metric .v{ font-family: var(--font-head); font-weight: 800; font-size: 30px; color: var(--il-orange); line-height:1; }
+  .stat-card .metric .k{ font-family: var(--font-head); font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--il-storm-80); margin-top: 6px; }
+
+  .chart-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .chart-card{ background: #fff; border: 1px solid var(--il-storm-80); padding: 22px 24px 20px; }
+  .chart-card h3{ font-family: var(--font-head); font-weight: 700; font-size: 16px; margin: 0 0 2px; color: var(--il-blue); }
+  .chart-card .n{ font-family: var(--font-head); font-weight: 600; font-size: 11.5px; color: var(--il-storm); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px; }
+  .bars{ display:flex; align-items:flex-end; gap: 10px; height: 190px; border-bottom: 1px solid var(--il-storm-80); padding: 0 2px; }
+  .bar-col{ flex:1; display:flex; flex-direction: column; align-items:center; justify-content:flex-end; height:100%; }
+  .bar-col .val{ font-family: var(--font-head); font-weight: 700; font-size: 12.5px; color: var(--il-blue); margin-bottom: 6px; }
+  .bar-col .bar{ width: 60%; background: var(--il-orange); min-height: 2px; }
+  .bar-labels{ display:flex; gap: 10px; padding: 8px 2px 0; }
+  .bar-labels span{
+    flex:1; text-align:center; font-family: var(--font-head); font-weight: 600;
+    font-size: 10.5px; color: var(--il-storm-10); text-transform: uppercase; letter-spacing: 0.02em;
+  }
+
+  .data-table{ width:100%; border-collapse: collapse; margin-top: 18px; font-size: 13.5px; }
+  .data-table caption{ text-align:left; font-family: var(--font-head); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--il-storm); margin-bottom: 8px; }
+  .data-table th, .data-table td{ text-align: right; padding: 7px 8px; border-bottom: 1px solid var(--il-storm-80); }
+  .data-table th:first-child, .data-table td:first-child{ text-align: left; }
+  .data-table thead th{ font-family: var(--font-head); font-weight: 700; color: var(--il-blue); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .data-table tbody th{ font-weight: 600; color: var(--il-storm-10); }
+
+  @media (max-width: 720px){
+    .stat-cards, .chart-grid{ grid-template-columns: 1fr; }
+    .tablist{ overflow-x:auto; }
+  }
+
+
+    .project-grid{ grid-template-columns: repeat(2,1fr); }
+    .hero-grid{ grid-template-columns: 1fr; gap: 30px; }
+    .stat-block{ border-left:none; padding-left:0; border-top: 1px solid rgba(255,255,255,0.25); padding-top: 20px; }
+    .method-inner{ grid-template-columns: 1fr; gap: 10px; }
+  }
+  @media (max-width: 640px){
+    .wrap{ padding: 0 18px; }
+    .family-grid{ grid-template-columns: 1fr 1fr; }
+    .project-grid{ grid-template-columns: 1fr; }
+    .stat-block{ grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<div class="masthead">
+  <div class="wrap">
+    <div class="unit"><span class="block-i" aria-hidden="true">I</span> University of Illinois Urbana&#8211;Champaign</div>
+ 
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span aria-hidden="true">&#9670;</span> Summer AI Studio 2026</div>
+    <h1 class="title"> <span class="accent">AI in the classroom</span></h1>
+    <div class="hero-grid">
+      <p class="hero-lede">
+      Thirty-five instructors    spent&nbsp; five weeks in the Summer AI Studio designing how generative AI could be integrated into their courses. The entries below are complied from the final "AI Integration Design Document" submitted each participant.&nbsp;The taxonomy sorts each submission by the role the AI plays as described in the design documents.</p>
+      <div class="stat-block">
+        <div class="stat"><div class="num" id="statDesigns">33</div><div class="label">course designs</div></div>
+        <div class="stat"><div class="num" id="statFamilies">5</div><div class="label">pedagogical families</div></div>
+        <div class="stat"><div class="num" id="statDepts">22</div><div class="label">departments</div></div>
+        <div class="stat"><div class="num">15&#8211;640</div><div class="label">enrollment range</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="tabbar">
+  <div class="wrap">
+    <div class="tablist" role="tablist" aria-label="Site sections">
+      <button class="tab-btn" id="tab-guide" role="tab" type="button" aria-selected="true" aria-controls="panel-guide">AI Integrations</button>
+      <button class="tab-btn" id="tab-feedback" role="tab" type="button" aria-selected="false" aria-controls="panel-feedback" tabindex="-1">Early Feedback Results</button>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+<div id="panel-guide" role="tabpanel" aria-labelledby="tab-guide" tabindex="0">
+
+<section class="method" aria-labelledby="method-heading">
+  <div class="wrap">
+    
+      <p class="disclosure">        Compiled from thirty-four AI Integration Design Documents submitted to Summer AI Studio, July–August 2026, University of Illinois Urbana–Champaign. This is an AI-generated visualization built for internal review, not an official University of Illinois publication.&nbsp;Descriptions are paraphrased summaries of each instructor's own submission, not verbatim excerpts.</p>
+  </div>
+</section>
+
+<section class="families" aria-labelledby="families-heading">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="families-heading">Five families</h2>
+      <div class="hint">Select a family to filter the projects below</div>
+    </div>
+    <div class="family-grid" id="familyGrid" role="group" aria-label="Filter projects by pedagogical family"></div>
+  </div>
+</section>
+
+<section class="controls" aria-label="Search and filter controls">
+  <div class="wrap">
+    <div class="controls-inner">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <label for="searchInput" class="visually-hidden">Search by course, instructor, department, or mechanism</label>
+        <input type="text" id="searchInput" placeholder="Search course, instructor, department, or mechanism&hellip;">
+      </div>
+      <label for="deptFilter" class="visually-hidden">Filter by department</label>
+      <select id="deptFilter"><option value="">All departments</option></select>
+      <button class="clear-btn" id="clearBtn" type="button">Clear filters</button>
+    </div>
+    <div class="result-count" id="resultCount" role="status" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="projects" aria-labelledby="projects-heading">
+  <div class="wrap">
+    <h2 id="projects-heading" class="visually-hidden">Project index</h2>
+    <div class="project-grid" id="projectGrid"></div>
+  </div>
+</section>
+
+</div>
+
+<div id="panel-feedback" role="tabpanel" aria-labelledby="tab-feedback" tabindex="0" hidden>
+
+<section class="feedback-intro" aria-labelledby="feedback-heading">
+  <div class="wrap">
+    <div class="method-inner">
+      <h2 id="feedback-heading" class="method-label">Early feedback</h2>
+      <div class="method-text">
+        <p>Thirty Summer AI Studio participants rated the overall quality of the program's two halves: two weeks
+        of in-person training, followed by three weeks of individual project work &mdash; the design documents
+        cataloged in the Field Guide tab. Both halves scored well. Nobody rated either half "poor" or "very poor,"
+        and only a few rated either half merely "fair" (1 for the training weeks, 2 for the project weeks). The gap
+        between the two means comes mostly from a "good" vs. "excellent" split: the in-person training pulled a
+        slightly stronger share of top marks (15 of 30 "excellent"), while the individual project weeks skewed a
+        bit more toward "good" than "excellent" (16 and 12).</p>
+        <p class="disclosure">Source: Q11 of the Summer AI Studio participant survey, "Please rate the overall
+        quality of the two parts of the Summer AI Studio," n&#8201;=&#8201;30. Figures are transcribed from the
+        survey results export.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feedback-stats" aria-labelledby="feedback-stats-heading">
+  <div class="wrap">
+    <h2 id="feedback-stats-heading" class="visually-hidden">Summary statistics</h2>
+    <div class="stat-cards" id="statCards"></div>
+  </div>
+</section>
+
+<section class="feedback-charts" aria-labelledby="feedback-charts-heading">
+  <div class="wrap">
+    <h2 id="feedback-charts-heading" class="visually-hidden">Rating distributions</h2>
+    <div class="chart-grid" id="chartGrid"></div>
+  </div>
+</section>
+
+</div>
+
+</main>
+
+<dialog id="projectModal" aria-labelledby="modalTitle">
+  <div class="modal-head">
+    <div class="modal-top-row">
+      <div>
+        <span class="modal-accession" id="modalAccession"></span>
+        <div class="modal-course-code" id="modalCourseCode"></div>
+      </div>
+      <button type="button" class="modal-close" id="modalClose" aria-label="Close details">&times;</button>
+    </div>
+    <h2 id="modalTitle"></h2>
+    <div class="modal-instructor" id="modalInstructor"></div>
+    <div class="modal-tags" id="modalTags"></div>
+    <div class="modal-meta" id="modalMeta"></div>
+  </div>
+  <div class="modal-body" id="modalBody"></div>
+  <div class="modal-footer">
+    <button type="button" class="modal-link-btn" id="modalCopyLink">Copy link to this project</button>
+    <span class="modal-link-status" id="modalLinkStatus" role="status" aria-live="polite"></span>
+  </div>
+</dialog>
+
+<footer>
+  <div class="wrap">
+
+ <p>The Center for Innovation in Teaching & Learning</p>
+  </div>
+</footer>
+
+<script>
+const FAMILIES = [
+  {
+    id: 'persona',
+    name: 'Simulated Personas',
+    latin: 'Persona simulata',
+    color: 'var(--il-berry)',
+    rule: 'AI plays a character with a stake in the outcome.',
+    desc: 'The AI is given a point of view \u2014 client, patient, teammate, critic, stakeholder \u2014 and the student has to work with or against it, not just query it.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3.2"/><path d="M2 21c0-3.9 2.7-7 6-7s6 3.1 6 7"/><circle cx="17.5" cy="7" r="2.4" opacity="0.55"/><path d="M14.5 21c.3-3 2-6 3-6" opacity="0.55"/></svg>'
+  },
+  {
+    id: 'coach',
+    name: 'Coaches & Tutors',
+    latin: 'Praeceptor adiuvans',
+    color: 'var(--il-patina)',
+    rule: 'AI scaffolds thinking without handing over the answer.',
+    desc: 'A standing tutor or navigator students return to repeatedly, built to draw thinking out through questions rather than deliver a finished answer.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>'
+  },
+  {
+    id: 'critique',
+    name: 'Critique & Audit Targets',
+    latin: 'Corpus examinandum',
+    color: 'var(--il-altgeld)',
+    rule: 'The AI\u2019s output is what gets graded, not the student\u2019s.',
+    desc: 'Students are handed an AI answer, transcript, or claim and succeed by finding what it got wrong, missed, fabricated, or flattened.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="21" y2="21"/><line x1="8" y1="10.5" x2="13" y2="10.5" opacity="0.6"/></svg>'
+  },
+  {
+    id: 'drafting',
+    name: 'Drafting & Production',
+    latin: 'Manus fabricans',
+    color: 'var(--il-industrial)',
+    rule: 'AI helps build a real, gradable artifact.',
+    desc: 'The AI acts as an extra pair of hands on a concrete deliverable \u2014 a portfolio, a website, a chart, a term base \u2014 with the student directing and revising.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.5 3.5l6 6L8 22H2v-6L14.5 3.5z"/><path d="M12 6l6 6" opacity="0.6"/></svg>'
+  },
+  {
+    id: 'policy',
+    name: 'Course-Level Redesign',
+    latin: 'Curriculum totum',
+    color: 'var(--il-prairie)',
+    rule: 'The unit of change is the whole course, not one assignment.',
+    desc: 'A standing use policy, literacy thread, onboarding module, or wholesale rebuild of a course \u2014 the design lives in the syllabus, not a single activity.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v17H6.5A2.5 2.5 0 014 16.5v-12z"/><path d="M4 16.5A2.5 2.5 0 016.5 19H20" opacity="0.6"/><line x1="8" y1="7" x2="15" y2="7" opacity="0.6"/><line x1="8" y1="10" x2="15" y2="10" opacity="0.4"/></svg>'
+  },
+  {
+    id: 'grading',
+    name: 'Grading Engines',
+    latin: 'Machina examinans',
+    color: 'var(--il-earth)',
+    rule: 'The AI works for the instructor, not the student.',
+    desc: 'Backend infrastructure that reads, scores, and drafts feedback on student work at a volume no grading staff could sustain \u2014 students experience it only as feedback, never as a tool they operate themselves.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3.5h9l4 4v13a1 1 0 01-1 1H6a1 1 0 01-1-1v-16a1 1 0 011-1z"/><path d="M15 3.5v4h4" opacity="0.6"/><path d="M8.5 13.5l2 2 4-4.5" /></svg>'
+  }
+];
+
+const PROJECTS = [
+  {n:1, code:'RST 460', title:'Event Management in Recreation, Sport, and Tourism', instructor:'Sarah Agate', dept:'Recreation, Sport & Tourism', level:'Undergrad', size:'~90 students', fam:['drafting'],
+   desc:'Student groups use AI to draft, critique, and revise each of 13 sections of a semester-long event-planning portfolio, keeping a running decision log of what they kept and rejected.',
+   detail:{
+     goals:['Apply AI tools to specific components of the event-planning process','Assess AI-generated recommendations for accuracy, bias, and feasibility before using them','Identify ethical considerations for responsible AI use in professional event planning'],
+     mechanism:'Each of the 13 portfolio modules follows the same three-step arc: draft with your group, run the draft through an AI tool and ask what\u2019s missing or could improve, then critique the AI\u2019s changes together \u2014 what it added, what it removed, what assumptions it made, and whether those assumptions hold for your specific event and community.',
+     assessment:'Rubric scores on the critique/reflection portion of each module, sampled AI-use decision logs, and two scenario-based final-exam questions that apply the same AI-assessment skills to a new case.',
+     aiNote:'Agate used Claude to expand the planning questions for each of the 13 modules and to draft Canvas rubrics, then edited both for fit \u2014 simplifying an overly granular 4-tier rubric down to 3 tiers and cutting AI suggestions that assumed larger-scale events than students would actually be planning.'
+   }},
+  {n:2, code:'DANC 100', title:'Introduction to Contemporary Dance', instructor:'Betsy Brandt', dept:'Dance', level:'Undergrad \u00b7 GenEd \u00b7 online', size:'flagship online course', fam:['policy'],
+   desc:'Rather than one assignment, an entire online GenEd course is reworked around AI-literacy resources and hands-on exercises, starting with an early module.',
+   detail:{
+     goals:['Build AI literacy skills that transfer beyond this single course','Understand how contemporary artists use AI as both content and method','Practice using AI as a creative thought-partner while staying the author of the work'],
+     mechanism:'The featured example, "AI as Critic," gives students a real Claude-written critique of a Dance at Illinois performance and asks them to hold it against the four components of an effective critique taught in lecture \u2014 is the description detailed enough to picture the movement, is the interpretation backed by evidence, and what did the AI just flatly miss.',
+     assessment:'A rubric compares students\u2019 point-by-point analysis against the lecture\u2019s critique framework; success is measured by whether they can name specifically where the AI\u2019s critique succeeded or fell short, not by agreement with any single verdict.',
+     aiNote:'The AI use is transparent by design here \u2014 Brandt generated the sample critique from Claude herself and built the assignment around showing students exactly how it was made.'
+   }},
+  {n:3, code:'SHS 430', title:'Development and Disorders of Phonology and Articulation', instructor:'Amy Brummel', dept:'Speech & Hearing Science', level:'Graduate', size:'~24 students', fam:['persona'],
+   desc:'An AI-simulated pediatric client stands in for a first clinical interview in a Clinical Reasoning Lab, giving first-year SLP students low-stakes practice gathering a case history.',
+   detail:{
+     goals:['Establish rapport with a caregiver during an initial evaluation','Conduct a comprehensive pediatric case-history interview and ask purposeful follow-ups','Develop and justify initial clinical hypotheses from the information gathered'],
+     mechanism:'Students interview an AI playing a parent whose child was referred for a speech concern, through Illinois Chat. The AI stays fully in character \u2014 it answers only from the parent\u2019s perspective, uses no clinical language, and reveals information only when the right question is asked; it never coaches, hints, or names a diagnosis. It\u2019s the first in a planned series of cases that will escalate across the semester.',
+     assessment:'Students submit the full interview transcript alongside a case-history summary, up to three clinical hypotheses with supporting evidence, an assessment plan, and a reflection \u2014 graded on the quality of their questions and reasoning, not on landing the "right" diagnosis.',
+     aiNote:'Brummel used AI (ChatGPT-5.5) to help draft the assignment structure and the hidden parent profile the AI plays, but treated all of it as a starting point: which clinical skills matter, how realistic the simulated parent\u2019s behavior is, and what counts as diagnostically appropriate stayed her call as a clinical educator.'
+   }},
+  {n:4, code:'IB 150', title:'Organismal and Evolutionary Biology', instructor:'Ben Clegg', dept:'Integrative Biology', level:'Undergrad \u00b7 flipped', size:'large lecture', fam:['coach'],
+   desc:'A portable "coaching contract" turns any chatbot into a Socratic reasoning coach and a show-and-tell coach for exam review \u2014 built to refuse simply handing over answers.',
+   detail:{
+     goals:['Use AI in ways that don\u2019t lead to cognitive offloading','Strengthen deductive and application-based reasoning through AI-assisted study','Recognize and avoid superficial, minimalist AI answers'],
+     mechanism:'A "coaching contract" document, uploaded into any AI chat session, locks the AI into Socratic questioning mode so it can\u2019t hand over answers even under repeated pressure. It pairs with a "show-and-tell" coach built into course review modules that watches a student\u2019s work and pushes with guiding questions. Clegg built this after noticing students proudly describing AI use that amounted to having it summarize lecture transcripts for them, alongside declining exam scores.',
+     assessment:'All of it is optional and ungraded by design \u2014 the real check is the proctored, no-device final exam itself, where Clegg plans to compare performance on questions matched to AI-coached review modules against questions that weren\u2019t, controlling for students\u2019 incoming reasoning scores.',
+     aiNote:'Clegg built the coaching contracts and the review modules\u2019 interactive components himself using Claude Code, giving it tightly specified prompts for each exercise and iterating through many rounds of refinement rather than letting it design freely.'
+   }},
+  {n:5, code:'RST 501', title:'Foundations and Current Issues in Recreation, Sport and Tourism', instructor:'Mariela Fernandez', dept:'Recreation, Sport & Tourism', level:'Graduate', size:'~21 students', fam:['policy','critique'],
+   desc:'Students co-create the class\u2019s shared AI use agreement through in-class dialogue in weeks 1\u20132, then apply it to a graded assignment on leisure and technology.',
+   detail:{
+     goals:['Spot AI hallucinations and detect bias in AI output','Understand AI\u2019s limitations and make informed decisions about trusting its answers','Use AI responsibly and transparently in professional academic work'],
+     mechanism:'Students co-write the class\u2019s AI use agreement in week 1, sorting course tasks into green-light, yellow-light, and red-light categories for AI use. Later, in the "Interviewing the Machine" activity, everyone puts the same three fixed prompts to an AI tool of their choice, then compares answers in groups against the assigned readings, and individually rewrites one AI claim their group found wrong or oversimplified.',
+     assessment:'The AI use agreement is participation credit only. The Interviewing the Machine assignment is worth 20 points \u2014 5 for bringing in the AI responses, 15 for the individual rewrite \u2014 plus mid- and end-of-semester surveys asking whether students actually stuck to the class\u2019s own AI principles.',
+     aiNote:'Fernandez used Claude to draft the integration and caught it reusing the previous instructor\u2019s AI policy by mistake, correcting it with her own stance. She also overrode Claude\u2019s suggestion to make the rewrite a group task (she made it individual) and to leave the assignment ungraded (she made it worth 20 points).'
+   }},
+  {n:6, code:'ACCY 201', title:'Accounting and Accountancy I', instructor:'Mitch Fisher', dept:'Accountancy', level:'Undergrad \u00b7 required', size:'~550 students', fam:['critique'],
+   desc:'Students are handed a case where a fictional intern used Microsoft Copilot to prepare journal entries and financial statements from an incomplete prompt, and must audit the AI\u2019s output against the full transaction data to find and correct what it got wrong.',
+   detail:{
+     goals:['Recognize when an AI-generated answer is missing necessary context','Apply fundamental accounting rules to catch and correct AI errors','Produce corrected financial statements without relying on AI to do it'],
+     mechanism:'Students never prompt the AI themselves. Copilot was fed an intentionally incomplete prompt, missing several required adjusting entries (depreciation, accrued wages, prepaid supplies, interest), and produced confident, wrong financial statements as a result. Students compare that output against the full transaction list and exhibit data, identify what\u2019s missing or wrong, and rebuild the statements by hand.',
+     assessment:'Extra-credit Canvas submission graded on whether students correctly identify what was missing or wrong in the AI\u2019s output, annotate the incorrect conclusions, and produce accurate corrected journal entries and financial statements.',
+     aiNote:'Fisher tested prompts himself in Copilot and Gemini before settling on Copilot (a UIUC-approved tool). He specifically wanted the AI to fail at incorporating context it wasn\u2019t given, since the whole assignment depends on that gap being real rather than staged.'
+   }},
+  {n:7, code:'SHS 570', title:'Evidence-Based Practice in Audiology & Speech-Language Pathology', instructor:'Mary Flaherty', dept:'Speech & Hearing Science', level:'Graduate', size:'25\u201335 students', fam:['critique'],
+   desc:'Three checkpoints inside an existing systematic-review project: catching fabricated AI citations, comparing AI-summarized methods sections across tools, and checking AI\u2019s synthesis against the group\u2019s own already-written answer.',
+   detail:{
+     goals:['Recognize that AI-generated citations require independent verification','Recognize that AI can describe a study competently without evaluating it','Apply independent synthesis before comparing your own conclusion to AI\u2019s'],
+     mechanism:'Three reflections are threaded through students\u2019 existing systematic-review project rather than added as new work: checking AI-suggested citations against their own database search (catches fabricated citations), comparing two AI tools\u2019 summaries of a study\u2019s methods section against each other, and writing their group\u2019s own answer to their research question before ever showing it to AI \u2014 so there\u2019s a dated record proving the order of operations.',
+     assessment:'Each reflection is graded on structured fields rather than open prose, and each one requires an input only the student has (their own search results, their own appraisal judgments, their own group\u2019s already-written synthesis) \u2014 so, in Flaherty\u2019s words, none of the three can be meaningfully completed by AI alone.',
+     aiNote:'Flaherty used Claude and ChatGPT extensively as a drafting and stress-testing partner, then routinely pushed back \u2014 Claude\u2019s early proposals over-engineered several prompts (multi-branch conditional logic for a simple comparison task) and suggested anchor tasks that were either too trivial for AI to fail at or too advanced for first-semester students to verify independently.'
+   }},
+  {n:8, code:'FSHN 120', title:'Contemporary Nutrition', instructor:'Toni Gist & Haeley Peters', dept:'Food Science & Human Nutrition', level:'Undergrad \u00b7 honors', size:'~25 students (James Scholars)', fam:['policy'],
+   desc:'A 14-week, five-phase AI Nutrition Inquiry Project built as the semester-long capstone for an honors discussion section.',
+   detail:{
+     goals:['Distinguish credible from non-credible nutrition information','Evaluate evidence rather than popularity, and recognize AI\u2019s limitations','Understand how a knowledge base shapes what an AI actually says'],
+     mechanism:'Across five stages over 14 weeks, honors students pick a nutrition claim, gather evidence on it from five different information environments (social media, commercial sites, generative AI, peer-reviewed literature, and government sources), decide source-by-source what\u2019s credible enough to keep, and then use only their surviving evidence to design and build an educational AI avatar \u2014 so the avatar\u2019s knowledge base is literally built from their own evidence-evaluation work.',
+     assessment:'Weighted across the five stages (10% claim selection, 25% evidence collection, 30% evidence evaluation, 20% avatar design, 15% showcase), with the largest share resting on the quality of students\u2019 credibility analysis and reasoning, not the avatar\u2019s polish.',
+     aiNote:'Gist used ChatGPT to help organize project milestones, refine workbook language, and generate visual concepts, but says AI could not determine the learning outcomes, assessment weights, sequencing, or how the project should fit into FSHN 120\u2019s broader curriculum \u2014 those stayed her calls as the instructor of record.'
+   }},
+  {n:9, code:'ACCY 312 / 505', title:'Principles of Taxation / Federal Taxation', instructor:'Matthew Hutchens', dept:'Accountancy', level:'Undergrad & Graduate', size:'two linked courses', fam:['persona'],
+   desc:'An AI-simulated tax client supplies missing factual information for a return-preparation project \u2014 deliberately designed to never give tax advice, computations, or an answer key.',
+   detail:{
+     goals:['Identify material facts that are missing, ambiguous, or inconsistent in source documents','Translate tax issues into focused questions a nonexpert client can answer','Distinguish client-supplied facts from tax conclusions that remain the preparer\u2019s responsibility'],
+     mechanism:'A custom Illinois Chat bot plays the taxpayer from a hidden fact bank, answering only in plain, client-style language \u2014 it can confirm business-use percentages or cash receipts if asked, but can\u2019t name tax treatments, run calculations, or review the return. Students get one continuous engagement (no restarting for a better answer) and must write their messages as professional client emails, since deciding what to ask is itself part of the assessment.',
+     assessment:'Weighted 60% return accuracy, 20% quality of fact-development, and 20% professional communication \u2014 graded across the return, the full chat transcript, and an issues-and-assumptions memo together, since a technically correct return built on undocumented judgment calls doesn\u2019t fully satisfy the rubric.',
+     aiNote:'Hutchens used ChatGPT and Claude to design and adversarially test the simulated client \u2014 probing it with "tell me everything," requests for tax advice, and prompt-injection attempts \u2014 and revised the system prompt whenever it leaked hidden facts or broke character. He chose an older, less costly model over newer ones specifically to balance realism against per-conversation cost at the 250-student online section\u2019s scale.'
+   }},
+  {n:10, code:'JOUR 200', title:'Introduction to Journalism (online, non-majors)', instructor:'Colleen King', dept:'Journalism', level:'Undergrad \u00b7 GenEd \u00b7 async', size:'~270 students', fam:['persona'],
+   desc:'Students interview two custom-GPT sources \u2014 a police chief and an eyewitness to a fictional hit-and-run \u2014 then write a news story from what they gathered, with AI barred from the writing itself.',
+   detail:{
+     goals:['Practice source-based reporting: interviewing, following up, and verifying before writing','Synthesize and correctly attribute information from multiple, sometimes conflicting sources','Distinguish eyewitness testimony from official police information'],
+     mechanism:'Students interview two custom-GPT sources \u2014 a police chief and an eyewitness \u2014 about a fictional hit-and-run, built around a scene map and press release King also created. They then write a 300+ word inverted-pyramid news story, but are explicitly barred from using AI for the writing itself; only the interviewing is AI-assisted.',
+     assessment:'30 of 100 points come from the interview transcripts alone, not just the final story \u2014 rewarding students who ask real follow-up questions and verify facts, since King found students could otherwise skip straight to a polished story without doing the reporting legwork the assignment is meant to teach.',
+     aiNote:'King used ChatGPT/Codex to draft the source personas, fact file, and press release, and Google Gemini for the scene map, revising both repeatedly \u2014 she corrected the map\u2019s crosswalk placement and witness sightline herself, and had students and colleagues test the source GPTs before deciding they revealed too much information at once, prompting a rewrite.'
+   }},
+  {n:11, code:'MACS 100', title:'Introduction to Popular Television & Movies', instructor:'Jonathan Knipp', dept:'Media & Cinema Studies', level:'Undergrad \u00b7 GenEd \u00b7 eText', size:'online eText course', fam:['persona'],
+   desc:'"Marginalia": students submit a film review to one of five AI critic personalities, styled on Siskel & Ebert, who annotate it in the margins and argue back.',
+   detail:{
+     goals:['Strengthen analytical skills by distinguishing personal opinion from academic analysis','Recognize how meaning and messaging get built into visual media','Practice defending or revising a critical position under pushback'],
+     mechanism:'Students submit a film review to one of five AI critic personas, each with a distinct rhetorical style loosely modeled on real film critics. The critic annotates the review in the margins against course lenses (representation, ideology, form, cultural context) and then talks with the student \u2014 either freeform, or a gamified "Change My Mind" mode giving students 12 exchanges to shift the critic\u2019s opinion.',
+     assessment:'The tool is built to never write a review or essay for the student \u2014 it can only respond to and critique what a student already wrote, so the graded artifact is always the student\u2019s own analytical work, not AI output.',
+     aiNote:'Knipp built the tool with Claude, which suggested the "AI as the world, not the tutor" persona-critic architecture. He\u2019s still iterating on getting the critics to sound like a real conversation instead of essay comments, and has flagged that three of the five critic personas are people of color he doesn\u2019t feel equipped to characterize with full authenticity \u2014 an open concern he\u2019s asked for outside help on.'
+   }},
+  {n:12, code:'PS 100', title:'Introduction to Political Science', instructor:'Konstantinos Kourtikakis', dept:'Political Science', level:'Undergrad \u00b7 major & GenEd', size:'lecture course', fam:['policy'],
+   desc:'A tiered policy applies different AI rules to different assessments: none on exams, open and transparent on discussion questions, permitted-but-restricted on analytical essays.',
+   detail:{
+     goals:['Learn to use AI to process, organize, and sharpen thinking without letting it decide what a text means','Practice identifying gaps, unjustified assumptions, or unaccounted-for cases in an argument','Defend or revise a position under direct in-person pushback'],
+     mechanism:'Different assessments get different rules rather than one blanket policy: exams (in-class, no AI, since the format already verifies individual understanding), weekly discussion questions (AI required and shown \u2014 students submit their prompt and the AI\u2019s response alongside their own question), and three analytical essays (AI allowed but structurally resistant to it, since students must justify an original thesis using both assigned texts and Kourtikakis\u2019s own lecture framing, a combination AI can\u2019t reproduce).',
+     assessment:'Discussion questions are graded on engagement and intellectual development between a student\u2019s first and revised question, not correctness. Essays are graded on the thesis-justification paragraph and how the argument uses both sources and lecture material \u2014 a semester-long paper trail of each student\u2019s discussion questions gives graders a baseline to check essay writing against.',
+     aiNote:'Kourtikakis used Claude to work through a structured "lenses" exercise for the whole course design, and says it pushed him to think more broadly about what he wanted the course to accomplish before mapping AI onto it \u2014 calling it a model for the kind of human-AI collaboration he hopes to replicate for his students.'
+   }},
+  {n:13, code:'RST 100', title:'Recreation, Sport, and Tourism in Modern Society', instructor:'Toni Liechty', dept:'Recreation, Sport & Tourism', level:'Undergrad \u00b7 large lecture', size:'large enrollment', fam:['critique'],
+   desc:'An AI chatbot interviews students about their own leisure habits and diagnoses which course theory best explains their behavior \u2014 then students grade that diagnosis against the textbook and defend a letter grade.',
+   detail:{
+     goals:['Distinguish a claim from a definition, and check both against the actual source','Critique an AI\u2019s output against specific course concepts rather than a general impression','Practice giving evidence-based feedback rather than a simple right/wrong verdict'],
+     mechanism:'In the featured "Leisure Theory Lens" option, an AI chatbot interviews the student about their own recent free time, then diagnoses which of eight leisure theories best explains their behavior. The student\u2019s job is to grade that diagnosis against the textbook\u2019s actual definitions \u2014 citing the specific page or slide, naming at least one thing the AI got right and one it got wrong or oversimplified, and assigning it a letter grade they have to defend.',
+     assessment:'Students choosing the AI-integrated option submit their full chat transcript as an appendix alongside their critique; students choosing the original writing prompt follow the course\u2019s separate AI-use disclosure policy instead. Both options share the same underlying rubric, adapted for consistency in the gradebook.',
+     aiNote:'Liechty, new to AI tools herself, moved from Gemini to a persistent Claude project so her drafts and notes stayed in one place, which she says visibly improved the results. She dropped an early idea to have AI role-play a historical figure for student interviews after Claude flagged that several plausible options risked producing shallow or offensive responses, and her own test run confirmed the concern.'
+   }},
+  {n:14, code:'EPSY 201', title:'Educational Psychology', instructor:'Aixa Marchand', dept:'Educational Psychology', level:'Undergrad \u00b7 GenEd', size:'~200 students', fam:['critique'],
+   desc:'Two touchpoints: a week-2 unit on AI\u2019s ethical and environmental costs, and a capstone assignment where students critique and improve an AI-generated lesson plan.',
+   detail:{
+     goals:['Reflect critically on the ethical and environmental costs of generative AI','Apply educational psychology concepts to identify what a lesson plan gets wrong','Practice being the expert who corrects AI rather than the student who defers to it'],
+     mechanism:'A week-2 unit pairs a reading or video on AI\u2019s environmental and ethical costs with a KWL chart and small-group discussion on access and equity. Later, for the capstone lesson-plan project, groups feed AI a prompt deliberately engineered to produce a plausible-but-shallow "novice teacher" lesson plan \u2014 then must identify and fix its flawed assumptions using named course concepts (Vygotsky\u2019s ZPD, Cognitive Load Theory, Self-Determination Theory).',
+     assessment:'The lesson-plan project weights theoretical justification at 60% of the grade, lesson feasibility and inclusivity at 30%, and evidence of a genuine "wrestling match" with the AI (not just accepting its first draft) at 10%.',
+     aiNote:'Marchand designed the constrained AI prompt herself so every group\u2019s baseline lesson plan would share the same predictable flaws regardless of topic or grade level, keeping the assignment comparable across groups choosing very different lessons.'
+   }},
+  {n:15, code:'HK 207', title:'Introduction to Epidemiology', instructor:'Sheena Martenies', dept:'Health & Kinesiology', level:'Undergrad', size:'~26 students', fam:['persona'],
+   desc:'The Outbreak Investigation Simulator: a browser-based, AI-facilitated field investigation that puts students inside a simulated disease outbreak, no installation required.',
+   detail:{
+     goals:['Apply the epidemiologic triangle by assembling agent, host, and environment from separate sources','Follow the CDC field investigation sequence in the right order','Recover from a wrong conclusion using data rather than being told it\u2019s wrong'],
+     mechanism:'Students investigate a fictional outbreak by questioning an AI that plays every person they\u2019d encounter in the field \u2014 a clinician, a lab, an analyst who computes any number requested but never interprets it, and community members who only know their own exposures. The AI holds a hidden answer key and several built-in decoys; it never corrects a wrong lead, so students have to notice the data contradicting their theory and pivot on their own.',
+     assessment:'The graded artifact is the exported chat transcript, scored on the quality of the investigation rather than whether the student names the correct source \u2014 a student who reasons well but never quite gets there can outscore one who guesses right with nothing behind it. Every case number was changed from the original CDC teaching case, so an outside AI has nothing to retrieve if a student tries to shortcut it.',
+     aiNote:'Martenies built the whole simulator with Claude across roughly twelve sessions \u2014 Claude proposed the "AI as the world, not a tutor" architecture she wouldn\u2019t have arrived at alone. When her own test playthrough hit vocabulary her students hadn\u2019t learned yet, she sent Claude the actual textbook chapter and had it rewrite the in-character coaching in plain language.'
+   }},
+  {n:16, code:'HDFS 310', title:'Adult Development', instructor:'Elissa Mitchell', dept:'Human Development & Family Studies', level:'Undergrad \u00b7 elective', size:'45\u201360 students', fam:['critique'],
+   desc:'Replaces an in-class debate with small groups critiquing an AI-generated explanation of emerging adulthood for missing perspectives and unstated assumptions.',
+   detail:{
+     goals:['Recognize that developmental pathways vary by culture, race, class, and circumstance','Evaluate and critique the limitations of a generative AI response','Practice revising AI output to be more accurate and inclusive'],
+     mechanism:'Small groups feed the identical prompt \u2014 "Explain the developmental stage of emerging adulthood" \u2014 into an AI tool of their choice, then work through a shared worksheet: identify at least three missing populations or perspectives, name at least two things the AI got right and two it oversimplified using specific course concepts, and rewrite at least one section to be more inclusive.',
+     assessment:'Completion-based and low-stakes by design \u2014 Mitchell grades on thoughtful engagement with every worksheet step, not on whether a group\u2019s verdict on the AI matches any "correct" answer, since the point is honest critique rather than a right answer to reach.',
+     aiNote:'Mitchell had originally considered building a custom AI interview bot for a different course assignment, but Claude talked her out of it, pointing out that interacting with a bot isn\u2019t the same as the human interview that assignment was designed to teach \u2014 so she kept that assignment as-is and used AI to design this activity instead.'
+   }},
+  {n:17, code:'RST Online', title:'MS & Professional Certificate Onboarding', instructor:'Mike Mulvaney', dept:'Recreation, Sport & Tourism', level:'Graduate \u00b7 program-wide', size:'all incoming online students', fam:['policy'],
+   desc:'A Generative AI Fluency & Application Module delivered on Canvas to every incoming student in an online graduate program \u2014 not tied to any single course.',
+   detail:{
+     goals:['Distinguish generative AI from other forms of AI and understand core concepts','Apply University and departmental AI principles to realistic professional scenarios','Practice documenting and disclosing AI use the way working professionals increasingly do'],
+     mechanism:'A four-part, fully asynchronous Canvas module every incoming student completes before starting coursework: a professional discussion connecting AI to their own field, a principles-application assignment working through realistic RST scenarios (community recreation, collegiate athletics, tourism marketing), a practice AI-disclosure exercise where students write a mock transparency statement, and a final knowledge check requiring an 80% score (unlimited attempts) to complete.',
+     assessment:'All four components are low-stakes and developmental \u2014 the module measures whether students can distinguish AI types and apply the university\u2019s and department\u2019s AI principles to a scenario, not whether they reach any single "correct" answer.',
+     aiNote:'Mulvaney used Microsoft Copilot and ChatGPT for brainstorming and assessment drafting, but says AI-generated suggestions were consistently revised, reorganized, or rejected against program goals and graduate-level expectations \u2014 professional judgment remained essential for deciding what mattered most for RST professionals specifically.'
+   }},
+  {n:18, code:'JOUR 425', title:'Multimedia Editing and Design', instructor:'Margaret Yee Man Ng', dept:'Journalism', level:'Undergrad \u00b7 majors', size:'~20 students/section', fam:['drafting'],
+   desc:'"Building Websites with AI": junior and senior journalism majors direct an AI to build their personal websites, positioning the student as creative director rather than coder.',
+   detail:{
+     goals:['Turn a vague project idea into a clear site plan before writing any code','Adapt a visual reference\u2019s design language rather than copying it directly','Direct and correct AI-assisted work rather than just accepting its first output'],
+     mechanism:'A three-step "director" workflow, built after a Spring 2026 pilot showed students who asked AI to "build my whole website" in one prompt lost control of their own code. Now: Week 1 requires manual HTML/CSS before any AI tool unlocks; Step 1 has AI interview the student about their project before generating anything; Step 2 has AI adapt (not copy) a visual reference into a placeholder skeleton; Step 3 has AI batch-sort a folder of images onto the right pages, with students fixing any mismatches themselves.',
+     assessment:'Graded across five weighted components: project logic and planning (20%), visual matching and structure (25%), asset management and manual edits (25% \u2014 at least five manual code edits must be documented and highlighted), a "Fight the Machine Log" recording every prompt, rejection, and revision (15%), and content/presentation (15%).',
+     aiNote:'Ng used Claude and Cursor to draft assignment language and synthesize her Spring 2026 pilot findings, but rejected the AI\u2019s suggestion to let students generate a complete site in a single prompt \u2014 that pilot data showed it caused code breakage and loss of ownership \u2014 and added back a half-structured placeholder step from her own workflow notes after the AI initially omitted it.'
+   }},
+  {n:19, code:'TRST 506', title:'Translation for the Professions', instructor:'Patricia Phillips', dept:'Translation & Interpreting Studies', level:'Grad & Undergrad cert', size:'dual-mode', fam:['coach'],
+   desc:'Students use a custom chatbot, the Illini Translation Coach, twice weekly to self-assess their own medical, scientific, and legal translations.',
+   detail:{
+     goals:['Reinforce tone, register, genre, and literal-vs-adapted translation concepts','Develop efficient prompt-writing and the ability to argue with the Coach\u2019s feedback','Build awareness of what generative AI can and can\u2019t reliably do in translation work'],
+     mechanism:'Students interact with a custom Illinois Chat bot, the Illini Translation Coach, at least twice a week for twelve weeks, posting a source text and their own English translation for feedback, then asking at least three follow-up questions probing that feedback before submitting one revised attempt. The Coach caps its responses at 300 words and won\u2019t offer an alternate translation until a student has pushed back three times, specifically to avoid anchoring students to its output as automatically "better."',
+     assessment:'A weekly translation journal captures reactions, disagreements, and discovered limitations after each session; a 1,500-word final paper requires students to name three distinct advantages and three distinct disadvantages of the Coach, argued using both translation theory and AI terminology (hallucination, anchoring, cognitive offloading).',
+     aiNote:'Phillips iterated the Coach\u2019s system prompt through Illinois Chat and Google Gemini, and removed an early "theoretical pocket" feature after Gemini itself flagged that LLMs are prone to confidently misattributing translation theory to the wrong scholars \u2014 a rare case of the AI naming its own likely failure mode.'
+   }},
+  {n:20, code:'CI/ESPY 485', title:'Assessing Student Performance', instructor:'Adam Poetzel', dept:'Curriculum & Instruction / Ed. Psychology', level:'Undergrad \u00b7 preservice teachers', size:'~80 students', fam:['coach'],
+   desc:'An AI Coaching Worksheet gives future high-school teachers formative-assessment practice in week 6, right after they\u2019ve learned the four phases of formative assessment.',
+   detail:{
+     goals:['Apply the four phases of formative assessment (clarify, elicit, interpret, act) to a real classroom-ready activity','Develop and defend professional assessment-design decisions','Practice treating AI feedback as a starting point to evaluate, not a fix to accept'],
+     mechanism:'A sequenced, tool-independent worksheet (works with Copilot Chat, Gemini, or Illinois Chat) walks students through one continuous AI conversation: establish context, strengthen learning targets, share draft materials, then get focused, single-phase feedback on each of the four formative-assessment phases in turn, ending in a synthesis step that names the three highest-leverage revisions. Preservice teachers complete this before revising their draft and presenting it to a peer-feedback group.',
+     assessment:'Graded through the course\u2019s existing four-point Choice Board rubric, evidenced by the completed worksheet, the student\u2019s ability to explain and defend their choices in peer feedback, and a final justification template \u2014 not by whether the final product simply looks AI-polished.',
+     aiNote:'Poetzel originally tried building a custom chatbot with a fixed coaching protocol, but found it unreliable \u2014 it strayed from the sequence, forgot prior context, or restarted at odd times. He pivoted to a plain worksheet of narrower, single-purpose prompts instead, which held up better in his piloting.'
+   }},
+  {n:21, code:'LA 214', title:'History of World Landscapes', instructor:'Pollyanna Rhee', dept:'Landscape Architecture', level:'Undergrad \u00b7 GenEd', size:'~160 students', fam:['critique'],
+   desc:'Students transcribe a handwritten 19th-century letter themselves before comparing their transcription against an AI\u2019s, surfacing exactly where the AI misreads history.',
+   detail:{
+     goals:['Understand how format and genre shape a primary source\u2019s meaning','Practice paleography, weighing evidence, and thinking about audience','Compare a private letter\u2019s account of environmental change against contextual sources'],
+     mechanism:'Students transcribe the opening lines of a handwritten 19th-century letter themselves before feeding it to an AI tool for its own transcription, then move from simple factual questions ("when and where was this written?") to more interpretive ones about environmental language and tone \u2014 directly comparing what they read against what the AI reported. A later group presentation researching the letter\u2019s historical context requires that any AI-verified historical claim also be checked against a secondary source.',
+     assessment:'Weighted lightly (this is explicitly framed as a pilot) and focused on process over polish: a work journal documenting the research and AI-use workflow across the assignment\u2019s six parts, and a final reflection on where AI succeeded, where it failed to notice something, and its broader significance to the student\u2019s own work.',
+     aiNote:'Rhee used Google Gemini for the transcription tests herself first, and found real limits worth flagging to students: page-by-page transcription accuracy varied, and Gemini couldn\u2019t reliably report page numbers for language patterns in a paginated 19th-century book despite the PDF being paginated correctly.'
+   }},
+  {n:22, code:'HK 111', title:'Introduction to Public Health', instructor:'Jenna Riis', dept:'Health & Kinesiology', level:'Undergrad \u00b7 GenEd', size:'~100 students', fam:['critique','coach'],
+   desc:'Five redesigned discussion sections, including one testing AI health claims against scientific evidence and one using AI as a career-exploration coach.',
+   detail:{
+     goals:['Evaluate AI output against evidence rather than trusting its confidence','Use AI responsibly as a preparation and exploration tool, not a decision-maker','Practice collaborative discussion, professional communication, and constructive feedback'],
+     mechanism:'Five separate discussion-section activities spread across the semester, each pairing a different AI role with a different skill: comparing AI health claims against evidence (Misinformation Maze), using AI as a career-exploration interviewer, using AI to brainstorm and refine guest-speaker questions, using AI to understand an interest-holder\u2019s perspective before a class town hall, and comparing AI-generated feedback against real peer feedback in a Critique Lab.',
+     assessment:'Each activity has its own learning objectives and a post-activity Canvas survey; activities are scored on engagement with the structured comparison and reflection tasks (naming what AI missed or got right) rather than on reaching any predetermined verdict.',
+     aiNote:'Riis built and piloted all five activities herself, testing prompts across multiple tools before finalizing them, and repeatedly shortened prompt language and assessments in response to her own pilot notes.'
+   }},
+  {n:23, code:'PSYC 100', title:'Introduction to Psychology', instructor:'Fernando Sanchez Hernandez', dept:'Psychology', level:'Undergrad \u00b7 GenEd', size:'large lecture', fam:['critique'],
+   desc:'An unusual design constraint: students never operate an AI tool themselves. Instead they analyze pre-generated AI transcripts using course concepts as the analytic instrument.',
+   detail:{
+     goals:['Apply the tools of scientific thinking (falsifiability, correlation vs. causation, evidence quality) to real claims','Detect error in a fluent, confident-sounding explanation','Explain cognitive biases through mechanism, not just recognize them by name'],
+     mechanism:'Across three writing assignments spanning the semester, students analyze fixed, pre-generated AI transcripts \u2014 printed in the assignment and identical for every student in every section \u2014 checking a confident AI explanation against the textbook, comparing two AI-run experimental conditions, or checking an AI summary against a primary source. The design is explicitly justified on three grounds: environmental impact, equity (not every student has paid AI access), and gradeability (every TA is calibrated against the same fixed artifact).',
+     assessment:'Full credit on evaluation questions requires specific reference to the transcript itself ("the AI claimed X, but..."), which a student who skips the reading and pastes the question into their own chatbot can\u2019t produce. Some questions also require content no AI has access to, like a student\u2019s own autobiographical example mapped onto a bias definition.',
+     aiNote:'Sanchez Hernandez pre-generated all the AI transcripts himself using Claude Pro and ChatGPT, engineering each one to contain a specific, realistic weakness \u2014 an unsourced evidence claim, a textbook-level oversimplification \u2014 for students to catch, rather than letting the transcripts be either flawlessly correct or obviously wrong.'
+   }},
+  {n:24, code:'INFO/MACS/IS 202', title:'Social Aspects of Information Technology', instructor:'Madelyn Sanfilippo', dept:'Information Sciences', level:'Undergrad \u00b7 GenEd', size:'150\u2013225 students', fam:['policy'],
+   desc:'An AI-literacy thread running since Fall 2020, continually rebuilt as the underlying technology and the critical literature around it have changed.',
+   detail:{
+     goals:['Practice critical evaluation of real AI systems and applications','Compare and assess differing perspectives on AI performance and impact','Reflect on how judgments about an AI system change when informed by more evidence and viewpoints'],
+     mechanism:'A four-phase, 14-week Critical AI Reflections project: students contribute an original AI example to a shared class repository with their own structured evaluation, evaluate three classmates\u2019 examples, participate in class discussion and a structured debate over examples that produced a real spread of opinions, and finally write a deeper final evaluation of one debated example. It replaces an earlier AI-literacy module Sanfilippo had run since 2020, most recently updated for the generative-AI era in 2022.',
+     assessment:'Weighted across all four phases (20/45/10/25 points), with the largest share on the three peer-example evaluations \u2014 assessed on whether students apply course frameworks accurately and reflect thoughtfully on disagreement, not on which side of a debate they land on.',
+     aiNote:'Sanfilippo tested her prior AI-literacy assignment against Copilot, Gemini, and ChatGPT for revision ideas, but threw the old assignment out rather than patch it \u2014 all three models could make it more technical or more general-audience, but none could sharpen its sociotechnical framing, which is the actual point of the course.'
+   }},
+  {n:25, code:'ECE 110', title:'Introduction to Electronics', instructor:'Jonathon Schuh', dept:'Electrical & Computer Engineering', level:'Undergrad \u00b7 majors', size:'~500 students', fam:['drafting'],
+   desc:'Students use AI to plot and analyze MOSFET characterization data and build an interactive chart, writing and refining their own prompts to get there.',
+   detail:{
+     goals:['Use AI tools to analyze and visualize engineering data','Critically evaluate AI outputs using domain knowledge','Characterize MOSFET behavior from experimental data'],
+     mechanism:'Students feed a MOSFET characterization dataset to an AI tool of their choice, direct it to plot the data and build an interactive chart, then extract device parameters and check them against physical sanity tests \u2014 for example, is the threshold voltage smaller than every gate voltage tested? ECE 110 also defines some MOSFET concepts differently than standard textbooks, so an AI trained on generic material will sometimes contradict the course\u2019s own framing, which is itself part of what students have to catch.',
+     assessment:'Explanations count more than the numbers themselves \u2014 the dataset comes from a simulation, so the "correct" characterization is already known, and grading focuses on whether a student\u2019s reasoning about the AI\u2019s output is sound, not on replicating a specific figure.',
+     aiNote:'Schuh used Microsoft Copilot to review and strengthen his own lab assignment, and accepted several of its suggestions (sanity-check prompts, required explanations) while rejecting others that didn\u2019t fit how ECE 110 teaches the material. In his own testing, Copilot repeatedly missed a square-root symbol in an equation no matter how many times he pointed it out \u2014 a small, concrete example of exactly the kind of AI error the assignment asks students to catch.'
+   }},
+  {n:26, code:'LEAD 140', title:'Harnessing Your Interpersonal Intelligence', instructor:'Jennifer Smist', dept:'Leadership Studies', level:'Undergrad \u00b7 async', size:'75\u2013100 students', fam:['persona'],
+   desc:'Students lead a team of AI teammates, each with a distinct personality and communication style, through a collaborative film-analysis case study.',
+   detail:{
+     goals:['Apply concepts of interpersonal intelligence and leadership to a real collaborative task','Practice facilitating discussion and managing disagreement with different perspectives','Reflect critically on team effectiveness and group development'],
+     mechanism:'In place of a traditional group project, students are assigned a team of AI personas built in Illinois Chat, each with a distinct personality, communication style, and set of strengths and challenges. The student leads the team through a film-based leadership case study \u2014 facilitating discussion, managing disagreement, and making final calls \u2014 with the AI teammates designed to simulate real interpersonal friction rather than simply do the analytical work.',
+     assessment:'Students submit a Team Charter, the case study analysis, a full AI collaboration log, and a reflection explaining how the AI team\u2019s feedback did or didn\u2019t change their conclusions \u2014 graded on the reasoning and facilitation process documented across these pieces, not on the AI-generated content itself.',
+     aiNote:'Smist used Claude, Copilot, and Gemini together with a structured "8 Lenses" framework from the AI Studio to work through course-objective and student-engagement angles before settling on AI personas as simulated teammates rather than a shortcut around teamwork \u2014 explicitly noting the AI\u2019s example content wasn\u2019t well matched to her course and needed her own revision.'
+   }},
+  {n:27, code:'RST 230', title:'Diversity in Recreation, Sport and Tourism', instructor:'Monika Stodolska', dept:'Recreation, Sport & Tourism', level:'Undergrad \u00b7 GenEd', size:'175\u2013640 students', fam:['persona','critique'],
+   desc:'The "Blind Spot Assignment" uses a structured AI stakeholder dialogue to surface unstated assumptions in recreation program design, at a scale up to 640 students.',
+   detail:{
+     goals:['Assess design biases when working with marginalized populations','Examine and name biases inherent in AI-generated responses','Compare personal experience, AI assumptions, and documented reality'],
+     mechanism:'AI enters four of eight course assignments, each a different mechanism: the Blind Spot Dialogue has students present a program design to an AI playing a specific, assigned community-advocate persona who is instructed to be "polite but highly critical" and hunt for hidden barriers; the AI Bias assignment has students write their own reflection before ever seeing an AI-generated demographic profile, then compare the two against documented reality; two Field Applications have students use AI to design a program, then revise and evaluate that design using course material.',
+     assessment:'The Blind Spot dialogue itself is graded almost mechanically (TAs count qualifying exchanges against the unedited transcript), while the real evaluation happens in a subsequent no-AI reflection where students must name their own prior assumption and the exact line that overturned it \u2014 something tied to a persona/transcript pairing unique to that student and impossible for AI to fabricate convincingly.',
+     aiNote:'Stodolska designed the AI Bias assignment\u2019s sequencing \u2014 personal journal before AI profile \u2014 specifically with Claude\u2019s help to make it "AI-proof," and used the same approach to rebuild two existing field applications after growing concerned that students were using AI to both generate and evaluate their own designs, defeating the point of the exercise.'
+   }},
+  {n:28, code:'INFO/MACS/IS 202', title:'Social Aspects of Information Technology', instructor:'Meicen Sun', dept:'Information Sciences', level:'Undergrad \u00b7 GenEd', size:'~120 students', fam:['coach'],
+   desc:'ZaristAI, a University of Illinois-built navigation tool, is embedded in Canvas as an always-available course-materials guide, plus an extra-credit option for deeper engagement.',
+   detail:{
+     goals:['Locate relevant course materials efficiently without waiting on staff response time','Choose deliberately whether and how to use AI to support learning','Reflect on the reasoning behind a technology choice, not just make one'],
+     mechanism:'ZaristAI, a campus-built AI navigation tool, sits inside the course Canvas site so students can ask it logistics questions before emailing a TA. Separately, an extra-credit option on the main course project lets students either use ZaristAI or their own AI tool to deepen their engagement with course material and submit a representative chat log, or opt out entirely and instead write a ~200-word reflection on why they chose not to.',
+     assessment:'Extra credit is scored 0\u20132 either way \u2014 on the quality of a student\u2019s prompting if they used AI, or on the quality of their reasoning if they didn\u2019t \u2014 with neither path penalized by default, though visible cognitive-offloading in a chat log costs partial credit with feedback on more effective use.',
+     aiNote:'Sun, describing herself as a highly proficient AI user, did not use AI to design this integration at all, calling it "the same kind of agency I want to impart to my students" \u2014 offering support and structure around AI use without treating adoption itself as the goal.'
+   }},
+  {n:29, code:'BADM 300', title:'The Legal Environment of Business', instructor:'Gretchen Winter', dept:'Business Administration', level:'Undergrad \u00b7 majors', size:'40\u2013110 students', fam:['critique'],
+   desc:'Students prompt AI about executive orders, then audit its answer against the actual legal text \u2014 with a companion critique of how fast the underlying law itself goes stale.',
+   detail:{
+     goals:['Understand what an executive order is and how a president can revoke a predecessor\u2019s order','Practice legal research skills, including primary-source verification','Develop the habit of never taking a legal claim from AI as final without checking it'],
+     mechanism:'Students prompt an AI tool for a list of executive orders that revoke earlier ones, submitting the complete, unedited transcript as an appendix \u2014 no cleanup allowed, since the raw output is what gets audited. For every distinct claim in that transcript, students check the Federal Register directly and categorize it as confirmed, partially wrong, fabricated, correct but incomplete, or outside scope, then explain exactly what\u2019s wrong when it is.',
+     assessment:'Students are explicitly not evaluated on whether the AI\u2019s initial answer was correct \u2014 they\u2019re evaluated on what they do with it: the accuracy of their claim categorization, their source verification, and the legal analysis connecting findings to course concepts.',
+     aiNote:'Winter built the assignment on a real example she ran herself first, and disclosed the specific AI failures it surfaced to students directly \u2014 an order misattributed to the wrong president, an AI summary describing an entirely different order than the one asked about, and three different reported totals (68, 78, 91) for how many orders a single omnibus order revoked, none of which were catchable without going back to the primary text.'
+   }},
+  {n:30, code:'TRST 407', title:'Terminology', instructor:'Alexandra Yazeva', dept:'Translation & Interpreting Studies', level:'Graduate', size:'~15 students', fam:['drafting'],
+   desc:'Graduate translation students run parallel term-extraction tasks across multiple AI tools and a pre-AI extractor (TermoStat), then compare results and choose terms for a term base.',
+   detail:{
+     goals:['Differentiate between terms and non-terms and identify terms in context','Practice building multilingual term bases with defensible, critically-assessed entries','Understand the limits and possibilities of AI as an automatic term-extraction tool'],
+     mechanism:'Working in groups, students run the same source text through several AI tools (Google Gemini, DeepSeek, Claude) using shared prompts, then run the same text through a pre-AI extractor (TermoStat Web) and compare all the outputs side by side, discussing what each tool over- or under-extracted. A follow-up home assignment has each student build a real term base in a non-English working language, individually verifying candidate terms before including them.',
+     assessment:'In-class work and discussion are evaluated directly (rather than a take-home product alone) specifically to avoid grading AI-prepared submissions; the final deliverables are two real term bases with selected terms, one in English and one in the student\u2019s other working language.',
+     aiNote:'Yazeva tested the extraction tools on herself first and caught a concrete example worth teaching from: DeepSeek pulled generic words like "children" and "studies" out as terms, and when she asked why it had also extracted researchers\u2019 names, the AI explained its reasoning and then, on reflection, agreed with her that the names shouldn\u2019t have been included.'
+   }},
+  {n:31, code:'ARCH 231', title:'Anatomy of Buildings', instructor:'Hugh Swiatek', dept:'Architecture', level:'Undergrad \u00b7 majors \u00b7 required', size:'~129 students, 8 sections', fam:['critique','coach','drafting'],
+   desc:'Three parallel components: AI-assisted code research students must verify against cited sources, a read-only Revit tutor connected live to a building model through an MCP server that can guide but never touch it, and LLM-written Python scripts for Rhino geometry that students evaluate against their own design intent.',
+   detail:{
+     goals:['Verify a claim independently before trusting it, and name which verification method fits the claim','Diagnose whether a wrong answer came from bad source material, a bad question, or bad AI reasoning','Document what was delegated to AI, what was verified, and what was concluded, in a form someone else could audit'],
+     mechanism:'Component 1 has students research a building-code question with an AI tool, requiring cited sources they must independently verify. Component 2 connects Claude to a live Revit model through a read-only MCP server \u2014 the AI can see a student\u2019s model and talk them through a fix, but cannot touch it, so every operation stays in the student\u2019s own hands. Component 3 has students prompt an AI to write Python scripts generating Rhino geometry, then evaluate the gap between what they intended and what the script actually produced.',
+     assessment:'Both graded components require students to commit to a position \u2014 a guessed code answer, a dimensioned hand drawing \u2014 before consulting AI at all, so there\u2019s a record of independent reasoning prior to an authoritative-sounding answer. The verbatim, unedited prompt-and-response log is treated as the audit trail; a suspiciously clean log with no dead ends is itself a flag worth a conversation.',
+     aiNote:'Swiatek built the integration and its supporting Revit tutor using Claude (including Claude Desktop connected live to Revit to test the tutor students would use), and highlights one exchange as a model of good AI behavior: when asked to recall a prior conversation it had no access to, Claude said so directly and labeled its reconstruction as a reconstruction rather than inventing a confident answer.'
+   }},
+  {n:32, code:'PHYS 102', title:'College Physics: Electricity & Magnetism', instructor:'Katie Ansell', dept:'Physics', level:'Undergrad \u00b7 GenEd / pre-health', size:'250\u2013400 students', fam:['policy'],
+   desc:'A pre-course survey on how students use resources \u2014 including AI \u2014 when they get stuck feeds a live Lecture 1 discussion of the results, then Discussion and Lab sections extend their existing Team Agreements into a group AI-use policy, with a mid-semester follow-up survey.',
+   detail:{
+     goals:['Identify several resources (human and AI) that can help when stuck on a problem','Evaluate one\u2019s own resource use for effectiveness rather than habit','Distinguish appropriate AI use in Discussion and Lab work from plagiarism'],
+     mechanism:'Before Lecture 1, students take an anonymous survey on how they use resources \u2014 including AI \u2014 when they get stuck, framed among peers, TAs, course materials, and outside videos rather than singled out. Ansell shows the aggregate results back to the class with live iClicker polling in the first ten minutes of lecture. Discussion and Lab sections then extend an existing "Team Agreement" exercise to include a group AI-use policy students write and submit themselves.',
+     assessment:'Graded indirectly: AI agreements are checked for alignment with course policy with rubric feedback, and a mid-semester follow-up survey asks which resources students are actually using and whether they can now evaluate their own resource choices \u2014 exams remain 50% of the course grade and are unaffected by any of this.',
+     aiNote:'Ansell used Claude to draft the survey and Lecture 1 activity, then substantially revised both after finding the AI\u2019s first pass "too pro-AI" and too long for what she wanted \u2014 she ultimately went her own way on the in-class activity design after deciding Claude\u2019s version wasn\u2019t one she wanted to teach.'
+   }},
+  {n:33, code:'ARCH 273 / 371', title:'Fundamentals of Design 1 / Intermediate Design 1', instructor:'John Clark', dept:'Architecture', level:'Undergrad \u00b7 majors', size:'~140 + 14 students', fam:['drafting','critique','coach'],
+   desc:'"Good Tools," a self-built suite of scoped AI design instruments for studio: students verify a site-analysis tool\u2019s climate and terrain claims against independent sources, iterate massing designs against measurable site-force goals, and draw on a standing skills coach for Rhino, Grasshopper, and Revit.',
+   detail:{
+     goals:['Design from cited evidence at every phase, not from intuition alone','Work with AI as a set of scoped instruments with known limits, not one undifferentiated chat window','Practice calibrated skepticism \u2014 price trust in a tool\u2019s output against outside evidence'],
+     mechanism:'A suite of 64 purpose-built instruments (not a chatbot) covers the design studio process: Surveyor compiles a cited site atlas from real climate and terrain data; Eco-Architect and Assayer test a massing model against measurable goals like solar gain or wind shelter with a live Rhino round-trip; Coach tutors Rhino, Grasshopper, and Revit skills; Critic offers adoptable critique personas. In the graded activities, students verify at least three of Surveyor\u2019s claims against an independent source (NOAA, USGS, a site visit) and iterate a massing design at least five times, keeping every failed attempt as part of the record.',
+     assessment:'Assessment stays exactly what it already is in a design studio \u2014 pinups, desk crits, and reviews with outside critics \u2014 and Clark is explicit that he does not grade AI outputs or chat transcripts directly, since a machine artifact isn\u2019t evidence of a student\u2019s own thinking. The check is a live, dialogic review where a student who took a tool\u2019s output without absorbing it is exposed within minutes of questioning.',
+     aiNote:'Clark built the entire toolkit \u2014 the actual live software, not just the assignment \u2014 through natural-language conversation with Claude Code, and says he threw away most of what Claude proposed: "it generates breadth enthusiastically and will hand you fifty ideas when the assignment needs one \u2014 choosing the one and cutting the other forty-nine was my job, not its."'
+   }},
+  {n:34, code:'FIN 221', title:'Corporate Finance', instructor:'Dr. Jason M. Satchell', dept:'Finance', level:'Undergrad \u00b7 required \u00b7 async online (+ in-person sections)', size:'48 students (Summer); larger in Fall/Spring', fam:['grading'],
+   desc:'An instructor-built AI grading pipeline reads all ten modules of a cumulative case-study series, scores each against a rubric and verified answer key, and drafts individualized criterion-level feedback \u2014 reviewed and released by the instructor, never posted automatically.',
+   detail:{
+     goals:['Apply corporate finance techniques (TVM, ratio analysis, NPV, DCF, WACC) to a single continuous case','Receive feedback specific enough to act on before the next module builds on it','Communicate financial analysis with evidence, not just assertion'],
+     mechanism:'Students never touch the grading AI \u2014 they submit case studies as they always have, and Satchell\u2019s own six-module Python pipeline reads each submission, grades it against his rubric and a verified answer key computed in code (not transcribed), and drafts feedback he reviews before release. Every submission is scored twice by independent passes; disagreements, borderline scores, and integrity flags (image-only tables, invented figures, corrupted files) are automatically held for his direct reading rather than released.',
+     assessment:'Grading validity is checked against Satchell\u2019s own blind hand-grading of a sample each run, targeting at least 60% exact match and 90% within one rubric level with no systematic bias. A full audit log records every scoring decision before release, and nothing posts to a gradebook without passing through him first.',
+     aiNote:'Satchell built this with Claude across many sessions, and is explicit that two real failures shaped the design: an error in his own answer key that would have marked every correct student wrong on one question, and a silent bug that returned zeros for excellent work with no indication anything was broken. Both are why he treats the system as requiring review, not as trustworthy by default \u2014 and both are disclosed to students directly in the assignment instructions.'
+   }}
+];
+
+const famGrid = document.getElementById('familyGrid');
+const famMap = Object.fromEntries(FAMILIES.map(f => [f.id, f]));
+
+function famCount(id){ return PROJECTS.filter(s => s.fam.includes(id)).length; }
+
+FAMILIES.forEach(f => {
+  const count = famCount(f.id);
+  const el = document.createElement('button');
+  el.type = 'button';
+  el.className = 'family-card';
+  el.dataset.fam = f.id;
+  el.setAttribute('aria-pressed', 'false');
+  el.style.setProperty('--fam-color', f.color);
+  el.innerHTML = `
+    <span class="icon" aria-hidden="true">${f.icon}</span>
+    <span class="fam-count-chip">${count} project${count === 1 ? '' : 's'}</span>
+    <h3>${f.name}</h3>
+    <p>${f.desc}</p>
+    <span class="rule">${f.rule}</span>
+  `;
+  el.addEventListener('click', () => {
+    activeFam = activeFam === f.id ? null : f.id;
+    render();
+  });
+  famGrid.appendChild(el);
+});
+
+const deptSelect = document.getElementById('deptFilter');
+[...new Set(PROJECTS.map(s => s.dept))].sort().forEach(d => {
+  const opt = document.createElement('option');
+  opt.value = d; opt.textContent = d;
+  deptSelect.appendChild(opt);
+});
+
+let activeFam = null;
+const grid = document.getElementById('projectGrid');
+const resultCount = document.getElementById('resultCount');
+const searchInput = document.getElementById('searchInput');
+
+function matches(s, q, dept) {
+  if (activeFam && !s.fam.includes(activeFam)) return false;
+  if (dept && s.dept !== dept) return false;
+  if (q) {
+    const famNames = s.fam.map(id => famMap[id].name).join(' ');
+    const hay = `${s.code} ${s.title} ${s.instructor} ${s.dept} ${s.desc} ${famNames}`.toLowerCase();
+    if (!hay.includes(q.toLowerCase())) return false;
+  }
+  return true;
+}
+
+function render() {
+  document.querySelectorAll('.family-card').forEach(el => {
+    const isActive = el.dataset.fam === activeFam;
+    el.setAttribute('aria-pressed', String(isActive));
+  });
+
+  const q = searchInput.value.trim();
+  const dept = deptSelect.value;
+  const filtered = PROJECTS.filter(s => matches(s, q, dept));
+
+  resultCount.innerHTML = `Showing <b>${filtered.length}</b> of <b>${PROJECTS.length}</b> projects`;
+
+  grid.innerHTML = '';
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="no-results">No projects match this combination \u2014 try clearing a filter.</div>';
+    return;
+  }
+  filtered.forEach(s => {
+    const tags = s.fam.map(id => {
+      const f = famMap[id];
+      return `<span class="fam-tag" style="background:${f.color}">${f.name}</span>`;
+    }).join('');
+    const primaryColor = famMap[s.fam[0]].color;
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.style.borderTop = `3px solid ${primaryColor}`;
+    card.innerHTML = `
+      <div class="card-top">
+        <span class="accession">No. ${String(s.n).padStart(3,'0')}</span>
+        <span class="fam-tags">${tags}</span>
+      </div>
+      <div>
+        <div class="course-code">${s.code}</div>
+        <h3>${s.title}</h3>
+      </div>
+      <div class="instructor">${s.instructor}</div>
+      <p class="desc">${s.desc}</p>
+      <div class="meta">
+        <span>${s.dept}</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>${s.level}</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>${s.size}</span>
+      </div>
+      <button type="button" class="details-btn" data-project="${s.n}">Details<span aria-hidden="true"> &rarr;</span></button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+searchInput.addEventListener('input', render);
+deptSelect.addEventListener('change', render);
+document.getElementById('clearBtn').addEventListener('click', () => {
+  activeFam = null;
+  searchInput.value = '';
+  deptSelect.value = '';
+  render();
+});
+
+render();
+
+/* Keep hero stats in sync with the data so future re-scans don't need manual counting */
+const statDesigns = document.getElementById('statDesigns');
+const statFamilies = document.getElementById('statFamilies');
+const statDepts = document.getElementById('statDepts');
+if (statDesigns) statDesigns.textContent = PROJECTS.length;
+if (statFamilies) statFamilies.textContent = FAMILIES.length;
+if (statDepts) statDepts.textContent = new Set(PROJECTS.map(p => p.dept)).size;
+
+/* ---------- TABS ---------- */
+const tabs = [...document.querySelectorAll('.tab-btn')];
+const panels = { 'tab-guide': document.getElementById('panel-guide'), 'tab-feedback': document.getElementById('panel-feedback') };
+
+function selectTab(id, focus) {
+  tabs.forEach(t => {
+    const selected = t.id === id;
+    t.setAttribute('aria-selected', String(selected));
+    t.tabIndex = selected ? 0 : -1;
+    panels[t.id].hidden = !selected;
+  });
+  if (focus) document.getElementById(id).focus();
+}
+
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => selectTab(t.id, false));
+  t.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const next = e.key === 'ArrowRight' ? (i + 1) % tabs.length : (i - 1 + tabs.length) % tabs.length;
+      selectTab(tabs[next].id, true);
+    }
+  });
+});
+
+/* ---------- EARLY FEEDBACK RESULTS (Q11) ---------- */
+const FEEDBACK = {
+  categories: ['Very poor', 'Poor', 'Fair', 'Good', 'Excellent', 'Not applicable'],
+  parts: [
+    { label: 'First two weeks: in-person training', min: 3.00, max: 5.00, mean: 4.47, responses: 30, counts: [0, 0, 1, 14, 15, 0] },
+    { label: 'Final three weeks: individual project work', min: 3.00, max: 5.00, mean: 4.33, responses: 30, counts: [0, 0, 2, 16, 12, 0] }
+  ]
+};
+
+const statCards = document.getElementById('statCards');
+FEEDBACK.parts.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'stat-card';
+  card.innerHTML = `
+    <h3>${p.label}</h3>
+    <div class="stat-row">
+      <div class="metric"><div class="v">${p.mean.toFixed(2)}</div><div class="k">Mean rating</div></div>
+      <div class="metric"><div class="v">${p.min.toFixed(2)}&#8211;${p.max.toFixed(2)}</div><div class="k">Min&#8211;Max</div></div>
+      <div class="metric"><div class="v">${p.responses}</div><div class="k">Responses</div></div>
+    </div>
+  `;
+  statCards.appendChild(card);
+});
+
+const chartGrid = document.getElementById('chartGrid');
+FEEDBACK.parts.forEach(p => {
+  const maxCount = Math.max(...p.counts, 1);
+  const card = document.createElement('div');
+  card.className = 'chart-card';
+  const bars = p.counts.map(c => `
+    <div class="bar-col">
+      <span class="val">${c}</span>
+      <div class="bar" style="height:${c === 0 ? '2px' : (c / maxCount * 100) + '%'}"></div>
+    </div>
+  `).join('');
+  const labels = FEEDBACK.categories.map(c => `<span>${c}</span>`).join('');
+  const tableRows = FEEDBACK.categories.map((c, i) => `<tr><th scope="row">${c}</th><td>${p.counts[i]}</td></tr>`).join('');
+  card.innerHTML = `
+    <h3>${p.label}</h3>
+    <div class="n">${p.responses} responses</div>
+    <div class="bars" role="img" aria-label="Bar chart of ratings for ${p.label}: ${FEEDBACK.categories.map((c,i) => c + ' ' + p.counts[i]).join(', ')}.">${bars}</div>
+    <div class="bar-labels" aria-hidden="true">${labels}</div>
+    <table class="data-table">
+      <caption>Underlying counts</caption>
+      <thead><tr><th scope="col">Rating</th><th scope="col">Count</th></tr></thead>
+      <tbody>${tableRows}</tbody>
+    </table>
+  `;
+  chartGrid.appendChild(card);
+});
+
+/* ---------- PROJECT DETAIL MODAL ---------- */
+const projectModal = document.getElementById('projectModal');
+const modalAccession = document.getElementById('modalAccession');
+const modalCourseCode = document.getElementById('modalCourseCode');
+const modalTitle = document.getElementById('modalTitle');
+const modalInstructor = document.getElementById('modalInstructor');
+const modalTags = document.getElementById('modalTags');
+const modalMeta = document.getElementById('modalMeta');
+const modalBody = document.getElementById('modalBody');
+const modalClose = document.getElementById('modalClose');
+const modalCopyLink = document.getElementById('modalCopyLink');
+const modalLinkStatus = document.getElementById('modalLinkStatus');
+
+let lastFocusedTrigger = null;
+
+function projectById(n) {
+  return PROJECTS.find(p => p.n === n);
+}
+
+function renderModalBody(p) {
+  if (!p.detail) {
+    return `<p class="desc">${p.desc}</p><p class="modal-pending">Full write-up for this project is coming soon.</p>`;
+  }
+  const d = p.detail;
+  let html = `<p class="desc">${p.desc}</p>`;
+  if (d.goals && d.goals.length) {
+    html += `<div class="modal-section"><h3>Learning goals</h3><ul>${d.goals.map(g => `<li>${g}</li>`).join('')}</ul></div>`;
+  }
+  if (d.mechanism) {
+    html += `<div class="modal-section"><h3>How it works</h3><p>${d.mechanism}</p></div>`;
+  }
+  if (d.assessment) {
+    html += `<div class="modal-section"><h3>Assessment</h3><p>${d.assessment}</p></div>`;
+  }
+  if (d.aiNote) {
+    html += `<div class="modal-section"><h3>AI transparency note</h3><p class="modal-ai-note">${d.aiNote}</p></div>`;
+  }
+  return html;
+}
+
+function fillModal(p) {
+  const f = famMap[p.fam[0]];
+  modalAccession.textContent = `No. ${String(p.n).padStart(3, '0')}`;
+  modalCourseCode.textContent = p.code;
+  modalTitle.textContent = p.title;
+  modalInstructor.textContent = p.instructor;
+  modalTags.innerHTML = p.fam.map(id => {
+    const ff = famMap[id];
+    return `<span class="fam-tag" style="background:${ff.color}">${ff.name}</span>`;
+  }).join('');
+  modalMeta.innerHTML = `<span>${p.dept}</span><span>${p.level}</span><span>${p.size}</span>`;
+  modalBody.innerHTML = renderModalBody(p);
+  modalLinkStatus.textContent = '';
+}
+
+function openProjectModal(n, trigger) {
+  const p = projectById(n);
+  if (!p) return;
+  lastFocusedTrigger = trigger || document.activeElement;
+  fillModal(p);
+  if (typeof projectModal.showModal === 'function') {
+    if (!projectModal.open) projectModal.showModal();
+  }
+}
+
+function closeProjectModal() {
+  if (projectModal.open) projectModal.close();
+}
+
+// Open via any Details button (event delegation, since cards re-render on filter)
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.details-btn');
+  if (!btn) return;
+  const n = parseInt(btn.dataset.project, 10);
+  window.location.hash = `project-${n}`;
+});
+
+modalClose.addEventListener('click', () => closeProjectModal());
+
+// Click on the ::backdrop area closes the dialog
+projectModal.addEventListener('click', (e) => {
+  const rect = projectModal.getBoundingClientRect();
+  const inside = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+  if (!inside) closeProjectModal();
+});
+
+// Native close (Esc key, .close() calls) — clear the hash and restore focus
+projectModal.addEventListener('close', () => {
+  if (/^#project-\d+$/.test(window.location.hash)) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+  if (lastFocusedTrigger && document.contains(lastFocusedTrigger)) {
+    lastFocusedTrigger.focus();
+  }
+});
+
+modalCopyLink.addEventListener('click', async () => {
+  const n = parseInt(modalAccession.textContent.replace(/\D/g, ''), 10);
+  const url = `${window.location.origin}${window.location.pathname}#project-${n}`;
+  try {
+    await navigator.clipboard.writeText(url);
+    modalLinkStatus.textContent = 'Link copied!';
+  } catch (err) {
+    modalLinkStatus.textContent = url;
+  }
+});
+
+function syncModalToHash() {
+  const m = window.location.hash.match(/^#project-(\d+)$/);
+  if (m) {
+    openProjectModal(parseInt(m[1], 10), document.querySelector(`.details-btn[data-project="${m[1]}"]`));
+  } else {
+    closeProjectModal();
+  }
+}
+
+window.addEventListener('hashchange', syncModalToHash);
+syncModalToHash();
+</script>
+</body>
+</html>
