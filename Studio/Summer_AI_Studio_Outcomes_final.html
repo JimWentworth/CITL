@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Field Guide to AI in the Classroom — Summer AI Studio 2026 — Illinois</title>
+<title>AI in the Classroom — Summer AI Studio 2026 — Illinois</title>
 <meta name="description" content="An unofficial taxonomy of 31 AI course-integration designs from the University of Illinois Urbana-Champaign Summer AI Studio, sorted by the pedagogical role AI plays in each design.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,7 +175,7 @@
     letter-spacing: 0.1em; text-transform: uppercase; color: var(--il-blue);
     padding-top: 4px;
   }
-  .method-text{ font-size: 16px; color: var(--il-storm-10); max-width: 74ch; }
+  .method-text{ font-size: 16px; color: var(--il-storm-10); max-width: 174ch; }
   .method-text p{ margin: 0 0 14px; }
   .method-text p:last-child{ margin-bottom:0; }
   .method-text em{ font-style: italic; color: var(--il-blue); }
@@ -320,24 +320,30 @@
   }
 
   /* ---------- PROJECT DETAIL MODAL ---------- */
+  /* The flex/scroll layout lives on .modal-inner (a plain div), not the <dialog> itself.
+     Safari's native sizing algorithm for <dialog> doesn't reliably respect max-height
+     combined with flexbox the way Chromium/Firefox do, so relying on the dialog element
+     for that layout silently clips content in Safari. A plain div has no such quirks. */
   dialog#projectModal{
     width: min(680px, 92vw);
     max-height: min(85vh, 900px);
     padding: 0;
     border: none;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+  .modal-inner{
+    display: flex;
+    flex-direction: column;
+    max-height: min(85vh, 900px);
+    overflow: hidden;
     background: #fff;
     box-shadow: 0 24px 60px rgba(19,41,75,0.35);
   }
-  /* Scoped to [open] so closing the dialog (which removes this attribute) actually hides it —
-     an unconditional `display` here would out-specificity the browser's native dialog:not([open]){display:none} rule. */
-  dialog#projectModal[open]{
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
   dialog#projectModal::backdrop{ background: rgba(19,41,75,0.55); }
   @media (prefers-reduced-motion: no-preference){
-    dialog#projectModal[open]{ animation: modal-in .18s ease; }
+    dialog#projectModal[open] .modal-inner{ animation: modal-in .18s ease; }
   }
   @keyframes modal-in{ from{ opacity:0; transform: translateY(8px); } to{ opacity:1; transform: translateY(0); } }
 
@@ -530,7 +536,7 @@
 <section class="families" aria-labelledby="families-heading">
   <div class="wrap">
     <div class="section-head">
-      <h2 id="families-heading">Six Integration Strategies</h2>
+      <h2 id="families-heading">AI Integration Strategies</h2>
       <div class="hint">Select a strategy to filter the projects below</div>
     </div>
     <div class="family-grid" id="familyGrid" role="group" aria-label="Filter projects by pedagogical family"></div>
@@ -570,15 +576,13 @@
       <h2 id="feedback-heading" class="method-label">Early feedback</h2>
       <div class="method-text">
         <p>Thirty Summer AI Studio participants rated the overall quality of the program's two halves: two weeks
-        of in-person training, followed by three weeks of individual project work &mdash; the design documents
-        cataloged in the Field Guide tab. Both halves scored well. Nobody rated either half "poor" or "very poor,"
-        and only a few rated either half merely "fair" (1 for the training weeks, 2 for the project weeks). The gap
+        of in-person training, followed by three weeks of individual project work. Both halves scored well. Nobody rated either half "poor" or "very poor,"
+        and only a few rated either half merely "fair" (1 for the training weeks, 2 for the project weeks).</p> <p>The gap
         between the two means comes mostly from a "good" vs. "excellent" split: the in-person training pulled a
         slightly stronger share of top marks (15 of 30 "excellent"), while the individual project weeks skewed a
         bit more toward "good" than "excellent" (16 and 12).</p>
         <p class="disclosure">Source: Q11 of the Summer AI Studio participant survey, "Please rate the overall
-        quality of the two parts of the Summer AI Studio," n&#8201;=&#8201;30. Figures are transcribed from the
-        survey results export.</p>
+        quality of the two parts of the Summer AI Studio," n&#8201;=&#8201;30.</p>
       </div>
     </div>
   </div>
@@ -603,23 +607,25 @@
 </main>
 
 <dialog id="projectModal" aria-labelledby="modalTitle">
-  <div class="modal-head">
-    <div class="modal-top-row">
-      <div>
-        <span class="modal-accession" id="modalAccession"></span>
-        <div class="modal-course-code" id="modalCourseCode"></div>
+  <div class="modal-inner">
+    <div class="modal-head">
+      <div class="modal-top-row">
+        <div>
+          <span class="modal-accession" id="modalAccession"></span>
+          <div class="modal-course-code" id="modalCourseCode"></div>
+        </div>
+        <button type="button" class="modal-close" id="modalClose" aria-label="Close details">&times;</button>
       </div>
-      <button type="button" class="modal-close" id="modalClose" aria-label="Close details">&times;</button>
+      <h2 id="modalTitle"></h2>
+      <div class="modal-instructor" id="modalInstructor"></div>
+      <div class="modal-tags" id="modalTags"></div>
+      <div class="modal-meta" id="modalMeta"></div>
     </div>
-    <h2 id="modalTitle"></h2>
-    <div class="modal-instructor" id="modalInstructor"></div>
-    <div class="modal-tags" id="modalTags"></div>
-    <div class="modal-meta" id="modalMeta"></div>
-  </div>
-  <div class="modal-body" id="modalBody"></div>
-  <div class="modal-footer">
-    <button type="button" class="modal-link-btn" id="modalCopyLink">Copy link to this project</button>
-    <span class="modal-link-status" id="modalLinkStatus" role="status" aria-live="polite"></span>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer">
+      <button type="button" class="modal-link-btn" id="modalCopyLink">Copy link to this project</button>
+      <span class="modal-link-status" id="modalLinkStatus" role="status" aria-live="polite"></span>
+    </div>
   </div>
 </dialog>
 
@@ -1013,6 +1019,16 @@ function matches(s, q, dept) {
   return true;
 }
 
+// Display order is always alphabetical by instructor surname, independent of the order
+// projects were added to the data (accession numbers stay stable; only display order sorts).
+const SURNAME_EXCEPTIONS = { 'Fernando Sanchez Hernandez': 'Sanchez Hernandez' };
+function sortKeyFor(p) {
+  const primary = p.instructor.split('&')[0].trim();
+  if (SURNAME_EXCEPTIONS[primary]) return SURNAME_EXCEPTIONS[primary];
+  const parts = primary.replace(/^Dr\.\s*/, '').split(' ').filter(Boolean);
+  return parts[parts.length - 1];
+}
+
 function render() {
   document.querySelectorAll('.family-card').forEach(el => {
     const isActive = el.dataset.fam === activeFam;
@@ -1021,7 +1037,8 @@ function render() {
 
   const q = searchInput.value.trim();
   const dept = deptSelect.value;
-  const filtered = PROJECTS.filter(s => matches(s, q, dept));
+  const filtered = PROJECTS.filter(s => matches(s, q, dept))
+    .sort((a, b) => sortKeyFor(a).localeCompare(sortKeyFor(b)));
 
   resultCount.innerHTML = `Showing <b>${filtered.length}</b> of <b>${PROJECTS.length}</b> projects`;
 
