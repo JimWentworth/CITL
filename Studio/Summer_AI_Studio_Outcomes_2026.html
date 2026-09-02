@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI in the Classroom</title>
+<meta name="description" content="An unofficial taxonomy of 31 AI course-integration designs from the University of Illinois Urbana-Champaign Summer AI Studio, sorted by the pedagogical role AI plays in each design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Official Illinois brand tokens — brand.illinois.edu/visual-identity/color */
+    --il-orange: #FF5F05;
+    --il-blue: #13294B;
+    --il-altgeld: #C84113;      /* accessible orange substitute for small/body text */
+    --il-storm: #707372;
+    --il-storm-60: #8E9090;
+    --il-storm-80: #C6C7C6;
+    --il-storm-95: #F4F4F4;
+    --il-storm-10: #252525;     /* default body text on light backgrounds */
+    --il-industrial: #1D58A7;   /* supporting: default link on white/gray */
+    --il-arches: #009FD4;
+    --il-patina: #007E8E;
+    --il-berry: #5C0E41;
+    --il-harvest: #FCB316;
+    --il-prairie: #006230;
+    --il-earth: #7D3E13;
+    --il-white: #FFFFFF;
+    --font-head: 'Montserrat', Arial, sans-serif;
+    --font-body: 'Source Sans 3', Arial, sans-serif;
+    --focus-ring: 3px solid var(--il-orange);
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+  body{
+    margin:0;
+    background: var(--il-white);
+    color: var(--il-storm-10);
+    font-family: var(--font-body);
+    font-size: 16.5px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: var(--il-industrial); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover, a:focus-visible{ color: var(--il-altgeld); }
+  :focus-visible{ outline: var(--focus-ring); outline-offset: 2px; }
+  button, input, select{ font-family: inherit; }
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+  .skip-link{
+    position:absolute; left:12px; top:-60px;
+    background: var(--il-blue); color:#fff; padding: 12px 18px;
+    font-family: var(--font-head); font-weight:700; font-size:14px;
+    z-index: 100; transition: top .15s ease;
+    text-decoration:none;
+  }
+  .skip-link:focus{ top:12px; }
+  .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  /* ---------- MASTHEAD ---------- */
+  .masthead{
+    background: var(--il-blue);
+    color: #fff;
+    padding: 10px 0;
+    font-family: var(--font-head);
+  }
+  .masthead .wrap{ display:flex; align-items:center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .masthead .unit{
+    display:flex; align-items:center; gap:10px;
+    font-size: 13px; letter-spacing: 0.03em;
+  }
+  .block-i{
+    width: 26px; height: 26px;
+    background: var(--il-orange);
+    color: var(--il-blue);
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 800; font-size: 16px; flex-shrink:0;
+    font-family: var(--font-head);
+  }
+  .masthead .tag{
+    font-size: 11.5px;
+    color: var(--il-storm-80);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  /* ---------- HERO ---------- */
+  header.hero{
+    background: var(--il-blue);
+    color: #fff;
+    padding: 56px 0 60px;
+    border-bottom: 6px solid var(--il-orange);
+  }
+  .eyebrow{
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--il-harvest);
+    display:flex; align-items:center; gap: 10px;
+    margin-bottom: 20px;
+  }
+  .eyebrow::after{ content:""; flex:1; height:1px; background: rgba(255,255,255,0.25); }
+  h1.title{
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(34px, 5.4vw, 60px);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    margin: 0 0 22px;
+    max-width: 18ch;
+    color: #fff;
+  }
+  h1.title .accent{ color: var(--il-orange); }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  .hero-lede{
+    font-size: 18.5px;
+    color: var(--il-storm-80);
+    max-width: 156ch;
+  }
+  .hero-lede strong{ color: #fff; font-weight: 600; }
+  .stat-block{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 24px;
+    border-left: 1px solid rgba(255,255,255,0.25);
+    padding-left: 26px;
+  }
+  .stat .num{
+    font-family: var(--font-head);
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--il-orange);
+    line-height:1;
+  }
+  .stat .label{
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--il-storm-80);
+    margin-top: 7px;
+  }
+  /* ---------- METHOD ---------- */
+  section.method{ padding: 44px 0 8px; border-bottom: 1px solid var(--il-storm-80); background: var(--il-storm-95); }
+  .method-inner{ display:grid; grid-template-columns: 200px 1fr; gap: 40px; padding-bottom: 44px; }
+  .method-label{
+    font-family: var(--font-head); font-weight: 700; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--il-blue);
+    padding-top: 4px;
+  }
+  .method-text{ font-size: 16px; color: var(--il-storm-10); max-width: 174ch; }
+  .method-text p{ margin: 0 0 14px; }
+  .method-text p:last-child{ margin-bottom:0; }
+  .method-text em{ font-style: italic; color: var(--il-blue); }
+  .disclosure{
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--il-storm-10);
+    border-left: 3px solid var(--il-storm-80);
+    padding-left: 14px;
+  }
+  /* ---------- FAMILIES ---------- */
+  section.families{ padding: 56px 0 12px; border-bottom: 1px solid var(--il-storm-80); }
+  .section-head{ display:flex; justify-content: space-between; align-items: baseline; margin-bottom: 26px; gap: 20px; flex-wrap: wrap; }
+  .section-head h2{ font-family: var(--font-head); font-weight: 800; font-size: 28px; margin: 0; color: var(--il-blue); }
+  .section-head .hint{ font-family: var(--font-head); font-weight: 600; font-size: 12px; color: var(--il-storm); text-transform: uppercase; letter-spacing: 0.06em; }
+  .family-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 46px; }
+  .family-card{
+    background: #fff;
+    border: 1px solid var(--il-storm-80);
+    border-top: 5px solid var(--fam-color, var(--il-blue));
+    padding: 18px 16px 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    display:flex; flex-direction: column; gap: 10px;
+    min-height: 216px;
+    width: 100%;
+    font-family: var(--font-body);
+    color: var(--il-storm-10);
+  }
+  .family-card:hover{ transform: translateY(-3px); box-shadow: 0 10px 22px rgba(19,41,75,0.16); }
+  .family-card[aria-pressed="true"]{
+    background: var(--il-storm-95);
+    box-shadow: 0 0 0 2px var(--fam-color, var(--il-blue)) inset;
+  }
+  .family-card .icon{ width: 28px; height: 28px; color: var(--fam-color, var(--il-blue)); }
+  .family-card .icon svg{ display:block; width:100%; height:100%; }
+  .fam-count-chip{
+    display:inline-block;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--fam-color, var(--il-blue));
+    padding: 3px 9px;
+    width: fit-content;
+  }
+  .family-card h3{ font-family: var(--font-head); font-weight: 700; font-size: 18px; margin: 0; line-height: 1.2; color: var(--il-blue); }
+  .family-card p{ font-size: 13.5px; color: var(--il-storm-10); margin: 0; flex: 1; }
+  .family-card .rule{
+    font-family: var(--font-body); font-style: italic; font-size: 12.5px;
+    color: var(--il-storm); border-top: 1px dashed var(--il-storm-80); padding-top: 8px;
+  }
+  /* ---------- CONTROLS ---------- */
+  section.controls{
+    padding: 26px 0; border-bottom: 1px solid var(--il-storm-80);
+    position: sticky; top: 0; background: #fff; z-index: 20;
+  }
+  .controls-inner{ display:flex; align-items:center; gap: 16px; flex-wrap: wrap; }
+  .search-box{
+    display:flex; align-items:center; gap: 8px;
+    background: #fff; border: 1px solid var(--il-storm-80);
+    padding: 10px 14px; flex: 1; min-width: 240px;
+  }
+  .search-box:focus-within{ border-color: var(--il-blue); box-shadow: 0 0 0 2px rgba(19,41,75,0.15); }
+  .search-box svg{ width:17px; height:17px; color: var(--il-storm); flex-shrink:0; }
+  .search-box input{
+    border:none; background: transparent; outline:none;
+    font-size: 15px; color: var(--il-storm-10); width: 100%;
+  }
+  .search-box input::placeholder{ color: var(--il-storm); }
+  select#deptFilter{
+    font-family: var(--font-head); font-weight: 600;
+    font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--il-blue); background: var(--il-storm-95);
+    border: 1px solid var(--il-storm-80); padding: 12px 14px; cursor: pointer;
+    min-height: 44px;
+  }
+  .clear-btn{
+    font-family: var(--font-head); font-weight: 700;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--il-blue); background: #fff;
+    border: 1px solid var(--il-blue); padding: 12px 18px; cursor: pointer;
+    white-space: nowrap; min-height: 44px;
+  }
+  .clear-btn:hover{ background: var(--il-blue); color: #fff; }
+  .result-count{ font-family: var(--font-head); font-weight: 600; font-size: 12.5px; color: var(--il-storm); padding-top: 14px; }
+  .result-count b{ color: var(--il-blue); font-weight: 700; }
+  /* ---------- PROJECTS ---------- */
+  section.projects{ padding: 36px 0 90px; background: var(--il-storm-95); }
+  .project-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card{
+    background: #fff; border: 1px solid var(--il-storm-80);
+    padding: 20px 20px 18px; display:flex; flex-direction: column; gap: 12px;
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .card:hover, .card:focus-within{ box-shadow: 0 12px 26px rgba(19,41,75,0.16); transform: translateY(-2px); }
+  .card-top{ display:flex; justify-content: space-between; align-items:flex-start; gap: 10px; }
+  .accession{ font-family: var(--font-head); font-weight: 600; font-size: 11px; color: var(--il-storm); letter-spacing: 0.04em; }
+  .fam-tags{ display:flex; flex-wrap:wrap; gap:5px; justify-content:flex-end; }
+  .fam-tag{
+    font-family: var(--font-head); font-weight: 700; font-size: 9.5px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 3px 8px; white-space: nowrap; color: #fff;
+  }
+  .card h3{ font-family: var(--font-head); font-weight: 700; font-size: 18px; margin: 0; line-height: 1.25; color: var(--il-blue); }
+  .card .course-code{ font-family: var(--font-head); font-weight: 600; font-size: 12px; color: var(--il-altgeld); text-transform: uppercase; letter-spacing: 0.03em; }
+  .card .desc{ font-size: 14.5px; color: var(--il-storm-10); flex: 1; }
+  .card .meta{
+    display:flex; flex-wrap: wrap; gap: 6px 10px;
+    font-family: var(--font-head); font-weight: 600; font-size: 10.5px; color: var(--il-storm);
+    border-top: 1px dashed var(--il-storm-80); padding-top: 10px;
+    text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .card .meta span{ white-space: nowrap; }
+  .card .instructor{ font-family: var(--font-body); font-style: italic; font-size: 13.5px; color: var(--il-storm-10); }
+  .details-btn{
+    align-self: flex-start;
+    font-family: var(--font-head); font-weight: 700; font-size: 12.5px;
+    color: var(--il-industrial); background: transparent; border: none;
+    padding: 4px 0; margin-top: -4px; cursor: pointer;
+    min-height: 32px;
+  }
+  .details-btn:hover, .details-btn:focus-visible{ color: var(--il-altgeld); text-decoration: underline; }
+  .no-results{
+    grid-column: 1 / -1; text-align: center; padding: 60px 20px;
+    color: var(--il-storm); font-family: var(--font-head); font-weight: 600;
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em;
+    background: #fff; border: 1px dashed var(--il-storm-80);
+  }
+  /* ---------- PROJECT DETAIL MODAL ---------- */
+  /* The flex/scroll layout lives on .modal-inner (a plain div), not the <dialog> itself.
+     Safari's native sizing algorithm for <dialog> doesn't reliably respect max-height
+     combined with flexbox the way Chromium/Firefox do, so relying on the dialog element
+     for that layout silently clips content in Safari. A plain div has no such quirks. */
+  dialog#projectModal{
+    width: min(680px, 92vw);
+    max-height: min(85vh, 900px);
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+  .modal-inner{
+    display: flex;
+    flex-direction: column;
+    max-height: min(85vh, 900px);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 24px 60px rgba(19,41,75,0.35);
+  }
+  dialog#projectModal::backdrop{ background: rgba(19,41,75,0.55); }
+  @media (prefers-reduced-motion: no-preference){
+    dialog#projectModal[open] .modal-inner{ animation: modal-in .18s ease; }
+  }
+  @keyframes modal-in{ from{ opacity:0; transform: translateY(8px); } to{ opacity:1; transform: translateY(0); } }
+  .modal-head{
+    background: var(--il-blue); color:#fff;
+    padding: 22px 26px 20px; border-top: 5px solid var(--il-orange);
+    flex-shrink: 0;
+  }
+  .modal-head .modal-top-row{ display:flex; justify-content: space-between; align-items:flex-start; gap: 14px; }
+  .modal-accession{ font-family: var(--font-head); font-weight: 600; font-size: 11px; color: var(--il-storm-80); letter-spacing: 0.04em; }
+  .modal-close{
+    background: transparent; border: 1px solid rgba(255,255,255,0.5); color: #fff;
+    width: 32px; height: 32px; font-size: 18px; line-height: 1; cursor: pointer;
+    flex-shrink: 0;
+  }
+  .modal-close:hover, .modal-close:focus-visible{ background: rgba(255,255,255,0.15); }
+  .modal-course-code{ font-family: var(--font-head); font-weight: 600; font-size: 12px; color: var(--il-harvest); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 10px; }
+  .modal-head h2{ font-family: var(--font-head); font-weight: 800; font-size: 24px; margin: 4px 0 8px; color: #fff; }
+  .modal-instructor{ font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--il-storm-80); }
+  .modal-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top: 12px; }
+  .modal-tags .fam-tag{ font-family: var(--font-head); font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 9px; color:#fff; }
+  .modal-meta{ display:flex; flex-wrap:wrap; gap: 6px 14px; margin-top: 12px; font-family: var(--font-head); font-weight: 600; font-size: 11px; color: var(--il-storm-80); text-transform: uppercase; letter-spacing: 0.03em; }
+  .modal-body{ padding: 24px 26px 28px; overflow-y: auto; flex: 1; min-height: 0; }
+  .modal-body .desc{ font-size: 15.5px; color: var(--il-storm-10); margin: 0 0 20px; }
+  .modal-section{ margin-bottom: 20px; }
+  .modal-section:last-child{ margin-bottom: 0; }
+  .modal-section h3{
+    font-family: var(--font-head); font-weight: 700; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--il-blue);
+    margin: 0 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--il-storm-80);
+  }
+  .modal-section p{ font-size: 14.5px; color: var(--il-storm-10); margin: 0; }
+  .modal-section ul{ margin: 0; padding-left: 20px; font-size: 14.5px; color: var(--il-storm-10); }
+  .modal-section li{ margin-bottom: 4px; }
+  .modal-ai-note{
+    background: var(--il-storm-95); border-left: 3px solid var(--il-orange);
+    padding: 12px 14px; font-size: 14px; font-style: italic; color: var(--il-storm-10);
+  }
+  .modal-pending{
+    font-family: var(--font-head); font-weight: 600; font-size: 12.5px; color: var(--il-storm);
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .modal-footer{
+    display:flex; align-items:center; justify-content: space-between; gap: 12px;
+    padding: 14px 26px; border-top: 1px solid var(--il-storm-80); background: var(--il-storm-95);
+    flex-shrink: 0;
+  }
+  .modal-link-btn{
+    font-family: var(--font-head); font-weight: 700; font-size: 12px;
+    color: var(--il-blue); background: #fff; border: 1px solid var(--il-blue);
+    padding: 9px 14px; cursor: pointer; min-height: 40px;
+  }
+  .modal-link-btn:hover, .modal-link-btn:focus-visible{ background: var(--il-blue); color: #fff; }
+  .modal-link-status{ font-family: var(--font-head); font-weight: 600; font-size: 11.5px; color: var(--il-prairie); }
+  /* ---------- FOOTER ---------- */
+  footer{ background: var(--il-blue); color: var(--il-storm-80); padding: 34px 0 44px; }
+  footer .wrap{ display:flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12.5px; }
+  footer .wrap p{ margin:0; max-width: 60ch; }
+  footer a{ color: #fff; }
+  footer a:hover, footer a:focus-visible{ color: var(--il-orange); }
+  /* ---------- TABS ---------- */
+  .tabbar{ background: var(--il-storm-95); border-bottom: 1px solid var(--il-storm-80); }
+  .tablist{ display:flex; gap: 4px; }
+  .tab-btn{
+    font-family: var(--font-head); font-weight: 700; font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--il-storm-10);
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 16px 18px;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .tab-btn:hover{ color: var(--il-blue); }
+  .tab-btn[aria-selected="true"]{
+    color: var(--il-blue);
+    border-bottom-color: var(--il-orange);
+  }
+  [role="tabpanel"]{ outline: none; }
+  [role="tabpanel"][hidden]{ display: none; }
+  /* ---------- FEEDBACK PANEL ---------- */
+  section.feedback-intro{ padding: 44px 0 8px; border-bottom: 1px solid var(--il-storm-80); background: var(--il-storm-95); }
+  section.feedback-stats{ padding: 44px 0 10px; }
+  section.feedback-charts{ padding: 10px 0 90px; }
+  .stat-cards{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .stat-card{
+    background: var(--il-blue); color:#fff;
+    padding: 24px 26px; border-top: 5px solid var(--il-orange);
+  }
+  .stat-card h3{ font-family: var(--font-head); font-weight: 700; font-size: 17px; margin: 0 0 16px; color:#fff; }
+  .stat-card .stat-row{ display:flex; gap: 26px; flex-wrap: wrap; }
+  .stat-card .metric{ }
+  .stat-card .metric .v{ font-family: var(--font-head); font-weight: 800; font-size: 30px; color: var(--il-orange); line-height:1; }
+  .stat-card .metric .k{ font-family: var(--font-head); font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--il-storm-80); margin-top: 6px; }
+  .chart-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .chart-card{ background: #fff; border: 1px solid var(--il-storm-80); padding: 22px 24px 20px; }
+  .chart-card h3{ font-family: var(--font-head); font-weight: 700; font-size: 16px; margin: 0 0 2px; color: var(--il-blue); }
+  .chart-card .n{ font-family: var(--font-head); font-weight: 600; font-size: 11.5px; color: var(--il-storm); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px; }
+  .bars{ display:flex; align-items:flex-end; gap: 10px; height: 190px; border-bottom: 1px solid var(--il-storm-80); padding: 0 2px; }
+  .bar-col{ flex:1; display:flex; flex-direction: column; align-items:center; justify-content:flex-end; height:100%; }
+  .bar-col .val{ font-family: var(--font-head); font-weight: 700; font-size: 12.5px; color: var(--il-blue); margin-bottom: 6px; }
+  .bar-col .bar{ width: 60%; background: var(--il-orange); min-height: 2px; }
+  .bar-labels{ display:flex; gap: 10px; padding: 8px 2px 0; }
+  .bar-labels span{
+    flex:1; text-align:center; font-family: var(--font-head); font-weight: 600;
+    font-size: 10.5px; color: var(--il-storm-10); text-transform: uppercase; letter-spacing: 0.02em;
+  }
+  .data-table{ width:100%; border-collapse: collapse; margin-top: 18px; font-size: 13.5px; }
+  .data-table caption{ text-align:left; font-family: var(--font-head); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--il-storm); margin-bottom: 8px; }
+  .data-table th, .data-table td{ text-align: right; padding: 7px 8px; border-bottom: 1px solid var(--il-storm-80); }
+  .data-table th:first-child, .data-table td:first-child{ text-align: left; }
+  .data-table thead th{ font-family: var(--font-head); font-weight: 700; color: var(--il-blue); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .data-table tbody th{ font-weight: 600; color: var(--il-storm-10); }
+  /* ---------- SURVEY RESULTS: overview stats ---------- */
+  .overview-cards{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 8px; }
+  .ov-card{ background:#fff; border:1px solid var(--il-storm-80); border-top: 4px solid var(--il-orange); padding: 18px 18px 16px; }
+  .ov-card .v{ font-family: var(--font-head); font-weight: 800; font-size: 26px; color: var(--il-blue); line-height:1; font-variant-numeric: tabular-nums; }
+  .ov-card .k{ font-family: var(--font-head); font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--il-storm); margin-top: 8px; }
+  .exp-table-wrap{ background:#fff; border:1px solid var(--il-storm-80); padding: 20px 22px; margin-top: 18px; }
+  .exp-table-wrap h3{ font-family: var(--font-head); font-weight: 700; font-size: 14px; margin: 0 0 4px; color: var(--il-blue); }
+  .exp-table-wrap .note{ font-size: 13px; color: var(--il-storm); margin: 4px 0 0; }
+  /* ---------- SURVEY RESULTS: quick nav ---------- */
+  .quicknav{ display:flex; flex-wrap:wrap; gap: 8px 10px; margin-top: 22px; padding-top: 18px; border-top: 1px dashed var(--il-storm-80); }
+  .quicknav-label{ font-family: var(--font-head); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--il-storm); align-self:center; margin-right: 4px; }
+  .quicknav a{
+    font-family: var(--font-head); font-weight: 600; font-size: 12.5px;
+    color: var(--il-blue); background: #fff; border: 1px solid var(--il-storm-80);
+    padding: 7px 12px; text-decoration:none;
+  }
+  .quicknav a:hover, .quicknav a:focus-visible{ border-color: var(--il-blue); color: var(--il-altgeld); text-decoration:none; }
+  /* ---------- SURVEY RESULTS: theme sections ---------- */
+  .results-theme{ padding: 46px 0; border-bottom: 1px solid var(--il-storm-80); }
+  .results-theme:last-of-type{ border-bottom: none; }
+  .theme-head{ margin-bottom: 24px; scroll-margin-top: 76px; }
+  .theme-head .theme-kicker{ font-family: var(--font-head); font-weight: 700; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--il-altgeld); margin: 0 0 6px; }
+  .theme-head h2{ font-family: var(--font-head); font-weight: 800; font-size: 24px; margin: 0 0 6px; color: var(--il-blue); }
+  .theme-head p{ font-size: 15px; color: var(--il-storm-10); max-width: 90ch; margin:0; }
+  /* ---------- SURVEY RESULTS: open-ended comments ---------- */
+  .comments-block{ background:#fff; border: 1px solid var(--il-storm-80); padding: 22px 24px 20px; margin-top: 24px; }
+  .comments-block h3{ font-family: var(--font-head); font-weight: 700; font-size: 16px; margin: 0 0 2px; color: var(--il-blue); }
+  .comments-meta{ font-family: var(--font-head); font-weight: 600; font-size: 11.5px; color: var(--il-storm); text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 16px; }
+  ul.comment-list{ list-style: none; margin: 0; padding: 0; display:flex; flex-direction: column; gap: 12px; }
+  ul.comment-list li{
+    font-size: 14.5px; color: var(--il-storm-10); line-height: 1.6;
+    padding: 12px 14px; background: var(--il-storm-95); border-left: 3px solid var(--il-storm-80);
+  }
+  ul.comment-list li::before{ content: "\201C"; color: var(--il-storm-60); font-family: Georgia, serif; }
+  ul.comment-list li::after{ content: "\201D"; color: var(--il-storm-60); font-family: Georgia, serif; }
+  .comments-toggle{
+    margin-top: 16px;
+    font-family: var(--font-head); font-weight: 700;
+    font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--il-blue); background: #fff; border: 1px solid var(--il-blue);
+    padding: 10px 16px; cursor: pointer; min-height: 40px;
+    display:inline-flex; align-items:center; gap: 8px;
+  }
+  .comments-toggle:hover{ background: var(--il-blue); color: #fff; }
+  .comments-toggle .arrow{ transition: transform .15s ease; display:inline-block; }
+  .comments-toggle[aria-expanded="true"] .arrow{ transform: rotate(180deg); }
+  /* ---------- SURVEY RESULTS: sharing / redaction ---------- */
+  .redaction-note{
+    background: var(--il-storm-95); border-left: 3px solid var(--il-orange);
+    padding: 14px 18px; font-size: 13.5px; color: var(--il-storm-10); margin-top: 22px;
+  }
+  @media (max-width: 900px){
+    .overview-cards{ grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 720px){
+    .overview-cards{ grid-template-columns: 1fr; }
+    .stat-cards, .chart-grid{ grid-template-columns: 1fr; }
+    .tablist{ overflow-x:auto; }
+  }
+    .project-grid{ grid-template-columns: repeat(2,1fr); }
+    .hero-grid{ grid-template-columns: 1fr; gap: 30px; }
+    .stat-block{ border-left:none; padding-left:0; border-top: 1px solid rgba(255,255,255,0.25); padding-top: 20px; }
+    .method-inner{ grid-template-columns: 1fr; gap: 10px; }
+  }
+  @media (max-width: 640px){
+    .wrap{ padding: 0 18px; }
+    .family-grid{ grid-template-columns: 1fr 1fr; }
+    .project-grid{ grid-template-columns: 1fr; }
+    .stat-block{ grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="masthead">
+  <div class="wrap">
+    <div class="unit"><span class="block-i" aria-hidden="true">I</span> University of Illinois Urbana&#8211;Champaign</div>
+
+  </div>
+</div>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span aria-hidden="true">&#9670;</span> Summer AI Studio 2026</div>
+    <h1 class="title"> <span class="accent">AI in the classroom</span></h1>
+    <div class="hero-grid">
+      <p class="hero-lede">
+      Thirty-four instructors    spent&nbsp; five weeks in the Summer AI Studio designing how generative AI could be integrated into their courses. The entries below are compiled from the final AI Integration Design Document submitted by each participant.&nbsp;The taxonomy sorts each submission by the role the AI plays as described in the design documents.</p>
+      <div class="stat-block">
+        <div class="stat"><div class="num" id="statDesigns">33</div><div class="label">course designs</div></div>
+        <div class="stat"><div class="num" id="statFamilies">5</div><div class="label">Integration Strategies</div></div>
+        <div class="stat"><div class="num" id="statDepts">22</div><div class="label">departments</div></div>
+        <div class="stat"><div class="num">15&#8211;640</div><div class="label">enrollment range</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="tabbar">
+  <div class="wrap">
+    <div class="tablist" role="tablist" aria-label="Site sections">
+      <button class="tab-btn" id="tab-guide" role="tab" type="button" aria-selected="true" aria-controls="panel-guide">AI Integrations</button>
+      <button class="tab-btn" id="tab-feedback" role="tab" type="button" aria-selected="false" aria-controls="panel-feedback" tabindex="-1">Participant Survey Results</button>
+    </div>
+  </div>
+</div>
+<main id="main">
+<div id="panel-guide" role="tabpanel" aria-labelledby="tab-guide" tabindex="0">
+<section class="method" aria-labelledby="method-heading">
+  <div class="wrap">
+
+      <p class="disclosure">This is an AI-generated visualization built for internal review, not an official University of Illinois publication.&nbsp;Descriptions are paraphrased summaries of each instructor's own submission, not verbatim excerpts.&nbsp;Compiled from thirty-four AI Integration Design Documents submitted to Summer AI Studio, July–August 2026, University of Illinois Urbana–Champaign.</p>
+  </div>
+</section>
+<section class="families" aria-labelledby="families-heading">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="families-heading">AI Integration Strategies</h2>
+      <div class="hint">Select a strategy to filter the projects below</div>
+    </div>
+    <div class="family-grid" id="familyGrid" role="group" aria-label="Filter projects by pedagogical family"></div>
+  </div>
+</section>
+<section class="controls" aria-label="Search and filter controls">
+  <div class="wrap">
+    <div class="controls-inner">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <label for="searchInput" class="visually-hidden">Search by course, instructor, department, or mechanism</label>
+        <input type="text" id="searchInput" placeholder="Search course, instructor, department, or mechanism&hellip;">
+      </div>
+      <label for="deptFilter" class="visually-hidden">Filter by department</label>
+      <select id="deptFilter"><option value="">All departments</option></select>
+      <button class="clear-btn" id="clearBtn" type="button">Clear filters</button>
+    </div>
+    <div class="result-count" id="resultCount" role="status" aria-live="polite"></div>
+  </div>
+</section>
+<section class="projects" aria-labelledby="projects-heading">
+  <div class="wrap">
+    <h2 id="projects-heading" class="visually-hidden">Project index</h2>
+    <div class="project-grid" id="projectGrid"></div>
+  </div>
+</section>
+</div>
+<div id="panel-feedback" role="tabpanel" aria-labelledby="tab-feedback" tabindex="0" hidden>
+<section class="feedback-intro" aria-labelledby="feedback-heading">
+  <div class="wrap">
+    <div class="method-inner">
+      <h2 id="feedback-heading" class="method-label">Survey results</h2>
+      <div class="method-text">
+        <p>The CITL Summer AI Studio End-of-Studio Survey went to all 34 faculty members who took part in the 2026 Studio their answers are reported in full below.</p>
+       
+        <p class="disclosure">This page is an AI-generated visualization built for internal review, not an official University of Illinois publication. Verbatim comments have been withheld throughout for respondents who did not wish to share them, even anonymously — see <a href="#results-sharing">Sharing permissions</a> below.</p>
+      </div>
+    </div>
+    <div class="overview-cards" id="overviewCards"></div>
+    <div class="exp-table-wrap">
+      <h3>Prior AI experience, from the baseline (intake) survey</h3>
+      <table class="data-table" id="expTable">
+        <caption>Faculty experience groups (n = 34)</caption>
+        <thead><tr><th scope="col">Group</th><th scope="col">N</th><th scope="col">Percent</th></tr></thead>
+        <tbody id="expTableBody"></tbody>
+      </table>
+      <p class="note">No statistically significant differences were found among the three experience groups in ratings of workshop quality (Q11), the usefulness of the work accomplished (Q12), or the overall value of the workshop experience (Q13) — the Studio appears to have landed similarly well regardless of a participant's starting familiarity with AI.</p>
+    </div>
+    <nav class="quicknav" aria-label="Jump to a results section">
+      <span class="quicknav-label">Jump to:</span>
+      <a href="#results-support">Support during the studio</a>
+      <a href="#results-fluency">AI Fluency Modules</a>
+      <a href="#results-goals">Achieving project goals</a>
+      <a href="#results-quality">Quality &amp; value</a>
+      <a href="#results-recommendations">Challenges &amp; recommendations</a>
+      <a href="#results-sharing">Sharing permissions</a>
+    </nav>
+  </div>
+</section>
+
+<section class="results-theme" id="results-support" aria-labelledby="results-support-heading">
+  <div class="wrap">
+    <div class="theme-head">
+      <p class="theme-kicker">Q2 &ndash; Q4</p>
+      <h2 id="results-support-heading">Support during the studio</h2>
+      <p>How supported participants felt during the two halves of the program, and how much they were able to make use of their assigned graduate affiliates.</p>
+    </div>
+    <div class="chart-grid" id="chartGrid-support"></div>
+    <div id="comments-support"></div>
+  </div>
+</section>
+
+<section class="results-theme" id="results-fluency" aria-labelledby="results-fluency-heading">
+  <div class="wrap">
+    <div class="theme-head">
+      <p class="theme-kicker">Q5 &ndash; Q7</p>
+      <h2 id="results-fluency-heading">AI Fluency Modules</h2>
+      <p>Most participants accessed the self-paced AI Fluency Modules and found them helpful; among those who didn't, time was the most common reason.</p>
+    </div>
+    <div class="chart-grid" id="chartGrid-fluency"></div>
+    <div id="comments-fluency"></div>
+  </div>
+</section>
+
+<section class="results-theme" id="results-goals" aria-labelledby="results-goals-heading">
+  <div class="wrap">
+    <div class="theme-head">
+      <p class="theme-kicker">Q8 &ndash; Q9</p>
+      <h2 id="results-goals-heading">Achieving project goals</h2>
+      <p>The large majority of participants reached or exceeded the project goals they set for themselves at the start of the Studio.</p>
+    </div>
+    <div class="chart-grid" id="chartGrid-goals"></div>
+    <div id="comments-goals"></div>
+  </div>
+</section>
+
+<section class="results-theme" id="results-quality" aria-labelledby="results-quality-heading">
+  <div class="wrap">
+    <div class="theme-head">
+      <p class="theme-kicker">Q11 &ndash; Q13</p>
+      <h2 id="results-quality-heading">Quality &amp; value</h2>
+      <p>Participants rated the overall quality of both halves of the Studio highly, and were confident the work they produced will be useful going forward.</p>
+    </div>
+    <div class="chart-grid" id="chartGrid-quality"></div>
+  </div>
+</section>
+
+<section class="results-theme" id="results-recommendations" aria-labelledby="results-recommendations-heading">
+  <div class="wrap">
+    <div class="theme-head">
+      <p class="theme-kicker">Q10, Q14 &ndash; Q15</p>
+      <h2 id="results-recommendations-heading">Challenges &amp; recommendations</h2>
+      <p>Time was, by a wide margin, the challenge participants named most. Their suggestions for the next cohort — and their views on whether the Studio could move to the academic year — are collected here in full.</p>
+    </div>
+    <div id="comments-recommendations"></div>
+  </div>
+</section>
+
+<section class="results-theme" id="results-sharing" aria-labelledby="results-sharing-heading">
+  <div class="wrap">
+    <div class="theme-head">
+      <p class="theme-kicker">Q16</p>
+      <h2 id="results-sharing-heading">Sharing permissions</h2>
+      <p>At the close of the survey, participants were asked whether their verbatim open-ended comments could be shared in reporting or with the Provost's Office, which sponsors the Studio.</p>
+    </div>
+    <div class="chart-grid" id="chartGrid-sharing"></div>
+    <p class="redaction-note">Two respondents asked that their verbatim comments not be shared at all, even anonymously; a further twenty asked to be quoted only without their name attached. In line with those wishes, this page never attaches a name to any comment, and any comment from one of the two respondents who declined to share has been withheld from every "show all" list above rather than published without their consent — noted, where it occurred, as a response withheld by request.</p>
+  </div>
+</section>
+</div>
+</main>
+<dialog id="projectModal" aria-labelledby="modalTitle">
+  <div class="modal-inner">
+    <div class="modal-head">
+      <div class="modal-top-row">
+        <div>
+          <span class="modal-accession" id="modalAccession"></span>
+          <div class="modal-course-code" id="modalCourseCode"></div>
+        </div>
+        <button type="button" class="modal-close" id="modalClose" aria-label="Close details">&times;</button>
+      </div>
+      <h2 id="modalTitle"></h2>
+      <div class="modal-instructor" id="modalInstructor"></div>
+      <div class="modal-tags" id="modalTags"></div>
+      <div class="modal-meta" id="modalMeta"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer">
+      <button type="button" class="modal-link-btn" id="modalCopyLink">Copy link to this project</button>
+      <span class="modal-link-status" id="modalLinkStatus" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+</dialog>
+<footer>
+  <div class="wrap">
+ <p>The Center for Innovation in Teaching & Learning</p>
+  </div>
+</footer>
+<script>
+const FAMILIES = [
+  {
+    id: 'persona',
+    name: 'Simulated Personas',
+    latin: 'Persona simulata',
+    color: 'var(--il-berry)',
+    rule: 'AI plays a character with a stake in the outcome.',
+    desc: 'The AI is given a point of view — client, patient, teammate, critic, stakeholder — and the student has to work with or against it, not just query it.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3.2"/><path d="M2 21c0-3.9 2.7-7 6-7s6 3.1 6 7"/><circle cx="17.5" cy="7" r="2.4" opacity="0.55"/><path d="M14.5 21c.3-3 2-6 3-6" opacity="0.55"/></svg>'
+  },
+  {
+    id: 'coach',
+    name: 'Coaches & Tutors',
+    latin: 'Praeceptor adiuvans',
+    color: 'var(--il-patina)',
+    rule: 'AI scaffolds thinking without handing over the answer.',
+    desc: 'A standing tutor or navigator students return to repeatedly, built to draw thinking out through questions rather than deliver a finished answer.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>'
+  },
+  {
+    id: 'critique',
+    name: 'Critique & Audit Targets',
+    latin: 'Corpus examinandum',
+    color: 'var(--il-altgeld)',
+    rule: 'The AI’s output is what gets graded, not the student’s.',
+    desc: 'Students are handed an AI answer, transcript, or claim and succeed by finding what it got wrong, missed, fabricated, or flattened.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="21" y2="21"/><line x1="8" y1="10.5" x2="13" y2="10.5" opacity="0.6"/></svg>'
+  },
+  {
+    id: 'drafting',
+    name: 'Drafting & Production',
+    latin: 'Manus fabricans',
+    color: 'var(--il-industrial)',
+    rule: 'AI helps build a real, gradable artifact.',
+    desc: 'The AI acts as an extra pair of hands on a concrete deliverable — a portfolio, a website, a chart, a term base — with the student directing and revising.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.5 3.5l6 6L8 22H2v-6L14.5 3.5z"/><path d="M12 6l6 6" opacity="0.6"/></svg>'
+  },
+  {
+    id: 'policy',
+    name: 'Course-Level Redesign',
+    latin: 'Curriculum totum',
+    color: 'var(--il-prairie)',
+    rule: 'The unit of change is the whole course, not one assignment.',
+    desc: 'A standing use policy, literacy thread, onboarding module, or wholesale rebuild of a course — the design lives in the syllabus, not a single activity.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v17H6.5A2.5 2.5 0 014 16.5v-12z"/><path d="M4 16.5A2.5 2.5 0 016.5 19H20" opacity="0.6"/><line x1="8" y1="7" x2="15" y2="7" opacity="0.6"/><line x1="8" y1="10" x2="15" y2="10" opacity="0.4"/></svg>'
+  },
+  {
+    id: 'grading',
+    name: 'Grading Engines',
+    latin: 'Machina examinans',
+    color: 'var(--il-earth)',
+    rule: 'The AI works for the instructor, not the student.',
+    desc: 'Backend infrastructure that reads, scores, and drafts feedback on student work at a volume no grading staff could sustain — students experience it only as feedback, never as a tool they operate themselves.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3.5h9l4 4v13a1 1 0 01-1 1H6a1 1 0 01-1-1v-16a1 1 0 011-1z"/><path d="M15 3.5v4h4" opacity="0.6"/><path d="M8.5 13.5l2 2 4-4.5" /></svg>'
+  }
+];
+const PROJECTS = [
+  {n:1, code:'RST 460', title:'Event Management in Recreation, Sport, and Tourism', instructor:'Sarah Agate', dept:'Recreation, Sport & Tourism', level:'Undergrad', size:'~90 students', fam:['drafting'],
+   desc:'Student groups use AI to draft, critique, and revise each of 13 sections of a semester-long event-planning portfolio, keeping a running decision log of what they kept and rejected.',
+   detail:{
+     goals:['Apply AI tools to specific components of the event-planning process','Assess AI-generated recommendations for accuracy, bias, and feasibility before using them','Identify ethical considerations for responsible AI use in professional event planning'],
+     mechanism:'Each of the 13 portfolio modules follows the same three-step arc: draft with your group, run the draft through an AI tool and ask what’s missing or could improve, then critique the AI’s changes together — what it added, what it removed, what assumptions it made, and whether those assumptions hold for your specific event and community.',
+     assessment:'Rubric scores on the critique/reflection portion of each module, sampled AI-use decision logs, and two scenario-based final-exam questions that apply the same AI-assessment skills to a new case.',
+     aiNote:'Agate used Claude to expand the planning questions for each of the 13 modules and to draft Canvas rubrics, then edited both for fit — simplifying an overly granular 4-tier rubric down to 3 tiers and cutting AI suggestions that assumed larger-scale events than students would actually be planning.'
+   }},
+  {n:2, code:'DANC 100', title:'Introduction to Contemporary Dance', instructor:'Betsy Brandt', dept:'Dance', level:'Undergrad · GenEd · online', size:'flagship online course', fam:['policy'],
+   desc:'Rather than one assignment, an entire online GenEd course is reworked around AI-literacy resources and hands-on exercises, starting with an early module.',
+   detail:{
+     goals:['Build AI literacy skills that transfer beyond this single course','Understand how contemporary artists use AI as both content and method','Practice using AI as a creative thought-partner while staying the author of the work'],
+     mechanism:'The featured example, "AI as Critic," gives students a real Claude-written critique of a Dance at Illinois performance and asks them to hold it against the four components of an effective critique taught in lecture — is the description detailed enough to picture the movement, is the interpretation backed by evidence, and what did the AI just flatly miss.',
+     assessment:'A rubric compares students’ point-by-point analysis against the lecture’s critique framework; success is measured by whether they can name specifically where the AI’s critique succeeded or fell short, not by agreement with any single verdict.',
+     aiNote:'The AI use is transparent by design here — Brandt generated the sample critique from Claude herself and built the assignment around showing students exactly how it was made.'
+   }},
+  {n:3, code:'SHS 430', title:'Development and Disorders of Phonology and Articulation', instructor:'Amy Brummel', dept:'Speech & Hearing Science', level:'Graduate', size:'~24 students', fam:['persona'],
+   desc:'An AI-simulated pediatric client stands in for a first clinical interview in a Clinical Reasoning Lab, giving first-year SLP students low-stakes practice gathering a case history.',
+   detail:{
+     goals:['Establish rapport with a caregiver during an initial evaluation','Conduct a comprehensive pediatric case-history interview and ask purposeful follow-ups','Develop and justify initial clinical hypotheses from the information gathered'],
+     mechanism:'Students interview an AI playing a parent whose child was referred for a speech concern, through Illinois Chat. The AI stays fully in character — it answers only from the parent’s perspective, uses no clinical language, and reveals information only when the right question is asked; it never coaches, hints, or names a diagnosis. It’s the first in a planned series of cases that will escalate across the semester.',
+     assessment:'Students submit the full interview transcript alongside a case-history summary, up to three clinical hypotheses with supporting evidence, an assessment plan, and a reflection — graded on the quality of their questions and reasoning, not on landing the "right" diagnosis.',
+     aiNote:'Brummel used AI (ChatGPT-5.5) to help draft the assignment structure and the hidden parent profile the AI plays, but treated all of it as a starting point: which clinical skills matter, how realistic the simulated parent’s behavior is, and what counts as diagnostically appropriate stayed her call as a clinical educator.'
+   }},
+  {n:4, code:'IB 150', title:'Organismal and Evolutionary Biology', instructor:'Ben Clegg', dept:'Integrative Biology', level:'Undergrad · flipped', size:'large lecture', fam:['coach'],
+   desc:'A portable "coaching contract" turns any chatbot into a Socratic reasoning coach and a show-and-tell coach for exam review — built to refuse simply handing over answers.',
+   detail:{
+     goals:['Use AI in ways that don’t lead to cognitive offloading','Strengthen deductive and application-based reasoning through AI-assisted study','Recognize and avoid superficial, minimalist AI answers'],
+     mechanism:'A "coaching contract" document, uploaded into any AI chat session, locks the AI into Socratic questioning mode so it can’t hand over answers even under repeated pressure. It pairs with a "show-and-tell" coach built into course review modules that watches a student’s work and pushes with guiding questions. Clegg built this after noticing students proudly describing AI use that amounted to having it summarize lecture transcripts for them, alongside declining exam scores.',
+     assessment:'All of it is optional and ungraded by design — the real check is the proctored, no-device final exam itself, where Clegg plans to compare performance on questions matched to AI-coached review modules against questions that weren’t, controlling for students’ incoming reasoning scores.',
+     aiNote:'Clegg built the coaching contracts and the review modules’ interactive components himself using Claude Code, giving it tightly specified prompts for each exercise and iterating through many rounds of refinement rather than letting it design freely.'
+   }},
+  {n:5, code:'RST 501', title:'Foundations and Current Issues in Recreation, Sport and Tourism', instructor:'Mariela Fernandez', dept:'Recreation, Sport & Tourism', level:'Graduate', size:'~21 students', fam:['policy','critique'],
+   desc:'Students co-create the class’s shared AI use agreement through in-class dialogue in weeks 1–2, then apply it to a graded assignment on leisure and technology.',
+   detail:{
+     goals:['Spot AI hallucinations and detect bias in AI output','Understand AI’s limitations and make informed decisions about trusting its answers','Use AI responsibly and transparently in professional academic work'],
+     mechanism:'Students co-write the class’s AI use agreement in week 1, sorting course tasks into green-light, yellow-light, and red-light categories for AI use. Later, in the "Interviewing the Machine" activity, everyone puts the same three fixed prompts to an AI tool of their choice, then compares answers in groups against the assigned readings, and individually rewrites one AI claim their group found wrong or oversimplified.',
+     assessment:'The AI use agreement is participation credit only. The Interviewing the Machine assignment is worth 20 points — 5 for bringing in the AI responses, 15 for the individual rewrite — plus mid- and end-of-semester surveys asking whether students actually stuck to the class’s own AI principles.',
+     aiNote:'Fernandez used Claude to draft the integration and caught it reusing the previous instructor’s AI policy by mistake, correcting it with her own stance. She also overrode Claude’s suggestion to make the rewrite a group task (she made it individual) and to leave the assignment ungraded (she made it worth 20 points).'
+   }},
+  {n:6, code:'ACCY 201', title:'Accounting and Accountancy I', instructor:'Mitch Fisher', dept:'Accountancy', level:'Undergrad · required', size:'~550 students', fam:['critique'],
+   desc:'Students are handed a case where a fictional intern used Microsoft Copilot to prepare journal entries and financial statements from an incomplete prompt, and must audit the AI’s output against the full transaction data to find and correct what it got wrong.',
+   detail:{
+     goals:['Recognize when an AI-generated answer is missing necessary context','Apply fundamental accounting rules to catch and correct AI errors','Produce corrected financial statements without relying on AI to do it'],
+     mechanism:'Students never prompt the AI themselves. Copilot was fed an intentionally incomplete prompt, missing several required adjusting entries (depreciation, accrued wages, prepaid supplies, interest), and produced confident, wrong financial statements as a result. Students compare that output against the full transaction list and exhibit data, identify what’s missing or wrong, and rebuild the statements by hand.',
+     assessment:'Extra-credit Canvas submission graded on whether students correctly identify what was missing or wrong in the AI’s output, annotate the incorrect conclusions, and produce accurate corrected journal entries and financial statements.',
+     aiNote:'Fisher tested prompts himself in Copilot and Gemini before settling on Copilot (a UIUC-approved tool). He specifically wanted the AI to fail at incorporating context it wasn’t given, since the whole assignment depends on that gap being real rather than staged.'
+   }},
+  {n:7, code:'SHS 570', title:'Evidence-Based Practice in Audiology & Speech-Language Pathology', instructor:'Mary Flaherty', dept:'Speech & Hearing Science', level:'Graduate', size:'25–35 students', fam:['critique'],
+   desc:'Three checkpoints inside an existing systematic-review project: catching fabricated AI citations, comparing AI-summarized methods sections across tools, and checking AI’s synthesis against the group’s own already-written answer.',
+   detail:{
+     goals:['Recognize that AI-generated citations require independent verification','Recognize that AI can describe a study competently without evaluating it','Apply independent synthesis before comparing your own conclusion to AI’s'],
+     mechanism:'Three reflections are threaded through students’ existing systematic-review project rather than added as new work: checking AI-suggested citations against their own database search (catches fabricated citations), comparing two AI tools’ summaries of a study’s methods section against each other, and writing their group’s own answer to their research question before ever showing it to AI — so there’s a dated record proving the order of operations.',
+     assessment:'Each reflection is graded on structured fields rather than open prose, and each one requires an input only the student has (their own search results, their own appraisal judgments, their own group’s already-written synthesis) — so, in Flaherty’s words, none of the three can be meaningfully completed by AI alone.',
+     aiNote:'Flaherty used Claude and ChatGPT extensively as a drafting and stress-testing partner, then routinely pushed back — Claude’s early proposals over-engineered several prompts (multi-branch conditional logic for a simple comparison task) and suggested anchor tasks that were either too trivial for AI to fail at or too advanced for first-semester students to verify independently.'
+   }},
+  {n:8, code:'FSHN 120', title:'Contemporary Nutrition', instructor:'Toni Gist & Haeley Peters', dept:'Food Science & Human Nutrition', level:'Undergrad · honors', size:'~25 students (James Scholars)', fam:['policy'],
+   desc:'A 14-week, five-phase AI Nutrition Inquiry Project built as the semester-long capstone for an honors discussion section.',
+   detail:{
+     goals:['Distinguish credible from non-credible nutrition information','Evaluate evidence rather than popularity, and recognize AI’s limitations','Understand how a knowledge base shapes what an AI actually says'],
+     mechanism:'Across five stages over 14 weeks, honors students pick a nutrition claim, gather evidence on it from five different information environments (social media, commercial sites, generative AI, peer-reviewed literature, and government sources), decide source-by-source what’s credible enough to keep, and then use only their surviving evidence to design and build an educational AI avatar — so the avatar’s knowledge base is literally built from their own evidence-evaluation work.',
+     assessment:'Weighted across the five stages (10% claim selection, 25% evidence collection, 30% evidence evaluation, 20% avatar design, 15% showcase), with the largest share resting on the quality of students’ credibility analysis and reasoning, not the avatar’s polish.',
+     aiNote:'Gist used ChatGPT to help organize project milestones, refine workbook language, and generate visual concepts, but says AI could not determine the learning outcomes, assessment weights, sequencing, or how the project should fit into FSHN 120’s broader curriculum — those stayed her calls as the instructor of record.'
+   }},
+  {n:9, code:'ACCY 312 / 505', title:'Principles of Taxation / Federal Taxation', instructor:'Matthew Hutchens', dept:'Accountancy', level:'Undergrad & Graduate', size:'two linked courses', fam:['persona'],
+   desc:'An AI-simulated tax client supplies missing factual information for a return-preparation project — deliberately designed to never give tax advice, computations, or an answer key.',
+   detail:{
+     goals:['Identify material facts that are missing, ambiguous, or inconsistent in source documents','Translate tax issues into focused questions a nonexpert client can answer','Distinguish client-supplied facts from tax conclusions that remain the preparer’s responsibility'],
+     mechanism:'A custom Illinois Chat bot plays the taxpayer from a hidden fact bank, answering only in plain, client-style language — it can confirm business-use percentages or cash receipts if asked, but can’t name tax treatments, run calculations, or review the return. Students get one continuous engagement (no restarting for a better answer) and must write their messages as professional client emails, since deciding what to ask is itself part of the assessment.',
+     assessment:'Weighted 60% return accuracy, 20% quality of fact-development, and 20% professional communication — graded across the return, the full chat transcript, and an issues-and-assumptions memo together, since a technically correct return built on undocumented judgment calls doesn’t fully satisfy the rubric.',
+     aiNote:'Hutchens used ChatGPT and Claude to design and adversarially test the simulated client — probing it with "tell me everything," requests for tax advice, and prompt-injection attempts — and revised the system prompt whenever it leaked hidden facts or broke character. He chose an older, less costly model over newer ones specifically to balance realism against per-conversation cost at the 250-student online section’s scale.'
+   }},
+  {n:10, code:'JOUR 200', title:'Introduction to Journalism (online, non-majors)', instructor:'Colleen King', dept:'Journalism', level:'Undergrad · GenEd · async', size:'~270 students', fam:['persona'],
+   desc:'Students interview two custom-GPT sources — a police chief and an eyewitness to a fictional hit-and-run — then write a news story from what they gathered, with AI barred from the writing itself.',
+   detail:{
+     goals:['Practice source-based reporting: interviewing, following up, and verifying before writing','Synthesize and correctly attribute information from multiple, sometimes conflicting sources','Distinguish eyewitness testimony from official police information'],
+     mechanism:'Students interview two custom-GPT sources — a police chief and an eyewitness — about a fictional hit-and-run, built around a scene map and press release King also created. They then write a 300+ word inverted-pyramid news story, but are explicitly barred from using AI for the writing itself; only the interviewing is AI-assisted.',
+     assessment:'30 of 100 points come from the interview transcripts alone, not just the final story — rewarding students who ask real follow-up questions and verify facts, since King found students could otherwise skip straight to a polished story without doing the reporting legwork the assignment is meant to teach.',
+     aiNote:'King used ChatGPT/Codex to draft the source personas, fact file, and press release, and Google Gemini for the scene map, revising both repeatedly — she corrected the map’s crosswalk placement and witness sightline herself, and had students and colleagues test the source GPTs before deciding they revealed too much information at once, prompting a rewrite.'
+   }},
+  {n:11, code:'MACS 100', title:'Introduction to Popular Television & Movies', instructor:'Jonathan Knipp', dept:'Media & Cinema Studies', level:'Undergrad · GenEd · eText', size:'online eText course', fam:['persona'],
+   desc:'"Marginalia": students submit a film review to one of five AI critic personalities, styled on Siskel & Ebert, who annotate it in the margins and argue back.',
+   detail:{
+     goals:['Strengthen analytical skills by distinguishing personal opinion from academic analysis','Recognize how meaning and messaging get built into visual media','Practice defending or revising a critical position under pushback'],
+     mechanism:'Students submit a film review to one of five AI critic personas, each with a distinct rhetorical style loosely modeled on real film critics. The critic annotates the review in the margins against course lenses (representation, ideology, form, cultural context) and then talks with the student — either freeform, or a gamified "Change My Mind" mode giving students 12 exchanges to shift the critic’s opinion.',
+     assessment:'The tool is built to never write a review or essay for the student — it can only respond to and critique what a student already wrote, so the graded artifact is always the student’s own analytical work, not AI output.',
+     aiNote:'Knipp built the tool with Claude, which suggested the "AI as the world, not the tutor" persona-critic architecture. He’s still iterating on getting the critics to sound like a real conversation instead of essay comments, and has flagged that three of the five critic personas are people of color he doesn’t feel equipped to characterize with full authenticity — an open concern he’s asked for outside help on.'
+   }},
+  {n:12, code:'PS 100', title:'Introduction to Political Science', instructor:'Konstantinos Kourtikakis', dept:'Political Science', level:'Undergrad · major & GenEd', size:'lecture course', fam:['policy'],
+   desc:'A tiered policy applies different AI rules to different assessments: none on exams, open and transparent on discussion questions, permitted-but-restricted on analytical essays.',
+   detail:{
+     goals:['Learn to use AI to process, organize, and sharpen thinking without letting it decide what a text means','Practice identifying gaps, unjustified assumptions, or unaccounted-for cases in an argument','Defend or revise a position under direct in-person pushback'],
+     mechanism:'Different assessments get different rules rather than one blanket policy: exams (in-class, no AI, since the format already verifies individual understanding), weekly discussion questions (AI required and shown — students submit their prompt and the AI’s response alongside their own question), and three analytical essays (AI allowed but structurally resistant to it, since students must justify an original thesis using both assigned texts and Kourtikakis’s own lecture framing, a combination AI can’t reproduce).',
+     assessment:'Discussion questions are graded on engagement and intellectual development between a student’s first and revised question, not correctness. Essays are graded on the thesis-justification paragraph and how the argument uses both sources and lecture material — a semester-long paper trail of each student’s discussion questions gives graders a baseline to check essay writing against.',
+     aiNote:'Kourtikakis used Claude to work through a structured "lenses" exercise for the whole course design, and says it pushed him to think more broadly about what he wanted the course to accomplish before mapping AI onto it — calling it a model for the kind of human-AI collaboration he hopes to replicate for his students.'
+   }},
+  {n:13, code:'RST 100', title:'Recreation, Sport, and Tourism in Modern Society', instructor:'Toni Liechty', dept:'Recreation, Sport & Tourism', level:'Undergrad · large lecture', size:'large enrollment', fam:['critique'],
+   desc:'An AI chatbot interviews students about their own leisure habits and diagnoses which course theory best explains their behavior — then students grade that diagnosis against the textbook and defend a letter grade.',
+   detail:{
+     goals:['Distinguish a claim from a definition, and check both against the actual source','Critique an AI’s output against specific course concepts rather than a general impression','Practice giving evidence-based feedback rather than a simple right/wrong verdict'],
+     mechanism:'In the featured "Leisure Theory Lens" option, an AI chatbot interviews the student about their own recent free time, then diagnoses which of eight leisure theories best explains their behavior. The student’s job is to grade that diagnosis against the textbook’s actual definitions — citing the specific page or slide, naming at least one thing the AI got right and one it got wrong or oversimplified, and assigning it a letter grade they have to defend.',
+     assessment:'Students choosing the AI-integrated option submit their full chat transcript as an appendix alongside their critique; students choosing the original writing prompt follow the course’s separate AI-use disclosure policy instead. Both options share the same underlying rubric, adapted for consistency in the gradebook.',
+     aiNote:'Liechty, new to AI tools herself, moved from Gemini to a persistent Claude project so her drafts and notes stayed in one place, which she says visibly improved the results. She dropped an early idea to have AI role-play a historical figure for student interviews after Claude flagged that several plausible options risked producing shallow or offensive responses, and her own test run confirmed the concern.'
+   }},
+  {n:14, code:'EPSY 201', title:'Educational Psychology', instructor:'Aixa Marchand', dept:'Educational Psychology', level:'Undergrad · GenEd', size:'~200 students', fam:['critique'],
+   desc:'Two touchpoints: a week-2 unit on AI’s ethical and environmental costs, and a capstone assignment where students critique and improve an AI-generated lesson plan.',
+   detail:{
+     goals:['Reflect critically on the ethical and environmental costs of generative AI','Apply educational psychology concepts to identify what a lesson plan gets wrong','Practice being the expert who corrects AI rather than the student who defers to it'],
+     mechanism:'A week-2 unit pairs a reading or video on AI’s environmental and ethical costs with a KWL chart and small-group discussion on access and equity. Later, for the capstone lesson-plan project, groups feed AI a prompt deliberately engineered to produce a plausible-but-shallow "novice teacher" lesson plan — then must identify and fix its flawed assumptions using named course concepts (Vygotsky’s ZPD, Cognitive Load Theory, Self-Determination Theory).',
+     assessment:'The lesson-plan project weights theoretical justification at 60% of the grade, lesson feasibility and inclusivity at 30%, and evidence of a genuine "wrestling match" with the AI (not just accepting its first draft) at 10%.',
+     aiNote:'Marchand designed the constrained AI prompt herself so every group’s baseline lesson plan would share the same predictable flaws regardless of topic or grade level, keeping the assignment comparable across groups choosing very different lessons.'
+   }},
+  {n:15, code:'HK 207', title:'Introduction to Epidemiology', instructor:'Sheena Martenies', dept:'Health & Kinesiology', level:'Undergrad', size:'~26 students', fam:['persona'],
+   desc:'The Outbreak Investigation Simulator: a browser-based, AI-facilitated field investigation that puts students inside a simulated disease outbreak, no installation required.',
+   detail:{
+     goals:['Apply the epidemiologic triangle by assembling agent, host, and environment from separate sources','Follow the CDC field investigation sequence in the right order','Recover from a wrong conclusion using data rather than being told it’s wrong'],
+     mechanism:'Students investigate a fictional outbreak by questioning an AI that plays every person they’d encounter in the field — a clinician, a lab, an analyst who computes any number requested but never interprets it, and community members who only know their own exposures. The AI holds a hidden answer key and several built-in decoys; it never corrects a wrong lead, so students have to notice the data contradicting their theory and pivot on their own.',
+     assessment:'The graded artifact is the exported chat transcript, scored on the quality of the investigation rather than whether the student names the correct source — a student who reasons well but never quite gets there can outscore one who guesses right with nothing behind it. Every case number was changed from the original CDC teaching case, so an outside AI has nothing to retrieve if a student tries to shortcut it.',
+     aiNote:'Martenies built the whole simulator with Claude across roughly twelve sessions — Claude proposed the "AI as the world, not a tutor" architecture she wouldn’t have arrived at alone. When her own test playthrough hit vocabulary her students hadn’t learned yet, she sent Claude the actual textbook chapter and had it rewrite the in-character coaching in plain language.'
+   }},
+  {n:16, code:'HDFS 310', title:'Adult Development', instructor:'Elissa Mitchell', dept:'Human Development & Family Studies', level:'Undergrad · elective', size:'45–60 students', fam:['critique'],
+   desc:'Replaces an in-class debate with small groups critiquing an AI-generated explanation of emerging adulthood for missing perspectives and unstated assumptions.',
+   detail:{
+     goals:['Recognize that developmental pathways vary by culture, race, class, and circumstance','Evaluate and critique the limitations of a generative AI response','Practice revising AI output to be more accurate and inclusive'],
+     mechanism:'Small groups feed the identical prompt — "Explain the developmental stage of emerging adulthood" — into an AI tool of their choice, then work through a shared worksheet: identify at least three missing populations or perspectives, name at least two things the AI got right and two it oversimplified using specific course concepts, and rewrite at least one section to be more inclusive.',
+     assessment:'Completion-based and low-stakes by design — Mitchell grades on thoughtful engagement with every worksheet step, not on whether a group’s verdict on the AI matches any "correct" answer, since the point is honest critique rather than a right answer to reach.',
+     aiNote:'Mitchell had originally considered building a custom AI interview bot for a different course assignment, but Claude talked her out of it, pointing out that interacting with a bot isn’t the same as the human interview that assignment was designed to teach — so she kept that assignment as-is and used AI to design this activity instead.'
+   }},
+  {n:17, code:'RST Online', title:'MS & Professional Certificate Onboarding', instructor:'Mike Mulvaney', dept:'Recreation, Sport & Tourism', level:'Graduate · program-wide', size:'all incoming online students', fam:['policy'],
+   desc:'A Generative AI Fluency & Application Module delivered on Canvas to every incoming student in an online graduate program — not tied to any single course.',
+   detail:{
+     goals:['Distinguish generative AI from other forms of AI and understand core concepts','Apply University and departmental AI principles to realistic professional scenarios','Practice documenting and disclosing AI use the way working professionals increasingly do'],
+     mechanism:'A four-part, fully asynchronous Canvas module every incoming student completes before starting coursework: a professional discussion connecting AI to their own field, a principles-application assignment working through realistic RST scenarios (community recreation, collegiate athletics, tourism marketing), a practice AI-disclosure exercise where students write a mock transparency statement, and a final knowledge check requiring an 80% score (unlimited attempts) to complete.',
+     assessment:'All four components are low-stakes and developmental — the module measures whether students can distinguish AI types and apply the university’s and department’s AI principles to a scenario, not whether they reach any single "correct" answer.',
+     aiNote:'Mulvaney used Microsoft Copilot and ChatGPT for brainstorming and assessment drafting, but says AI-generated suggestions were consistently revised, reorganized, or rejected against program goals and graduate-level expectations — professional judgment remained essential for deciding what mattered most for RST professionals specifically.'
+   }},
+  {n:18, code:'JOUR 425', title:'Multimedia Editing and Design', instructor:'Margaret Yee Man Ng', dept:'Journalism', level:'Undergrad · majors', size:'~20 students/section', fam:['drafting'],
+   desc:'"Building Websites with AI": junior and senior journalism majors direct an AI to build their personal websites, positioning the student as creative director rather than coder.',
+   detail:{
+     goals:['Turn a vague project idea into a clear site plan before writing any code','Adapt a visual reference’s design language rather than copying it directly','Direct and correct AI-assisted work rather than just accepting its first output'],
+     mechanism:'A three-step "director" workflow, built after a Spring 2026 pilot showed students who asked AI to "build my whole website" in one prompt lost control of their own code. Now: Week 1 requires manual HTML/CSS before any AI tool unlocks; Step 1 has AI interview the student about their project before generating anything; Step 2 has AI adapt (not copy) a visual reference into a placeholder skeleton; Step 3 has AI batch-sort a folder of images onto the right pages, with students fixing any mismatches themselves.',
+     assessment:'Graded across five weighted components: project logic and planning (20%), visual matching and structure (25%), asset management and manual edits (25% — at least five manual code edits must be documented and highlighted), a "Fight the Machine Log" recording every prompt, rejection, and revision (15%), and content/presentation (15%).',
+     aiNote:'Ng used Claude and Cursor to draft assignment language and synthesize her Spring 2026 pilot findings, but rejected the AI’s suggestion to let students generate a complete site in a single prompt — that pilot data showed it caused code breakage and loss of ownership — and added back a half-structured placeholder step from her own workflow notes after the AI initially omitted it.'
+   }},
+  {n:19, code:'TRST 506', title:'Translation for the Professions', instructor:'Patricia Phillips', dept:'Translation & Interpreting Studies', level:'Grad & Undergrad cert', size:'dual-mode', fam:['coach'],
+   desc:'Students use a custom chatbot, the Illini Translation Coach, twice weekly to self-assess their own medical, scientific, and legal translations.',
+   detail:{
+     goals:['Reinforce tone, register, genre, and literal-vs-adapted translation strategies','Develop efficient prompt-writing and the ability to argue with the Coach’s feedback','Build awareness of what generative AI can and can’t reliably do in translation work'],
+     mechanism:'Students interact with a custom Illinois Chat bot, the Illini Translation Coach, at least twice a week for twelve weeks, posting a source text and their own English translation for feedback, then asking at least three follow-up questions probing that feedback before submitting one revised attempt. The Coach caps its responses at 300 words and won’t offer an alternate translation until a student has pushed back three times, specifically to avoid anchoring students to its output as automatically "better."',
+     assessment:'A weekly translation journal captures reactions, disagreements, and discovered limitations after each session; a 1,500-word final paper requires students to name three distinct advantages and three distinct disadvantages of the Coach, argued using both translation theory and AI-related concepts (hallucination, anchoring, cognitive offloading).',
+     aiNote:'Phillips iterated the Coach’s system prompt through Illinois Chat and Google Gemini, and removed an early "theoretical pocket" feature after Gemini itself flagged that LLMs are prone to confidently misattributing translation theory to the wrong scholars — a rare case of the AI naming its own likely failure mode. The system prompt was further refined using Claude.'
+   }},
+  {n:20, code:'CI/ESPY 485', title:'Assessing Student Performance', instructor:'Adam Poetzel', dept:'Curriculum & Instruction / Ed. Psychology', level:'Undergrad · preservice teachers', size:'~80 students', fam:['coach'],
+   desc:'An AI Coaching Worksheet gives future high-school teachers formative-assessment practice in week 6, right after they’ve learned the four phases of formative assessment.',
+   detail:{
+     goals:['Apply the four phases of formative assessment (clarify, elicit, interpret, act) to a real classroom-ready activity','Develop and defend professional assessment-design decisions','Practice treating AI feedback as a starting point to evaluate, not a fix to accept'],
+     mechanism:'A sequenced, tool-independent worksheet (works with Copilot Chat, Gemini, or Illinois Chat) walks students through one continuous AI conversation: establish context, strengthen learning targets, share draft materials, then get focused, single-phase feedback on each of the four formative-assessment phases in turn, ending in a synthesis step that names the three highest-leverage revisions. Preservice teachers complete this before revising their draft and presenting it to a peer-feedback group.',
+     assessment:'Graded through the course’s existing four-point Choice Board rubric, evidenced by the completed worksheet, the student’s ability to explain and defend their choices in peer feedback, and a final justification template — not by whether the final product simply looks AI-polished.',
+     aiNote:'Poetzel originally tried building a custom chatbot with a fixed coaching protocol, but found it unreliable — it strayed from the sequence, forgot prior context, or restarted at odd times. He pivoted to a plain worksheet of narrower, single-purpose prompts instead, which held up better in his piloting.'
+   }},
+  {n:21, code:'LA 214', title:'History of World Landscapes', instructor:'Pollyanna Rhee', dept:'Landscape Architecture', level:'Undergrad · GenEd', size:'~160 students', fam:['critique'],
+   desc:'Students transcribe a handwritten 19th-century letter themselves before comparing their transcription against an AI’s, surfacing exactly where the AI misreads history.',
+   detail:{
+     goals:['Understand how format and genre shape a primary source’s meaning','Practice paleography, weighing evidence, and thinking about audience','Compare a private letter’s account of environmental change against contextual sources'],
+     mechanism:'Students transcribe the opening lines of a handwritten 19th-century letter themselves before feeding it to an AI tool for its own transcription, then move from simple factual questions ("when and where was this written?") to more interpretive ones about environmental language and tone — directly comparing what they read against what the AI reported. A later group presentation researching the letter’s historical context requires that any AI-verified historical claim also be checked against a secondary source.',
+     assessment:'Weighted lightly (this is explicitly framed as a pilot) and focused on process over polish: a work journal documenting the research and AI-use workflow across the assignment’s six parts, and a final reflection on where AI succeeded, where it failed to notice something, and its broader significance to the student’s own work.',
+     aiNote:'Rhee used Google Gemini for the transcription tests herself first, and found real limits worth flagging to students: page-by-page transcription accuracy varied, and Gemini couldn’t reliably report page numbers for language patterns in a paginated 19th-century book despite the PDF being paginated correctly.'
+   }},
+  {n:22, code:'HK 111', title:'Introduction to Public Health', instructor:'Jenna Riis', dept:'Health & Kinesiology', level:'Undergrad · GenEd', size:'~100 students', fam:['critique','coach'],
+   desc:'Five redesigned discussion sections, including one testing AI health claims against scientific evidence and one using AI as a career-exploration coach.',
+   detail:{
+     goals:['Evaluate AI output against evidence rather than trusting its confidence','Use AI responsibly as a preparation and exploration tool, not a decision-maker','Practice collaborative discussion, professional communication, and constructive feedback'],
+     mechanism:'Five separate discussion-section activities spread across the semester, each pairing a different AI role with a different skill: comparing AI health claims against evidence (Misinformation Maze), using AI as a career-exploration interviewer, using AI to brainstorm and refine guest-speaker questions, using AI to understand an interest-holder’s perspective before a class town hall, and comparing AI-generated feedback against real peer feedback in a Critique Lab.',
+     assessment:'Each activity has its own learning objectives and a post-activity Canvas survey; activities are scored on engagement with the structured comparison and reflection tasks (naming what AI missed or got right) rather than on reaching any predetermined verdict.',
+     aiNote:'Riis built and piloted all five activities herself, testing prompts across multiple tools before finalizing them, and repeatedly shortened prompt language and assessments in response to her own pilot notes.'
+   }},
+  {n:23, code:'PSYC 100', title:'Introduction to Psychology', instructor:'Fernando Sanchez Hernandez', dept:'Psychology', level:'Undergrad · GenEd', size:'large lecture', fam:['critique'],
+   desc:'An unusual design constraint: students never operate an AI tool themselves. Instead they analyze pre-generated AI transcripts using course concepts as the analytic instrument.',
+   detail:{
+     goals:['Apply the tools of scientific thinking (falsifiability, correlation vs. causation, evidence quality) to real claims','Detect error in a fluent, confident-sounding explanation','Explain cognitive biases through mechanism, not just recognize them by name'],
+     mechanism:'Across three writing assignments spanning the semester, students analyze fixed, pre-generated AI transcripts — printed in the assignment and identical for every student in every section — checking a confident AI explanation against the textbook, comparing two AI-run experimental conditions, or checking an AI summary against a primary source. The design is explicitly justified on three grounds: environmental impact, equity (not every student has paid AI access), and gradeability (every TA is calibrated against the same fixed artifact).',
+     assessment:'Full credit on evaluation questions requires specific reference to the transcript itself ("the AI claimed X, but..."), which a student who skips the reading and pastes the question into their own chatbot can’t produce. Some questions also require content no AI has access to, like a student’s own autobiographical example mapped onto a bias definition.',
+     aiNote:'Sanchez Hernandez pre-generated all the AI transcripts himself using Claude Pro and ChatGPT, engineering each one to contain a specific, realistic weakness — an unsourced evidence claim, a textbook-level oversimplification — for students to catch, rather than letting the transcripts be either flawlessly correct or obviously wrong.'
+   }},
+  {n:24, code:'INFO/MACS/IS 202', title:'Social Aspects of Information Technology', instructor:'Madelyn Sanfilippo', dept:'Information Sciences', level:'Undergrad · GenEd', size:'150–225 students', fam:['policy'],
+   desc:'An AI-literacy thread running since Fall 2020, continually rebuilt as the underlying technology and the critical literature around it have changed.',
+   detail:{
+     goals:['Practice critical evaluation of real AI systems and applications','Compare and assess differing perspectives on AI performance and impact','Reflect on how judgments about an AI system change when informed by more evidence and viewpoints'],
+     mechanism:'A four-phase, 14-week Critical AI Reflections project: students contribute an original AI example to a shared class repository with their own structured evaluation, evaluate three classmates’ examples, participate in class discussion and a structured debate over examples that produced a real spread of opinions, and finally write a deeper final evaluation of one debated example. It replaces an earlier AI-literacy module Sanfilippo had run since 2020, most recently updated for the generative-AI era in 2022.',
+     assessment:'Weighted across all four phases (20/45/10/25 points), with the largest share on the three peer-example evaluations — assessed on whether students apply course frameworks accurately and reflect thoughtfully on disagreement, not on which side of a debate they land on.',
+     aiNote:'Sanfilippo tested her prior AI-literacy assignment against Copilot, Gemini, and ChatGPT for revision ideas, but threw the old assignment out rather than patch it — all three models could make it more technical or more general-audience, but none could sharpen its sociotechnical framing, which is the actual point of the course.'
+   }},
+  {n:25, code:'ECE 110', title:'Introduction to Electronics', instructor:'Jonathon Schuh', dept:'Electrical & Computer Engineering', level:'Undergrad · majors', size:'~500 students', fam:['drafting'],
+   desc:'Students use AI to plot and analyze MOSFET characterization data and build an interactive chart, writing and refining their own prompts to get there.',
+   detail:{
+     goals:['Use AI tools to analyze and visualize engineering data','Critically evaluate AI outputs using domain knowledge','Characterize MOSFET behavior from experimental data'],
+     mechanism:'Students feed a MOSFET characterization dataset to an AI tool of their choice, direct it to plot the data and build an interactive chart, then extract device parameters and check them against physical sanity tests — for example, is the threshold voltage smaller than every gate voltage tested? ECE 110 also defines some MOSFET concepts differently than standard textbooks, so an AI trained on generic material will sometimes contradict the course’s own framing, which is itself part of what students have to catch.',
+     assessment:'Explanations count more than the numbers themselves — the dataset comes from a simulation, so the "correct" characterization is already known, and grading focuses on whether a student’s reasoning about the AI’s output is sound, not on replicating a specific figure.',
+     aiNote:'Schuh used Microsoft Copilot to review and strengthen his own lab assignment, and accepted several of its suggestions (sanity-check prompts, required explanations) while rejecting others that didn’t fit how ECE 110 teaches the material. In his own testing, Copilot repeatedly missed a square-root symbol in an equation no matter how many times he pointed it out — a small, concrete example of exactly the kind of AI error the assignment asks students to catch.'
+   }},
+  {n:26, code:'LEAD 140', title:'Harnessing Your Interpersonal Intelligence', instructor:'Jennifer Smist', dept:'Leadership Studies', level:'Undergrad · async', size:'75–100 students', fam:['persona'],
+   desc:'Students lead a team of AI teammates, each with a distinct personality and communication style, through a collaborative film-analysis case study.',
+   detail:{
+     goals:['Apply concepts of interpersonal intelligence and leadership to a real collaborative task','Practice facilitating discussion and managing disagreement with different perspectives','Reflect critically on team effectiveness and group development'],
+     mechanism:'In place of a traditional group project, students are assigned a team of AI personas built in Illinois Chat, each with a distinct personality, communication style, and set of strengths and challenges. The student leads the team through a film-based leadership case study — facilitating discussion, managing disagreement, and making final calls — with the AI teammates designed to simulate real interpersonal friction rather than simply do the analytical work.',
+     assessment:'Students submit a Team Charter, the case study analysis, a full AI collaboration log, and a reflection explaining how the AI team’s feedback did or didn’t change their conclusions — graded on the reasoning and facilitation process documented across these pieces, not on the AI-generated content itself.',
+     aiNote:'Smist used Claude, Copilot, and Gemini together with a structured "8 Lenses" framework from the AI Studio to work through course-objective and student-engagement angles before settling on AI personas as simulated teammates rather than a shortcut around teamwork — explicitly noting the AI’s example content wasn’t well matched to her course and needed her own revision.'
+   }},
+  {n:27, code:'RST 230', title:'Diversity in Recreation, Sport and Tourism', instructor:'Monika Stodolska', dept:'Recreation, Sport & Tourism', level:'Undergrad · GenEd', size:'175–640 students', fam:['persona','critique'],
+   desc:'The "Blind Spot Assignment" uses a structured AI stakeholder dialogue to surface unstated assumptions in recreation program design, at a scale up to 640 students.',
+   detail:{
+     goals:['Assess design biases when working with marginalized populations','Examine and name biases inherent in AI-generated responses','Compare personal experience, AI assumptions, and documented reality'],
+     mechanism:'AI enters four of eight course assignments, each a different mechanism: the Blind Spot Dialogue has students present a program design to an AI playing a specific, assigned community-advocate persona who is instructed to be "polite but highly critical" and hunt for hidden barriers; the AI Bias assignment has students write their own reflection before ever seeing an AI-generated demographic profile, then compare the two against documented reality; two Field Applications have students use AI to design a program, then revise and evaluate that design using course material.',
+     assessment:'The Blind Spot dialogue itself is graded almost mechanically (TAs count qualifying exchanges against the unedited transcript), while the real evaluation happens in a subsequent no-AI reflection where students must name their own prior assumption and the exact line that overturned it — something tied to a persona/transcript pairing unique to that student and impossible for AI to fabricate convincingly.',
+     aiNote:'Stodolska designed the AI Bias assignment’s sequencing — personal journal before AI profile — specifically with Claude’s help to make it "AI-proof," and used the same approach to rebuild two existing field applications after growing concerned that students were using AI to both generate and evaluate their own designs, defeating the point of the exercise.'
+   }},
+  {n:28, code:'INFO/MACS/IS 202', title:'Social Aspects of Information Technology', instructor:'Meicen Sun', dept:'Information Sciences', level:'Undergrad · GenEd', size:'~120 students', fam:['coach'],
+   desc:'ZaristAI, a University of Illinois-built navigation tool, is embedded in Canvas as an always-available course-materials guide, plus an extra-credit option for deeper engagement.',
+   detail:{
+     goals:['Locate relevant course materials efficiently without waiting on staff response time','Choose deliberately whether and how to use AI to support learning','Reflect on the reasoning behind a technology choice, not just make one'],
+     mechanism:'ZaristAI, a campus-built AI navigation tool, sits inside the course Canvas site so students can ask it logistics questions before emailing a TA. Separately, an extra-credit option on the main course project lets students either use ZaristAI or their own AI tool to deepen their engagement with course material and submit a representative chat log, or opt out entirely and instead write a ~200-word reflection on why they chose not to.',
+     assessment:'Extra credit is scored 0–2 either way — on the quality of a student’s prompting if they used AI, or on the quality of their reasoning if they didn’t — with neither path penalized by default, though visible cognitive-offloading in a chat log costs partial credit with feedback on more effective use.',
+     aiNote:'Sun, describing herself as a highly proficient AI user, did not use AI to design this integration at all, calling it "the same kind of agency I want to impart to my students" — offering support and structure around AI use without treating adoption itself as the goal.'
+   }},
+  {n:29, code:'BADM 300', title:'The Legal Environment of Business', instructor:'Gretchen Winter', dept:'Business Administration', level:'Undergrad · majors', size:'40–110 students', fam:['critique'],
+   desc:'Students prompt AI about executive orders, then audit its answer against the actual legal text — with a companion critique of how fast the underlying law itself goes stale.',
+   detail:{
+     goals:['Understand what an executive order is and how a president can revoke a predecessor’s order','Practice legal research skills, including primary-source verification','Develop the habit of never taking a legal claim from AI as final without checking it'],
+     mechanism:'Students prompt an AI tool for a list of executive orders that revoke earlier ones, submitting the complete, unedited transcript as an appendix — no cleanup allowed, since the raw output is what gets audited. For every distinct claim in that transcript, students check the Federal Register directly and categorize it as confirmed, partially wrong, fabricated, correct but incomplete, or outside scope, then explain exactly what’s wrong when it is.',
+     assessment:'Students are explicitly not evaluated on whether the AI’s initial answer was correct — they’re evaluated on what they do with it: the accuracy of their claim categorization, their source verification, and the legal analysis connecting findings to course concepts.',
+     aiNote:'Winter built the assignment on a real example she ran herself first, and disclosed the specific AI failures it surfaced to students directly — an order misattributed to the wrong president, an AI summary describing an entirely different order than the one asked about, and three different reported totals (68, 78, 91) for how many orders a single omnibus order revoked, none of which were catchable without going back to the primary text.'
+   }},
+  {n:30, code:'TRST 407', title:'Terminology', instructor:'Alexandra Yazeva', dept:'Translation & Interpreting Studies', level:'Graduate', size:'~15 students', fam:['drafting'],
+   desc:'Graduate translation students run parallel term-extraction tasks across multiple AI tools and a pre-AI extractor (TermoStat), then compare results and choose terms for a term base.',
+   detail:{
+     goals:['Differentiate between terms and non-terms and identify terms in context','Practice building multilingual term bases with defensible, critically-assessed entries','Understand the limits and possibilities of AI as an automatic term-extraction tool'],
+     mechanism:'Working in groups, students run the same source text through several AI tools (Google Gemini, DeepSeek, Claude) using shared prompts, then run the same text through a pre-AI extractor (TermoStat Web) and compare all the outputs side by side, discussing what each tool over- or under-extracted. A follow-up home assignment has each student build a real term base in a non-English working language, individually verifying candidate terms before including them.',
+     assessment:'In-class work and discussion are evaluated directly (rather than a take-home product alone) specifically to avoid grading AI-prepared submissions; the final deliverables are two real term bases with selected terms, one in English and one in the student’s other working language.',
+     aiNote:'Yazeva tested the extraction tools on herself first and caught a concrete example worth teaching from: DeepSeek pulled generic words like "children" and "studies" out as terms, and when she asked why it had also extracted researchers’ names, the AI explained its reasoning and then, on reflection, agreed with her that the names shouldn’t have been included.'
+   }},
+  {n:31, code:'ARCH 231', title:'Anatomy of Buildings', instructor:'Hugh Swiatek', dept:'Architecture', level:'Undergrad · majors · required', size:'~129 students, 8 sections', fam:['critique','coach','drafting'],
+   desc:'Three parallel components: AI-assisted code research students must verify against cited sources, a read-only Revit tutor connected live to a building model through an MCP server that can guide but never touch it, and LLM-written Python scripts for Rhino geometry that students evaluate against their own design intent.',
+   detail:{
+     goals:['Verify a claim independently before trusting it, and name which verification method fits the claim','Diagnose whether a wrong answer came from bad source material, a bad question, or bad AI reasoning','Document what was delegated to AI, what was verified, and what was concluded, in a form someone else could audit'],
+     mechanism:'Component 1 has students research a building-code question with an AI tool, requiring cited sources they must independently verify. Component 2 connects Claude to a live Revit model through a read-only MCP server — the AI can see a student’s model and talk them through a fix, but cannot touch it, so every operation stays in the student’s own hands. Component 3 has students prompt an AI to write Python scripts generating Rhino geometry, then evaluate the gap between what they intended and what the script actually produced.',
+     assessment:'Both graded components require students to commit to a position — a guessed code answer, a dimensioned hand drawing — before consulting AI at all, so there’s a record of independent reasoning prior to an authoritative-sounding answer. The verbatim, unedited prompt-and-response log is treated as the audit trail; a suspiciously clean log with no dead ends is itself a flag worth a conversation.',
+     aiNote:'Swiatek built the integration and its supporting Revit tutor using Claude (including Claude Desktop connected live to Revit to test the tutor students would use), and highlights one exchange as a model of good AI behavior: when asked to recall a prior conversation it had no access to, Claude said so directly and labeled its reconstruction as a reconstruction rather than inventing a confident answer.'
+   }},
+  {n:32, code:'PHYS 102', title:'College Physics: Electricity & Magnetism', instructor:'Katie Ansell', dept:'Physics', level:'Undergrad · GenEd / pre-health', size:'250–400 students', fam:['policy'],
+   desc:'A pre-course survey on how students use resources — including AI — when they get stuck feeds a live Lecture 1 discussion of the results, then Discussion and Lab sections extend their existing Team Agreements into a group AI-use policy, with a mid-semester follow-up survey.',
+   detail:{
+     goals:['Identify several resources (human and AI) that can help when stuck on a problem','Evaluate one’s own resource use for effectiveness rather than habit','Distinguish appropriate AI use in Discussion and Lab work from plagiarism'],
+     mechanism:'Before Lecture 1, students take an anonymous survey on how they use resources — including AI — when they get stuck, framed among peers, TAs, course materials, and outside videos rather than singled out. Ansell shows the aggregate results back to the class with live iClicker polling in the first ten minutes of lecture. Discussion and Lab sections then extend an existing "Team Agreement" exercise to include a group AI-use policy students write and submit themselves.',
+     assessment:'Graded indirectly: AI agreements are checked for alignment with course policy with rubric feedback, and a mid-semester follow-up survey asks which resources students are actually using and whether they can now evaluate their own resource choices — exams remain 50% of the course grade and are unaffected by any of this.',
+     aiNote:'Ansell used Claude to draft the survey and Lecture 1 activity, then substantially revised both after finding the AI’s first pass "too pro-AI" and too long for what she wanted — she ultimately went her own way on the in-class activity design after deciding Claude’s version wasn’t one she wanted to teach.'
+   }},
+  {n:33, code:'ARCH 273 / 371', title:'Fundamentals of Design 1 / Intermediate Design 1', instructor:'John Clark', dept:'Architecture', level:'Undergrad · majors', size:'~140 students (273) + 15 students (371)', fam:['drafting','critique','coach'],
+   desc:'"Good Tools," a self-built suite of more than 80 AI instruments for the architecture design studio, built to sharpen both the design process and the work it produces.',
+   detail:{
+     goals:['Design from cited evidence at every phase, not from intuition alone','Treat an AI output as a claim to verify, not an answer to accept','Practice calibrated skepticism — check a tool’s output against evidence from outside the tool','Build workflows every classmate can work in, including ways of presenting design evidence that aren’t only visual'],
+     mechanism:'The suite covers every step of the design process, and each studio bends it to its own question. In ARCH 273 (second year, ~140 students), the question is calibration: Surveyor opens the sequence by compiling a cited site atlas from real climate and terrain data — NOAA, USGS — then Eco-Architect and Assayer test a massing model against measurable site-force goals like solar gain and wind shelter, with a live round-trip to the student’s own Rhino model. Graded exercises put the skepticism into practice: students verify the tools’ claims against independent sources and iterate massing designs with every failed attempt kept in the record. In ARCH 371 (third year, 15 students), the primary question in addition to design workflow is access: the studio uses the instruments to develop a tactile, accessible workflow for designing alongside a blind or low-vision classmate. Across both, Coach tutors Rhino, Grasshopper, and Revit, and Critic offers adoptable critique personas — more than 80 instruments in all, each doing one job with its evidence showing.',
+     assessment:'Nothing about assessment is new — pinups, desk crits, and reviews with outside critics. Clark is explicit that AI outputs and chat transcripts are never graded directly: a machine artifact isn’t evidence of a student’s own thinking. What is graded is what a studio has always graded — the work, defended live, where borrowed understanding shows itself within minutes of questioning.',
+     aiNote:'The instruments themselves were built the way the course teaches: Clark wrote the entire live toolkit through natural-language conversation with Claude Code, exercising the same iteration and selectivity he asks of students — "it generates breadth enthusiastically and will hand you fifty ideas when the assignment needs one — choosing the one and cutting the other forty-nine was my job."'
+   }},
+  {n:34, code:'FIN 221', title:'Corporate Finance', instructor:'Dr. Jason M. Satchell', dept:'Finance', level:'Undergrad · required · async online (+ in-person sections)', size:'48 students (Summer); larger in Fall/Spring', fam:['grading'],
+   desc:'An instructor-built AI grading pipeline reads all ten modules of a cumulative case-study series, scores each against a rubric and verified answer key, and drafts individualized criterion-level feedback — reviewed and released by the instructor, never posted automatically.',
+   detail:{
+     goals:['Apply corporate finance techniques (TVM, ratio analysis, NPV, DCF, WACC) to a single continuous case','Receive feedback specific enough to act on before the next module builds on it','Communicate financial analysis with evidence, not just assertion'],
+     mechanism:'Students never touch the grading AI — they submit case studies as they always have, and Satchell’s own six-module Python pipeline reads each submission, grades it against his rubric and a verified answer key computed in code (not transcribed), and drafts feedback he reviews before release. Every submission is scored twice by independent passes; disagreements, borderline scores, and integrity flags (image-only tables, invented figures, corrupted files) are automatically held for his direct reading rather than released.',
+     assessment:'Grading validity is checked against Satchell’s own blind hand-grading of a sample each run, targeting at least 60% exact match and 90% within one rubric level with no systematic bias. A full audit log records every scoring decision before release, and nothing posts to a gradebook without passing through him first.',
+     aiNote:'Satchell built this with Claude across many sessions, and is explicit that two real failures shaped the design: an error in his own answer key that would have marked every correct student wrong on one question, and a silent bug that returned zeros for excellent work with no indication anything was broken. Both are why he treats the system as requiring review, not as trustworthy by default — and both are disclosed to students directly in the assignment instructions.'
+   }}
+];
+const famGrid = document.getElementById('familyGrid');
+const famMap = Object.fromEntries(FAMILIES.map(f => [f.id, f]));
+function famCount(id){ return PROJECTS.filter(s => s.fam.includes(id)).length; }
+FAMILIES.forEach(f => {
+  const count = famCount(f.id);
+  const el = document.createElement('button');
+  el.type = 'button';
+  el.className = 'family-card';
+  el.dataset.fam = f.id;
+  el.setAttribute('aria-pressed', 'false');
+  el.style.setProperty('--fam-color', f.color);
+  el.innerHTML = `
+    <span class="icon" aria-hidden="true">${f.icon}</span>
+    <span class="fam-count-chip">${count} project${count === 1 ? '' : 's'}</span>
+    <h3>${f.name}</h3>
+    <p>${f.desc}</p>
+    <span class="rule">${f.rule}</span>
+  `;
+  el.addEventListener('click', () => {
+    activeFam = activeFam === f.id ? null : f.id;
+    render();
+  });
+  famGrid.appendChild(el);
+});
+const deptSelect = document.getElementById('deptFilter');
+[...new Set(PROJECTS.map(s => s.dept))].sort().forEach(d => {
+  const opt = document.createElement('option');
+  opt.value = d; opt.textContent = d;
+  deptSelect.appendChild(opt);
+});
+let activeFam = null;
+const grid = document.getElementById('projectGrid');
+const resultCount = document.getElementById('resultCount');
+const searchInput = document.getElementById('searchInput');
+function matches(s, q, dept) {
+  if (activeFam && !s.fam.includes(activeFam)) return false;
+  if (dept && s.dept !== dept) return false;
+  if (q) {
+    const famNames = s.fam.map(id => famMap[id].name).join(' ');
+    const hay = `${s.code} ${s.title} ${s.instructor} ${s.dept} ${s.desc} ${famNames}`.toLowerCase();
+    if (!hay.includes(q.toLowerCase())) return false;
+  }
+  return true;
+}
+// Display order is always alphabetical by instructor surname, independent of the order
+// projects were added to the data (accession numbers stay stable; only display order sorts).
+const SURNAME_EXCEPTIONS = { 'Fernando Sanchez Hernandez': 'Sanchez Hernandez' };
+function sortKeyFor(p) {
+  const primary = p.instructor.split('&')[0].trim();
+  if (SURNAME_EXCEPTIONS[primary]) return SURNAME_EXCEPTIONS[primary];
+  const parts = primary.replace(/^Dr\.\s*/, '').split(' ').filter(Boolean);
+  return parts[parts.length - 1];
+}
+function render() {
+  document.querySelectorAll('.family-card').forEach(el => {
+    const isActive = el.dataset.fam === activeFam;
+    el.setAttribute('aria-pressed', String(isActive));
+  });
+  const q = searchInput.value.trim();
+  const dept = deptSelect.value;
+  const filtered = PROJECTS.filter(s => matches(s, q, dept))
+    .sort((a, b) => sortKeyFor(a).localeCompare(sortKeyFor(b)));
+  resultCount.innerHTML = `Showing <b>${filtered.length}</b> of <b>${PROJECTS.length}</b> projects`;
+  grid.innerHTML = '';
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="no-results">No projects match this combination — try clearing a filter.</div>';
+    return;
+  }
+  filtered.forEach(s => {
+    const tags = s.fam.map(id => {
+      const f = famMap[id];
+      return `<span class="fam-tag" style="background:${f.color}">${f.name}</span>`;
+    }).join('');
+    const primaryColor = famMap[s.fam[0]].color;
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.style.borderTop = `3px solid ${primaryColor}`;
+    card.innerHTML = `
+      <div class="card-top">
+        <span class="accession">No. ${String(s.n).padStart(3,'0')}</span>
+        <span class="fam-tags">${tags}</span>
+      </div>
+      <div>
+        <div class="course-code">${s.code}</div>
+        <h3>${s.title}</h3>
+      </div>
+      <div class="instructor">${s.instructor}</div>
+      <p class="desc">${s.desc}</p>
+      <div class="meta">
+        <span>${s.dept}</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>${s.level}</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>${s.size}</span>
+      </div>
+      <button type="button" class="details-btn" data-project="${s.n}">Details<span aria-hidden="true"> &rarr;</span></button>
+    `;
+    grid.appendChild(card);
+  });
+}
+searchInput.addEventListener('input', render);
+deptSelect.addEventListener('change', render);
+document.getElementById('clearBtn').addEventListener('click', () => {
+  activeFam = null;
+  searchInput.value = '';
+  deptSelect.value = '';
+  render();
+});
+render();
+/* Keep hero stats in sync with the data so future re-scans don't need manual counting */
+const statDesigns = document.getElementById('statDesigns');
+const statFamilies = document.getElementById('statFamilies');
+const statDepts = document.getElementById('statDepts');
+if (statDesigns) statDesigns.textContent = PROJECTS.length;
+if (statFamilies) statFamilies.textContent = FAMILIES.length;
+if (statDepts) statDepts.textContent = new Set(PROJECTS.map(p => p.dept)).size;
+/* ---------- TABS ---------- */
+const tabs = [...document.querySelectorAll('.tab-btn')];
+const panels = { 'tab-guide': document.getElementById('panel-guide'), 'tab-feedback': document.getElementById('panel-feedback') };
+function selectTab(id, focus) {
+  tabs.forEach(t => {
+    const selected = t.id === id;
+    t.setAttribute('aria-selected', String(selected));
+    t.tabIndex = selected ? 0 : -1;
+    panels[t.id].hidden = !selected;
+  });
+  if (focus) document.getElementById(id).focus();
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => selectTab(t.id, false));
+  t.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const next = e.key === 'ArrowRight' ? (i + 1) % tabs.length : (i - 1 + tabs.length) % tabs.length;
+      selectTab(tabs[next].id, true);
+    }
+  });
+});
+/* ---------- PROJECT DETAIL MODAL ---------- */
+const projectModal = document.getElementById('projectModal');
+const modalAccession = document.getElementById('modalAccession');
+const modalCourseCode = document.getElementById('modalCourseCode');
+const modalTitle = document.getElementById('modalTitle');
+const modalInstructor = document.getElementById('modalInstructor');
+const modalTags = document.getElementById('modalTags');
+const modalMeta = document.getElementById('modalMeta');
+const modalBody = document.getElementById('modalBody');
+const modalClose = document.getElementById('modalClose');
+const modalCopyLink = document.getElementById('modalCopyLink');
+const modalLinkStatus = document.getElementById('modalLinkStatus');
+let lastFocusedTrigger = null;
+function projectById(n) {
+  return PROJECTS.find(p => p.n === n);
+}
+function renderModalBody(p) {
+  if (!p.detail) {
+    return `<p class="desc">${p.desc}</p><p class="modal-pending">Full write-up for this project is coming soon.</p>`;
+  }
+  const d = p.detail;
+  let html = `<p class="desc">${p.desc}</p>`;
+  if (d.goals && d.goals.length) {
+    html += `<div class="modal-section"><h3>Learning goals</h3><ul>${d.goals.map(g => `<li>${g}</li>`).join('')}</ul></div>`;
+  }
+  if (d.mechanism) {
+    html += `<div class="modal-section"><h3>How it works</h3><p>${d.mechanism}</p></div>`;
+  }
+  if (d.assessment) {
+    html += `<div class="modal-section"><h3>Assessment</h3><p>${d.assessment}</p></div>`;
+  }
+  if (d.aiNote) {
+    html += `<div class="modal-section"><h3>AI transparency note</h3><p class="modal-ai-note">${d.aiNote}</p></div>`;
+  }
+  return html;
+}
+function fillModal(p) {
+  const f = famMap[p.fam[0]];
+  modalAccession.textContent = `No. ${String(p.n).padStart(3, '0')}`;
+  modalCourseCode.textContent = p.code;
+  modalTitle.textContent = p.title;
+  modalInstructor.textContent = p.instructor;
+  modalTags.innerHTML = p.fam.map(id => {
+    const ff = famMap[id];
+    return `<span class="fam-tag" style="background:${ff.color}">${ff.name}</span>`;
+  }).join('');
+  modalMeta.innerHTML = `<span>${p.dept}</span><span>${p.level}</span><span>${p.size}</span>`;
+  modalBody.innerHTML = renderModalBody(p);
+  modalLinkStatus.textContent = '';
+}
+function openProjectModal(n, trigger) {
+  const p = projectById(n);
+  if (!p) return;
+  lastFocusedTrigger = trigger || document.activeElement;
+  fillModal(p);
+  if (typeof projectModal.showModal === 'function') {
+    if (!projectModal.open) projectModal.showModal();
+  }
+}
+function closeProjectModal() {
+  if (projectModal.open) projectModal.close();
+}
+// Open via any Details button (event delegation, since cards re-render on filter)
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.details-btn');
+  if (!btn) return;
+  const n = parseInt(btn.dataset.project, 10);
+  try {
+    window.location.hash = `project-${n}`;
+  } catch (err) {
+    // Some sandboxed preview contexts (e.g. srcdoc iframes) block URL/history writes.
+    // Fall back to just opening the modal directly without touching the URL.
+    openProjectModal(n, btn);
+  }
+});
+modalClose.addEventListener('click', () => closeProjectModal());
+// Click on the ::backdrop area closes the dialog
+projectModal.addEventListener('click', (e) => {
+  const rect = projectModal.getBoundingClientRect();
+  const inside = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+  if (!inside) closeProjectModal();
+});
+// Native close (Esc key, .close() calls) — clear the hash and restore focus
+projectModal.addEventListener('close', () => {
+  if (/^#project-\d+$/.test(window.location.hash)) {
+    try {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    } catch (err) {
+      // Sandboxed preview contexts (e.g. srcdoc iframes) can reject replaceState with a
+      // SecurityError since they have no real URL to rewrite. Falling back to clearing the
+      // hash directly still closes the modal cleanly; it just adds a history entry there.
+      try { window.location.hash = ''; } catch (err2) { /* give up quietly — modal is already closed */ }
+    }
+  }
+  if (lastFocusedTrigger && document.contains(lastFocusedTrigger)) {
+    lastFocusedTrigger.focus();
+  }
+});
+modalCopyLink.addEventListener('click', async () => {
+  const n = parseInt(modalAccession.textContent.replace(/\D/g, ''), 10);
+  const url = `${window.location.origin}${window.location.pathname}#project-${n}`;
+  try {
+    await navigator.clipboard.writeText(url);
+    modalLinkStatus.textContent = 'Link copied!';
+  } catch (err) {
+    modalLinkStatus.textContent = url;
+  }
+});
+function syncModalToHash() {
+  const m = window.location.hash.match(/^#project-(\d+)$/);
+  if (m) {
+    openProjectModal(parseInt(m[1], 10), document.querySelector(`.details-btn[data-project="${m[1]}"]`));
+  } else {
+    closeProjectModal();
+  }
+}
+window.addEventListener('hashchange', syncModalToHash);
+syncModalToHash();
+</script>
+
+<script>
+/* ---------- SURVEY RESULTS DATA (CITL Summer AI Studio End-of-Studio Survey, 2026) ---------- */
+const SURVEY_CHARTS = [
+  {
+    "group": "support",
+    "q": "Q2a",
+    "title": "How well supported did you feel during the first two weeks — the in-person training part of the Studio?",
+    "categories": [
+      "Not supported at all",
+      "Slightly supported",
+      "Moderately supported",
+      "Very supported",
+      "Extremely supported"
+    ],
+    "counts": [
+      0,
+      1,
+      2,
+      14,
+      16
+    ],
+    "n": 33,
+    "mean": 4.38
+  },
+  {
+    "group": "support",
+    "q": "Q2b",
+    "title": "How well supported did you feel during the final three weeks — the individual project work part of the Studio?",
+    "categories": [
+      "Not supported at all",
+      "Slightly supported",
+      "Moderately supported",
+      "Very supported",
+      "Extremely supported"
+    ],
+    "counts": [
+      0,
+      1,
+      6,
+      13,
+      12
+    ],
+    "n": 32,
+    "mean": 4.13
+  },
+  {
+    "group": "support",
+    "q": "Q3",
+    "title": "How much were you able to make use of the support provided by the graduate affiliates assigned to your project team?",
+    "categories": [
+      "Not at all",
+      "A little",
+      "A moderate amount",
+      "A lot",
+      "To the greatest extent"
+    ],
+    "counts": [
+      8,
+      5,
+      12,
+      7,
+      1
+    ],
+    "n": 33,
+    "mean": null
+  },
+  {
+    "group": "fluency",
+    "q": "Q5",
+    "title": "Did you access the AI Fluency Modules to support your learning?",
+    "categories": [
+      "No",
+      "Yes"
+    ],
+    "counts": [
+      4,
+      25
+    ],
+    "n": 29,
+    "mean": null
+  },
+  {
+    "group": "fluency",
+    "q": "Q6",
+    "title": "How helpful were the AI Fluency Modules? (asked only of the 25 who accessed them)",
+    "categories": [
+      "Not helpful at all",
+      "Slightly helpful",
+      "Moderately helpful",
+      "Very helpful",
+      "Extremely helpful"
+    ],
+    "counts": [
+      0,
+      3,
+      8,
+      8,
+      6
+    ],
+    "n": 25,
+    "mean": null
+  },
+  {
+    "group": "goals",
+    "q": "Q8",
+    "title": "To what extent did you achieve the project goals you set for yourself during the Studio?",
+    "categories": [
+      "Not at all",
+      "To a small extent",
+      "To a moderate extent",
+      "To a great extent",
+      "Everything I wanted to achieve and more"
+    ],
+    "counts": [
+      0,
+      0,
+      6,
+      19,
+      8
+    ],
+    "n": 33,
+    "mean": null
+  },
+  {
+    "group": "quality",
+    "q": "Q11a",
+    "title": "Please rate the overall quality of the first two weeks — the in-person training part of the Studio.",
+    "categories": [
+      "Very poor",
+      "Poor",
+      "Fair",
+      "Good",
+      "Excellent"
+    ],
+    "counts": [
+      0,
+      0,
+      1,
+      15,
+      17
+    ],
+    "n": 33,
+    "mean": 4.48
+  },
+  {
+    "group": "quality",
+    "q": "Q11b",
+    "title": "Please rate the overall quality of the final three weeks — the individual project work part of the Studio.",
+    "categories": [
+      "Very poor",
+      "Poor",
+      "Fair",
+      "Good",
+      "Excellent"
+    ],
+    "counts": [
+      0,
+      0,
+      2,
+      17,
+      14
+    ],
+    "n": 33,
+    "mean": 4.36
+  },
+  {
+    "group": "quality",
+    "q": "Q12",
+    "title": "How useful do you expect the work you accomplished during the Studio to be in your future teaching or professional activities?",
+    "categories": [
+      "Not useful at all",
+      "Slightly useful",
+      "Moderately useful",
+      "Very useful",
+      "Extremely useful"
+    ],
+    "counts": [
+      0,
+      0,
+      5,
+      15,
+      13
+    ],
+    "n": 33,
+    "mean": null
+  },
+  {
+    "group": "quality",
+    "q": "Q13",
+    "title": "Overall, how worthwhile do you feel it was for you to spend five weeks in the Summer AI Studio?",
+    "categories": [
+      "Not worthwhile at all",
+      "Slightly worthwhile",
+      "Moderately worthwhile",
+      "Very worthwhile",
+      "Extremely worthwhile"
+    ],
+    "counts": [
+      0,
+      0,
+      3,
+      13,
+      15
+    ],
+    "n": 31,
+    "mean": null
+  },
+  {
+    "group": "sharing",
+    "q": "Q16",
+    "title": "May we share your verbatim comments in our reporting or with the Provost's Office who sponsors the Studio?",
+    "categories": [
+      "Yes, with my name attached",
+      "Yes, but anonymously",
+      "No, do not share"
+    ],
+    "counts": [
+      11,
+      20,
+      2
+    ],
+    "n": 33,
+    "mean": null
+  }
+];
+const SURVEY_COMMENTS = [
+  {
+    "group": "support",
+    "q": "Q4",
+    "title": "Do you have any comments about the support you received from the graduate affiliates assigned to your project team?",
+    "items": [
+      "Unclear what they were available for/to do. My project was less intensive (i.e., not building a bot), so I didn't really know what to use them for.",
+      "They were great! I probably didn't work with them as much as I should have.",
+      "They support consisted of proofreading for user-friendliness - as I had requested. And they went above and beyond with very detailed lists of feedback and improvement suggestions.",
+      "They gave helpful feedback, but the timeline seemed a little too compressed to make use of their support to the best effect.",
+      "The student I worked with was very responsive, thoughtful, and helpful!",
+      "The graduate affiliates offered their support and sent reminder emails; however, I think with the amount of support that I received from the faculty affiliates there wasn't much else that i needed from the graduate affiliates.",
+      "My main mentor was very supportive and offered a lot of feedback and guidance. One of the graduate affiliates provided some feedback and helpful thoughts. One other person (who I believe was a graduate affiliate?) did not provide any feedback or engagement—I'm not sure if they were expected to?",
+      "My experience with graduate affiliates was mixed.   I cannot say enough good things about one of the graduate affiliates that supported my AI integration. However, the other was very slow to respond emails and missed his self-assigned deadlines multiple times. Moreover, their contribution did not really addressed my requests, which meant that on top of being delayed I had to do the work myself.   So, I would encourage keeping the program but ensuring that TAs are held to greater accountability.",
+      "It took a while to get my device working outside of Claude. By then my grad affiliates had moved on. They were replaced but  haven't heard from the new students.",
+      "I've elected not to use them so it was entirely my choice and nothing on them or the program.",
+      "I wasn't entirely sure what to share with them and when, but it's also reasonable to leave it open to reach out to them at your own discretion.",
+      "I was very lucky to have a graduate affiliate by my side. They provided all the necessary assistance testing my idea and giving me their feedback whenever I needed it. My deepest gratitude to Soraya Cipolla!",
+      "I never really heard back from them with their thoughts on the project in any detail.",
+      "I liked how Haeley and I already had a working relationship so we were able to ebb and flow with the ideas as the final iteration was developed!",
+      "I honestly was not sure how to utilize the graduate affiliates, so I didn't reach out to them. The timing of my summer also got complicated once the in-person workshops ended and I found I needed to work on the project past the original deadline. It wasn't clear whether it would be appropriate for the graduate affiliates to help me after the timeline of the program.",
+      "I had my two grad affiliates test my assignment and both offered feedback within a few days of my ask.  Because I had done so much legwork on my own, I did not need very much of their time.  With their specialties differing so greatly from my own, they were able to test my custom GPTs, but not offer detailed, specific critiques.  (I went to fellow faculty and former students and graders for more industry-related feedback.)",
+      "I had an incredible support team throughout the process. I probably did not lean on everyone as much as I could have because I was figuring things out on my end as I went, but I was incredibly grateful for everyone's support and willingness to help.",
+      "I found the graduate affiliates to be very eager to help, but it would have been much more useful to have more structure around this. If I knew how much time they could devote to the project, I would have structured my use of them differently.",
+      "I found that the graduate affiliates were eager to help but somehow their feedback, while helpful, was not particularly instrumental to my final project. Also, one of the two was on vacation and therefore unavailable for a substantial amount of time during the remote part of the program.",
+      "I first sent an email that was very specific to options for making custom chat agents and didn't really receive any helpful technical information. But, when I sent them the full draft of my assignment, both of them read through it and tested some of it out, and gave some feeback. One of them more fully \"did\" my assignment and gave some very specific feedback that I used for revisions. That was helpful!",
+      "I don't think I connected with them in the intended way, but since I had sort of dragged one of my own grad students into the process ahead of time, I was able to have productive and fruitful conversations with her throughout the process.",
+      "I didn't get to a point where I knew how to use the graduate affiliates. I'm sure they would have responded, but wasn't fully clear on their role so I didn't reach out.",
+      "I did not reach out to them for support, but I cannot mark this as N/A",
+      "I appreciated their honest assessment of my proposed assignment and the VERY detailed feedback Bill provided.",
+      "Each one of my graduate affiliate team members was helpful to the extent possible. They had other commitments, and my interactions with them were limited to a few email exchanges and one online meeting."
+    ],
+    "noAnswer": 7,
+    "redacted": 0
+  },
+  {
+    "group": "fluency",
+    "q": "Q7",
+    "title": "Why didn't you access the AI Fluency Modules?",
+    "items": [
+      "To be honest, I am not sure which \"AI Fluency Modules\" are being referred to here, so I am assuming I did not. I just revisited our AI studio Canvas page to see if I could find these modules and I was not successful.",
+      "I had other responsibilities this summer and did not find time to do so",
+      "I accessed everything in Canvas within the Summer AI Studio Canvas page. But the rest of the extraneous material was left largely untouched as I already had a firm grasp of AI and its capabilities as they would relate to my workflow.",
+      "Didn’t see them before the in person events."
+    ],
+    "noAnswer": 0,
+    "redacted": 0
+  },
+  {
+    "group": "goals",
+    "q": "Q9",
+    "title": "Is there any additional content or assistance that would have been beneficial in helping you achieve your project goals?",
+    "items": [
+      "What I learned during the workshop inspired me to learn more about AI in education and teaching, but to really advance my teaching with AI, I think I would need longer term support (e.g., throughout the year with AI specialists helping me).",
+      "University access or payment of costs associated with using Frontier llm models.",
+      "The issue I ran into was that after we were strongly encouraged to build for deployment through (or use) IllinoisChat, there seems to be a communication gap with that team, with questions whether IllinoisChat can be used to power an AI agent for student-facing AI modules. This is currently going up the chain to see if it can be accommodated. It seems there is still a disconnect in UIUC provost's office wanting to see effective AI deployment in teaching and learning and on the ground support and access to AI resources (and the funding structure needed to allow students access to those resources - perhaps through a student fee rather than purchasing access through webstore?)",
+      "One question I had to figure out on my own was how to use Claude to help me build rubrics in the assignments in Canvas. My mentor had not done this before so I figured out how to do it. Some of the actual ways of how to use the tools themselves would be helpful.",
+      "Nothing that I can think of...",
+      "not that i can think of. it was very helpful but i do think we need ongoing training and i also think more faculty should be learning this stuff!",
+      "Not necessarily for achieving project goals, but I think that the program generally would benefit from more time improving participant's skills in using AI. While I agree with the notion that you learn through the process of building something, I think that foundational skills still matter. If we are trying to be leaders in this space, we need resources to improve in our use of AI.",
+      "Not at this point. I felt extremely supported during the course and I was able to achieve all the goals I set for myself.",
+      "More guidance/d feedback early on so the outlput might have been more than one assignment--extra practice and extra benefit.",
+      "It would have helped to understand a bit more about what the whole program would entail a bit earlier before the summer started, but overall it was helpful.",
+      "I would love for these cohorts to do a \"show and tell\" as the Fall semester unfolds with implementation in the classroom.",
+      "I would have loved to have more access to folks like Geoffrey Challen and Vishal Sachdev and other AI experts who've implemented AI in their classrooms as we got to week 2 (and maybe week 3 as we branched out on our own).  I think more time with them would have opened my eyes to more that was possible and helped me think bigger about what I could accomplish.    In speaking with fellow participants, I know for many of us the real turning point in this workshop was Vishal telling us to sign up for Claude CoWork or Codex (with a paid subscription) and play around with the model, because moving beyond the \"chat\" functions of ChatGPT, Claude or Gemini was how one could truly level up in their AI understanding and knowledge of all that is possible.  This was what motivated me to think bigger about how to incorporate AI into my course, and it has built my confidence in familiarity with and understanding of possibilities and limitations of LLMs.  When we broke into our small groups from week 3 onward, it was great to learn what my group was working on and see we shared similar goals and face common struggles in the classroom.  However, I didn't feel like the fellow faculty had a lot of advice on my project or expertise to help me improve my work. I appreciate being part of a community of practice and we plan to reconnect a few times this fall, but I wondered if I perhaps ended up in the wrong group, or whether we're all so new at this we're just learning as we go.  I was happy to have Mitch Kage from CITL as a liaison for our group as he has helped me think about possible expansion of my project I am currently working on for a subsequent assignment.",
+      "I think that I was expecting and actually needing more technical content and more technical assistance. For my field at least, and I suspect a lot of other fields, there is a real need to understand \"under the hood\" issues in order to analyze AI output. I think more information about LLMs, how they are produced, who produces them, where they reside, what their main features are, would have been extremely helpful for my current project. The fact that Illinois Chat can call on about eight LLMs is important, and the ability to make rational decisions about which LLM to select is necessary. I am in the process of trying to teach myself about this. The issue of data security also merits more time. It's nice to have a chart to reference what kinds of data can go into which tools, however, the only tool that seems to keep student data away from public training models is Illinois Chat. At the same time, we are being encouraged to use Google Notebook LM, but as it turns out its use could potentially expose student data. These issues need to be addressed with more care and detailed information about the risks. Overall, more technical information and broader risk assessments are in order for those of us who may be asking students to use these tools.",
+      "I think some ongoing periodic check-ins throughout the semester would be helpful in addition to the end-of-semester convening.",
+      "I think I received just as much assistance as I needed, and I really appreciate that.",
+      "I think a more extended timeline would have been helpful. I also found Rachel Switsky on the Design Sprint to be really helpful and would have probably gotten more out of spending a whole 1/2 day on each of those phases.",
+      "I ran into an issue where the free-to-use university tools are not capable of supporting the integration I developed. Based on the presentations, etc. I developed my integration using a frontier model from Anthropic, but am now running into issues with deploying it in my class. It would be helpful to have guidance on the scope of what the university tools can do before setting out to develop the integration so that we can level set expectations.",
+      "I had a hard time working during in-person sessions. Incubator environments make it difficult for me to focus. So I worked on immediate projects first (prep for the dual credit project). Once the sessions were over and I could work on my own, the ideas kept coming. I needed the studio experience, don't get me wrong! It informed my understanding of how to make something instructive for students and I believe I accomplished that.",
+      "I found the in-person events very helpful. However, I believe I would have benefited from more structured guided activities. When we were asked to work on our own, it felt like it was a free for all, and sometimes I was not sure what exactly I was supposed to be doing.",
+      "I don't know. I entered the program with unclear goals, and kind of wonder if the program itself wasn't for someone with a class where AI modules are not the right fit, but instead wants to be proactive about how students use AI as one of many tools to support their learning. Even with the project submission, it was clear that the designers (or the AI that wrote the assignment) assumed that the project would involve students interacting with AI as part of an assignment, and that was not the right fit for me.",
+      "I can not think of anything at this time.",
+      "Honestly, y'all were great! I set out an ambitious slate of updates across our curriculum. Obviously, I could only build/actualize a small portion of this over the summer, but I feel very supported in building a broader strategy that I can now bring back to my unit/college.",
+      "At times, I wanted more assistance with actually learning to use specific AI tools, more than just prompting. It would have been helpful to have opportunities to try and do things like making custom chatbots, generating code making to use on a website application, connecting AI agents to our computers or drives so it could use files, etc. During some sessions, things like these were mentioned, but there wasn't much chance to get support try and figure these things out.  The other thing that would be helpful would be to see more examples of assignments/applications being used by UIUC professors/instructors in their classes.  But, I know this is all new, so there isnt a plethora of examples to grab at this point. For the next iteration of this AI studio, it would be very  helpful to provide examples of what was made/tried from this first cohort as some examples (and hearing what people learned from implementing these examples)"
+    ],
+    "noAnswer": 10,
+    "redacted": 0
+  },
+  {
+    "group": "recommendations",
+    "q": "Q10",
+    "title": "What was the biggest challenge you faced in completing the 5-week Summer AI Studio program?",
+    "items": [
+      "Two things: (1) Starting in Week 3 my schedule got busy with travel, hence my late completion date and (2) I continued to struggle with how to acknowledge/support AI use without explicitly promoting it, as my stance is that students *can* use it as a tool, but there are many other tools available. I felt like there wasn't space for classes where whole-class AI use wasn't appropriate to figure out what to do.",
+      "Trying to find time to do everything. We were told it would be a 10-hour commitment for 5 weeks. During the first two weeks I spent the 10 hours in the studio workshops and probably 8 hours each week outside the studio working on the assignments and modules. For the last 3 weeks, I probably spent about 15 hours each week to finish my project. I am happy to have it done, but it took a bit more time that we were originally told (which was challenging since I was traveling during the last week).",
+      "Time needed to fully develop and implement my project, alongside other summer work responsibilities and vacation. I've definitely used time beyond the five weeks.",
+      "Time and lack of basic knowledge of AI.",
+      "the timing of the class. understanding how to really use the tools, and then getting the chance to try again and again with personal guidance until some level of mastery was achieved before the last day. working with the graduate fellow earlier woudl have been helpful.",
+      "The biggest challenge was figuring out how to translate what I was learning about AI into something meaningful for my own teaching. Because I was developing my ideas as I went, I did not always know what questions to ask or how best to use the incredible support team available to me. At the same time, working through that process helped me think much more intentionally about the role AI can play in teaching and learning.",
+      "The biggest challenge for me was to decide whether I want to actually make use of AI in my course or not.   While I see the potential of AI as a tool, I also see it as an issue that deserves more and deeper discussions. My main concerns are environmental and of course in the threat that it presents to education as we do not know how much students will use the tool and how much including it in our courses will normalize its use.   I think workshops such as this are amazing opportunities to reflect on this important questions and learn more about the potential and limitations of this tool.",
+      "Staying focused during the in-person sessions. If I got behind, I'd panic and get further behind.",
+      "Scheduling in the summer! Attending in person for 4 days in the summer was challenging, especially given the short notice.",
+      "Really, none.",
+      "Probably like most of us, time is always a factor with projects. The 5-week format was the right amount of time for the project; it is just a matter of juggling this with other responsibilities.",
+      "No real issues.",
+      "It was more than a 10 hour per week commitment over 5 weeks, and I didn't anticipate all of things we would be asked to do, in addition to what I wanted to complete. This was, realistically, more like 80 hours, which would have been been spread over all of June and July, for me.",
+      "Integrating AI into the pedagogical plan. As program progressed they became somewhat distinct goals for me, and I was struggling to make them into one coherent plan as the program seems to require.",
+      "I was unsure if they wanted us to lean in on our past knowledge in AI or if one of the goals was to learn and use NEW things that we had not previously.",
+      "I think it just took me a bit of time to work through some of the tools. I think faculty who work in humanities or qualitative social sciences would integrate AI in ways distinct from those in more quantitative or technical disciplines.",
+      "I found the AI studio to be a fantastic experience. Truthfully, I think the biggest benefit for me was to spend time hearing from other instructors how they approached their teaching and how they were leveraging AI to do so. I think the biggest challenge is the uncertainty of trying something that is new and that you are not sure is going to work. I think we have a great deal of expertise in our respective subject areas and we tend to design our teaching around that expertise. While I am constantly experimenting with new approaches and ideas in my teaching, I set guard rails around how I do this so that even if something doesn't work, I'm minimizing the detriment to the student. I tried to do this here as well, but because my skills in using AI are not as well-developed, this is more of a concern than it would be with other experimentation.",
+      "I felt like I was supported enough to complete this work without any challenges during the workshop time frame.",
+      "I enjoyed the experience, the program gave me the key to implementing the idea, which, I hope, will be very beneficial for my students. My only big challenge was attending the seminars online during the night because of my own circumstances. Although I completely understand that it was my own situation and deeply appreciate the wonderful AI Summer Studio team's kind permission to attend the Studio being abroad, I would suggest an asynchronous option for the Studio in the future (e.g., recordings of the first team's presentations and then arranged meetings regarding the idea implementation). I truly believe it would give a chance to more attendants to benefit from the program. Thank you so much for your attention.",
+      "i didn't really face any major challenges- just figuring out how to integrate the AI into my courses, but that was the entire point.",
+      "I did not face any major challenge. Overall, it was a good experience.",
+      "I built AI-enabled feedback coaches built into content review modules. I used an AI model (Claude) to help vibe code the modules. While I could not have built these without the use of an AI myself (I cannot code), the time investment to complete about 2/3 of the modules to cover the entire course's content was in excess of 240 hours, underscoring what a massive investment of time resources such an undertaking is.",
+      "Honestly, I think my biggest challenge was my own beliefs about AI and wanting to ensure that I am teaching my students about the ethical and social impacts of using generative AI. At times it felt difficult not to be so readily agreeable to incorporating these tools around peers in the AI studio who are more advanced and more willing to integrate them fully.",
+      "For me specifically, my original project idea involved making a custom chatbot that interacted with students in specifc ways and pulled from course materials. I played around with several tool options but none worked how I intended and I think I may have been expecting too much in general. So, I switched my approach to one in which I give my students speciifc prompts to copy and paste (could adjust as desired). This is a more simple approach but actually worked much better in my trial runs.  So the generalize, my biggest challenge was hearing about some \"cool possibilities\" with AI but not really having a great sense of how to actually make those happen.  In the last 3 weeks of unstructured project time, it could have been cool to have some \"lab days\" where I could go get tech help/support with specific AI ideas & tools.",
+      "Focusing on one small idea at a time. The studio inspired multiple projects, so I had to remind myself brick-by-brick.",
+      "Determining how to keep the assignment from being a simple place into AI, and making the students think.",
+      "demands on my time unrelated to the program",
+      "As I mentioned before, there was a disconnect between what we were hearing from presenters about how they are using AI and the capabilities of campus resources. Without paying for my own Claude subscription, I could not have developed my tool, but now I am facing a challenge with deployment. More clarity up front about the limitations of campus resources would help to define the scope of what these campus tools can do so that we don't \"overdesign\" our integrations.",
+      "As I built my tool, I was challenged by many factors. Initially, the biggest challenge was reaching a point where I understood conceptually how everything was going to work, where things reside, and what the risks are to students.  I went from thinking that I could build an interface with drop-down menus to a rather \"simpler\" plan of using Illinois Chat to create a tool based on a rather lengthy prompt. The tool is still in progress as I am working out the issues. I had to learn a lot while developing the tool, and I will probably need additional consultation from someone at CITL to address the issues that prompt fixes are not actually fixing. The second challenge, as I mentioned earlier, is understanding the features of the LLMs available. It feels like I am taking shots in the dark as I try to test and understand the LLMs and make a rational, informed decision about which ones are most suitable. I also need extensive help testing the system on different languages, and I am now in the process of requesting this help from colleagues. Ultimately, the system will likely not be perfect, but I would like to get it into its best shape before the start of the semester."
+    ],
+    "noAnswer": 3,
+    "redacted": 1
+  },
+  {
+    "group": "recommendations",
+    "q": "Q14",
+    "title": "What parts of the 5-week program would you recommend altering for the next cohort, if anything? And why?",
+    "items": [
+      "the module on backwards design and assessment should probably have come on day 2 of week 1 rather than in second week - it could have made the design of the initial idea easier by immediately alerting to what the course need is that AI can address. Bit honestly it worked as is as well (just felt by the time it came, it was redundant at that point given the work already done).",
+      "Some field/discipline specific overviews would be helpful",
+      "Perhaps there should be two separate two studio groups—one for novices and one for people that have already used AI a lot. I felt like in the studio time, I was way behind where other people were who had used the tools a lot already and I was still trying to figure out basics. It would be especially useful to divide up the mentors between the two groups accordingly—one of the AI affiliates/mentors who was clearly an expert with AI seemed to have little patience for people who were still trying to figure out basic aspects of this. He made some condescending comments that I felt were very unhelpful and discouraging to those of us who were trying to figure out how to use these tools. I'm sure he has expertise and could answer more advanced questions from people who were further along and had more technical questions, but his attitude and comments were not helpful for those of us that are newer to this. I appreciated the people that were more patient and understanding of where some of us were at and did not make us feel dumb for asking basic questions.",
+      "No Jeopardy.  Longer session with the CUTL/Library/CIO sessions. More early guidance and feedback from the feloows .",
+      "More time to work specifically with campus resources (as opposed to any AI tools we have access to) to fully understand their limits. Equity and access should be a major focus for an activity like this. What can we accomplish with the tools that all students will have at their disposal?",
+      "More breakouts where instructors can attend sessions of interest to them and that can cater to different levels of incoming knowledge.",
+      "maybe have different modules for people who have more AI experience. I have been using AI since it became available, so some of the content was not helpful for me. I feel like i could have benefited from content geared towards us early adopters. what i really liked was the zoom meetings during the individual project time. i got a lot out of that. maybe offer more of a flipped classroom approach bc i liked the group meetings better than the lecture type info.",
+      "Maybe a little bit more structure during the later part. Maybe a bit more of a full itinerary available earlier. I was sometimes caught off guard in my schedule by an additional workshop that I hadn't initially had in my schedule",
+      "Like I said earlier, I think some optional lab sessions where people could go to get technical help/support would be great, as well as having assignment/applications from this first cohort available to analyze and discuss.    This is very specific, but during the day we had the \"Design Sprint\" with the colleague from Siebel, I found the activity very helpful except for the activity in which we were using post-it notes in our groups. Since we all had different students and different projects, this activity didn't seem to flow very well and we spent a long time on it and I wasn't sure how it helped us mover forward on our projects. If our group was all working on the same project as a team, I could see how the activitu would be very helpful, but since that wasn't the case, it seemed to \"miss the mark\" for me. I liked the time spent sharing our project ideas on the last day of the first 2 weeks, but it would have been better if we were in smaller groups so there was more time to actually give feedback and discuss ideas instead of somewhat rushing to get all the presentations done.",
+      "Keep the AI training for the neophytes. I think for the next cohort it will be helpful to give more diverse examples of \"AI integration\" - maybe this means using the first cohort's work as a starting place. I think jumping in to using AI to brainstorm ideas should happen only AFTER getting a sense of some places it could fit; I feel like I wasted time in the first week coming up with an activity that by week 2 I realized was not a good fit for my class.",
+      "It would have been nice to work together with the other members of my group, the people assigned to the same faculty fellow. The interaction with one other colleagues during the first two weeks was one of the best features of the program.   It would have been good, during the last three weeks, to have regular \"open houses\" or some kind of walk-in consultation with a number of people. I spent a lot of time taking shots in the dark before figuring things out.  For the next cohort, I would recommend open studio or open consultation sessions and the ability to meet as a cohort.",
+      "It would be helpful to learn about more use cases to really understand the scope of possible integrations. I also really enjoyed and valued the student perspectives, and I think an additional session with students from different backgrounds would be helpful.",
+      "It was not clear to me how the pairing with Faculty affiliates was done. I recognize this may be my fault but I thought ensuring fit between faculty affiliates and participants could be improved.   For example, it may be useful to match people in the liberal arts together and people who serve GenEd courses together. People who have speciality courses together and the like.   I felt the match with my Faculty affiliate was not great, not for any personal reasons, in fact this person was very supportive and provided great feedback. However, I felt their support was too general, which is completely understandable given the differences in experiences.",
+      "It was a bit confusing regarding whether we should attend the optional sessions. Although they were listed as an option, it wasn't clear how beneficial attending them would be to our overall learning in the AI studio.",
+      "I'm not sure. I feel like my issues were largely my own. And I think the organizers for the course gave me the time and room to make something cool",
+      "I wouldn't change anything.",
+      "I would suggest being more clear about the differences between using chatbots and agentic coding oriented models and workflows. Day one could get into more details quicker by having all participants read something that covers the basics of AI before they walk in the room.",
+      "I would offer several small breakout sessions simultaneously, each focused on a different topic, so participants could choose the discussion that best aligned with their interests and goals. I especially appreciated when impromptu breakout sessions emerged organically, giving new ideas and conversations the space they needed to develop in meaningful ways.",
+      "I would not alter any course components for the next cohort. I would recommend all of them as I found them extremely useful. The 8 part module that we covered in the beginning opened my eyes to the possibilities of using AI in my courses, but also to its limitations. The project was extremely helpful as well. I chose to work on AI integration into several of my assignments so it extended beyond just one project. I'll be curious to see how they will be received by students in the fall.",
+      "I thought the program was very well designed overall. If I were to suggest one change, it would be to move through some of the introductory AI content on the first day a little more quickly, particularly for participants who already have experience using AI. This could allow more time to explore complex applications and spend additional time developing ways to integrate AI meaningfully into teaching.",
+      "I think we could make better use of the graduate affiliates. I think more time could be spent in deliberate exercises that build AI fluency and skill. I also think that having more feedback on what we produce in the second half of the program would improve outcomes.",
+      "I think the independent-working time could be more self-guided and structured. I didn't really need the hand-holding at that point. I am the expert in my discipline and my course, so it felt sort of redundant to have to explain all of that to a faculty mentor just to get a green light.",
+      "I think formal introductions at the top would be helpful. In the first day or two, Jim kept throwing questions to Geoffrey Challen and I had no idea who he was, as he was sitting among the faculty and I didn't realize he was there as a fellow, nor that he was from Computer Science and is an expert in this field.  Same with Vishal.  I also didn't realize Kristie was a fellow; I thought she was a participant until she gave a talk.  Some of the speakers felt out of order.  By the time Manny from CITL and Rachel from SCD spoke, I had an idea in mind, and I felt like backwards design and HCD were several steps behind where I was in my project, and I'd already considered both.  I thought both were great perspectives, but perhaps hearing from them in week 1 would be more beneficial.  It would be great if all participants could have bios in the Canvas page.  I realize doing 30-40 introductions can eat up a ton of time.  But being able to see other departments and courses within the cohort, so that there's an opportunity to brainstorm or align/partner up on things (even if future projects) would be great.  Once we broke up into the beginner/middle/advanced groups, I felt there wasn't much interaction amongst participants beyond our tables.  This has been a unique opportunity for me to meet fellow faculty across campus I would NEVER otherwise encounter, and that has been one of my favorite aspects of this workshop!  So any effort to increase that networking would be wonderful.  We had AI write our bios for an assignment but I never saw them show up on the Canvas page.  Clear expectations of assignments and due dates early on would be helpful.  Things came up in Canvas and we didn't get to finish much work in the on-campus time, which is fine!  But a peek from the very beginning of where this course was headed and what was expected would be helpful as people juggle summer projects/duties/camps/kids/etc.  When I was invited to this program by Kevin Jackson, the email had a start date and a time expectation of 10 hours per week for five weeks, but it did not specify whether this was in-person or virtual.  In fact, I assumed virtual because it did not give any on-campus expectation and I know most faculty aren't on campus every day in the summer.  So learning details of the schedule and what days would be on campus ASAP would be good.",
+      "I suspect as time passes and AI competencies among faculty advance, I wonder if the two-weeks of in-person training could be reduced to one week (2 days). Perhaps I will be wrong, but that may be something to monitor over time.",
+      "Have some check ins scheduled during the q3 weeks we are working separately with the whole cohort.",
+      "Faculty seem to have very different levels of preparedness and preferences for AI integration. More triage upon intake would make the program work better for everyone. Some are more inclined to use ready-made tools while others prefer to build their own and we should respect. The same applies to pedagogical goals. The courses are vastly different and some parts of the program felt like we were made to look in the same direction.",
+      "Either include the human-centered design piece earlier or not at all.",
+      "Clarity on the role of the project teams. When I signed up for this, I thought those would be more small working cohorts rather than individual, independent support that we had to seek out. This format worked, I just didn't know what to expect and was unclear on that until we got to week 3. I appreciated the flexibility, but would have liked to know what to expect from the beginning.   I thought Rachel's session on design thinking was great, but really confusing when done in Week 2 when we had started working on individual projects. That would have been much more helpful in Week 1 to frame the design process, then diving into AI practices.  I also would have liked to meet all the faculty fellows at once. It was on the agenda multiple times, but never happened. I know they weren't all able to attend all sessions, but it was hard to connect with more than the one who sat at our table. I did appreciate the few who moved around to different tables to meet different folks. Clarifying their role and expectations would help.    It also would have been helpful to get feedback or conversation on the daily assignments we submitted. I appreciated the lack of traditional grading on those, but that could be an avenue to use the faculty fellows to help engage in those conversations during the first two weeks.",
+      "As in my other responses, I think this should be spread over more than 5 weeks and that more of the instructional content should be focused on design and support; the panels, in particular, were not that helpful. Also, some of the activities were too focused on particular use cases.",
+      "As I noted in an earlier comment, I recommend making the in-person activities more structured with more guidance."
+    ],
+    "noAnswer": 1,
+    "redacted": 1
+  },
+  {
+    "group": "recommendations",
+    "q": "Q15",
+    "title": "Do you think this five-week studio could be offered successfully to instructors during the Fall or Spring terms (not just the summer session)? What things might have to change for instructors to be able to successfully utilize the studio during the main school year?",
+    "items": [
+      "Yes... I do believe it could be! I think shifting the timeline making it longer in weeks but shorter in expectations per week. Also, having the meetings in the evening or a mutually agreed upon time.",
+      "Yes. Giving more options for days/times for the in-person sessions would likely be necessary to accommodate schedules. Perhaps gather a cohort & then schedule around their availability. I think it could also be condensed a little and be only at 3-4 hours at a time (tighten up the schedule, cut meals).",
+      "Yes, this could be done during the semester, but not as a 5-week program. I think it could be done. You could take the total of roughly 25 contact hours we had over the course of the first two weeks and create options for sessions to be held once per week for 2-3 hours after 3 pm. If you had the capacity to create two cohorts, that would give people the option to select the session that best fits their schedule. Some people may teach one late afternoon course, and perhaps having two times to select from would open it to more people. That of course would mean the presenters go twice in one week. However, you could also ask different people to present on the same topic or create slightly different schedules to offset that issue.  The practical part could be scheduled in parallel to the weekly sessions, but starting a bit later.",
+      "Yes, if the program is entirely virtual and mostly asynchronous.",
+      "Yes, I think the program was very helpful. I particularly appreciated how they tried to make it applicable to people with all levels of background in AI and people from all fields.",
+      "Yes, definitely. Time could be the biggest obstacle during the school year. If absolutely necessary, you could trim it to the 8 part exercise and the project.",
+      "Yes, but scheduling would be challenging.",
+      "Yes, but it might need to be more than 5 weeks. The first two weeks were easier to manage in the summer, but  would not be likely for faculty to commit 5 hours over four days during the semester. I would also suggest condensing to 4 hours or less, with maybe an optional hour at the end for folks to stay and work if they wanted. I think that worked well when done in Week 2.",
+      "Tough timing. If you offer it during the year, much more hands on one on one guidance would be needed. The 5 weeks would be ok, as you could produce an assignment.  Might be fun to have a session on how to use AI to assist in grading and to assist in editing an exam.",
+      "This would be very difficult to do as we have to plan around our teaching and meetings. You would definitely need to get buy-in from the Department Head to allow us to avoid scheduling meetings on such days. Alternatively, you may need to offer more online sessions, which can reduce the effectiveness of the program.",
+      "The timeline would have to be modified to fit teaching schedules, but I think it would be workable during the school year.",
+      "The time investment is honestly too great for this. you couldn't schedule more than one 2 hour session per week at most, difficult to schedule around everyone's teaching etc schedules... and knowing how busy semesters get, the work would likely dwindle in the individual work component of the workshop.",
+      "The intro modules can be streamlined with triage. Not every module for the in-person two weeks should be mandatory for everyone.",
+      "Sure. I could imagine spreading things out, meeting once per week, and planning an activity for the following semester.",
+      "Sure! Some of the in-meeting module work could be done asynchronously, so that in-person convenings could be reserved for presentations and discussion.",
+      "Maybe, if reduced to less hours per day for the in person portion.",
+      "I think this could work as consultations, which may increase in demands as AI becomes more normalized.",
+      "I think it would have to happen over a longer period of time, but I absolutely think this could be done during the school year and with the potential to pull from a broader audience. The challenge is meeting everyone's schedule, which I think would be genuinely difficult and potentially this could make it unworkable. One solution is to keep the cohorts smaller and base them on schedule availability.",
+      "I think it would be difficult for myself personally to focus on the studio the way I did this summer during a fall or spring semester when I have my normal teaching responsibilities, constant teaching responsibilities, and other things pulling my attention and time. It was nice to be able to completely focus on this and mentally dive in to really re-thinking how I teach, re-design some components of my courses, and really take the time and effort to do a good job on this. I'm sure it could be done during fall and spring semesters—perhaps on a smaller scale, though. I think some of the speakers/instructors could be condensed or combined. There were a few presentations that felt a little redundant to what other people had shared, so perhaps shortening some of the overlap.",
+      "I think it could be, but would need to be more broken up and the time commitment would need to be more realistically estimated.",
+      "i think it could be offered successfully. the in-person components at the start probabl woujld be the hardest to manage or convince faculty to attend. I feel those didn't help me quite as much as the small group stuff we did over zoom (or the group presentations at the end).",
+      "I think if it were offered throughout the academic year, it should be only 1-2 hours per week and paid, and maybe held over lunch to ensure participants are more motivated to leave their office building and come to CITL for the same type of experience we received during the summer.",
+      "I suspect it would be possible. Registration/participation may be a bit lower during the fall/spring semesters given faculty workloads but it could be worth trying.",
+      "I don't know. This kind of learning and intense work seems to work better when you have dedicated time to work on it, rather than having time in bits and pieces (like most faculty do during the semester)",
+      "I am not sure. The challenge for many of us who teach intro level courses is that they take up so much of our workweek. I teach two to three courses every semester. It would be impossible to do this training during the school year. The only way, potentially, would be to make it asynchronous, but then participants would probably miss out on forming a community, which was such an important part of my experience in this program.",
+      "I am not sure instructors would have time during fall spring terms. If it were to be offered, I would think for the in person content, 1-hour sessions spread over the course of several weeks would be most successful, as opposed to 4 hour blocks of time over just a few days.",
+      "Honestly, I think that Fall or Spring Studios would be problematic because of the workload the instructors typically have during the year. Maybe, shortening of the program length, if possible, would help.",
+      "Four full in-person days would be impossible for faculty during the semester, particularly those with an interest in teaching excellence. I would recommend more asynchronous content or smaller workshops.",
+      "For me personally, I would not have been able to participate fully in the Studio during the Fall or Spring semester. My days during the academic year are already very full with teaching and clinical responsibilities, and I would not have had the time to engage with the program at the same level. The summer timing gave me the space to really think about how I could apply what I was learning to my teaching. If the Studio were offered during the academic year, I think it would need to be spread over a longer period with smaller weekly time commitments. Even with those changes, I think the summer format provides an important advantage by giving faculty the time and mental space to explore new ideas before the academic year begins.",
+      "Again, I can't think of anything that isn't, in the end, tailored for me specifically.",
+      "Absolutely this can and should be offered all year!  I think spreading out those two weeks of in-person talks/lectures over the semester would be great, with a weekly expected time commitment.  Adding office hours with folks at CITL and experts like Geoffrey or Vishal would be helpful to round out the learning from speakers across campus."
+    ],
+    "noAnswer": 1,
+    "redacted": 1
+  }
+];
+const SURVEY_OVERVIEW = [
+  {
+    "v": "33",
+    "k": "Complete responses"
+  },
+  {
+    "v": "97%",
+    "k": "Response rate"
+  },
+  {
+    "v": "34",
+    "k": "Studio participants"
+  },
+  {
+    "v": "Jul 20 – Aug 18",
+    "k": "Field dates, 2026"
+  }
+];
+const SURVEY_EXPERIENCE = [
+  {
+    "group": "Least experienced",
+    "n": 11,
+    "pct": 32.4
+  },
+  {
+    "group": "Moderately experienced",
+    "n": 17,
+    "pct": 50.0
+  },
+  {
+    "group": "Most experienced",
+    "n": 6,
+    "pct": 17.6
+  },
+  {
+    "group": "Total",
+    "n": 34,
+    "pct": 100.0
+  }
+];
+
+/* ---------- render: overview stat tiles ---------- */
+const overviewCards = document.getElementById('overviewCards');
+SURVEY_OVERVIEW.forEach(o => {
+  const el = document.createElement('div');
+  el.className = 'ov-card';
+  el.innerHTML = `<div class="v">${o.v}</div><div class="k">${o.k}</div>`;
+  overviewCards.appendChild(el);
+});
+
+/* ---------- render: prior-experience table ---------- */
+const expBody = document.getElementById('expTableBody');
+SURVEY_EXPERIENCE.forEach(row => {
+  const tr = document.createElement('tr');
+  if (row.group === 'Total') {
+    tr.innerHTML = `<th scope="row">${row.group}</th><td>${row.n}</td><td>${row.pct.toFixed(1)}</td>`;
+  } else {
+    tr.innerHTML = `<th scope="row">${row.group}</th><td>${row.n}</td><td>${row.pct.toFixed(1)}</td>`;
+  }
+  expBody.appendChild(tr);
+});
+
+/* ---------- render: accessible bar charts, grouped into their theme's chart-grid ---------- */
+function renderChart(c) {
+  const maxCount = Math.max(...c.counts, 1);
+  const card = document.createElement('div');
+  card.className = 'chart-card';
+  const bars = c.counts.map(v => `
+    <div class="bar-col">
+      <span class="val">${v}</span>
+      <div class="bar" style="height:${v === 0 ? '2px' : (v / maxCount * 100) + '%'}"></div>
+    </div>
+  `).join('');
+  const labels = c.categories.map(cat => `<span>${cat}</span>`).join('');
+  const tableRows = c.categories.map((cat, i) => `<tr><th scope="row">${cat}</th><td>${c.counts[i]}</td></tr>`).join('');
+  const meanBadge = (c.mean !== null && c.mean !== undefined)
+    ? `<span class="n"> &middot; mean ${c.mean.toFixed(2)}</span>` : '';
+  card.innerHTML = `
+    <h3>${c.q}. ${c.title}</h3>
+    <div class="n">n = ${c.n}${meanBadge}</div>
+    <div class="bars" role="img" aria-label="Bar chart of responses to ${c.q}: ${c.categories.map((cat,i) => cat + ' ' + c.counts[i]).join(', ')}. n = ${c.n}.">${bars}</div>
+    <div class="bar-labels" aria-hidden="true">${labels}</div>
+    <table class="data-table">
+      <caption>Underlying counts</caption>
+      <thead><tr><th scope="col">Response</th><th scope="col">Count</th></tr></thead>
+      <tbody>${tableRows}</tbody>
+    </table>
+  `;
+  return card;
+}
+SURVEY_CHARTS.forEach(c => {
+  const target = document.getElementById(`chartGrid-${c.group}`);
+  if (target) target.appendChild(renderChart(c));
+});
+
+/* ---------- render: open-ended comment blocks with a "show all" toggle ---------- */
+const EXAMPLE_COUNT = 3;
+function renderComments(block) {
+  const wrap = document.createElement('div');
+  wrap.className = 'comments-block';
+  const total = block.items.length;
+  const metaParts = [`${total} of ${total + block.noAnswer + block.redacted} participants responded`];
+  if (block.noAnswer) metaParts.push(`${block.noAnswer} did not answer`);
+  if (block.redacted) metaParts.push(`${block.redacted} response${block.redacted > 1 ? 's' : ''} withheld by request`);
+  const listId = `comments-${block.q}`;
+  const items = block.items.map((text, i) => `<li${i >= EXAMPLE_COUNT ? ' hidden' : ''}>${text}</li>`).join('');
+  const hiddenCount = Math.max(total - EXAMPLE_COUNT, 0);
+  wrap.innerHTML = `
+    <h3>${block.q}. ${block.title}</h3>
+    <p class="comments-meta">${metaParts.join(' &middot; ')}</p>
+    <ul class="comment-list" id="${listId}">${items}</ul>
+    ${hiddenCount > 0 ? `<button type="button" class="comments-toggle" aria-expanded="false" data-target="${listId}" data-total="${total}" data-shown="${EXAMPLE_COUNT}">
+      <span class="label">Show all ${total} comments</span><span class="arrow" aria-hidden="true">&#9662;</span>
+    </button>` : ''}
+  `;
+  return wrap;
+}
+SURVEY_COMMENTS.forEach(block => {
+  const target = document.getElementById(`comments-${block.group}`);
+  if (target) target.appendChild(renderComments(block));
+});
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.comments-toggle');
+  if (!btn) return;
+  const list = document.getElementById(btn.dataset.target);
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  list.querySelectorAll('li[hidden], li').forEach((li, i) => {
+    if (i >= Number(btn.dataset.shown)) li.hidden = expanded;
+  });
+  btn.setAttribute('aria-expanded', String(!expanded));
+  btn.querySelector('.label').textContent = expanded
+    ? `Show all ${btn.dataset.total} comments`
+    : `Show fewer comments`;
+});
+</script>
+</body>
+</html>
