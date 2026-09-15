@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Browse practical CITL AI Quick Tips from the University of Illinois Urbana-Champaign.">
+  <title>CITL AI Quick Tips</title>
+  <style>
+    @font-face{font-family:Montserrat;src:url("index-assets/montserrat-bold.ttf") format("truetype");font-weight:700;font-display:swap}
+    @font-face{font-family:Montserrat;src:url("index-assets/montserrat-black.ttf") format("truetype");font-weight:900;font-display:swap}
+    @font-face{font-family:"Source Sans";src:url("index-assets/source-sans-regular.ttf") format("truetype");font-weight:400;font-display:swap}
+    @font-face{font-family:"Source Sans";src:url("index-assets/source-sans-bold.ttf") format("truetype");font-weight:700;font-display:swap}
+    :root{--navy:#13294b;--deep:#06182e;--orange:#ff5f05;--blue:#1d58a7;--sky:#dce8f7;--gold:#fcb316;--ink:#111827;--line:#c6c7c6;--paper:#f5f7fa;--white:#fff}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.5 "Source Sans",Arial,sans-serif}a{color:inherit}.skip{position:absolute;left:-9999px;top:0;background:#fff;color:#000;padding:12px;z-index:100}.skip:focus{left:12px;top:12px}.wrap{width:min(1420px,calc(100% - 48px));margin:auto}
+    .hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:72px 0 82px;border-bottom:12px solid var(--orange)}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(118deg,transparent 0 56%,#1b3c6d 56% 78%,var(--blue) 78%);opacity:.78}.hero:after{content:"13";position:absolute;right:-22px;bottom:-88px;color:#fff;font:900 clamp(180px,25vw,360px)/1 Montserrat;opacity:.08}.heroGrid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) 410px;gap:70px;align-items:center}.series{display:flex;align-items:center;gap:15px;width:max-content;margin:0 0 34px;font:900 13px Montserrat;letter-spacing:.17em}.series img{width:42px;height:43px;object-fit:contain}.series span{border-left:2px solid var(--orange);padding-left:15px}.eyebrow{margin:0;color:#ff9b61;font:900 13px Montserrat;letter-spacing:.16em;text-transform:uppercase}.hero h1{max-width:850px;margin:18px 0 26px;font:900 clamp(56px,7.2vw,108px)/.88 Montserrat;letter-spacing:-.06em}.hero .lede{max-width:700px;margin:0;color:#d9e3ee;font-size:clamp(20px,1.8vw,27px)}.map{position:relative;height:390px}.mapCard{position:absolute;width:210px;height:138px;padding:20px;background:#fff;color:var(--navy);border:2px solid var(--navy);box-shadow:10px 10px 0 var(--orange);font:900 12px Montserrat;letter-spacing:.07em;text-transform:uppercase}.mapCard:before{display:block;margin-bottom:18px;color:var(--orange);font-size:35px}.mapCard:nth-child(1){left:0;top:0;transform:rotate(-5deg)}.mapCard:nth-child(1):before{content:"✦"}.mapCard:nth-child(2){right:0;top:95px;transform:rotate(4deg);background:var(--sky)}.mapCard:nth-child(2):before{content:"↗"}.mapCard:nth-child(3){left:44px;bottom:0;transform:rotate(2deg);background:var(--orange);color:#fff;box-shadow:10px 10px 0 #fff}.mapCard:nth-child(3):before{content:"✓";color:#fff}
+    .tools{background:#fff;border-bottom:1px solid var(--line);padding:26px 0;position:sticky;top:0;z-index:10;box-shadow:0 8px 25px #13294b12}.toolRow{display:flex;align-items:center;gap:16px}.search{display:flex;align-items:center;flex:1;max-width:720px;border:2px solid var(--navy);background:#fff}.search span{padding:0 16px;color:var(--orange);font-size:24px}.search input{width:100%;border:0;padding:15px 16px 15px 0;color:var(--navy);font:700 17px "Source Sans";outline:0}.search:focus-within{outline:3px solid var(--gold);outline-offset:3px}.count{margin-left:auto;color:#536174;font:900 12px Montserrat;letter-spacing:.12em;text-transform:uppercase}.count strong{color:var(--navy);font-size:20px}
+    main{padding:72px 0 105px}.group{margin-bottom:78px}.groupHead{display:grid;grid-template-columns:90px 1fr auto;align-items:end;gap:24px;padding-bottom:22px;border-bottom:3px solid var(--navy)}.groupNum{color:var(--orange);font:900 24px Montserrat}.group h2{margin:0;color:var(--navy);font:900 clamp(34px,4vw,56px)/1 Montserrat;letter-spacing:-.045em}.groupIntro{max-width:410px;margin:0;color:#586577}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:28px}.card{position:relative;display:flex;min-height:276px;flex-direction:column;padding:28px;background:#fff;border:1px solid var(--line);text-decoration:none;transition:transform .18s ease,box-shadow .18s ease;border-top:10px solid var(--blue)}.card:nth-child(3n+2){border-top-color:var(--orange)}.card:nth-child(3n){border-top-color:var(--gold)}.card:hover{transform:translateY(-7px);box-shadow:12px 12px 0 var(--navy)}.card:focus-visible{outline:4px solid var(--orange);outline-offset:4px}.cardMeta{display:flex;justify-content:space-between;color:#657185;font:900 11px Montserrat;letter-spacing:.13em;text-transform:uppercase}.cardIcon{display:grid;place-items:center;width:52px;height:52px;margin:38px 0 25px;background:var(--navy);color:#fff;font:900 23px Montserrat;box-shadow:6px 6px 0 var(--orange)}.card h3{margin:0 45px 12px 0;color:var(--navy);font:900 24px/1.05 Montserrat;letter-spacing:-.035em}.card p{margin:0;color:#526071;font-size:16px}.arrow{position:absolute;right:25px;bottom:23px;display:grid;place-items:center;width:38px;height:38px;border:2px solid var(--navy);border-radius:50%;color:var(--navy);font-weight:900}.card:hover .arrow{background:var(--orange);border-color:var(--orange);color:#fff}.noResults{display:none;padding:50px;background:#fff;border:2px dashed var(--navy);color:var(--navy);text-align:center;font:700 22px Montserrat}.noResults.show{display:block}.closing{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:36px 0;border-top:1px solid var(--line);color:#566376}.closing strong{color:var(--navy);font-family:Montserrat}.closing a{font-weight:700}
+    @media(max-width:1120px){.heroGrid{grid-template-columns:1fr 330px}.cards{grid-template-columns:repeat(2,1fr)}.groupHead{grid-template-columns:70px 1fr}.groupIntro{grid-column:2}}
+    @media(max-width:760px){body{font-size:17px}.wrap{width:min(100% - 32px,1420px)}.hero{padding-top:48px}.heroGrid{grid-template-columns:1fr}.hero h1{font-size:54px}.map{height:300px;max-width:410px}.mapCard{width:185px;height:120px;padding:17px}.tools{position:static}.toolRow{align-items:stretch;flex-direction:column}.count{margin-left:0}.groupHead{grid-template-columns:48px 1fr}.groupIntro{grid-column:1/-1}.cards{grid-template-columns:1fr}.card{min-height:245px}.closing{align-items:flex-start;flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#tips">Skip to quick tips</a>
+  <header class="hero">
+    <div class="wrap heroGrid">
+      <div>
+        <p class="series"><img src="index-assets/block-i-blue-bg.png" alt="Block I"><span>CITL AI QUICK TIPS</span></p>
+        <p class="eyebrow">Practical workflows · thoughtful use</p>
+        <h1>Try one useful thing with AI.</h1>
+        <p class="lede">Short, visual guides for transforming materials, creating media, researching ideas, and working more effectively with campus-supported tools.</p>
+      </div>
+      <div class="map" aria-label="A three-part workflow: specify the task, work with AI, and review the result">
+        <div class="mapCard">Specify the task</div><div class="mapCard">Work with AI</div><div class="mapCard">Review the result</div>
+      </div>
+    </div>
+  </header>
+  <section class="tools" aria-label="Filter quick tips">
+    <div class="wrap toolRow">
+      <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search tips, tools, or tasks" aria-label="Search quick tips"></label>
+      <p class="count" aria-live="polite"><strong id="visibleCount">13</strong> tips available</p>
+    </div>
+  </section>
+  <main id="tips" class="wrap">
+    <section class="group" data-group>
+      <div class="groupHead"><span class="groupNum">01</span><h2>Create &amp; design</h2><p class="groupIntro">Develop, edit, extend, and translate visual ideas.</p></div>
+      <div class="cards">
+        <a class="card" data-search="adobe firefly generative expand extend image design" href="./CITL_AI_Quick_Tips_Adobe_Firefly_Generative_Expand/index.html"><span class="cardMeta"><b>Adobe Firefly</b><b>Image</b></span><span class="cardIcon" aria-hidden="true">↔</span><h3>Extend an image with Generative Expand</h3><p>Create additional image area while preserving the original composition.</p><span class="arrow" aria-hidden="true">→</span></a>
+        <a class="card" data-search="google pics create edit image docs slides design" href="./CITL_AI_Quick_Tips_Google_Pics/index.html"><span class="cardMeta"><b>Google Pics</b><b>Design</b></span><span class="cardIcon" aria-hidden="true">✦</span><h3>Create and refine images in Google Workspace</h3><p>Design and modify visuals without leaving Docs or Slides.</p><span class="arrow" aria-hidden="true">→</span></a>
+        <a class="card" data-search="image json context prompt reusable visual specification" href="./CITL_AI_Quick_Tips_Image_to_JSON/index.html"><span class="cardMeta"><b>Multimodal AI</b><b>JSON</b></span><span class="cardIcon" aria-hidden="true">{ }</span><h3>Turn an image into a reusable JSON context</h3><p>Describe visual structure in a portable, editable format.</p><span class="arrow" aria-hidden="true">→</span></a>
+        <a class="card" data-search="gemini screenshot html website code recreate" href="./CITL_AI_Quick_Tips_Gemini_Screenshot_to_HTML/index.html"><span class="cardMeta"><b>Gemini</b><b>HTML</b></span><span class="cardIcon" aria-hidden="true">&lt;/&gt;</span><h3>Generate HTML from a website screenshot</h3><p>Translate a visual reference into editable webpage code.</p><span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+    <section class="group" data-group>
+      <div class="groupHead"><span class="groupNum">02</span><h2>Present &amp; share</h2><p class="groupIntro">Move from source material to clear, editable presentations and video.</p></div>
+      <div class="cards">
+        <a class="card" data-search="adobe accessible presentation document pdf express powerpoint deck" href="./CITL_AI_Quick_Tips_Adobe_Accessible_Presentation/index.html"><span class="cardMeta"><b>Adobe</b><b>Accessibility</b></span><span class="cardIcon" aria-hidden="true">A</span><h3>Create an accessible presentation from a document</h3><p>Build a deck, then review its structure and accessibility.</p><span class="arrow" aria-hidden="true">→</span></a>
+        <a class="card" data-search="chatgpt powerpoint presentation slide deck sources instructions" href="./CITL_AI_Quick_Tips_ChatGPT_to_PowerPoint/index.html"><span class="cardMeta"><b>ChatGPT</b><b>PowerPoint</b></span><span class="cardIcon" aria-hidden="true">P</span><h3>Generate a PowerPoint with ChatGPT</h3><p>Turn a clear specification into an editable slide deck.</p><span class="arrow" aria-hidden="true">→</span></a>
+        <a class="card" data-search="notebooklm powerpoint slides deck custom instructions sources" href="./CITL_AI_Quick_Tips_NotebookLM_to_PowerPoint/index.html"><span class="cardMeta"><b>NotebookLM</b><b>Slides</b></span><span class="cardIcon" aria-hidden="true">▤</span><h3>Build a source-grounded slide deck</h3><p>Use custom instructions and selected sources to shape the presentation.</p><span class="arrow" aria-hidden="true">→</span></a>
+        <a class="card" data-search="powerpoint google vids video convert narrated presentation" href="./CITL_AI_Quick_Tips_PPT-to-Google_Vids/index.html"><span class="cardMeta"><b>Google Vids</b><b>Video</b></span><span class="cardIcon" aria-hidden="true">▶</span><h3>Turn a PowerPoint into a video</h3><p>Convert slides into an editable, narrated video draft.</p><span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+    <section class="group" data-group>
+      <div class="groupHead"><span class="groupNum">03</span><h2>Research &amp; learn</h2><p class="groupIntro">Synthesize sources into useful learning and communication formats.</p></div>
+      <div class="cards">
+        <a class="card" data-search="gemini deep research webpage infographic report" href="./CITL_AI_Quick_Tips_Gemini_Deep_Research/index.html"><span class="cardMeta"><b>Gemini</b><b>Research</b></span><span class="cardIcon" aria-hidden="true">⌕</span><h3>Turn Deep Research into a webpage</h3><p>Move from a sourced report to a visual, shareable format.</p><span class="arrow" aria-hidden="true">→</span></a>
+        <a class="card" data-search="notebooklm audio overview podcast sources" href="./CITL_AI_Quick_Tips_NotebookLM_Audio_Overview/index.html"><span class="cardMeta"><b>NotebookLM</b><b>Audio</b></span><span class="cardIcon" aria-hidden="true">◉</span><h3>Generate a podcast-style Audio Overview</h3><p>Create a source-grounded conversation, then verify its framing.</p><span class="arrow" aria-hidden="true">→</span></a>
+        <a class="card" data-search="notebooklm udl universal design learning study guide sources" href="./CITL_AI_Quick_Tips_NotebookLM_UDL_Study_Guide/index.html"><span class="cardMeta"><b>NotebookLM</b><b>UDL</b></span><span class="cardIcon" aria-hidden="true">✓</span><h3>Create a UDL study guide</h3><p>Transform course sources into multiple pathways for learning.</p><span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+    <section class="group" data-group>
+      <div class="groupHead"><span class="groupNum">04</span><h2>Meet &amp; make media</h2><p class="groupIntro">Use AI to capture conversations and animate visual material.</p></div>
+      <div class="cards">
+        <a class="card" data-search="google photos photo video remix animate image" href="./CITL_AI_Quick_Tips_Google_Photos_Photo_to_Video/index.html"><span class="cardMeta"><b>Google Photos</b><b>Video</b></span><span class="cardIcon" aria-hidden="true">▶</span><h3>Turn a photo into a short video</h3><p>Animate a still image with Photo to Video and Remix tools.</p><span class="arrow" aria-hidden="true">→</span></a>
+        <a class="card" data-search="zoom ai companion meeting summary questions tasks" href="./CITL_AI_Quick_Tips_Zoom_AI_Companion/index.html"><span class="cardMeta"><b>Zoom</b><b>Meetings</b></span><span class="cardIcon" aria-hidden="true">Z</span><h3>Use Zoom AI Companion thoughtfully</h3><p>Generate meeting support while managing privacy and review.</p><span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+    <p id="noResults" class="noResults">No tips match that search. Try a tool name such as Gemini, Adobe, or NotebookLM.</p>
+    <div class="closing"><strong>Center for Innovation in Teaching &amp; Learning</strong><span>University of Illinois Urbana-Champaign · <a href="https://citl.illinois.edu/">citl.illinois.edu</a></span></div>
+  </main>
+  <script>
+    const input=document.getElementById('search'),cards=[...document.querySelectorAll('.card')],groups=[...document.querySelectorAll('[data-group]')],count=document.getElementById('visibleCount'),empty=document.getElementById('noResults');
+    input.addEventListener('input',()=>{const q=input.value.trim().toLowerCase();let visible=0;cards.forEach(card=>{const match=!q||(card.dataset.search+' '+card.textContent).toLowerCase().includes(q);card.hidden=!match;if(match)visible++});groups.forEach(group=>{group.hidden=![...group.querySelectorAll('.card')].some(card=>!card.hidden)});count.textContent=visible;empty.classList.toggle('show',visible===0)});
+  </script>
+</body>
+</html>
