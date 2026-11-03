@@ -59,6 +59,24 @@ h2{font-size:clamp(1.35rem,3vw,1.75rem);font-weight:800}
 h3{font-size:1.1rem;font-weight:700}
 .meta{color:var(--muted);font-size:1rem}
 
+/* Faculty examples */
+.time.light{background:var(--tint);color:var(--blue)}
+.intro{margin:0 0 1rem;max-width:66ch}
+.presenter{border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:10px;padding:1rem 1.1rem .25rem;margin:0 0 1rem;background:#fff}
+.presenter:nth-of-type(even){border-top-color:var(--orange)}
+.ptime{margin:0 0 .2rem;font-weight:700;color:var(--altgeld);font-size:.95rem}
+.presenter h3{font-size:1.3rem;margin-bottom:.5rem}
+.pq{background:var(--tint);border-radius:8px;padding:.7rem .9rem;margin:0 0 .9rem;font-weight:600}
+.pq .label{display:block;font-family:var(--head);font-weight:700;text-transform:uppercase;letter-spacing:.07em;font-size:.75rem;color:var(--altgeld);margin-bottom:.15rem}
+fieldset.fit{border:2px solid var(--line);border-radius:10px;padding:.6rem .9rem .9rem;margin:0 0 1rem}
+fieldset.fit legend{font-weight:700;padding:0 .35rem}
+.fit .opts{display:flex;flex-wrap:wrap;gap:.5rem}
+.fit label{display:flex;align-items:center;gap:.5rem;border:2px solid var(--line);border-radius:8px;padding:.4rem .8rem;cursor:pointer;min-height:44px;background:#fff}
+.fit input{width:1.2rem;height:1.2rem;accent-color:var(--blue);margin:0}
+.fit label:has(input:checked){border-color:var(--blue);background:var(--tint);font-weight:700}
+.presenter .field label{font-size:1rem}
+.presenter textarea{min-height:5.5rem}
+
 /* Constraints */
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;padding:0;margin:.5rem 0 0;list-style:none}
 .chips li{background:var(--tint);color:var(--blue);border:2px solid var(--blue);border-radius:999px;padding:.15rem .8rem;font-weight:600;font-size:.95rem}
@@ -103,7 +121,10 @@ summary{cursor:pointer;font-weight:700;color:var(--industrial);min-height:44px;d
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @media print{
   body{background:#fff;font-size:12pt}
-  .skip,.timer,.row,.autosave,.progress,details,.no-print,.status{display:none!important}
+  .skip,.timer,.row,.autosave,.progress,details,.no-print,.status,fieldset.fit{display:none!important}
+  .presenter{break-inside:avoid;border:1px solid var(--line);border-top:3pt solid var(--blue)}
+  .pq{background:none;padding:0}
+  .print-only[data-print^="fit-"]{border-left:none;padding-left:0;font-weight:700;margin-bottom:8pt}
   .panel{border:none;padding:0 0 12pt;margin:0}
   .panel::before{display:none}
   .hero{background:#fff;color:var(--blue)}
@@ -127,7 +148,6 @@ summary{cursor:pointer;font-weight:700;color:var(--industrial);min-height:44px;d
 <main id="main">
 
   <section class="panel hero" aria-labelledby="title">
-    <span class="time">11:40–11:50 · 10 minutes</span>
     <p class="kicker">Individual activity · Assessing What Students Know in the Age of AI</p>
     <h1 id="title">Start with your context</h1>
     <p>Describe an existing assignment or assessment from a course you teach or support, or imagine a representative one in your discipline. You'll use these notes to weigh each faculty example during the workshop.</p>
@@ -186,8 +206,70 @@ summary{cursor:pointer;font-weight:700;color:var(--industrial);min-height:44px;d
     </div>
 
     <p class="autosave" id="autosave">Notes save automatically in this browser as you type. They are never sent anywhere.</p>
+  </section>
 
-    <h3 class="no-print">Keep a copy for later</h3>
+  <section class="panel" aria-labelledby="fx">
+    <span class="time light no-print">11:50–12:30</span>
+    <p class="kicker">As you listen</p>
+    <h2 id="fx">Faculty examples</h2>
+    <p class="intro">For each example, consider whether the strategy aligns with your goals and constraints, would need adaptation, or may not be appropriate for your situation.</p>
+
+    <article class="presenter" aria-labelledby="p-king">
+      <p class="ptime">11:50–12:00 · Journalism</p>
+      <h3 id="p-king">Colleen King</h3>
+      <p class="pq"><span class="label">Central assessment question</span>How can we verify foundational knowledge while creating opportunities for authentic, AI-supported practice?</p>
+      <fieldset class="fit"><legend>For my context, this approach…</legend><div class="opts">
+        <label><input type="radio" name="fit-king" value="Fits as is"> Fits as is</label>
+        <label><input type="radio" name="fit-king" value="Needs adaptation"> Needs adaptation</label>
+        <label><input type="radio" name="fit-king" value="Not a fit"> Not a fit</label></div></fieldset>
+      <div class="print-only" data-print="fit-king"></div>
+      <div class="field"><label for="n-king">My notes on Colleen King's example</label>
+        <textarea id="n-king" data-key="n-king"></textarea><div class="print-only" data-print="n-king"></div></div>
+    </article>
+
+    <article class="presenter" aria-labelledby="p-kourtikakis">
+      <p class="ptime">12:00–12:10 · Political Science</p>
+      <h3 id="p-kourtikakis">Konstantinos Kourtikakis</h3>
+      <p class="pq"><span class="label">Central assessment question</span>How should the conditions for AI use change depending on what we are trying to assess?</p>
+      <fieldset class="fit"><legend>For my context, this approach…</legend><div class="opts">
+        <label><input type="radio" name="fit-kourtikakis" value="Fits as is"> Fits as is</label>
+        <label><input type="radio" name="fit-kourtikakis" value="Needs adaptation"> Needs adaptation</label>
+        <label><input type="radio" name="fit-kourtikakis" value="Not a fit"> Not a fit</label></div></fieldset>
+      <div class="print-only" data-print="fit-kourtikakis"></div>
+      <div class="field"><label for="n-kourtikakis">My notes on Konstantinos Kourtikakis's example</label>
+        <textarea id="n-kourtikakis" data-key="n-kourtikakis"></textarea><div class="print-only" data-print="n-kourtikakis"></div></div>
+    </article>
+
+    <article class="presenter" aria-labelledby="p-flaherty">
+      <p class="ptime">12:10–12:20 · Speech and Hearing Sciences</p>
+      <h3 id="p-flaherty">Mary Flaherty</h3>
+      <p class="pq"><span class="label">Central assessment question</span>How can evaluating AI-generated work provide evidence of students' disciplinary knowledge and judgment?</p>
+      <fieldset class="fit"><legend>For my context, this approach…</legend><div class="opts">
+        <label><input type="radio" name="fit-flaherty" value="Fits as is"> Fits as is</label>
+        <label><input type="radio" name="fit-flaherty" value="Needs adaptation"> Needs adaptation</label>
+        <label><input type="radio" name="fit-flaherty" value="Not a fit"> Not a fit</label></div></fieldset>
+      <div class="print-only" data-print="fit-flaherty"></div>
+      <div class="field"><label for="n-flaherty">My notes on Mary Flaherty's example</label>
+        <textarea id="n-flaherty" data-key="n-flaherty"></textarea><div class="print-only" data-print="n-flaherty"></div></div>
+    </article>
+
+    <article class="presenter" aria-labelledby="p-mulvaney">
+      <p class="ptime">12:20–12:30 · Recreation, Sport &amp; Tourism</p>
+      <h3 id="p-mulvaney">Mike Mulvaney</h3>
+      <p class="pq"><span class="label">Central assessment question</span>What should students know about AI itself, and how can we establish evidence of that knowledge across a program?</p>
+      <fieldset class="fit"><legend>For my context, this approach…</legend><div class="opts">
+        <label><input type="radio" name="fit-mulvaney" value="Fits as is"> Fits as is</label>
+        <label><input type="radio" name="fit-mulvaney" value="Needs adaptation"> Needs adaptation</label>
+        <label><input type="radio" name="fit-mulvaney" value="Not a fit"> Not a fit</label></div></fieldset>
+      <div class="print-only" data-print="fit-mulvaney"></div>
+      <div class="field"><label for="n-mulvaney">My notes on Mike Mulvaney's example</label>
+        <textarea id="n-mulvaney" data-key="n-mulvaney"></textarea><div class="print-only" data-print="n-mulvaney"></div></div>
+    </article>
+  </section>
+
+  <section class="panel no-print" aria-labelledby="keep">
+    <h2 id="keep">Keep a copy for later</h2>
+    <p class="meta">Your copy includes your context notes and everything you recorded for the four faculty examples.</p>
     <div class="row">
       <button class="btn" type="button" id="dl">Download my notes</button>
       <button class="btn ghost" type="button" id="copy">Copy to clipboard</button>
@@ -203,11 +285,6 @@ summary{cursor:pointer;font-weight:700;color:var(--industrial);min-height:44px;d
     </details>
   </section>
 
-  <section class="panel no-print" aria-labelledby="next">
-    <h2 id="next">As you listen</h2>
-    <p class="callout"><strong>For each faculty example, ask:</strong> does this strategy align with my goals and constraints, would it need adaptation, or is it not appropriate for my situation?</p>
-  </section>
-
   <p class="meta">Center for Innovation in Teaching &amp; Learning · Co-sponsored by the Office of the Provost · Monday, November 9, 2026</p>
 </main>
 
@@ -219,8 +296,14 @@ summary{cursor:pointer;font-weight:700;color:var(--industrial);min-height:44px;d
   var FIELDS=[
     ['course','COURSE'],['assignment','ASSIGNMENT OR ASSESSMENT'],
     ['level','1. LEARNING LEVEL'],['goals','2. LEARNING GOALS'],
-    ['ai','3. AI USE'],['context','4. CONTEXT AND CONSTRAINTS']
+    ['ai','3. AI USE'],['context','4. CONTEXT AND CONSTRAINTS'],
+    ['fit-king','COLLEEN KING: HOW IT FITS MY CONTEXT'],['n-king','COLLEEN KING: MY NOTES'],
+    ['fit-kourtikakis','KONSTANTINOS KOURTIKAKIS: HOW IT FITS MY CONTEXT'],['n-kourtikakis','KONSTANTINOS KOURTIKAKIS: MY NOTES'],
+    ['fit-flaherty','MARY FLAHERTY: HOW IT FITS MY CONTEXT'],['n-flaherty','MARY FLAHERTY: MY NOTES'],
+    ['fit-mulvaney','MIKE MULVANEY: HOW IT FITS MY CONTEXT'],['n-mulvaney','MIKE MULVANEY: MY NOTES']
   ];
+  var FIT_VALUES=['Fits as is','Needs adaptation','Not a fit'];
+  var radios=[].slice.call(document.querySelectorAll('.fit input[type=radio]'));
   var CORE=['level','goals','ai','context'];
   var inputs=[].slice.call(document.querySelectorAll('[data-key]'));
   var status=document.getElementById('status'), live=document.getElementById('live');
@@ -233,10 +316,14 @@ summary{cursor:pointer;font-weight:700;color:var(--industrial);min-height:44px;d
 
   function capture(){
     inputs.forEach(function(el){notes[el.dataset.key]=el.value;});
+    var seen={};
+    radios.forEach(function(r){if(!seen[r.name])seen[r.name]='';if(r.checked)seen[r.name]=r.value;});
+    Object.keys(seen).forEach(function(k){notes[k]=seen[k];});
     save(); paint();
   }
   function fill(){
     inputs.forEach(function(el){el.value=notes[el.dataset.key]||'';});
+    radios.forEach(function(r){r.checked=(notes[r.name]===r.value);});
     paint();
   }
   function paint(){
@@ -246,13 +333,17 @@ summary{cursor:pointer;font-weight:700;color:var(--industrial);min-height:44px;d
       var d=document.querySelector('.dot[data-for="'+k+'"]'); if(d)d.classList.toggle('on',on);
     });
     document.getElementById('progText').textContent=done+' of 4 sections started';
-    document.querySelectorAll('[data-print]').forEach(function(el){el.textContent=notes[el.dataset.print]||'';});
+    document.querySelectorAll('[data-print]').forEach(function(el){
+      var k=el.dataset.print,v=notes[k]||'';
+      el.textContent=(k.indexOf('fit-')===0)?'For my context: '+(v||'not rated'):v;
+    });
   }
 
   notes=load();
   if(!storageOK){document.getElementById('autosave').textContent='This browser is not keeping notes between visits here, so download, copy, or print them before you close the page.';}
   fill();
   inputs.forEach(function(el){el.addEventListener('input',capture);el.addEventListener('change',capture);});
+  radios.forEach(function(r){r.addEventListener('change',capture);});
 
   function asText(){
     var out='Assessing What Students Know in the Age of AI\nIndividual activity: Start with your context\nWorkshop: Monday, November 9, 2026 | CITL, University of Illinois\nSaved: '+new Date().toLocaleString()+'\n\n';
@@ -311,6 +402,7 @@ summary{cursor:pointer;font-weight:700;color:var(--industrial);min-height:44px;d
         var end=text.length;
         FIELDS.slice(i+1).some(function(g){var j=text.indexOf('\n'+g[1]+'\n',start);if(j>=0){end=j;return true;}});
         var v=text.slice(start,end).trim(); if(v==='(blank)')v='';
+        if(f[0].indexOf('fit-')===0&&FIT_VALUES.indexOf(v)<0)v='';
         next[f[0]]=v; found++;
       });
       if(!found){say('That file doesn’t look like notes saved from this page.');return;}
