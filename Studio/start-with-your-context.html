@@ -59,6 +59,10 @@ h2{font-size:clamp(1.35rem,3vw,1.75rem);font-weight:800}
 h3{font-size:1.1rem;font-weight:700}
 .meta{color:var(--muted);font-size:1rem}
 
+/* Constraints */
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;padding:0;margin:.5rem 0 0;list-style:none}
+.chips li{background:var(--tint);color:var(--blue);border:2px solid var(--blue);border-radius:999px;padding:.15rem .8rem;font-weight:600;font-size:.95rem}
+
 /* Timer */
 .timer{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;background:var(--tint);border-radius:10px;padding:.75rem 1rem;margin:0 0 1.25rem}
 .timer output{font-family:var(--head);font-weight:800;font-size:1.8rem;color:var(--blue);font-variant-numeric:tabular-nums;min-width:5ch}
@@ -129,16 +133,19 @@ summary{cursor:pointer;font-weight:700;color:var(--industrial);min-height:44px;d
     <p>Describe an existing assignment or assessment from a course you teach or support, or imagine a representative one in your discipline. You'll use these notes to weigh each faculty example during the workshop.</p>
   </section>
 
+  <section class="panel no-print" aria-labelledby="cn">
+    <h2 id="cn">Constraints that shape your options</h2>
+    <ul class="chips">
+      <li>Enrollment</li><li>Modality</li><li>Learning level</li><li>Instructor workload</li><li>Available technology</li><li>Accessibility</li>
+    </ul>
+  </section>
+
   <section class="panel" id="notes" aria-labelledby="nh" tabindex="-1">
     <h2 id="nh">My notes</h2>
 
-    <div class="timer no-print" role="group" aria-label="Activity timer">
-      <output id="timerOut" aria-label="Time remaining 10 minutes 0 seconds">10:00</output>
-      <button class="btn" type="button" id="timerStart">Start timer</button>
-      <button class="btn ghost" type="button" id="timerReset">Reset</button>
-    </div>
 
-    <div class="progress" aria-hidden="true"><span class="dot" data-for="level"></span><span class="dot" data-for="goals"></span><span class="dot" data-for="evidence"></span><span class="dot" data-for="context"></span><span id="progText"></span></div>
+
+    <div class="progress" aria-hidden="true"><span class="dot" data-for="level"></span><span class="dot" data-for="goals"></span><span class="dot" data-for="ai"></span><span class="dot" data-for="context"></span><span id="progText"></span></div>
 
     <div class="two">
       <div class="field">
@@ -166,10 +173,10 @@ summary{cursor:pointer;font-weight:700;color:var(--industrial);min-height:44px;d
       <div class="print-only" data-print="goals"></div>
     </div>
     <div class="field">
-      <label for="f-evidence"><span class="num" aria-hidden="true">3</span>Evidence of learning</label>
-      <span class="help" id="f-evidence-h">What would demonstrate that students have achieved the intended goals?</span>
-      <textarea id="f-evidence" data-key="evidence" aria-describedby="f-evidence-h"></textarea>
-      <div class="print-only" data-print="evidence"></div>
+      <label for="f-ai"><span class="num" aria-hidden="true">3</span>AI use</label>
+      <span class="help" id="f-ai-h">Should students use AI for this work, or complete it without AI? If AI is allowed, for what parts and under what conditions? If not, why is independent performance essential?</span>
+      <textarea id="f-ai" data-key="ai" aria-describedby="f-ai-h"></textarea>
+      <div class="print-only" data-print="ai"></div>
     </div>
     <div class="field">
       <label for="f-context"><span class="num" aria-hidden="true">4</span>Context and constraints</label>
@@ -212,9 +219,9 @@ summary{cursor:pointer;font-weight:700;color:var(--industrial);min-height:44px;d
   var FIELDS=[
     ['course','COURSE'],['assignment','ASSIGNMENT OR ASSESSMENT'],
     ['level','1. LEARNING LEVEL'],['goals','2. LEARNING GOALS'],
-    ['evidence','3. EVIDENCE OF LEARNING'],['context','4. CONTEXT AND CONSTRAINTS']
+    ['ai','3. AI USE'],['context','4. CONTEXT AND CONSTRAINTS']
   ];
-  var CORE=['level','goals','evidence','context'];
+  var CORE=['level','goals','ai','context'];
   var inputs=[].slice.call(document.querySelectorAll('[data-key]'));
   var status=document.getElementById('status'), live=document.getElementById('live');
   var notes={};
