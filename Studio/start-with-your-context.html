@@ -59,17 +59,6 @@ h2{font-size:clamp(1.35rem,3vw,1.75rem);font-weight:800}
 h3{font-size:1.1rem;font-weight:700}
 .meta{color:var(--muted);font-size:1rem}
 
-/* Framework */
-.flow{list-style:none;padding:0;margin:1rem 0;display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;counter-reset:f}
-.flow li{position:relative;background:var(--blue);color:#fff;border-radius:10px;padding:.85rem;counter-increment:f}
-.flow li::before{content:counter(f);font-family:var(--head);font-weight:800;color:var(--orange);font-size:1.4rem;display:block}
-.flow li strong{font-family:var(--head);display:block}
-.flow li span{font-size:.95rem}
-.flow li:not(:last-child)::after{content:"";position:absolute;right:-.95rem;top:50%;border:8px solid transparent;border-left-color:var(--orange);transform:translateY(-50%)}
-@media (max-width:760px){.flow{grid-template-columns:1fr}.flow li:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-1.05rem;border-left-color:transparent;border-top-color:var(--orange);transform:translateX(-50%)}}
-.chips{display:flex;flex-wrap:wrap;gap:.5rem;padding:0;margin:.5rem 0 0;list-style:none}
-.chips li{background:var(--tint);color:var(--blue);border:2px solid var(--blue);border-radius:999px;padding:.15rem .8rem;font-weight:600;font-size:.95rem}
-
 /* Timer */
 .timer{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;background:var(--tint);border-radius:10px;padding:.75rem 1rem;margin:0 0 1.25rem}
 .timer output{font-family:var(--head);font-weight:800;font-size:1.8rem;color:var(--blue);font-variant-numeric:tabular-nums;min-width:5ch}
@@ -138,20 +127,6 @@ summary{cursor:pointer;font-weight:700;color:var(--industrial);min-height:44px;d
     <p class="kicker">Individual activity · Assessing What Students Know in the Age of AI</p>
     <h1 id="title">Start with your context</h1>
     <p>Describe an existing assignment or assessment from a course you teach or support, or imagine a representative one in your discipline. You'll use these notes to weigh each faculty example during the workshop.</p>
-  </section>
-
-  <section class="panel no-print" aria-labelledby="fw">
-    <h2 id="fw">The assessment decision framework</h2>
-    <ol class="flow">
-      <li><strong>Learning goals</strong><span>What should students know or be able to do?</span></li>
-      <li><strong>Evidence of learning</strong><span>What would credibly show they've achieved it?</span></li>
-      <li><strong>AI conditions</strong><span>When is independent performance needed, and when is AI-assisted work appropriate?</span></li>
-      <li><strong>Feasible strategies</strong><span>Which approaches work within your real constraints?</span></li>
-    </ol>
-    <h3>Constraints that shape your options</h3>
-    <ul class="chips">
-      <li>Enrollment</li><li>Modality</li><li>Learning level</li><li>Instructor workload</li><li>Available technology</li><li>Accessibility</li>
-    </ul>
   </section>
 
   <section class="panel" id="notes" aria-labelledby="nh" tabindex="-1">
