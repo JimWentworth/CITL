@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Participant Survey Results | Summer AI Studio 2026</title>
+<meta name="description" content="End-of-Studio survey results from the University of Illinois Urbana-Champaign CITL Summer AI Studio 2026: 33 of 34 participants responded. Every question and every comment participants agreed to share.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Official Illinois brand tokens — brand.illinois.edu/visual-identity/color */
+    --il-orange: #FF5F05;
+    --il-blue: #13294B;
+    --il-altgeld: #C84113;      /* accessible orange substitute for small/body text */
+    --il-storm: #707372;
+    --il-storm-60: #8E9090;
+    --il-storm-80: #C6C7C6;
+    --il-storm-95: #F4F4F4;
+    --il-storm-10: #252525;     /* default body text on light backgrounds */
+    --il-industrial: #1D58A7;   /* supporting: default link on white/gray */
+    --il-arches: #009FD4;
+    --il-patina: #007E8E;
+    --il-berry: #5C0E41;
+    --il-harvest: #FCB316;
+    --il-prairie: #006230;
+    --il-earth: #7D3E13;
+    --il-white: #FFFFFF;
+    --font-head: 'Montserrat', Arial, sans-serif;
+    --font-body: 'Source Sans 3', Arial, sans-serif;
+    --focus-ring: 3px solid var(--il-orange);
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+  body{
+    margin:0;
+    background: var(--il-white);
+    color: var(--il-storm-10);
+    font-family: var(--font-body);
+    font-size: 16.5px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: var(--il-industrial); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover, a:focus-visible{ color: var(--il-altgeld); }
+  :focus-visible{ outline: var(--focus-ring); outline-offset: 2px; }
+  button, input, select{ font-family: inherit; }
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+  .skip-link{
+    position:absolute; left:12px; top:-60px;
+    background: var(--il-blue); color:#fff; padding: 12px 18px;
+    font-family: var(--font-head); font-weight:700; font-size:14px;
+    z-index: 100; transition: top .15s ease;
+    text-decoration:none;
+  }
+  .skip-link:focus{ top:12px; }
+  .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  /* ---------- MASTHEAD ---------- */
+  .masthead{
+    background: var(--il-blue);
+    color: #fff;
+    padding: 10px 0;
+    font-family: var(--font-head);
+  }
+  .masthead .wrap{ display:flex; align-items:center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .masthead .unit{
+    display:flex; align-items:center; gap:10px;
+    font-size: 13px; letter-spacing: 0.03em;
+  }
+  .block-i{
+    width: 26px; height: 26px;
+    background: var(--il-orange);
+    color: var(--il-blue);
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 800; font-size: 16px; flex-shrink:0;
+    font-family: var(--font-head);
+  }
+  .masthead .tag{
+    font-size: 11.5px;
+    color: var(--il-storm-80);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  /* ---------- HERO ---------- */
+  header.hero{
+    background: var(--il-blue);
+    color: #fff;
+    padding: 56px 0 60px;
+    border-bottom: 6px solid var(--il-orange);
+  }
+  .eyebrow{
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--il-harvest);
+    display:flex; align-items:center; gap: 10px;
+    margin-bottom: 20px;
+  }
+  .eyebrow::after{ content:""; flex:1; height:1px; background: rgba(255,255,255,0.25); }
+  h1.title{
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(34px, 5.4vw, 60px);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    margin: 0 0 22px;
+    max-width: 18ch;
+    color: #fff;
+  }
+  h1.title .accent{ color: var(--il-orange); }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  .hero-lede{
+    font-size: 18.5px;
+    color: var(--il-storm-80);
+    max-width: 156ch;
+  }
+  .hero-lede strong{ color: #fff; font-weight: 600; }
+  .stat-block{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 24px;
+    border-left: 1px solid rgba(255,255,255,0.25);
+    padding-left: 26px;
+  }
+  .stat .num{
+    font-family: var(--font-head);
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--il-orange);
+    line-height:1;
+  }
+  .stat .label{
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--il-storm-80);
+    margin-top: 7px;
+  }
+  /* ---------- FOOTER ---------- */
+  footer{ background: var(--il-blue); color: var(--il-storm-80); padding: 34px 0 44px; }
+  footer .wrap{ display:flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12.5px; }
+  footer .wrap p{ margin:0; max-width: 60ch; }
+  footer a{ color: #fff; }
+  footer a:hover, footer a:focus-visible{ color: var(--il-orange); }
+  /* ---------- FEEDBACK PANEL ---------- */
+  section.feedback-intro{ padding: 44px 0 8px; border-bottom: 1px solid var(--il-storm-80); background: var(--il-storm-95); }
+  section.feedback-stats{ padding: 44px 0 10px; }
+  section.feedback-charts{ padding: 10px 0 90px; }
+  .stat-cards{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .stat-card{
+    background: var(--il-blue); color:#fff;
+    padding: 24px 26px; border-top: 5px solid var(--il-orange);
+  }
+  .stat-card h3{ font-family: var(--font-head); font-weight: 700; font-size: 17px; margin: 0 0 16px; color:#fff; }
+  .stat-card .stat-row{ display:flex; gap: 26px; flex-wrap: wrap; }
+  .stat-card .metric{ }
+  .stat-card .metric .v{ font-family: var(--font-head); font-weight: 800; font-size: 30px; color: var(--il-orange); line-height:1; }
+  .stat-card .metric .k{ font-family: var(--font-head); font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--il-storm-80); margin-top: 6px; }
+  .chart-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .chart-card{ background: #fff; border: 1px solid var(--il-storm-80); padding: 22px 24px 20px; }
+  .chart-card h3{ font-family: var(--font-head); font-weight: 700; font-size: 16px; margin: 0 0 2px; color: var(--il-blue); }
+  .chart-card .n{ font-family: var(--font-head); font-weight: 600; font-size: 11.5px; color: var(--il-storm); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px; }
+  .bars{ display:flex; align-items:flex-end; gap: 10px; height: 190px; border-bottom: 1px solid var(--il-storm-80); padding: 0 2px; }
+  .bar-col{ flex:1; display:flex; flex-direction: column; align-items:center; justify-content:flex-end; height:100%; }
+  .bar-col .val{ font-family: var(--font-head); font-weight: 700; font-size: 12.5px; color: var(--il-blue); margin-bottom: 6px; }
+  .bar-col .bar{ width: 60%; background: var(--il-orange); min-height: 2px; }
+  .bar-labels{ display:flex; gap: 10px; padding: 8px 2px 0; }
+  .bar-labels span{
+    flex:1; text-align:center; font-family: var(--font-head); font-weight: 600;
+    font-size: 10.5px; color: var(--il-storm-10); text-transform: uppercase; letter-spacing: 0.02em;
+  }
+  .data-table{ width:100%; border-collapse: collapse; margin-top: 18px; font-size: 13.5px; }
+  .data-table caption{ text-align:left; font-family: var(--font-head); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--il-storm); margin-bottom: 8px; }
+  .data-table th, .data-table td{ text-align: right; padding: 7px 8px; border-bottom: 1px solid var(--il-storm-80); }
+  .data-table th:first-child, .data-table td:first-child{ text-align: left; }
+  .data-table thead th{ font-family: var(--font-head); font-weight: 700; color: var(--il-blue); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .data-table tbody th{ font-weight: 600; color: var(--il-storm-10); }
+  /* ---------- SURVEY RESULTS: overview stats ---------- */
+  .overview-cards{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 8px; }
+  .ov-card{ background:#fff; border:1px solid var(--il-storm-80); border-top: 4px solid var(--il-orange); padding: 18px 18px 16px; }
+  .ov-card .v{ font-family: var(--font-head); font-weight: 800; font-size: 26px; color: var(--il-blue); line-height:1; font-variant-numeric: tabular-nums; }
+  .ov-card .k{ font-family: var(--font-head); font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--il-storm); margin-top: 8px; }
+  .exp-table-wrap{ background:#fff; border:1px solid var(--il-storm-80); padding: 20px 22px; margin-top: 18px; }
+  .exp-table-wrap h3{ font-family: var(--font-head); font-weight: 700; font-size: 14px; margin: 0 0 4px; color: var(--il-blue); }
+  .exp-table-wrap .note{ font-size: 13px; color: var(--il-storm); margin: 4px 0 0; }
+  /* ---------- SURVEY RESULTS: quick nav ---------- */
+  .quicknav{ display:flex; flex-wrap:wrap; gap: 8px 10px; margin-top: 22px; padding-top: 18px; border-top: 1px dashed var(--il-storm-80); }
+  .quicknav-label{ font-family: var(--font-head); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--il-storm); align-self:center; margin-right: 4px; }
+  .quicknav a{
+    font-family: var(--font-head); font-weight: 600; font-size: 12.5px;
+    color: var(--il-blue); background: #fff; border: 1px solid var(--il-storm-80);
+    padding: 7px 12px; text-decoration:none;
+  }
+  .quicknav a:hover, .quicknav a:focus-visible{ border-color: var(--il-blue); color: var(--il-altgeld); text-decoration:none; }
+  /* ---------- SURVEY RESULTS: theme sections ---------- */
+  .results-theme{ padding: 46px 0; border-bottom: 1px solid var(--il-storm-80); }
+  .results-theme:last-of-type{ border-bottom: none; }
+  .theme-head{ margin-bottom: 24px; scroll-margin-top: 76px; }
+  .theme-head .theme-kicker{ font-family: var(--font-head); font-weight: 700; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--il-altgeld); margin: 0 0 6px; }
+  .theme-head h2{ font-family: var(--font-head); font-weight: 800; font-size: 24px; margin: 0 0 6px; color: var(--il-blue); }
+  .theme-head p{ font-size: 15px; color: var(--il-storm-10); max-width: 90ch; margin:0; }
+  /* ---------- SURVEY RESULTS: open-ended comments ---------- */
+  .comments-block{ background:#fff; border: 1px solid var(--il-storm-80); padding: 22px 24px 20px; margin-top: 24px; }
+  .comments-block h3{ font-family: var(--font-head); font-weight: 700; font-size: 16px; margin: 0 0 2px; color: var(--il-blue); }
+  .comments-meta{ font-family: var(--font-head); font-weight: 600; font-size: 11.5px; color: var(--il-storm); text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 16px; }
+  ul.comment-list{ list-style: none; margin: 0; padding: 0; display:flex; flex-direction: column; gap: 12px; }
+  ul.comment-list li{
+    font-size: 14.5px; color: var(--il-storm-10); line-height: 1.6;
+    padding: 12px 14px; background: var(--il-storm-95); border-left: 3px solid var(--il-storm-80);
+  }
+  ul.comment-list li::before{ content: "\201C"; color: var(--il-storm-60); font-family: Georgia, serif; }
+  ul.comment-list li::after{ content: "\201D"; color: var(--il-storm-60); font-family: Georgia, serif; }
+  .comments-toggle{
+    margin-top: 16px;
+    font-family: var(--font-head); font-weight: 700;
+    font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--il-blue); background: #fff; border: 1px solid var(--il-blue);
+    padding: 10px 16px; cursor: pointer; min-height: 40px;
+    display:inline-flex; align-items:center; gap: 8px;
+  }
+  .comments-toggle:hover{ background: var(--il-blue); color: #fff; }
+  .comments-toggle .arrow{ transition: transform .15s ease; display:inline-block; }
+  .comments-toggle[aria-expanded="true"] .arrow{ transform: rotate(180deg); }
+  /* ---------- SURVEY RESULTS: sharing / redaction ---------- */
+  .redaction-note{
+    background: var(--il-storm-95); border-left: 3px solid var(--il-orange);
+    padding: 14px 18px; font-size: 13.5px; color: var(--il-storm-10); margin-top: 22px;
+  }
+  @media (max-width: 900px){
+    .overview-cards{ grid-template-columns: 1fr 1fr; }
+    .hero-grid{ grid-template-columns: 1fr; gap: 30px; }
+  }
+  @media (max-width: 720px){
+    .overview-cards{ grid-template-columns: 1fr; }
+    .stat-cards, .chart-grid{ grid-template-columns: 1fr; }
+    .chart-card, .comments-block{ min-width: 0; padding-left: 16px; padding-right: 16px; }
+    .bars, .bar-labels{ gap: 4px; }
+    .bar-labels span{ font-size: 9px; overflow-wrap: anywhere; letter-spacing: 0; }
+  }
+  @media (max-width: 640px){
+    .wrap{ padding: 0 18px; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="masthead">
+  <div class="wrap">
+    <div class="unit"><img src="https://brand.illinois.edu/wp-content/uploads/2024/02/Block-I-orange-blue-background.png" width="50" height="50" alt=""/> University of Illinois Urbana&#8211;Champaign</div>
+  </div>
+</div>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span aria-hidden="true">&#9670;</span> Summer AI Studio 2026</div>
+    <h1 class="title"><span class="accent">Participant</span> survey results</h1>
+    <div class="hero-grid">
+      <p class="hero-lede">
+        How the 2026 cohort experienced the Studio, in their own words. Thirty-three of the 34 participating faculty completed the End-of-Studio Survey; every question and every comment they agreed to share is reported below.
+      </p>
+    </div>
+  </div>
+</header>
+<main id="main">
+<section class="feedback-intro" aria-labelledby="feedback-heading">
+  <div class="wrap">
+    <div class="method-inner">
+      <h2 id="feedback-heading" class="method-label">Survey results</h2>
+      <div class="method-text">
+        <p>The CITL Summer AI Studio End-of-Studio Survey went to all 34 faculty members who took part in the 2026 Studio their answers are reported in full below.</p>
+       
+        <p class="disclosure">This page is an AI-generated visualization built for internal review, not an official University of Illinois publication. Verbatim comments have been withheld throughout for respondents who did not wish to share them, even anonymously — see <a href="#results-sharing">Sharing permissions</a> below.</p>
+      </div>
+    </div>
+    <div class="overview-cards" id="overviewCards"></div>
+    <div class="exp-table-wrap">
+      <h3>Prior AI experience, from the baseline (intake) survey</h3>
+      <table class="data-table" id="expTable">
+        <caption>Faculty experience groups (n = 34)</caption>
+        <thead><tr><th scope="col">Group</th><th scope="col">N</th><th scope="col">Percent</th></tr></thead>
+        <tbody id="expTableBody"></tbody>
+      </table>
+      <p class="note">No statistically significant differences were found among the three experience groups in ratings of workshop quality (Q11), the usefulness of the work accomplished (Q12), or the overall value of the workshop experience (Q13) — the Studio appears to have landed similarly well regardless of a participant's starting familiarity with AI.</p>
+    </div>
+    <nav class="quicknav" aria-label="Jump to a results section">
+      <span class="quicknav-label">Jump to:</span>
+      <a href="#results-support">Support during the studio</a>
+      <a href="#results-fluency">AI Fluency Modules</a>
+      <a href="#results-goals">Achieving project goals</a>
+      <a href="#results-quality">Quality &amp; value</a>
+      <a href="#results-recommendations">Challenges &amp; recommendations</a>
+      <a href="#results-sharing">Sharing permissions</a>
+    </nav>
+  </div>
+</section>
+
+<section class="results-theme" id="results-support" aria-labelledby="results-support-heading">
+  <div class="wrap">
+    <div class="theme-head">
+      <p class="theme-kicker">Q2 &ndash; Q4</p>
+      <h2 id="results-support-heading">Support during the studio</h2>
+      <p>How supported participants felt during the two halves of the program, and how much they were able to make use of their assigned graduate affiliates.</p>
+    </div>
+    <div class="chart-grid" id="chartGrid-support"></div>
+    <div id="comments-support"></div>
+  </div>
+</section>
+
+<section class="results-theme" id="results-fluency" aria-labelledby="results-fluency-heading">
+  <div class="wrap">
+    <div class="theme-head">
+      <p class="theme-kicker">Q5 &ndash; Q7</p>
+      <h2 id="results-fluency-heading">AI Fluency Modules</h2>
+      <p>Most participants accessed the self-paced AI Fluency Modules and found them helpful; among those who didn't, time was the most common reason.</p>
+    </div>
+    <div class="chart-grid" id="chartGrid-fluency"></div>
+    <div id="comments-fluency"></div>
+  </div>
+</section>
+
+<section class="results-theme" id="results-goals" aria-labelledby="results-goals-heading">
+  <div class="wrap">
+    <div class="theme-head">
+      <p class="theme-kicker">Q8 &ndash; Q9</p>
+      <h2 id="results-goals-heading">Achieving project goals</h2>
+      <p>The large majority of participants reached or exceeded the project goals they set for themselves at the start of the Studio.</p>
+    </div>
+    <div class="chart-grid" id="chartGrid-goals"></div>
+    <div id="comments-goals"></div>
+  </div>
+</section>
+
+<section class="results-theme" id="results-quality" aria-labelledby="results-quality-heading">
+  <div class="wrap">
+    <div class="theme-head">
+      <p class="theme-kicker">Q11 &ndash; Q13</p>
+      <h2 id="results-quality-heading">Quality &amp; value</h2>
+      <p>Participants rated the overall quality of both halves of the Studio highly, and were confident the work they produced will be useful going forward.</p>
+    </div>
+    <div class="chart-grid" id="chartGrid-quality"></div>
+  </div>
+</section>
+
+<section class="results-theme" id="results-recommendations" aria-labelledby="results-recommendations-heading">
+  <div class="wrap">
+    <div class="theme-head">
+      <p class="theme-kicker">Q10, Q14 &ndash; Q15</p>
+      <h2 id="results-recommendations-heading">Challenges &amp; recommendations</h2>
+      <p>Time was, by a wide margin, the challenge participants named most. Their suggestions for the next cohort — and their views on whether the Studio could move to the academic year — are collected here in full.</p>
+    </div>
+    <div id="comments-recommendations"></div>
+  </div>
+</section>
+
+<section class="results-theme" id="results-sharing" aria-labelledby="results-sharing-heading">
+  <div class="wrap">
+    <div class="theme-head">
+      <p class="theme-kicker">Q16</p>
+      <h2 id="results-sharing-heading">Sharing permissions</h2>
+      <p>At the close of the survey, participants were asked whether their verbatim open-ended comments could be shared in reporting or with the Provost's Office, which sponsors the Studio.</p>
+    </div>
+    <div class="chart-grid" id="chartGrid-sharing"></div>
+    <p class="redaction-note">Two respondents asked that their verbatim comments not be shared at all, even anonymously; a further twenty asked to be quoted only without their name attached. In line with those wishes, this page never attaches a name to any comment, and any comment from one of the two respondents who declined to share has been withheld from every "show all" list above rather than published without their consent — noted, where it occurred, as a response withheld by request.</p>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <p>The Center for Innovation in Teaching &amp; Learning</p>
+  </div>
+</footer>
+<script>
+/* ---------- SURVEY RESULTS DATA (CITL Summer AI Studio End-of-Studio Survey, 2026) ---------- */
+const SURVEY_CHARTS = [
+  {
+    "group": "support",
+    "q": "Q2a",
+    "title": "How well supported did you feel during the first two weeks — the in-person training part of the Studio?",
+    "categories": [
+      "Not supported at all",
+      "Slightly supported",
+      "Moderately supported",
+      "Very supported",
+      "Extremely supported"
+    ],
+    "counts": [
+      0,
+      1,
+      2,
+      14,
+      16
+    ],
+    "n": 33,
+    "mean": 4.38
+  },
+  {
+    "group": "support",
+    "q": "Q2b",
+    "title": "How well supported did you feel during the final three weeks — the individual project work part of the Studio?",
+    "categories": [
+      "Not supported at all",
+      "Slightly supported",
+      "Moderately supported",
+      "Very supported",
+      "Extremely supported"
+    ],
+    "counts": [
+      0,
+      1,
+      6,
+      13,
+      12
+    ],
+    "n": 32,
+    "mean": 4.13
+  },
+  {
+    "group": "support",
+    "q": "Q3",
+    "title": "How much were you able to make use of the support provided by the graduate affiliates assigned to your project team?",
+    "categories": [
+      "Not at all",
+      "A little",
+      "A moderate amount",
+      "A lot",
+      "To the greatest extent"
+    ],
+    "counts": [
+      8,
+      5,
+      12,
+      7,
+      1
+    ],
+    "n": 33,
+    "mean": null
+  },
+  {
+    "group": "fluency",
+    "q": "Q5",
+    "title": "Did you access the AI Fluency Modules to support your learning?",
+    "categories": [
+      "No",
+      "Yes"
+    ],
+    "counts": [
+      4,
+      25
+    ],
+    "n": 29,
+    "mean": null
+  },
+  {
+    "group": "fluency",
+    "q": "Q6",
+    "title": "How helpful were the AI Fluency Modules? (asked only of the 25 who accessed them)",
+    "categories": [
+      "Not helpful at all",
+      "Slightly helpful",
+      "Moderately helpful",
+      "Very helpful",
+      "Extremely helpful"
+    ],
+    "counts": [
+      0,
+      3,
+      8,
+      8,
+      6
+    ],
+    "n": 25,
+    "mean": null
+  },
+  {
+    "group": "goals",
+    "q": "Q8",
+    "title": "To what extent did you achieve the project goals you set for yourself during the Studio?",
+    "categories": [
+      "Not at all",
+      "To a small extent",
+      "To a moderate extent",
+      "To a great extent",
+      "Everything I wanted to achieve and more"
+    ],
+    "counts": [
+      0,
+      0,
+      6,
+      19,
+      8
+    ],
+    "n": 33,
+    "mean": null
+  },
+  {
+    "group": "quality",
+    "q": "Q11a",
+    "title": "Please rate the overall quality of the first two weeks — the in-person training part of the Studio.",
+    "categories": [
+      "Very poor",
+      "Poor",
+      "Fair",
+      "Good",
+      "Excellent"
+    ],
+    "counts": [
+      0,
+      0,
+      1,
+      15,
+      17
+    ],
+    "n": 33,
+    "mean": 4.48
+  },
+  {
+    "group": "quality",
+    "q": "Q11b",
+    "title": "Please rate the overall quality of the final three weeks — the individual project work part of the Studio.",
+    "categories": [
+      "Very poor",
+      "Poor",
+      "Fair",
+      "Good",
+      "Excellent"
+    ],
+    "counts": [
+      0,
+      0,
+      2,
+      17,
+      14
+    ],
+    "n": 33,
+    "mean": 4.36
+  },
+  {
+    "group": "quality",
+    "q": "Q12",
+    "title": "How useful do you expect the work you accomplished during the Studio to be in your future teaching or professional activities?",
+    "categories": [
+      "Not useful at all",
+      "Slightly useful",
+      "Moderately useful",
+      "Very useful",
+      "Extremely useful"
+    ],
+    "counts": [
+      0,
+      0,
+      5,
+      15,
+      13
+    ],
+    "n": 33,
+    "mean": null
+  },
+  {
+    "group": "quality",
+    "q": "Q13",
+    "title": "Overall, how worthwhile do you feel it was for you to spend five weeks in the Summer AI Studio?",
+    "categories": [
+      "Not worthwhile at all",
+      "Slightly worthwhile",
+      "Moderately worthwhile",
+      "Very worthwhile",
+      "Extremely worthwhile"
+    ],
+    "counts": [
+      0,
+      0,
+      3,
+      13,
+      15
+    ],
+    "n": 31,
+    "mean": null
+  },
+  {
+    "group": "sharing",
+    "q": "Q16",
+    "title": "May we share your verbatim comments in our reporting or with the Provost's Office who sponsors the Studio?",
+    "categories": [
+      "Yes, with my name attached",
+      "Yes, but anonymously",
+      "No, do not share"
+    ],
+    "counts": [
+      11,
+      20,
+      2
+    ],
+    "n": 33,
+    "mean": null
+  }
+];
+const SURVEY_COMMENTS = [
+  {
+    "group": "support",
+    "q": "Q4",
+    "title": "Do you have any comments about the support you received from the graduate affiliates assigned to your project team?",
+    "items": [
+      "Unclear what they were available for/to do. My project was less intensive (i.e., not building a bot), so I didn't really know what to use them for.",
+      "They were great! I probably didn't work with them as much as I should have.",
+      "They support consisted of proofreading for user-friendliness - as I had requested. And they went above and beyond with very detailed lists of feedback and improvement suggestions.",
+      "They gave helpful feedback, but the timeline seemed a little too compressed to make use of their support to the best effect.",
+      "The student I worked with was very responsive, thoughtful, and helpful!",
+      "The graduate affiliates offered their support and sent reminder emails; however, I think with the amount of support that I received from the faculty affiliates there wasn't much else that i needed from the graduate affiliates.",
+      "My main mentor was very supportive and offered a lot of feedback and guidance. One of the graduate affiliates provided some feedback and helpful thoughts. One other person (who I believe was a graduate affiliate?) did not provide any feedback or engagement—I'm not sure if they were expected to?",
+      "My experience with graduate affiliates was mixed.   I cannot say enough good things about one of the graduate affiliates that supported my AI integration. However, the other was very slow to respond emails and missed his self-assigned deadlines multiple times. Moreover, their contribution did not really addressed my requests, which meant that on top of being delayed I had to do the work myself.   So, I would encourage keeping the program but ensuring that TAs are held to greater accountability.",
+      "It took a while to get my device working outside of Claude. By then my grad affiliates had moved on. They were replaced but  haven't heard from the new students.",
+      "I've elected not to use them so it was entirely my choice and nothing on them or the program.",
+      "I wasn't entirely sure what to share with them and when, but it's also reasonable to leave it open to reach out to them at your own discretion.",
+      "I was very lucky to have a graduate affiliate by my side. They provided all the necessary assistance testing my idea and giving me their feedback whenever I needed it. My deepest gratitude to Soraya Cipolla!",
+      "I never really heard back from them with their thoughts on the project in any detail.",
+      "I liked how Haeley and I already had a working relationship so we were able to ebb and flow with the ideas as the final iteration was developed!",
+      "I honestly was not sure how to utilize the graduate affiliates, so I didn't reach out to them. The timing of my summer also got complicated once the in-person workshops ended and I found I needed to work on the project past the original deadline. It wasn't clear whether it would be appropriate for the graduate affiliates to help me after the timeline of the program.",
+      "I had my two grad affiliates test my assignment and both offered feedback within a few days of my ask.  Because I had done so much legwork on my own, I did not need very much of their time.  With their specialties differing so greatly from my own, they were able to test my custom GPTs, but not offer detailed, specific critiques.  (I went to fellow faculty and former students and graders for more industry-related feedback.)",
+      "I had an incredible support team throughout the process. I probably did not lean on everyone as much as I could have because I was figuring things out on my end as I went, but I was incredibly grateful for everyone's support and willingness to help.",
+      "I found the graduate affiliates to be very eager to help, but it would have been much more useful to have more structure around this. If I knew how much time they could devote to the project, I would have structured my use of them differently.",
+      "I found that the graduate affiliates were eager to help but somehow their feedback, while helpful, was not particularly instrumental to my final project. Also, one of the two was on vacation and therefore unavailable for a substantial amount of time during the remote part of the program.",
+      "I first sent an email that was very specific to options for making custom chat agents and didn't really receive any helpful technical information. But, when I sent them the full draft of my assignment, both of them read through it and tested some of it out, and gave some feeback. One of them more fully \"did\" my assignment and gave some very specific feedback that I used for revisions. That was helpful!",
+      "I don't think I connected with them in the intended way, but since I had sort of dragged one of my own grad students into the process ahead of time, I was able to have productive and fruitful conversations with her throughout the process.",
+      "I didn't get to a point where I knew how to use the graduate affiliates. I'm sure they would have responded, but wasn't fully clear on their role so I didn't reach out.",
+      "I did not reach out to them for support, but I cannot mark this as N/A",
+      "I appreciated their honest assessment of my proposed assignment and the VERY detailed feedback Bill provided.",
+      "Each one of my graduate affiliate team members was helpful to the extent possible. They had other commitments, and my interactions with them were limited to a few email exchanges and one online meeting."
+    ],
+    "noAnswer": 7,
+    "redacted": 0
+  },
+  {
+    "group": "fluency",
+    "q": "Q7",
+    "title": "Why didn't you access the AI Fluency Modules?",
+    "items": [
+      "To be honest, I am not sure which \"AI Fluency Modules\" are being referred to here, so I am assuming I did not. I just revisited our AI studio Canvas page to see if I could find these modules and I was not successful.",
+      "I had other responsibilities this summer and did not find time to do so",
+      "I accessed everything in Canvas within the Summer AI Studio Canvas page. But the rest of the extraneous material was left largely untouched as I already had a firm grasp of AI and its capabilities as they would relate to my workflow.",
+      "Didn’t see them before the in person events."
+    ],
+    "noAnswer": 0,
+    "redacted": 0
+  },
+  {
+    "group": "goals",
+    "q": "Q9",
+    "title": "Is there any additional content or assistance that would have been beneficial in helping you achieve your project goals?",
+    "items": [
+      "What I learned during the workshop inspired me to learn more about AI in education and teaching, but to really advance my teaching with AI, I think I would need longer term support (e.g., throughout the year with AI specialists helping me).",
+      "University access or payment of costs associated with using Frontier llm models.",
+      "The issue I ran into was that after we were strongly encouraged to build for deployment through (or use) IllinoisChat, there seems to be a communication gap with that team, with questions whether IllinoisChat can be used to power an AI agent for student-facing AI modules. This is currently going up the chain to see if it can be accommodated. It seems there is still a disconnect in UIUC provost's office wanting to see effective AI deployment in teaching and learning and on the ground support and access to AI resources (and the funding structure needed to allow students access to those resources - perhaps through a student fee rather than purchasing access through webstore?)",
+      "One question I had to figure out on my own was how to use Claude to help me build rubrics in the assignments in Canvas. My mentor had not done this before so I figured out how to do it. Some of the actual ways of how to use the tools themselves would be helpful.",
+      "Nothing that I can think of...",
+      "not that i can think of. it was very helpful but i do think we need ongoing training and i also think more faculty should be learning this stuff!",
+      "Not necessarily for achieving project goals, but I think that the program generally would benefit from more time improving participant's skills in using AI. While I agree with the notion that you learn through the process of building something, I think that foundational skills still matter. If we are trying to be leaders in this space, we need resources to improve in our use of AI.",
+      "Not at this point. I felt extremely supported during the course and I was able to achieve all the goals I set for myself.",
+      "More guidance/d feedback early on so the outlput might have been more than one assignment--extra practice and extra benefit.",
+      "It would have helped to understand a bit more about what the whole program would entail a bit earlier before the summer started, but overall it was helpful.",
+      "I would love for these cohorts to do a \"show and tell\" as the Fall semester unfolds with implementation in the classroom.",
+      "I would have loved to have more access to folks like Geoffrey Challen and Vishal Sachdev and other AI experts who've implemented AI in their classrooms as we got to week 2 (and maybe week 3 as we branched out on our own).  I think more time with them would have opened my eyes to more that was possible and helped me think bigger about what I could accomplish.    In speaking with fellow participants, I know for many of us the real turning point in this workshop was Vishal telling us to sign up for Claude CoWork or Codex (with a paid subscription) and play around with the model, because moving beyond the \"chat\" functions of ChatGPT, Claude or Gemini was how one could truly level up in their AI understanding and knowledge of all that is possible.  This was what motivated me to think bigger about how to incorporate AI into my course, and it has built my confidence in familiarity with and understanding of possibilities and limitations of LLMs.  When we broke into our small groups from week 3 onward, it was great to learn what my group was working on and see we shared similar goals and face common struggles in the classroom.  However, I didn't feel like the fellow faculty had a lot of advice on my project or expertise to help me improve my work. I appreciate being part of a community of practice and we plan to reconnect a few times this fall, but I wondered if I perhaps ended up in the wrong group, or whether we're all so new at this we're just learning as we go.  I was happy to have Mitch Kage from CITL as a liaison for our group as he has helped me think about possible expansion of my project I am currently working on for a subsequent assignment.",
+      "I think that I was expecting and actually needing more technical content and more technical assistance. For my field at least, and I suspect a lot of other fields, there is a real need to understand \"under the hood\" issues in order to analyze AI output. I think more information about LLMs, how they are produced, who produces them, where they reside, what their main features are, would have been extremely helpful for my current project. The fact that Illinois Chat can call on about eight LLMs is important, and the ability to make rational decisions about which LLM to select is necessary. I am in the process of trying to teach myself about this. The issue of data security also merits more time. It's nice to have a chart to reference what kinds of data can go into which tools, however, the only tool that seems to keep student data away from public training models is Illinois Chat. At the same time, we are being encouraged to use Google Notebook LM, but as it turns out its use could potentially expose student data. These issues need to be addressed with more care and detailed information about the risks. Overall, more technical information and broader risk assessments are in order for those of us who may be asking students to use these tools.",
+      "I think some ongoing periodic check-ins throughout the semester would be helpful in addition to the end-of-semester convening.",
+      "I think I received just as much assistance as I needed, and I really appreciate that.",
+      "I think a more extended timeline would have been helpful. I also found Rachel Switsky on the Design Sprint to be really helpful and would have probably gotten more out of spending a whole 1/2 day on each of those phases.",
+      "I ran into an issue where the free-to-use university tools are not capable of supporting the integration I developed. Based on the presentations, etc. I developed my integration using a frontier model from Anthropic, but am now running into issues with deploying it in my class. It would be helpful to have guidance on the scope of what the university tools can do before setting out to develop the integration so that we can level set expectations.",
+      "I had a hard time working during in-person sessions. Incubator environments make it difficult for me to focus. So I worked on immediate projects first (prep for the dual credit project). Once the sessions were over and I could work on my own, the ideas kept coming. I needed the studio experience, don't get me wrong! It informed my understanding of how to make something instructive for students and I believe I accomplished that.",
+      "I found the in-person events very helpful. However, I believe I would have benefited from more structured guided activities. When we were asked to work on our own, it felt like it was a free for all, and sometimes I was not sure what exactly I was supposed to be doing.",
+      "I don't know. I entered the program with unclear goals, and kind of wonder if the program itself wasn't for someone with a class where AI modules are not the right fit, but instead wants to be proactive about how students use AI as one of many tools to support their learning. Even with the project submission, it was clear that the designers (or the AI that wrote the assignment) assumed that the project would involve students interacting with AI as part of an assignment, and that was not the right fit for me.",
+      "I can not think of anything at this time.",
+      "Honestly, y'all were great! I set out an ambitious slate of updates across our curriculum. Obviously, I could only build/actualize a small portion of this over the summer, but I feel very supported in building a broader strategy that I can now bring back to my unit/college.",
+      "At times, I wanted more assistance with actually learning to use specific AI tools, more than just prompting. It would have been helpful to have opportunities to try and do things like making custom chatbots, generating code making to use on a website application, connecting AI agents to our computers or drives so it could use files, etc. During some sessions, things like these were mentioned, but there wasn't much chance to get support try and figure these things out.  The other thing that would be helpful would be to see more examples of assignments/applications being used by UIUC professors/instructors in their classes.  But, I know this is all new, so there isnt a plethora of examples to grab at this point. For the next iteration of this AI studio, it would be very  helpful to provide examples of what was made/tried from this first cohort as some examples (and hearing what people learned from implementing these examples)"
+    ],
+    "noAnswer": 10,
+    "redacted": 0
+  },
+  {
+    "group": "recommendations",
+    "q": "Q10",
+    "title": "What was the biggest challenge you faced in completing the 5-week Summer AI Studio program?",
+    "items": [
+      "Two things: (1) Starting in Week 3 my schedule got busy with travel, hence my late completion date and (2) I continued to struggle with how to acknowledge/support AI use without explicitly promoting it, as my stance is that students *can* use it as a tool, but there are many other tools available. I felt like there wasn't space for classes where whole-class AI use wasn't appropriate to figure out what to do.",
+      "Trying to find time to do everything. We were told it would be a 10-hour commitment for 5 weeks. During the first two weeks I spent the 10 hours in the studio workshops and probably 8 hours each week outside the studio working on the assignments and modules. For the last 3 weeks, I probably spent about 15 hours each week to finish my project. I am happy to have it done, but it took a bit more time that we were originally told (which was challenging since I was traveling during the last week).",
+      "Time needed to fully develop and implement my project, alongside other summer work responsibilities and vacation. I've definitely used time beyond the five weeks.",
+      "Time and lack of basic knowledge of AI.",
+      "the timing of the class. understanding how to really use the tools, and then getting the chance to try again and again with personal guidance until some level of mastery was achieved before the last day. working with the graduate fellow earlier woudl have been helpful.",
+      "The biggest challenge was figuring out how to translate what I was learning about AI into something meaningful for my own teaching. Because I was developing my ideas as I went, I did not always know what questions to ask or how best to use the incredible support team available to me. At the same time, working through that process helped me think much more intentionally about the role AI can play in teaching and learning.",
+      "The biggest challenge for me was to decide whether I want to actually make use of AI in my course or not.   While I see the potential of AI as a tool, I also see it as an issue that deserves more and deeper discussions. My main concerns are environmental and of course in the threat that it presents to education as we do not know how much students will use the tool and how much including it in our courses will normalize its use.   I think workshops such as this are amazing opportunities to reflect on this important questions and learn more about the potential and limitations of this tool.",
+      "Staying focused during the in-person sessions. If I got behind, I'd panic and get further behind.",
+      "Scheduling in the summer! Attending in person for 4 days in the summer was challenging, especially given the short notice.",
+      "Really, none.",
+      "Probably like most of us, time is always a factor with projects. The 5-week format was the right amount of time for the project; it is just a matter of juggling this with other responsibilities.",
+      "No real issues.",
+      "It was more than a 10 hour per week commitment over 5 weeks, and I didn't anticipate all of things we would be asked to do, in addition to what I wanted to complete. This was, realistically, more like 80 hours, which would have been been spread over all of June and July, for me.",
+      "Integrating AI into the pedagogical plan. As program progressed they became somewhat distinct goals for me, and I was struggling to make them into one coherent plan as the program seems to require.",
+      "I was unsure if they wanted us to lean in on our past knowledge in AI or if one of the goals was to learn and use NEW things that we had not previously.",
+      "I think it just took me a bit of time to work through some of the tools. I think faculty who work in humanities or qualitative social sciences would integrate AI in ways distinct from those in more quantitative or technical disciplines.",
+      "I found the AI studio to be a fantastic experience. Truthfully, I think the biggest benefit for me was to spend time hearing from other instructors how they approached their teaching and how they were leveraging AI to do so. I think the biggest challenge is the uncertainty of trying something that is new and that you are not sure is going to work. I think we have a great deal of expertise in our respective subject areas and we tend to design our teaching around that expertise. While I am constantly experimenting with new approaches and ideas in my teaching, I set guard rails around how I do this so that even if something doesn't work, I'm minimizing the detriment to the student. I tried to do this here as well, but because my skills in using AI are not as well-developed, this is more of a concern than it would be with other experimentation.",
+      "I felt like I was supported enough to complete this work without any challenges during the workshop time frame.",
+      "I enjoyed the experience, the program gave me the key to implementing the idea, which, I hope, will be very beneficial for my students. My only big challenge was attending the seminars online during the night because of my own circumstances. Although I completely understand that it was my own situation and deeply appreciate the wonderful AI Summer Studio team's kind permission to attend the Studio being abroad, I would suggest an asynchronous option for the Studio in the future (e.g., recordings of the first team's presentations and then arranged meetings regarding the idea implementation). I truly believe it would give a chance to more attendants to benefit from the program. Thank you so much for your attention.",
+      "i didn't really face any major challenges- just figuring out how to integrate the AI into my courses, but that was the entire point.",
+      "I did not face any major challenge. Overall, it was a good experience.",
+      "I built AI-enabled feedback coaches built into content review modules. I used an AI model (Claude) to help vibe code the modules. While I could not have built these without the use of an AI myself (I cannot code), the time investment to complete about 2/3 of the modules to cover the entire course's content was in excess of 240 hours, underscoring what a massive investment of time resources such an undertaking is.",
+      "Honestly, I think my biggest challenge was my own beliefs about AI and wanting to ensure that I am teaching my students about the ethical and social impacts of using generative AI. At times it felt difficult not to be so readily agreeable to incorporating these tools around peers in the AI studio who are more advanced and more willing to integrate them fully.",
+      "For me specifically, my original project idea involved making a custom chatbot that interacted with students in specifc ways and pulled from course materials. I played around with several tool options but none worked how I intended and I think I may have been expecting too much in general. So, I switched my approach to one in which I give my students speciifc prompts to copy and paste (could adjust as desired). This is a more simple approach but actually worked much better in my trial runs.  So the generalize, my biggest challenge was hearing about some \"cool possibilities\" with AI but not really having a great sense of how to actually make those happen.  In the last 3 weeks of unstructured project time, it could have been cool to have some \"lab days\" where I could go get tech help/support with specific AI ideas & tools.",
+      "Focusing on one small idea at a time. The studio inspired multiple projects, so I had to remind myself brick-by-brick.",
+      "Determining how to keep the assignment from being a simple place into AI, and making the students think.",
+      "demands on my time unrelated to the program",
+      "As I mentioned before, there was a disconnect between what we were hearing from presenters about how they are using AI and the capabilities of campus resources. Without paying for my own Claude subscription, I could not have developed my tool, but now I am facing a challenge with deployment. More clarity up front about the limitations of campus resources would help to define the scope of what these campus tools can do so that we don't \"overdesign\" our integrations.",
+      "As I built my tool, I was challenged by many factors. Initially, the biggest challenge was reaching a point where I understood conceptually how everything was going to work, where things reside, and what the risks are to students.  I went from thinking that I could build an interface with drop-down menus to a rather \"simpler\" plan of using Illinois Chat to create a tool based on a rather lengthy prompt. The tool is still in progress as I am working out the issues. I had to learn a lot while developing the tool, and I will probably need additional consultation from someone at CITL to address the issues that prompt fixes are not actually fixing. The second challenge, as I mentioned earlier, is understanding the features of the LLMs available. It feels like I am taking shots in the dark as I try to test and understand the LLMs and make a rational, informed decision about which ones are most suitable. I also need extensive help testing the system on different languages, and I am now in the process of requesting this help from colleagues. Ultimately, the system will likely not be perfect, but I would like to get it into its best shape before the start of the semester."
+    ],
+    "noAnswer": 3,
+    "redacted": 1
+  },
+  {
+    "group": "recommendations",
+    "q": "Q14",
+    "title": "What parts of the 5-week program would you recommend altering for the next cohort, if anything? And why?",
+    "items": [
+      "the module on backwards design and assessment should probably have come on day 2 of week 1 rather than in second week - it could have made the design of the initial idea easier by immediately alerting to what the course need is that AI can address. Bit honestly it worked as is as well (just felt by the time it came, it was redundant at that point given the work already done).",
+      "Some field/discipline specific overviews would be helpful",
+      "Perhaps there should be two separate two studio groups—one for novices and one for people that have already used AI a lot. I felt like in the studio time, I was way behind where other people were who had used the tools a lot already and I was still trying to figure out basics. It would be especially useful to divide up the mentors between the two groups accordingly—one of the AI affiliates/mentors who was clearly an expert with AI seemed to have little patience for people who were still trying to figure out basic aspects of this. He made some condescending comments that I felt were very unhelpful and discouraging to those of us who were trying to figure out how to use these tools. I'm sure he has expertise and could answer more advanced questions from people who were further along and had more technical questions, but his attitude and comments were not helpful for those of us that are newer to this. I appreciated the people that were more patient and understanding of where some of us were at and did not make us feel dumb for asking basic questions.",
+      "No Jeopardy.  Longer session with the CUTL/Library/CIO sessions. More early guidance and feedback from the feloows .",
+      "More time to work specifically with campus resources (as opposed to any AI tools we have access to) to fully understand their limits. Equity and access should be a major focus for an activity like this. What can we accomplish with the tools that all students will have at their disposal?",
+      "More breakouts where instructors can attend sessions of interest to them and that can cater to different levels of incoming knowledge.",
+      "maybe have different modules for people who have more AI experience. I have been using AI since it became available, so some of the content was not helpful for me. I feel like i could have benefited from content geared towards us early adopters. what i really liked was the zoom meetings during the individual project time. i got a lot out of that. maybe offer more of a flipped classroom approach bc i liked the group meetings better than the lecture type info.",
+      "Maybe a little bit more structure during the later part. Maybe a bit more of a full itinerary available earlier. I was sometimes caught off guard in my schedule by an additional workshop that I hadn't initially had in my schedule",
+      "Like I said earlier, I think some optional lab sessions where people could go to get technical help/support would be great, as well as having assignment/applications from this first cohort available to analyze and discuss.    This is very specific, but during the day we had the \"Design Sprint\" with the colleague from Siebel, I found the activity very helpful except for the activity in which we were using post-it notes in our groups. Since we all had different students and different projects, this activity didn't seem to flow very well and we spent a long time on it and I wasn't sure how it helped us mover forward on our projects. If our group was all working on the same project as a team, I could see how the activitu would be very helpful, but since that wasn't the case, it seemed to \"miss the mark\" for me. I liked the time spent sharing our project ideas on the last day of the first 2 weeks, but it would have been better if we were in smaller groups so there was more time to actually give feedback and discuss ideas instead of somewhat rushing to get all the presentations done.",
+      "Keep the AI training for the neophytes. I think for the next cohort it will be helpful to give more diverse examples of \"AI integration\" - maybe this means using the first cohort's work as a starting place. I think jumping in to using AI to brainstorm ideas should happen only AFTER getting a sense of some places it could fit; I feel like I wasted time in the first week coming up with an activity that by week 2 I realized was not a good fit for my class.",
+      "It would have been nice to work together with the other members of my group, the people assigned to the same faculty fellow. The interaction with one other colleagues during the first two weeks was one of the best features of the program.   It would have been good, during the last three weeks, to have regular \"open houses\" or some kind of walk-in consultation with a number of people. I spent a lot of time taking shots in the dark before figuring things out.  For the next cohort, I would recommend open studio or open consultation sessions and the ability to meet as a cohort.",
+      "It would be helpful to learn about more use cases to really understand the scope of possible integrations. I also really enjoyed and valued the student perspectives, and I think an additional session with students from different backgrounds would be helpful.",
+      "It was not clear to me how the pairing with Faculty affiliates was done. I recognize this may be my fault but I thought ensuring fit between faculty affiliates and participants could be improved.   For example, it may be useful to match people in the liberal arts together and people who serve GenEd courses together. People who have speciality courses together and the like.   I felt the match with my Faculty affiliate was not great, not for any personal reasons, in fact this person was very supportive and provided great feedback. However, I felt their support was too general, which is completely understandable given the differences in experiences.",
+      "It was a bit confusing regarding whether we should attend the optional sessions. Although they were listed as an option, it wasn't clear how beneficial attending them would be to our overall learning in the AI studio.",
+      "I'm not sure. I feel like my issues were largely my own. And I think the organizers for the course gave me the time and room to make something cool",
+      "I wouldn't change anything.",
+      "I would suggest being more clear about the differences between using chatbots and agentic coding oriented models and workflows. Day one could get into more details quicker by having all participants read something that covers the basics of AI before they walk in the room.",
+      "I would offer several small breakout sessions simultaneously, each focused on a different topic, so participants could choose the discussion that best aligned with their interests and goals. I especially appreciated when impromptu breakout sessions emerged organically, giving new ideas and conversations the space they needed to develop in meaningful ways.",
+      "I would not alter any course components for the next cohort. I would recommend all of them as I found them extremely useful. The 8 part module that we covered in the beginning opened my eyes to the possibilities of using AI in my courses, but also to its limitations. The project was extremely helpful as well. I chose to work on AI integration into several of my assignments so it extended beyond just one project. I'll be curious to see how they will be received by students in the fall.",
+      "I thought the program was very well designed overall. If I were to suggest one change, it would be to move through some of the introductory AI content on the first day a little more quickly, particularly for participants who already have experience using AI. This could allow more time to explore complex applications and spend additional time developing ways to integrate AI meaningfully into teaching.",
+      "I think we could make better use of the graduate affiliates. I think more time could be spent in deliberate exercises that build AI fluency and skill. I also think that having more feedback on what we produce in the second half of the program would improve outcomes.",
+      "I think the independent-working time could be more self-guided and structured. I didn't really need the hand-holding at that point. I am the expert in my discipline and my course, so it felt sort of redundant to have to explain all of that to a faculty mentor just to get a green light.",
+      "I think formal introductions at the top would be helpful. In the first day or two, Jim kept throwing questions to Geoffrey Challen and I had no idea who he was, as he was sitting among the faculty and I didn't realize he was there as a fellow, nor that he was from Computer Science and is an expert in this field.  Same with Vishal.  I also didn't realize Kristie was a fellow; I thought she was a participant until she gave a talk.  Some of the speakers felt out of order.  By the time Manny from CITL and Rachel from SCD spoke, I had an idea in mind, and I felt like backwards design and HCD were several steps behind where I was in my project, and I'd already considered both.  I thought both were great perspectives, but perhaps hearing from them in week 1 would be more beneficial.  It would be great if all participants could have bios in the Canvas page.  I realize doing 30-40 introductions can eat up a ton of time.  But being able to see other departments and courses within the cohort, so that there's an opportunity to brainstorm or align/partner up on things (even if future projects) would be great.  Once we broke up into the beginner/middle/advanced groups, I felt there wasn't much interaction amongst participants beyond our tables.  This has been a unique opportunity for me to meet fellow faculty across campus I would NEVER otherwise encounter, and that has been one of my favorite aspects of this workshop!  So any effort to increase that networking would be wonderful.  We had AI write our bios for an assignment but I never saw them show up on the Canvas page.  Clear expectations of assignments and due dates early on would be helpful.  Things came up in Canvas and we didn't get to finish much work in the on-campus time, which is fine!  But a peek from the very beginning of where this course was headed and what was expected would be helpful as people juggle summer projects/duties/camps/kids/etc.  When I was invited to this program by Kevin Jackson, the email had a start date and a time expectation of 10 hours per week for five weeks, but it did not specify whether this was in-person or virtual.  In fact, I assumed virtual because it did not give any on-campus expectation and I know most faculty aren't on campus every day in the summer.  So learning details of the schedule and what days would be on campus ASAP would be good.",
+      "I suspect as time passes and AI competencies among faculty advance, I wonder if the two-weeks of in-person training could be reduced to one week (2 days). Perhaps I will be wrong, but that may be something to monitor over time.",
+      "Have some check ins scheduled during the q3 weeks we are working separately with the whole cohort.",
+      "Faculty seem to have very different levels of preparedness and preferences for AI integration. More triage upon intake would make the program work better for everyone. Some are more inclined to use ready-made tools while others prefer to build their own and we should respect. The same applies to pedagogical goals. The courses are vastly different and some parts of the program felt like we were made to look in the same direction.",
+      "Either include the human-centered design piece earlier or not at all.",
+      "Clarity on the role of the project teams. When I signed up for this, I thought those would be more small working cohorts rather than individual, independent support that we had to seek out. This format worked, I just didn't know what to expect and was unclear on that until we got to week 3. I appreciated the flexibility, but would have liked to know what to expect from the beginning.   I thought Rachel's session on design thinking was great, but really confusing when done in Week 2 when we had started working on individual projects. That would have been much more helpful in Week 1 to frame the design process, then diving into AI practices.  I also would have liked to meet all the faculty fellows at once. It was on the agenda multiple times, but never happened. I know they weren't all able to attend all sessions, but it was hard to connect with more than the one who sat at our table. I did appreciate the few who moved around to different tables to meet different folks. Clarifying their role and expectations would help.    It also would have been helpful to get feedback or conversation on the daily assignments we submitted. I appreciated the lack of traditional grading on those, but that could be an avenue to use the faculty fellows to help engage in those conversations during the first two weeks.",
+      "As in my other responses, I think this should be spread over more than 5 weeks and that more of the instructional content should be focused on design and support; the panels, in particular, were not that helpful. Also, some of the activities were too focused on particular use cases.",
+      "As I noted in an earlier comment, I recommend making the in-person activities more structured with more guidance."
+    ],
+    "noAnswer": 1,
+    "redacted": 1
+  },
+  {
+    "group": "recommendations",
+    "q": "Q15",
+    "title": "Do you think this five-week studio could be offered successfully to instructors during the Fall or Spring terms (not just the summer session)? What things might have to change for instructors to be able to successfully utilize the studio during the main school year?",
+    "items": [
+      "Yes... I do believe it could be! I think shifting the timeline making it longer in weeks but shorter in expectations per week. Also, having the meetings in the evening or a mutually agreed upon time.",
+      "Yes. Giving more options for days/times for the in-person sessions would likely be necessary to accommodate schedules. Perhaps gather a cohort & then schedule around their availability. I think it could also be condensed a little and be only at 3-4 hours at a time (tighten up the schedule, cut meals).",
+      "Yes, this could be done during the semester, but not as a 5-week program. I think it could be done. You could take the total of roughly 25 contact hours we had over the course of the first two weeks and create options for sessions to be held once per week for 2-3 hours after 3 pm. If you had the capacity to create two cohorts, that would give people the option to select the session that best fits their schedule. Some people may teach one late afternoon course, and perhaps having two times to select from would open it to more people. That of course would mean the presenters go twice in one week. However, you could also ask different people to present on the same topic or create slightly different schedules to offset that issue.  The practical part could be scheduled in parallel to the weekly sessions, but starting a bit later.",
+      "Yes, if the program is entirely virtual and mostly asynchronous.",
+      "Yes, I think the program was very helpful. I particularly appreciated how they tried to make it applicable to people with all levels of background in AI and people from all fields.",
+      "Yes, definitely. Time could be the biggest obstacle during the school year. If absolutely necessary, you could trim it to the 8 part exercise and the project.",
+      "Yes, but scheduling would be challenging.",
+      "Yes, but it might need to be more than 5 weeks. The first two weeks were easier to manage in the summer, but  would not be likely for faculty to commit 5 hours over four days during the semester. I would also suggest condensing to 4 hours or less, with maybe an optional hour at the end for folks to stay and work if they wanted. I think that worked well when done in Week 2.",
+      "Tough timing. If you offer it during the year, much more hands on one on one guidance would be needed. The 5 weeks would be ok, as you could produce an assignment.  Might be fun to have a session on how to use AI to assist in grading and to assist in editing an exam.",
+      "This would be very difficult to do as we have to plan around our teaching and meetings. You would definitely need to get buy-in from the Department Head to allow us to avoid scheduling meetings on such days. Alternatively, you may need to offer more online sessions, which can reduce the effectiveness of the program.",
+      "The timeline would have to be modified to fit teaching schedules, but I think it would be workable during the school year.",
+      "The time investment is honestly too great for this. you couldn't schedule more than one 2 hour session per week at most, difficult to schedule around everyone's teaching etc schedules... and knowing how busy semesters get, the work would likely dwindle in the individual work component of the workshop.",
+      "The intro modules can be streamlined with triage. Not every module for the in-person two weeks should be mandatory for everyone.",
+      "Sure. I could imagine spreading things out, meeting once per week, and planning an activity for the following semester.",
+      "Sure! Some of the in-meeting module work could be done asynchronously, so that in-person convenings could be reserved for presentations and discussion.",
+      "Maybe, if reduced to less hours per day for the in person portion.",
+      "I think this could work as consultations, which may increase in demands as AI becomes more normalized.",
+      "I think it would have to happen over a longer period of time, but I absolutely think this could be done during the school year and with the potential to pull from a broader audience. The challenge is meeting everyone's schedule, which I think would be genuinely difficult and potentially this could make it unworkable. One solution is to keep the cohorts smaller and base them on schedule availability.",
+      "I think it would be difficult for myself personally to focus on the studio the way I did this summer during a fall or spring semester when I have my normal teaching responsibilities, constant teaching responsibilities, and other things pulling my attention and time. It was nice to be able to completely focus on this and mentally dive in to really re-thinking how I teach, re-design some components of my courses, and really take the time and effort to do a good job on this. I'm sure it could be done during fall and spring semesters—perhaps on a smaller scale, though. I think some of the speakers/instructors could be condensed or combined. There were a few presentations that felt a little redundant to what other people had shared, so perhaps shortening some of the overlap.",
+      "I think it could be, but would need to be more broken up and the time commitment would need to be more realistically estimated.",
+      "i think it could be offered successfully. the in-person components at the start probabl woujld be the hardest to manage or convince faculty to attend. I feel those didn't help me quite as much as the small group stuff we did over zoom (or the group presentations at the end).",
+      "I think if it were offered throughout the academic year, it should be only 1-2 hours per week and paid, and maybe held over lunch to ensure participants are more motivated to leave their office building and come to CITL for the same type of experience we received during the summer.",
+      "I suspect it would be possible. Registration/participation may be a bit lower during the fall/spring semesters given faculty workloads but it could be worth trying.",
+      "I don't know. This kind of learning and intense work seems to work better when you have dedicated time to work on it, rather than having time in bits and pieces (like most faculty do during the semester)",
+      "I am not sure. The challenge for many of us who teach intro level courses is that they take up so much of our workweek. I teach two to three courses every semester. It would be impossible to do this training during the school year. The only way, potentially, would be to make it asynchronous, but then participants would probably miss out on forming a community, which was such an important part of my experience in this program.",
+      "I am not sure instructors would have time during fall spring terms. If it were to be offered, I would think for the in person content, 1-hour sessions spread over the course of several weeks would be most successful, as opposed to 4 hour blocks of time over just a few days.",
+      "Honestly, I think that Fall or Spring Studios would be problematic because of the workload the instructors typically have during the year. Maybe, shortening of the program length, if possible, would help.",
+      "Four full in-person days would be impossible for faculty during the semester, particularly those with an interest in teaching excellence. I would recommend more asynchronous content or smaller workshops.",
+      "For me personally, I would not have been able to participate fully in the Studio during the Fall or Spring semester. My days during the academic year are already very full with teaching and clinical responsibilities, and I would not have had the time to engage with the program at the same level. The summer timing gave me the space to really think about how I could apply what I was learning to my teaching. If the Studio were offered during the academic year, I think it would need to be spread over a longer period with smaller weekly time commitments. Even with those changes, I think the summer format provides an important advantage by giving faculty the time and mental space to explore new ideas before the academic year begins.",
+      "Again, I can't think of anything that isn't, in the end, tailored for me specifically.",
+      "Absolutely this can and should be offered all year!  I think spreading out those two weeks of in-person talks/lectures over the semester would be great, with a weekly expected time commitment.  Adding office hours with folks at CITL and experts like Geoffrey or Vishal would be helpful to round out the learning from speakers across campus."
+    ],
+    "noAnswer": 1,
+    "redacted": 1
+  }
+];
+const SURVEY_OVERVIEW = [
+  {
+    "v": "33",
+    "k": "Complete responses"
+  },
+  {
+    "v": "97%",
+    "k": "Response rate"
+  },
+  {
+    "v": "34",
+    "k": "Studio participants"
+  },
+  {
+    "v": "Jul 20 – Aug 18",
+    "k": "Field dates, 2026"
+  }
+];
+const SURVEY_EXPERIENCE = [
+  {
+    "group": "Least experienced",
+    "n": 11,
+    "pct": 32.4
+  },
+  {
+    "group": "Moderately experienced",
+    "n": 17,
+    "pct": 50.0
+  },
+  {
+    "group": "Most experienced",
+    "n": 6,
+    "pct": 17.6
+  },
+  {
+    "group": "Total",
+    "n": 34,
+    "pct": 100.0
+  }
+];
+
+/* ---------- render: overview stat tiles ---------- */
+const overviewCards = document.getElementById('overviewCards');
+SURVEY_OVERVIEW.forEach(o => {
+  const el = document.createElement('div');
+  el.className = 'ov-card';
+  el.innerHTML = `<div class="v">${o.v}</div><div class="k">${o.k}</div>`;
+  overviewCards.appendChild(el);
+});
+
+/* ---------- render: prior-experience table ---------- */
+const expBody = document.getElementById('expTableBody');
+SURVEY_EXPERIENCE.forEach(row => {
+  const tr = document.createElement('tr');
+  if (row.group === 'Total') {
+    tr.innerHTML = `<th scope="row">${row.group}</th><td>${row.n}</td><td>${row.pct.toFixed(1)}</td>`;
+  } else {
+    tr.innerHTML = `<th scope="row">${row.group}</th><td>${row.n}</td><td>${row.pct.toFixed(1)}</td>`;
+  }
+  expBody.appendChild(tr);
+});
+
+/* ---------- render: accessible bar charts, grouped into their theme's chart-grid ---------- */
+function renderChart(c) {
+  const maxCount = Math.max(...c.counts, 1);
+  const card = document.createElement('div');
+  card.className = 'chart-card';
+  const bars = c.counts.map(v => `
+    <div class="bar-col">
+      <span class="val">${v}</span>
+      <div class="bar" style="height:${v === 0 ? '2px' : (v / maxCount * 100) + '%'}"></div>
+    </div>
+  `).join('');
+  const labels = c.categories.map(cat => `<span>${cat}</span>`).join('');
+  const tableRows = c.categories.map((cat, i) => `<tr><th scope="row">${cat}</th><td>${c.counts[i]}</td></tr>`).join('');
+  const meanBadge = (c.mean !== null && c.mean !== undefined)
+    ? `<span class="n"> &middot; mean ${c.mean.toFixed(2)}</span>` : '';
+  card.innerHTML = `
+    <h3>${c.q}. ${c.title}</h3>
+    <div class="n">n = ${c.n}${meanBadge}</div>
+    <div class="bars" role="img" aria-label="Bar chart of responses to ${c.q}: ${c.categories.map((cat,i) => cat + ' ' + c.counts[i]).join(', ')}. n = ${c.n}.">${bars}</div>
+    <div class="bar-labels" aria-hidden="true">${labels}</div>
+    <table class="data-table">
+      <caption>Underlying counts</caption>
+      <thead><tr><th scope="col">Response</th><th scope="col">Count</th></tr></thead>
+      <tbody>${tableRows}</tbody>
+    </table>
+  `;
+  return card;
+}
+SURVEY_CHARTS.forEach(c => {
+  const target = document.getElementById(`chartGrid-${c.group}`);
+  if (target) target.appendChild(renderChart(c));
+});
+
+/* ---------- render: open-ended comment blocks with a "show all" toggle ---------- */
+const EXAMPLE_COUNT = 3;
+function renderComments(block) {
+  const wrap = document.createElement('div');
+  wrap.className = 'comments-block';
+  const total = block.items.length;
+  const metaParts = [`${total} of ${total + block.noAnswer + block.redacted} participants responded`];
+  if (block.noAnswer) metaParts.push(`${block.noAnswer} did not answer`);
+  if (block.redacted) metaParts.push(`${block.redacted} response${block.redacted > 1 ? 's' : ''} withheld by request`);
+  const listId = `comments-${block.q}`;
+  const items = block.items.map((text, i) => `<li${i >= EXAMPLE_COUNT ? ' hidden' : ''}>${text}</li>`).join('');
+  const hiddenCount = Math.max(total - EXAMPLE_COUNT, 0);
+  wrap.innerHTML = `
+    <h3>${block.q}. ${block.title}</h3>
+    <p class="comments-meta">${metaParts.join(' &middot; ')}</p>
+    <ul class="comment-list" id="${listId}">${items}</ul>
+    ${hiddenCount > 0 ? `<button type="button" class="comments-toggle" aria-expanded="false" data-target="${listId}" data-total="${total}" data-shown="${EXAMPLE_COUNT}">
+      <span class="label">Show all ${total} comments</span><span class="arrow" aria-hidden="true">&#9662;</span>
+    </button>` : ''}
+  `;
+  return wrap;
+}
+SURVEY_COMMENTS.forEach(block => {
+  const target = document.getElementById(`comments-${block.group}`);
+  if (target) target.appendChild(renderComments(block));
+});
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.comments-toggle');
+  if (!btn) return;
+  const list = document.getElementById(btn.dataset.target);
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  list.querySelectorAll('li[hidden], li').forEach((li, i) => {
+    if (i >= Number(btn.dataset.shown)) li.hidden = expanded;
+  });
+  btn.setAttribute('aria-expanded', String(!expanded));
+  btn.querySelector('.label').textContent = expanded
+    ? `Show all ${btn.dataset.total} comments`
+    : `Show fewer comments`;
+});
+</script>
+</body>
+</html>
